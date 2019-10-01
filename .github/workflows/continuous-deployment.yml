@@ -1,0 +1,42 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          registry-url: 'https://npm.pkg.github.com'
+          scope: 'ridedott'
+          always-auth: true
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          registry-url: 'https://registry.npmjs.org'
+          scope: 'ridedott'
+          always-auth: true
+
+      - env:
+          CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm ci --unsafe-perm
+
+      - env:
+          CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /home/runner/work/_temp/.npmrc
+          echo "//registry.npmjs.org/:_authToken=$GITHUB_TOKEN" >> /home/runner/work/_temp/.npmrc
+          npx semantic-release

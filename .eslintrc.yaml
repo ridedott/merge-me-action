@@ -1,0 +1,8 @@
+env:
+  es6: true
+  node: true
+extends: '@ridedott/eslint-config'
+parserOptions:
+  ecmaVersion: 10
+  project: tsconfig.json
+  sourceType: module

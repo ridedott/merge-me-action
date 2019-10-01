@@ -1,0 +1,10 @@
+# Autodetect text files
+* text=auto eol=lf
+
+# Definitively text files
+*.js text
+*.json text
+*.md text
+*.ts text
+*.yaml text
+*.yml text
