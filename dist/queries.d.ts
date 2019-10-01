@@ -1,0 +1,1 @@
+export declare const mergePullRequestQuery = "\nmutation ($pullRequestId: ID!) {\n  addPullRequestReview(input: { event: APPROVE, pullRequestId: $pullRequestId}) {\n    clientMutationId\n  }\n  mergePullRequest(input: {mergeMethod: SQUASH, pullRequestId: $pullRequestId}) {\n    clientMutationId\n  }\n}\n";

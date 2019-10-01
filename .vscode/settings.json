@@ -1,0 +1,23 @@
+{
+  "bashBeautify.tabSize": 2,
+  "cSpell.diagnosticLevel": "Error",
+  "cSpell.ignorePaths": [
+    ".eslintrc",
+    "*.config.js",
+    "*.json",
+    "*.log",
+    "*.yaml",
+    "**/*.json",
+    "lib/**",
+    "node_modules/**"
+  ],
+  "eslint.autoFixOnSave": true,
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.enable": true,
+  "eslint.provideLintTask": true,
+  "eslint.run": "onType",
+  "eslint.validate": ["typescript"],
+  "typescript.tsdk": "./node_modules/typescript/lib"
+}

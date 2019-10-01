@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "orta.vscode-jest",
+    "richie5um2.vscode-sort-json",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
