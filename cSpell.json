@@ -17,7 +17,7 @@
     "*.yaml",
     "**/*.json",
     "generated/**",
-    "lib/**",
+    "dist/**",
     "node_modules/**"
   ],
   "language": "en-US",

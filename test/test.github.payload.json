@@ -1,0 +1,40 @@
+{
+  "repository": {
+    "full_name": "test-actor/Test-Repo",
+    "name": "Test-Repo",
+    "owner": {
+      "login": "string",
+      "name": "string"
+    },
+    "html_url": "string"
+  },
+  "issue": {
+    "number": 2,
+    "html_url": "string",
+    "body": "string"
+  },
+  "pull_request": {
+    "number": 2,
+    "html_url": "string",
+    "body": "string"
+  },
+  "sender": {
+    "type": "string",
+    "login": "dependabot-preview[bot]"
+  },
+  "action": "string",
+  "installation": {
+    "id": 2
+  },
+  "check_suite": {
+    "head_commit": {
+      "message": "Update test\n\n\nsi"
+    },
+    "pull_requests": [
+      {
+        "id": "test-ID-1",
+        "number": 1
+      }
+    ]
+  }
+}
