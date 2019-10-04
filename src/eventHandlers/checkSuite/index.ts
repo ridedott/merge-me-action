@@ -44,7 +44,7 @@ export const checkSuiteHandle = async (octokit: GitHub): Promise<void> => {
         });
 
         info(
-          `PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
+          `checkSuiteHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
         );
 
         await octokit.graphql(approveAndMergePullRequestMutation, {

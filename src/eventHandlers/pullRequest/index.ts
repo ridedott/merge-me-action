@@ -15,7 +15,7 @@ export const pullRequestHandle = async (octokit: GitHub): Promise<void> => {
       const pullRequestId = pullRequest.node_id;
 
       info(
-        `PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
+        `pullRequestHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
       );
 
       await octokit.graphql(approveAndMergePullRequestMutation, {

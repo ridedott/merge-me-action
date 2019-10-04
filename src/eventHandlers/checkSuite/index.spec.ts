@@ -1,4 +1,6 @@
+import * as core from '@actions/core';
 import { GitHub } from '@actions/github';
+import * as HttpStatus from 'http-status-codes';
 import * as nock from 'nock';
 
 import { checkSuiteHandle } from '.';
@@ -6,14 +8,15 @@ import { checkSuiteHandle } from '.';
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
 
 describe('check Suite event handler', () => {
-  it('should not throw any error when it gets a Pull Request ID', async () => {
-    expect.assertions(1);
+  it('should not throw any warning issue when it gets triggered', async () => {
+    expect.assertions(2);
 
-    const HTTP_STATUS = 200;
+    const infoSpy = jest.spyOn(core, 'info');
+    const warningSpy = jest.spyOn(core, 'warning');
 
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(HTTP_STATUS, {
+      .reply(HttpStatus.OK, {
         data: {
           repository: {
             /* cspell:disable-next-line */
@@ -23,8 +26,11 @@ describe('check Suite event handler', () => {
       });
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(HTTP_STATUS);
+      .reply(HttpStatus.OK);
 
-    expect(async () => checkSuiteHandle(octokit)).not.toThrow();
+    await checkSuiteHandle(octokit);
+
+    expect(infoSpy).toHaveBeenCalled();
+    expect(warningSpy).not.toHaveBeenCalled();
   });
 });

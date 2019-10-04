@@ -45,7 +45,7 @@ export const pushHandle = async (octokit: GitHub): Promise<void> => {
       });
 
       info(
-        `PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
+        `pushHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
       );
 
       await octokit.graphql(approveAndMergePullRequestMutation, {

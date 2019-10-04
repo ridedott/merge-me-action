@@ -1,31 +1,5 @@
 {
-  "repository": {
-    "full_name": "test-actor/Test-Repo",
-    "name": "Test-Repo",
-    "owner": {
-      "login": "string",
-      "name": "string"
-    },
-    "html_url": "string"
-  },
-  "issue": {
-    "number": 2,
-    "html_url": "string",
-    "body": "string"
-  },
-  "pull_request": {
-    "number": 2,
-    "html_url": "string",
-    "body": "string"
-  },
-  "sender": {
-    "type": "string",
-    "login": "dependabot-preview[bot]"
-  },
   "action": "string",
-  "installation": {
-    "id": 2
-  },
   "check_suite": {
     "head_commit": {
       "message": "Update test\n\n\nsi"
@@ -36,5 +10,45 @@
         "number": 1
       }
     ]
+  },
+  "commits": [
+    {
+      "message": "Update test\n\n\nsi"
+    }
+  ],
+  "installation": {
+    "id": 2
+  },
+  "issue": {
+    "body": "string",
+    "html_url": "string",
+    "number": 2
+  },
+  "pull_request": {
+    "body": "string",
+    "html_url": "string",
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4",
+    "number": 2,
+    "title": "Update test",
+    "user": {
+      "login": "dependabot-preview[bot]"
+    }
+  },
+  "pusher": {
+    "name": "dependabot-preview[bot]"
+  },
+  "ref": "refs/heads/test-branch",
+  "repository": {
+    "full_name": "test-actor/Test-Repo",
+    "html_url": "string",
+    "name": "Test-Repo",
+    "owner": {
+      "login": "string",
+      "name": "string"
+    }
+  },
+  "sender": {
+    "login": "dependabot-preview[bot]",
+    "type": "string"
   }
 }
