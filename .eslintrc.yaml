@@ -6,7 +6,7 @@ overrides:
   - env:
       jest: true
     files:
-      - src/**/*spec.ts
+      - src/**/*.spec.ts
     rules:
       '@typescript-eslint/no-magic-numbers': off
       eslint(max-lines-per-function): off
