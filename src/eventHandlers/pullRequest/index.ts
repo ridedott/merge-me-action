@@ -1,10 +1,10 @@
 import { info, warning } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
-import { DEPENDABOT_GITHUB_LOGIN } from '../constants';
-import { approveAndMergePullRequestMutation } from '../graphql/mutations';
+import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
+import { approveAndMergePullRequestMutation } from '../../graphql/mutations';
 
-export const handle = async (octokit: GitHub): Promise<void> => {
+export const pullRequestHandle = async (octokit: GitHub): Promise<void> => {
   const pullRequest = context.payload.pull_request;
 
   if (pullRequest === undefined) {
@@ -15,7 +15,7 @@ export const handle = async (octokit: GitHub): Promise<void> => {
       const pullRequestId = pullRequest.node_id;
 
       info(
-        `PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
+        `pullRequestHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
       );
 
       await octokit.graphql(approveAndMergePullRequestMutation, {

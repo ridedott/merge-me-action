@@ -46,3 +46,6 @@ coverage
 
 # Include distribution files, as Actions are directly clonned and run.
 !dist/*
+
+# TypeScript Build output
+lib

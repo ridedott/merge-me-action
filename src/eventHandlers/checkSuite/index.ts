@@ -3,9 +3,9 @@
 import { info, warning } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
-import { DEPENDABOT_GITHUB_LOGIN } from '../constants';
-import { approveAndMergePullRequestMutation } from '../graphql/mutations';
-import { findPullRequestNodeIdByPullRequestNumber } from '../graphql/queries';
+import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
+import { approveAndMergePullRequestMutation } from '../../graphql/mutations';
+import { findPullRequestNodeIdByPullRequestNumber } from '../../graphql/queries';
 
 const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)\n[\s\S]*$/u;
 
@@ -19,7 +19,7 @@ const getCommitHeadline = (): string => {
   return commitHeadline;
 };
 
-export const handle = async (octokit: GitHub): Promise<void> => {
+export const checkSuiteHandle = async (octokit: GitHub): Promise<void> => {
   const pullRequests = context.payload.check_suite.pull_requests;
 
   for (const pullRequest of pullRequests) {
@@ -44,7 +44,7 @@ export const handle = async (octokit: GitHub): Promise<void> => {
         });
 
         info(
-          `PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
+          `checkSuiteHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
         );
 
         await octokit.graphql(approveAndMergePullRequestMutation, {

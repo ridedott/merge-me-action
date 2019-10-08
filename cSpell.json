@@ -17,6 +17,7 @@
     "*.yaml",
     "**/*.json",
     "generated/**",
+    "dist/**",
     "lib/**",
     "node_modules/**"
   ],
