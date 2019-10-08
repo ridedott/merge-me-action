@@ -18,6 +18,7 @@
     "**/*.json",
     "generated/**",
     "dist/**",
+    "lib/**",
     "node_modules/**"
   ],
   "language": "en-US",

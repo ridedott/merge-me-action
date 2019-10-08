@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { GitHub } from '@actions/github';
-import * as HttpStatus from 'http-status-codes';
+import { OK } from 'http-status-codes';
 import * as nock from 'nock';
 
 import { checkSuiteHandle } from '.';
@@ -11,11 +11,7 @@ const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
 
 describe('check Suite event handler', () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
-  it('should not throw any warning issue when it gets triggered by Dependabot', async () => {
+  it('does not throw any warning issue when it gets triggered by Dependabot', async () => {
     expect.assertions(3);
 
     const successLog = `checkSuiteHandle: PullRequestId: ${PULL_REQUEST_ID}, commitHeadline: Update test.`;
@@ -28,7 +24,7 @@ describe('check Suite event handler', () => {
 
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(HttpStatus.OK, {
+      .reply(OK, {
         data: {
           repository: {
             pullRequest: { id: PULL_REQUEST_ID },
@@ -37,7 +33,7 @@ describe('check Suite event handler', () => {
       });
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(HttpStatus.OK);
+      .reply(OK);
 
     await checkSuiteHandle(octokit);
 
@@ -46,7 +42,7 @@ describe('check Suite event handler', () => {
     expect(warningSpy).not.toHaveBeenCalled();
   });
 
-  it('should throw a warning issue when it cannot find pull request id by pull request number', async () => {
+  it('does throw a warning issue when it cannot find pull request id by pull request number', async () => {
     expect.assertions(3);
 
     const successLog = `checkSuiteHandle: PullRequestId: ${PULL_REQUEST_ID}, commitHeadline: Update test.`;
@@ -58,7 +54,7 @@ describe('check Suite event handler', () => {
       .mockImplementation(() => null);
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(HttpStatus.OK, {
+      .reply(OK, {
         data: {
           repository: {
             pullRequest: null,
@@ -67,7 +63,7 @@ describe('check Suite event handler', () => {
       });
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(HttpStatus.OK);
+      .reply(OK);
 
     await checkSuiteHandle(octokit);
 

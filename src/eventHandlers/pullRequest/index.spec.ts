@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { GitHub } from '@actions/github';
-import * as HttpStatus from 'http-status-codes';
+import { OK } from 'http-status-codes';
 import * as nock from 'nock';
 
 import { pullRequestHandle } from '.';
@@ -11,11 +11,7 @@ const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
 
 describe('pull request event handler', () => {
-  afterEach(() => {
-    jest.resetAllMocks();
-  });
-
-  it('should not throw any warning issue when it gets triggered', async () => {
+  it('does not throw any warning issue when it gets triggered', async () => {
     expect.assertions(3);
 
     const successLog = `pullRequestHandle: PullRequestId: ${PULL_REQUEST_ID}, commitHeadline: Update test.`;
@@ -28,7 +24,7 @@ describe('pull request event handler', () => {
 
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(HttpStatus.OK, {
+      .reply(OK, {
         data: {
           repository: {
             pullRequest: { id: PULL_REQUEST_ID },
@@ -37,7 +33,7 @@ describe('pull request event handler', () => {
       });
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(HttpStatus.OK);
+      .reply(OK);
 
     await pullRequestHandle(octokit);
 
