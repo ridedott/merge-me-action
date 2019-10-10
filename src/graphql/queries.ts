@@ -19,3 +19,22 @@ export const findPullRequestNodeIdByHeadReferenceName = `
     }
   }
 `;
+
+export const findPullRequestNodeIdAndLastCommit = `
+  query FindPullRequestNodeIdAndLastCommit($repositoryOwner: String!, $repositoryName: String!, $pullRequestNumber: Int!) {
+    repository(owner: $repositoryOwner, name: $repositoryName) {
+      pullRequest(number: $pullRequestNumber) {
+        id,
+        commits(last: 1) {
+          edges {
+            node {
+              commit {
+                message
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

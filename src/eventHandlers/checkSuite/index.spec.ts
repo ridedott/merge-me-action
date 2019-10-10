@@ -7,6 +7,7 @@ import { checkSuiteHandle } from '.';
 
 /* cspell:disable-next-line */
 const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
+const COMMIT_HEADLINE = 'Update test';
 
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
 
@@ -27,7 +28,18 @@ describe('check Suite event handler', () => {
       .reply(OK, {
         data: {
           repository: {
-            pullRequest: { id: PULL_REQUEST_ID },
+            pullRequests: {
+              commits: {
+                edges: [
+                  {
+                    node: {
+                      commit: { message: COMMIT_HEADLINE },
+                    },
+                  },
+                ],
+              },
+              id: PULL_REQUEST_ID,
+            },
           },
         },
       });
