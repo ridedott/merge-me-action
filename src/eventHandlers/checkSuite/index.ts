@@ -19,10 +19,18 @@ export const checkSuiteHandle = async (octokit: GitHub): Promise<void> => {
         const pullRequestNumber = pullRequest.number;
         const repositoryName = context.repo.repo;
         const repositoryOwner = context.repo.owner;
-
+        const response = await octokit.graphql(
+          findPullRequestNodeIdAndLastCommit,
+          {
+            pullRequestNumber,
+            repositoryName,
+            repositoryOwner,
+          },
+        );
+        warning(JSON.stringify(response));
         const {
           repository: {
-            pullRequests: {
+            pullRequest: {
               id: pullRequestId,
               commits: {
                 edges: [
@@ -35,11 +43,7 @@ export const checkSuiteHandle = async (octokit: GitHub): Promise<void> => {
               },
             },
           },
-        } = await octokit.graphql(findPullRequestNodeIdAndLastCommit, {
-          pullRequestNumber,
-          repositoryName,
-          repositoryOwner,
-        });
+        } = response;
 
         info(
           `checkSuiteHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,

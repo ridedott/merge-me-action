@@ -28,7 +28,7 @@ describe('check Suite event handler', () => {
       .reply(OK, {
         data: {
           repository: {
-            pullRequests: {
+            pullRequest: {
               commits: {
                 edges: [
                   {
