@@ -57,12 +57,12 @@
     "head_branch": "dependabot-preview[bot]/test-branch",
     "head_commit": {
       "author": {
-        "email": "andres.viescar@gmail.com",
-        "name": "AndrÃ©s C. Viesca Ruiz"
+        "email": "dependabot-preview@gmail.com",
+        "name": "dependabot-preview[bot]"
       },
       "committer": {
-        "email": "andres.viescar@gmail.com",
-        "name": "AndrÃ©s C. Viesca Ruiz"
+        "email": "dependabot-preview@gmail.com",
+        "name": "dependabot-preview[bot]"
       },
       "id": "9d00ff713d0987cc1f4d3d5c00e6fa8ff4066e1f",
       "message": "Merge branch 'master' of github.com:ridedott/test-workflows into dependabot-preview[bot]/test-branch",
