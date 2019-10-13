@@ -1,7 +1,6 @@
 const { env } = require('process');
 const NodeEnvironment = require('jest-environment-node');
 
-
 class CustomEnvironment extends NodeEnvironment {
   constructor(config, context) {
     switch (context.docblockPragmas['webhook-pragma']) {
@@ -58,7 +57,7 @@ class CustomEnvironment extends NodeEnvironment {
   async teardown() {
     await super.teardown();
   }
-  x
+
   runScript(script) {
     return super.runScript(script);
   }

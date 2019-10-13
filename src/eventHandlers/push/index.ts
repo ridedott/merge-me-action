@@ -5,7 +5,7 @@ import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
 import { approveAndMergePullRequestMutation } from '../../graphql/mutations';
 import { findPullRequestNodeIdByHeadReferenceName } from '../../graphql/queries';
 
-const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)\n[\s\S]*$/u;
+const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)[\s\S]*$/u;
 const SHORT_REFERENCE_MATCHER = /^refs\/heads\/(?<name>.*)$/u;
 
 const getCommitHeadline = (): string => {
