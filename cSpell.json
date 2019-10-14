@@ -29,6 +29,7 @@
     "dependabot",
     "docblock",
     "editorconfig",
+    "mergeable",
     "octokit",
     "prettierignore",
     "prettierrc",

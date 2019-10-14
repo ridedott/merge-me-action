@@ -8,3 +8,10 @@ export const approveAndMergePullRequestMutation = `
     }
   }
 `;
+export const mergePullRequestMutation = `
+  mutation ($commitHeadline: String!, $pullRequestId: ID!) {
+    mergePullRequest(input: {commitBody: "", commitHeadline: $commitHeadline, mergeMethod: SQUASH, pullRequestId: $pullRequestId}) {
+      clientMutationId
+    }
+  }
+`;
