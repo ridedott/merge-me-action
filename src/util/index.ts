@@ -2,8 +2,9 @@ import {
   approveAndMergePullRequestMutation,
   mergePullRequestMutation,
 } from '../graphql/mutations';
+
 /**
- * This method returns the right GraphQl mutation depending on weather the
+ * Returns the right GraphQl mutation depending on weather the
  * `reviewEdge` form the Pull Request contains a review with `'Approved'`
  * state or if it is `undefined`.
  * This prevents approving an already approved pull request.

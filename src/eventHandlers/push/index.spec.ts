@@ -1,6 +1,7 @@
 /**
  * @webhook-pragma push
  */
+
 import * as core from '@actions/core';
 import { GitHub } from '@actions/github';
 import { OK } from 'http-status-codes';

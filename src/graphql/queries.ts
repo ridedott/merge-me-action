@@ -19,6 +19,7 @@ export const findPullRequestNodeIdByHeadReferenceName = `
     }
   }
 `;
+
 export const findPullRequestInfoAndReviews = `
   query FindPullRequestInfoAndReviews($repositoryOwner: String!, $repositoryName: String!, $referenceName: String!) {
     repository(owner: $repositoryOwner, name: $repositoryName) {

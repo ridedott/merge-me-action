@@ -1,6 +1,7 @@
 /**
  * @webhook-pragma check_suite
  */
+
 import * as core from '@actions/core';
 import { GitHub } from '@actions/github';
 import { OK } from 'http-status-codes';
