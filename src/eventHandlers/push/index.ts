@@ -2,10 +2,10 @@ import { info, warning } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
-import { approveAndMergePullRequestMutation } from '../../graphql/mutations';
-import { findPullRequestNodeIdByHeadReferenceName } from '../../graphql/queries';
+import { findPullRequestInfoAndReviews } from '../../graphql/queries';
+import { mutationSelector } from '../../util';
 
-const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)\n[\s\S]*$/u;
+const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)[\s\S]*$/u;
 const SHORT_REFERENCE_MATCHER = /^refs\/heads\/(?<name>.*)$/u;
 
 const getCommitHeadline = (): string => {
@@ -35,10 +35,20 @@ export const pushHandle = async (octokit: GitHub): Promise<void> => {
       const {
         repository: {
           pullRequests: {
-            nodes: [{ id: pullRequestId }],
+            nodes: [
+              {
+                id: pullRequestId,
+                mergeable: mergeableState,
+                merged,
+                reviews: {
+                  edges: [reviewEdge],
+                },
+                state: pullRequestState,
+              },
+            ],
           },
         },
-      } = await octokit.graphql(findPullRequestNodeIdByHeadReferenceName, {
+      } = await octokit.graphql(findPullRequestInfoAndReviews, {
         referenceName,
         repositoryName,
         repositoryOwner,
@@ -48,10 +58,18 @@ export const pushHandle = async (octokit: GitHub): Promise<void> => {
         `pushHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
       );
 
-      await octokit.graphql(approveAndMergePullRequestMutation, {
-        commitHeadline,
-        pullRequestId,
-      });
+      if (
+        mergeableState === 'MERGEABLE' &&
+        merged === false &&
+        pullRequestState === 'OPEN'
+      ) {
+        await octokit.graphql(mutationSelector(reviewEdge), {
+          commitHeadline,
+          pullRequestId,
+        });
+      } else {
+        warning('Pull Request is not in a mergeable state');
+      }
     } catch (error) {
       warning(error);
       warning(JSON.stringify(error));

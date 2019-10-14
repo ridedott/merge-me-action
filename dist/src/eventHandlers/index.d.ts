@@ -2,6 +2,6 @@
  * Event Handler Exports
  */
 export * from './checkSuite';
-export * from './push';
 export * from './pullRequest';
+export * from './push';
 //# sourceMappingURL=index.d.ts.map

@@ -9,7 +9,8 @@ overrides:
       - src/**/*.spec.ts
     rules:
       '@typescript-eslint/no-magic-numbers': off
-      eslint(max-lines-per-function): off
+      '@typescript-eslint/camelcase': off
+      max-lines-per-function: off
       no-magic-numbers: off
 parserOptions:
   ecmaVersion: 10

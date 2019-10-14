@@ -27,11 +27,15 @@
     "codeowners",
     "commitlint",
     "dependabot",
+    "docblock",
     "editorconfig",
+    "mergeable",
     "octokit",
     "prettierignore",
     "prettierrc",
     "releaserc",
-    "ridedott"
+    "ridedott",
+    "ridedottauto",
+    "webhook"
   ]
 }
