@@ -3,7 +3,6 @@ This Pull Request fulfills the following requirements:
 - [ ] The commit message follows our guidelines.
 - [ ] Tests for the changes have been added if needed.
 - [ ] Does not affect documentation or it has been added or updated.
-- [ ] Does not introduce cycles into the flow of execution.
 
 <!--
 Example: Resolves #1234
@@ -14,7 +13,3 @@ issues.
 -->
 
 Resolves #
-
-<!--
-Link to a PR with a documentation update:
--->

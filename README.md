@@ -4,14 +4,14 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-Automatically merges Pull Requests.
+Automatically merges Dependabot Pull Requests.
 
 ## Usage
 
-Create a new `.github/workflows/auto-merge.yml` file:
+Create a new `.github/workflows/dependabot-auto-merge.yml` file:
 
 ```yaml
-name: Auto merge
+name: Auto merge Dependabot updates
 
 on:
   check_suite:
@@ -42,7 +42,7 @@ Add a job as a last step of your CI workflow:
 
 ```yaml
 auto-merge:
-  name: Auto merge
+  name: Auto merge Dependabot updates
   runs-on: ubuntu-latest
   needs:
     - all
@@ -82,17 +82,18 @@ Minimal requirements to set up the project:
 Start by cloning the repository:
 
 ```bash
-git clone git@github.com:ridedott/[package-name].git
+git clone git@github.com:ridedott/dependabot-auto-merge-action.git
 ```
 
 In case you don't have a git client, you can get the latest version directly by
-using [this link](https://github.com/ridedott/[package-name]/archive/master.zip)
+using
+[this link](https://github.com/ridedott/dependabot-auto-merge-action/archive/master.zip)
 and extracting the downloaded archive.
 
 Go the the right directory and install dependencies:
 
 ```bash
-cd [package-name]
+cd dependabot-auto-merge-action
 npm install
 ```
 
@@ -123,17 +124,12 @@ npm run lint
 npm run lint:fix
 ```
 
-### Coverage
-
-[Coveralls.io](https://coveralls.io)
-
 ## Publishing
 
 Publishing is handled in an automated way and must not be performed manually.
 
-Each commit to the master branch is automatically deployed to the NPM registry
-with a version specified in `package.json`. All other commits are published as
-pre-releases.
+Each commit to the master branch is automatically tagged using
+[`semantic-release`](https://github.com/semantic-release/semantic-release).
 
 ## Contributing
 
@@ -145,14 +141,12 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ### Automation
 
-- [GitHub Actions](https://github.com/features/actions)
 - [Dependabot](https://dependabot.com/)
+- [GitHub Actions](https://github.com/features/actions)
 
 ### Source
 
 - [TypeScript](https://www.typescriptlang.org)
-
-### Delivery
 
 ## Versioning
 

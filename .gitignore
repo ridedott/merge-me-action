@@ -44,8 +44,6 @@ node_modules
 # Coverage output
 coverage
 
-# Include distribution files, as Actions are directly clonned and run.
-!dist/*
-
-# TypeScript Build output
+# Build output
+dist
 lib
