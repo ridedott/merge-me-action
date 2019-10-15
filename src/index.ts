@@ -24,6 +24,6 @@ const main = async (): Promise<void> => {
   }
 };
 
-main().catch((error: Error) => {
+main().catch((error: Error): void => {
   setFailed(`An unexpected error occurred: ${error}, ${error.stack}.`);
 });
