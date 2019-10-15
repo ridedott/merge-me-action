@@ -86,7 +86,7 @@
   },
   "version": "0.1.0",
   "dependencies": {
-    "@actions/core": "^1.1.1",
+    "@actions/core": "^1.1.3",
     "@actions/github": "^1.1.0"
   }
 }
