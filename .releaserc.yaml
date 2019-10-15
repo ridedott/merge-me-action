@@ -21,9 +21,9 @@ plugins:
           release: patch
   - '@semantic-release/release-notes-generator'
   - '@semantic-release/changelog'
-  - '@semantic-release/npm'
   - - '@semantic-release/git'
     - assets:
+        - dist
         - package.json
         - package-lock.json
         - CHANGELOG.md

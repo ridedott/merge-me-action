@@ -11,24 +11,6 @@ Give us short description of the issue, just to understand some context without
 diving too deep into it.
 -->
 
-**What is the name of the function?**
-
-<!--
-If you see issues with a particular function or collection? Let us know here, so
-it's easier to locate the issue.
--->
-
-**Which platforms are affected?**
-
-<!--
-Did you test the behavior on various platforms? It helps us understand how wide
-spread the issue is.
--->
-
-- [ ] Android
-- [ ] iOS
-- [ ] Web
-
 **How can we reproduce the issue?**
 
 <!--

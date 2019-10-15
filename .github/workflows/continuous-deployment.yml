@@ -10,9 +10,11 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
 
-      - uses: actions/setup-node@v1
+      - name: Setup Node.js with GitHub Package Registry
+        uses: actions/setup-node@v1
         with:
           node-version: 12
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -20,7 +22,8 @@ jobs:
           scope: 'ridedott'
           always-auth: true
 
-      - uses: actions/setup-node@v1
+      - name: Setup Node.js with npm Package Registry
+        uses: actions/setup-node@v1
         with:
           node-version: 12
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,12 +31,14 @@ jobs:
           scope: 'ridedott'
           always-auth: true
 
-      - env:
-          CI: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm ci --unsafe-perm
+      - name: Install dependencies
+        run: npm ci
 
-      - env:
+      - name: Build
+        run: npm run build
+
+      - name: Release
+        env:
           CI: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
