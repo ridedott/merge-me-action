@@ -21,5 +21,5 @@
     "strictNullChecks": true,
     "target": "es2017"
   },
-  "exclude": ["./dist"]
+  "files": ["./src/index.ts"]
 }
