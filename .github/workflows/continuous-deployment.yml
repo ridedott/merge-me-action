@@ -44,4 +44,5 @@ jobs:
         run: |
           echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /home/runner/work/_temp/.npmrc
           echo "//registry.npmjs.org/:_authToken=$GITHUB_TOKEN" >> /home/runner/work/_temp/.npmrc
+          sed -i.bak -e '/dist/d' .gitignore
           npx semantic-release
