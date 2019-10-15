@@ -1,5 +1,8 @@
 name: 'Dependabot auto merge'
 description: 'Automatically merge Pull Requests from Dependabot.'
+branding:
+  color: 'gray-dark'
+  icon: 'git-merge'
 inputs:
   GITHUB_TOKEN:
     description: 'A GitHub token.'
