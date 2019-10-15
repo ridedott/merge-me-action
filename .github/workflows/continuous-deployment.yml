@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Setup Node.js with GitHub Package Registry
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@master
         with:
           node-version: 12
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -23,7 +23,7 @@ jobs:
           always-auth: true
 
       - name: Setup Node.js with npm Package Registry
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@master
         with:
           node-version: 12
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
