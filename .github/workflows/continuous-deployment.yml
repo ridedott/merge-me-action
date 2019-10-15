@@ -35,7 +35,10 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          # Workaround https://github.com/zeit/ncc/issues/457.
+          mv tsconfig.production.json tsconfig.json
+          npm run build
 
       - name: Release
         env:
