@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: auto-merge
-        uses: ridedott/auto-merge-action@master
+        uses: ridedott/dependabot-auto-merge-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -52,7 +52,7 @@ auto-merge:
     - jobs
   steps:
     - name: auto-merge
-      uses: ridedott/auto-merge-action@master
+      uses: ridedott/dependabot-auto-merge-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
