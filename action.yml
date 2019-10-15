@@ -1,5 +1,5 @@
-name: 'Auto merge'
-description: 'Automatically merge Pull Requests.'
+name: 'Dependabot auto merge'
+description: 'Automatically merge Pull Requests from Dependabot.'
 inputs:
   GITHUB_TOKEN:
     description: 'A GitHub token.'
