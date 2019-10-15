@@ -40,19 +40,6 @@ jobs:
           CI: true
         run: npm ci
       - run: npm run spellcheck
-  types:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - env:
-          CI: true
-        run: npm ci
-      - run: npm run types
   test:
     runs-on: ubuntu-latest
     steps:
@@ -66,3 +53,30 @@ jobs:
           CI: true
         run: npm ci
       - run: npm test
+  types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - env:
+          CI: true
+        run: npm ci
+      - run: npm run types
+  auto-merge:
+    name: Auto merge Dependabot updates
+    runs-on: ubuntu-latest
+    needs:
+      - format
+      - lint
+      - spellcheck
+      - test
+      - types
+    steps:
+      - name: auto-merge
+        uses: ridedott/dependabot-auto-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
