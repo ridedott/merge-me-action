@@ -1,7 +1,7 @@
 branch: master
 ci: false
-dryRun: true
 debug: false
+dryRun: false
 plugins:
   - - '@semantic-release/commit-analyzer'
     - releaseRules:
