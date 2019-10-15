@@ -19,17 +19,21 @@ const COMMIT_HEADLINE = 'Update test';
 
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
 
-describe('check Suite event handler', () => {
-  it('does not throw any warning issue when it gets triggered by Dependabot', async () => {
+describe('check Suite event handler', (): void => {
+  it('does not throw any warning issue when it gets triggered by Dependabot', async (): Promise<
+    void
+  > => {
     expect.assertions(3);
 
     const successLog = `checkSuiteHandle: PullRequestId: ${PULL_REQUEST_ID}, commitHeadline: ${COMMIT_HEADLINE}.`;
     const skipLog = 'Pull request not created by Dependabot, skipping.';
 
-    const infoSpy = jest.spyOn(core, 'info').mockImplementation(() => null);
+    const infoSpy = jest
+      .spyOn(core, 'info')
+      .mockImplementation((): null => null);
     const warningSpy = jest
       .spyOn(core, 'warning')
-      .mockImplementation(() => null);
+      .mockImplementation((): null => null);
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -70,7 +74,9 @@ describe('check Suite event handler', () => {
     expect(warningSpy).not.toHaveBeenCalled();
   });
 
-  it('does not approve an already approved pull request', async () => {
+  it('does not approve an already approved pull request', async (): Promise<
+    void
+  > => {
     expect.assertions(5);
 
     const successLog = `checkSuiteHandle: PullRequestId: ${PULL_REQUEST_ID}, commitHeadline: ${COMMIT_HEADLINE}.`;
@@ -81,10 +87,12 @@ describe('check Suite event handler', () => {
     };
 
     const graphqlSpy = jest.spyOn(octokit, 'graphql');
-    const infoSpy = jest.spyOn(core, 'info').mockImplementation(() => null);
+    const infoSpy = jest
+      .spyOn(core, 'info')
+      .mockImplementation((): null => null);
     const warningSpy = jest
       .spyOn(core, 'warning')
-      .mockImplementation(() => null);
+      .mockImplementation((): null => null);
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -140,16 +148,20 @@ describe('check Suite event handler', () => {
     expect(warningSpy).not.toHaveBeenCalled();
   });
 
-  it('does throw a warning issue when it cannot find pull request id by pull request number', async () => {
+  it('does throw a warning issue when it cannot find pull request id by pull request number', async (): Promise<
+    void
+  > => {
     expect.assertions(3);
 
     const successLog = `checkSuiteHandle: PullRequestId: ${PULL_REQUEST_ID}, commitHeadline: ${COMMIT_HEADLINE}.`;
     const skipLog = 'Pull request not created by Dependabot, skipping.';
 
-    const infoSpy = jest.spyOn(core, 'info').mockImplementation(() => null);
+    const infoSpy = jest
+      .spyOn(core, 'info')
+      .mockImplementation((): null => null);
     const warningSpy = jest
       .spyOn(core, 'warning')
-      .mockImplementation(() => null);
+      .mockImplementation((): null => null);
 
     nock('https://api.github.com')
       .post('/graphql')
