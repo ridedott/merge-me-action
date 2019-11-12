@@ -12,40 +12,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-
       - name: Setup Node.js with GitHub Package Registry
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v1
         with:
           node-version: 12
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           registry-url: 'https://npm.pkg.github.com'
           scope: 'ridedott'
           always-auth: true
-
-      - name: Setup Node.js with npm Package Registry
-        uses: actions/setup-node@master
+      - name: Cache dependencies
+        uses: actions/cache@v1
         with:
-          node-version: 12
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          registry-url: 'https://registry.npmjs.org'
-          scope: 'ridedott'
-          always-auth: true
-
+          key:
+            npm-${{ hashFiles(format('{0}{1}', github.workspace,
+            '/package-lock.json')) }}
+          path: ~/.npm
+          restore-keys: |
+            npm-
       - name: Install dependencies
-        run: npm ci
-
+        run:
+          npm ci --ignore-scripts --no-audit --prefer-offline --progress=false
       - name: Build
         run: |
           # Workaround https://github.com/zeit/ncc/issues/457.
           mv tsconfig.production.json tsconfig.json
           npm run build
-
       - name: Release
         env:
-          CI: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" > /home/runner/work/_temp/.npmrc
-          echo "//registry.npmjs.org/:_authToken=$GITHUB_TOKEN" >> /home/runner/work/_temp/.npmrc
           sed -i.bak -e '/dist/d' .gitignore
           npx semantic-release
