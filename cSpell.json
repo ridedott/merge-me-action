@@ -26,9 +26,11 @@
   "words": [
     "codeowners",
     "commitlint",
+    "coverallsapp",
     "dependabot",
     "docblock",
     "editorconfig",
+    "gitignore",
     "mergeable",
     "octokit",
     "prettierignore",

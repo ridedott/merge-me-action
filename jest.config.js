@@ -8,7 +8,7 @@ module.exports = {
      */
     'src/common/clients/axios.ts',
   ],
-  coverageReporters: ['json', 'text', 'text-summary'],
+  coverageReporters: ['lcov', 'text', 'text-summary'],
   coverageThreshold: {
     global: {
       branches: 99,
