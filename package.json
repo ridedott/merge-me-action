@@ -19,7 +19,7 @@
     "@zeit/ncc": "^0.20.5",
     "commitizen": "^4.0.3",
     "cspell": "^4.0.35",
-    "eslint": "^6.7.1",
+    "eslint": "^6.7.2",
     "http-status-codes": "^1.4.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
