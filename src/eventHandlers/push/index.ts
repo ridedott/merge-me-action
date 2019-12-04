@@ -55,7 +55,7 @@ export const pushHandle = async (octokit: GitHub): Promise<void> => {
       });
 
       info(
-        `pushHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
+        `pushHandle: PullRequestId: ${pullRequestId as string}, commitHeadline: ${commitHeadline}.`,
       );
 
       if (
