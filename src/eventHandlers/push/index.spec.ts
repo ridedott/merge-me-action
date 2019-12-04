@@ -66,7 +66,7 @@ describe('push event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
 
     expect(infoSpy).toHaveBeenCalledWith(successLog);
     expect(infoSpy).not.toHaveBeenCalledWith(skipLog);
@@ -124,7 +124,7 @@ describe('push event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
 
     expect(graphqlSpy).toHaveBeenNthCalledWith(
       2,
@@ -169,7 +169,7 @@ describe('push event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
 
     expect(infoSpy).not.toHaveBeenLastCalledWith(successLog);
     expect(infoSpy).not.toHaveBeenCalledWith(skipLog);

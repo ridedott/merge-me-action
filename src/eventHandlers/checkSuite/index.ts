@@ -3,17 +3,19 @@
 import { info, warning } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
-import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
 import { findPullRequestInfo } from '../../graphql/queries';
 import { mutationSelector } from '../../util';
 
-export const checkSuiteHandle = async (octokit: GitHub): Promise<void> => {
+export const checkSuiteHandle = async (
+  octokit: GitHub,
+  BOT_NAME: string,
+): Promise<void> => {
   const pullRequests = context.payload.check_suite.pull_requests;
 
   for (const pullRequest of pullRequests) {
     if (
       typeof context.payload.sender === 'object' &&
-      context.payload.sender.login === DEPENDABOT_GITHUB_LOGIN
+      context.payload.sender.login === BOT_NAME
     ) {
       try {
         const pullRequestNumber = pullRequest.number;
@@ -67,7 +69,7 @@ export const checkSuiteHandle = async (octokit: GitHub): Promise<void> => {
         warning(JSON.stringify(error));
       }
     } else {
-      info('Pull request not created by Dependabot, skipping.');
+      info(`Pull request not created by ${BOT_NAME}, skipping.`);
     }
   }
 };

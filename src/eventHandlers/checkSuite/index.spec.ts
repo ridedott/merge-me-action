@@ -67,7 +67,7 @@ describe('check Suite event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await checkSuiteHandle(octokit);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
 
     expect(infoSpy).toHaveBeenCalledWith(successLog);
     expect(infoSpy).not.toHaveBeenCalledWith(skipLog);
@@ -132,7 +132,7 @@ describe('check Suite event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await checkSuiteHandle(octokit);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
 
     expect(graphqlSpy).toHaveBeenNthCalledWith(
       2,
@@ -176,7 +176,7 @@ describe('check Suite event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await checkSuiteHandle(octokit);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
 
     expect(infoSpy).not.toHaveBeenLastCalledWith(successLog);
     expect(infoSpy).not.toHaveBeenCalledWith(skipLog);

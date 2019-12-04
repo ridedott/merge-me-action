@@ -1,7 +1,6 @@
 import { info, warning } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
-import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
 import { findPullRequestInfoAndReviews } from '../../graphql/queries';
 import { mutationSelector } from '../../util';
 
@@ -24,8 +23,11 @@ const getReferenceName = (): string => {
   return name;
 };
 
-export const pushHandle = async (octokit: GitHub): Promise<void> => {
-  if (context.payload.pusher.name === DEPENDABOT_GITHUB_LOGIN) {
+export const pushHandle = async (
+  octokit: GitHub,
+  BOT_NAME: string,
+): Promise<void> => {
+  if (context.payload.pusher.name === BOT_NAME) {
     try {
       const commitHeadline = getCommitHeadline();
       const referenceName = getReferenceName();
@@ -75,6 +77,6 @@ export const pushHandle = async (octokit: GitHub): Promise<void> => {
       warning(JSON.stringify(error));
     }
   } else {
-    info('Pull request not created by Dependabot, skipping.');
+    info(`Pull request not created by ${BOT_NAME}, skipping.`);
   }
 };
