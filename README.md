@@ -32,9 +32,10 @@ on:
 
 jobs:
   auto-merge:
+    name: Auto merge
     runs-on: ubuntu-latest
     steps:
-      - name: auto-merge
+      - name: Auto merge
         uses: ridedott/dependabot-auto-merge-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -44,7 +45,7 @@ Add a job as a last step of your CI workflow:
 
 ```yaml
 auto-merge:
-  name: Auto merge Dependabot updates
+  name: Auto merge
   runs-on: ubuntu-latest
   needs:
     - all
@@ -52,7 +53,7 @@ auto-merge:
     - required
     - jobs
   steps:
-    - name: auto-merge
+    - name: Auto merge
       uses: ridedott/dependabot-auto-merge-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

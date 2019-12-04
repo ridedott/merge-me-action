@@ -139,7 +139,7 @@ jobs:
       - name: Types
         run: npm run types
   auto-merge:
-    name: Auto merge Dependabot updates
+    name: Auto merge
     runs-on: ubuntu-latest
     needs:
       - format
