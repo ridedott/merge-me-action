@@ -31,8 +31,7 @@ jobs:
           restore-keys: |
             npm-
       - name: Install dependencies
-        run:
-          npm ci --ignore-scripts --no-audit --prefer-offline --progress=false
+        run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Format
         run: npm run format
   lint:
@@ -57,8 +56,7 @@ jobs:
           restore-keys: |
             npm-
       - name: Install dependencies
-        run:
-          npm ci --ignore-scripts --no-audit --prefer-offline --progress=false
+        run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Lint
         run: npm run lint
   spellcheck:
@@ -83,8 +81,7 @@ jobs:
           restore-keys: |
             npm-
       - name: Install dependencies
-        run:
-          npm ci --ignore-scripts --no-audit --prefer-offline --progress=false
+        run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Spellcheck
         run: npm run spellcheck
   test:
@@ -109,8 +106,7 @@ jobs:
           restore-keys: |
             npm-
       - name: Install dependencies
-        run:
-          npm ci --ignore-scripts --no-audit --prefer-offline --progress=false
+        run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Test
         run: npm run test:ci
       - name: Upload coverage to Coveralls
@@ -139,8 +135,7 @@ jobs:
           restore-keys: |
             npm-
       - name: Install dependencies
-        run:
-          npm ci --ignore-scripts --no-audit --prefer-offline --progress=false
+        run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Types
         run: npm run types
   auto-merge:
