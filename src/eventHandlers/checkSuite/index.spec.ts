@@ -59,7 +59,7 @@ describe('check Suite event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await checkSuiteHandle(octokit);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -114,7 +114,7 @@ describe('check Suite event handler', (): void => {
       })
       .reply(OK);
 
-    await checkSuiteHandle(octokit);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
   });
 
   it('logs a warning when it cannot find pull request ID by pull request number', async (): Promise<
@@ -132,7 +132,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
 
     expect(warningSpy).toHaveBeenCalled();
   });

@@ -57,7 +57,7 @@ describe('push event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -104,7 +104,7 @@ describe('push event handler', (): void => {
       })
       .reply(OK);
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
   });
 
   it('logs a warning when it cannot find pull request node id', async (): Promise<
@@ -124,7 +124,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
 
     expect(warningSpy).toHaveBeenCalled();
   });

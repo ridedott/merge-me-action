@@ -62,7 +62,7 @@ describe('pull request event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await pullRequestHandle(octokit);
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -116,6 +116,6 @@ describe('pull request event handler', (): void => {
       })
       .reply(OK);
 
-    await pullRequestHandle(octokit);
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
   });
 });

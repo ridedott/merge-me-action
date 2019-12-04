@@ -5,7 +5,6 @@ import {
 } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
-import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { mutationSelector } from '../../util';
 
@@ -55,7 +54,10 @@ const getPullRequestInformation = async (
   };
 };
 
-export const pullRequestHandle = async (octokit: GitHub): Promise<void> => {
+export const pullRequestHandle = async (
+  octokit: GitHub,
+  BOT_NAME: string,
+): Promise<void> => {
   const { repository, pull_request: pullRequest } = context.payload;
 
   if (pullRequest === undefined || repository === undefined) {
@@ -64,8 +66,8 @@ export const pullRequestHandle = async (octokit: GitHub): Promise<void> => {
     return;
   }
 
-  if (pullRequest.user.login !== DEPENDABOT_GITHUB_LOGIN) {
-    logInfo('Pull request was not created by Dependabot, skipping.');
+  if (pullRequest.user.login !== BOT_NAME) {
+    logInfo(`Pull request not created by ${BOT_NAME}, skipping.`);
 
     return;
   }
