@@ -22,7 +22,7 @@ export const pullRequestHandle = async (octokit: GitHub): Promise<void> => {
       } = context.payload.repository as PayloadRepository;
 
       info(
-        `pullRequestHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
+        `pullRequestHandle: PullRequestId: ${pullRequestId as string}, commitHeadline: ${commitHeadline as string}.`,
       );
       const {
         repository: {

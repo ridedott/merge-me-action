@@ -47,7 +47,7 @@ export const checkSuiteHandle = async (octokit: GitHub): Promise<void> => {
         });
 
         info(
-          `checkSuiteHandle: PullRequestId: ${pullRequestId}, commitHeadline: ${commitHeadline}.`,
+          `checkSuiteHandle: PullRequestId: ${pullRequestId as string}, commitHeadline: ${commitHeadline as string}.`,
         );
 
         if (
