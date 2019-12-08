@@ -18,7 +18,7 @@
     "@types/node": "^12.12.14",
     "@zeit/ncc": "^0.20.5",
     "commitizen": "^4.0.3",
-    "cspell": "^4.0.35",
+    "cspell": "^4.0.36",
     "eslint": "^6.7.2",
     "http-status-codes": "^1.4.0",
     "husky": "^3.1.0",
