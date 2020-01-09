@@ -12,7 +12,7 @@
     "@semantic-release/changelog": "^3.0.6",
     "@semantic-release/exec": "^4.0.0",
     "@semantic-release/git": "^8.0.0",
-    "@semantic-release/npm": "^5.3.5",
+    "@semantic-release/npm": "^6.0.0",
     "@semantic-release/release-notes-generator": "^7.3.5",
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.6",
