@@ -29,7 +29,7 @@
     "prettier": "^1.19.1",
     "semantic-release": "^16.0.0",
     "ts-jest": "^24.3.0",
-    "ts-node": "^8.5.4"
+    "ts-node": "^8.6.0"
   },
   "engines": {
     "node": "12"
