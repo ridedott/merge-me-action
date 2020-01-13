@@ -8,7 +8,6 @@
     "*.yaml",
     "**/*.json",
     "coverage/**",
-    "generated/**",
     "dist/**",
     "node_modules/**"
   ],
