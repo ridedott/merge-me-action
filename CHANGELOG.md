@@ -1,3 +1,10 @@
+## [1.0.13](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.12...v1.0.13) (2020-01-13)
+
+### Continuous Integration
+
+- do not auto merge on PR changes
+  ([9151164](https://github.com/ridedott/dependabot-auto-merge-action/commit/9151164f84eb070f677ce3dff33905a53da29f0d))
+
 ## [1.0.12](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.11...v1.0.12) (2020-01-13)
 
 ### Chores
