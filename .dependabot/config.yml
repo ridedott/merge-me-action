@@ -1,14 +1,13 @@
-version: 1
-
 update_configs:
-  - package_manager: 'javascript'
-    allowed_updates:
+  - allowed_updates:
       - match:
-          dependency_type: 'direct'
-          update_type: 'all'
-    directory: '/'
-    update_schedule: 'live'
-    version_requirement_updates: 'increase_versions'
+          dependency_type: direct
+          update_type: all
     commit_message:
-      prefix: 'chore'
       include_scope: true
+      prefix: chore
+    directory: /
+    package_manager: javascript
+    update_schedule: live
+    version_requirement_updates: increase_versions
+version: 1
