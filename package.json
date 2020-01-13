@@ -4,6 +4,10 @@
       "path": "cz-conventional-changelog"
     }
   },
+  "dependencies": {
+    "@actions/core": "^1.2.1",
+    "@actions/github": "^1.1.0"
+  },
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
     "@commitlint/cli": "^8.3.4",
@@ -59,8 +63,8 @@
   "name": "@ridedott/dependabot-auto-merge-action",
   "private": false,
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "restricted"
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": "https://github.com/ridedott/dependabot-auto-merge-action",
   "scripts": {
@@ -87,9 +91,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "0.1.0",
-  "dependencies": {
-    "@actions/core": "^1.2.1",
-    "@actions/github": "^1.1.0"
-  }
+  "version": "0.1.0"
 }
