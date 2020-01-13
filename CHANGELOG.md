@@ -1,3 +1,10 @@
+## [1.0.15](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.14...v1.0.15) (2020-01-13)
+
+### Chores
+
+- update VS Code settings
+  ([b3d659c](https://github.com/ridedott/dependabot-auto-merge-action/commit/b3d659c169c1e3f91289da0c436bfc3995e2a659))
+
 ## [1.0.14](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.13...v1.0.14) (2020-01-13)
 
 ### Chores
