@@ -1,3 +1,15 @@
+## [1.0.14](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.13...v1.0.14) (2020-01-13)
+
+### Chores
+
+- **deps-dev:** bump ts-node from 8.6.1 to 8.6.2
+  ([18e44b3](https://github.com/ridedott/dependabot-auto-merge-action/commit/18e44b3067ec31ed8c7c15bd88e892b383121f82))
+
+### Documentation
+
+- add a Continuous Delivery badge to the Readme
+  ([7c3cae2](https://github.com/ridedott/dependabot-auto-merge-action/commit/7c3cae2a05a9593a55a117a3356d094b25f20409))
+
 ## [1.0.13](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.12...v1.0.13) (2020-01-13)
 
 ### Continuous Integration
