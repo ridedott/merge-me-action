@@ -33,7 +33,7 @@
     "prettier": "^1.19.1",
     "semantic-release": "^16.0.1",
     "ts-jest": "^24.3.0",
-    "ts-node": "^8.6.1"
+    "ts-node": "^8.6.2"
   },
   "engines": {
     "node": "12"
@@ -91,5 +91,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "1.0.12"
+  "version": "1.0.13"
 }
