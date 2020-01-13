@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          persist-credentials: false
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -39,9 +39,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          persist-credentials: false
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -64,9 +64,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          persist-credentials: false
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -89,9 +89,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          persist-credentials: false
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -118,9 +118,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          persist-credentials: false
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
@@ -151,4 +151,4 @@ jobs:
       - name: Auto merge
         uses: ridedott/dependabot-auto-merge-action@master
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_DOTTBOTT }}
