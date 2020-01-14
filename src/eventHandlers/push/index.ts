@@ -1,14 +1,18 @@
-import { info, warning } from '@actions/core';
+import {
+  error as logError,
+  info as logInfo,
+  warning as logWarning,
+} from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
-import { findPullRequestInfoAndReviews } from '../../graphql/queries';
+import { findPullRequestInfoAndReviews as findPullRequestInformationAndReviews } from '../../graphql/queries';
 import { mutationSelector } from '../../util';
 
 const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)[\s\S]*$/u;
 const SHORT_REFERENCE_MATCHER = /^refs\/heads\/(?<name>.*)$/u;
 
-const getCommitHeadline = (): string => {
+const getCommitMessageHeadline = (): string => {
   const {
     groups: { commitHeadline },
   } = context.payload.commits[0].message.match(COMMIT_HEADLINE_MATCHER);
@@ -24,57 +28,125 @@ const getReferenceName = (): string => {
   return name;
 };
 
-export const pushHandle = async (octokit: GitHub): Promise<void> => {
-  if (context.payload.pusher.name === DEPENDABOT_GITHUB_LOGIN) {
-    try {
-      const commitHeadline = getCommitHeadline();
-      const referenceName = getReferenceName();
-      const repositoryName = context.repo.repo;
-      const repositoryOwner = context.repo.owner;
+interface PullRequestInformation {
+  mergeableState: 'CONFLICTING' | 'MERGEABLE' | 'UNKNOWN';
+  merged: boolean;
+  pullRequestId: string;
+  pullRequestState: 'CLOSED' | 'MERGED' | 'OPEN';
+  reviewEdges: Array<
+    | {
+        node: {
+          state:
+            | 'APPROVED'
+            | 'CHANGES_REQUESTED'
+            | 'COMMENTED'
+            | 'DISMISSED'
+            | 'PENDING';
+        };
+      }
+    | undefined
+  >;
+}
 
-      const {
-        repository: {
-          pullRequests: {
-            nodes: [
-              {
-                id: pullRequestId,
-                mergeable: mergeableState,
-                merged,
-                reviews: {
-                  edges: [reviewEdge],
-                },
-                state: pullRequestState,
-              },
-            ],
+const getPullRequestInformation = async (
+  octokit: GitHub,
+  query: {
+    referenceName: string;
+    repositoryName: string;
+    repositoryOwner: string;
+  },
+): Promise<PullRequestInformation | undefined> => {
+  const response = await octokit.graphql(
+    findPullRequestInformationAndReviews,
+    query,
+  );
+
+  if (
+    response === null ||
+    response.repository.pullRequests.nodes.length === 0
+  ) {
+    return undefined;
+  }
+
+  const {
+    repository: {
+      pullRequests: {
+        nodes: [
+          {
+            id: pullRequestId,
+            mergeable: mergeableState,
+            merged,
+            reviews: { edges: reviewEdges },
+            state: pullRequestState,
           },
-        },
-      } = await octokit.graphql(findPullRequestInfoAndReviews, {
-        referenceName,
-        repositoryName,
-        repositoryOwner,
-      });
+        ],
+      },
+    },
+  } = response;
 
-      info(
-        `pushHandle: PullRequestId: ${pullRequestId as string}, commitHeadline: ${commitHeadline}.`,
+  return {
+    mergeableState,
+    merged,
+    pullRequestId,
+    pullRequestState,
+    reviewEdges,
+  };
+};
+
+const tryMerge = async (
+  octokit: GitHub,
+  {
+    commitMessageHeadline,
+    mergeableState,
+    merged,
+    pullRequestId,
+    pullRequestState,
+    reviewEdges,
+  }: PullRequestInformation & { commitMessageHeadline: string },
+): Promise<void> => {
+  if (mergeableState !== 'MERGEABLE') {
+    logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
+  } else if (merged) {
+    logInfo(`Pull request is already merged.`);
+  } else if (pullRequestState !== 'OPEN') {
+    logInfo(`Pull request is not open: ${pullRequestState}.`);
+  } else {
+    await octokit.graphql(mutationSelector(reviewEdges[0]), {
+      commitHeadline: commitMessageHeadline,
+      pullRequestId,
+    });
+  }
+};
+
+export const pushHandle = async (octokit: GitHub): Promise<void> => {
+  if (context.payload.pusher.name !== DEPENDABOT_GITHUB_LOGIN) {
+    logInfo('Pull request not created by Dependabot, skipping.');
+
+    return;
+  }
+
+  try {
+    const pullRequestInformation = await getPullRequestInformation(octokit, {
+      referenceName: getReferenceName(),
+      repositoryName: context.repo.repo,
+      repositoryOwner: context.repo.owner,
+    });
+
+    if (pullRequestInformation === undefined) {
+      logWarning('Unable to fetch pull request information.');
+    } else {
+      logInfo(
+        `Found pull request information: ${JSON.stringify(
+          pullRequestInformation,
+        )}.`,
       );
 
-      if (
-        mergeableState === 'MERGEABLE' &&
-        merged === false &&
-        pullRequestState === 'OPEN'
-      ) {
-        await octokit.graphql(mutationSelector(reviewEdge), {
-          commitHeadline,
-          pullRequestId,
-        });
-      } else {
-        warning('Pull Request is not in a mergeable state');
-      }
-    } catch (error) {
-      warning(error);
-      warning(JSON.stringify(error));
+      await tryMerge(octokit, {
+        ...pullRequestInformation,
+        commitMessageHeadline: getCommitMessageHeadline(),
+      });
     }
-  } else {
-    info('Pull request not created by Dependabot, skipping.');
+  } catch (error) {
+    logError(error);
   }
 };

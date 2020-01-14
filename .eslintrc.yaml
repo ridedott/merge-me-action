@@ -8,11 +8,13 @@ overrides:
     files:
       - src/**/*.spec.ts
     rules:
-      '@typescript-eslint/no-magic-numbers': off
-      '@typescript-eslint/camelcase': off
-      max-lines-per-function: off
-      no-magic-numbers: off
+      '@typescript-eslint/camelcase': 'off'
+      '@typescript-eslint/no-magic-numbers': 'off'
+      max-lines-per-function: 'off'
+      no-magic-numbers: 'off'
 parserOptions:
   ecmaVersion: 2020
   project: tsconfig.json
   sourceType: module
+rules:
+  no-negated-condition: 'off'

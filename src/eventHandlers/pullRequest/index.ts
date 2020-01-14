@@ -1,52 +1,100 @@
-import { info, warning } from '@actions/core';
+import {
+  error as logError,
+  info as logInfo,
+  warning as logWarning,
+} from '@actions/core';
 import { context, GitHub } from '@actions/github';
-import { PayloadRepository } from '@actions/github/lib/interfaces';
 
 import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { mutationSelector } from '../../util';
 
+interface PullRequestInformation {
+  reviewEdges: Array<
+    | {
+        node: {
+          state:
+            | 'APPROVED'
+            | 'CHANGES_REQUESTED'
+            | 'COMMENTED'
+            | 'DISMISSED'
+            | 'PENDING';
+        };
+      }
+    | undefined
+  >;
+}
+
+const getPullRequestInformation = async (
+  octokit: GitHub,
+  query: {
+    pullRequestNumber: number;
+    repositoryName: string;
+    repositoryOwner: string;
+  },
+): Promise<PullRequestInformation | undefined> => {
+  const response = await octokit.graphql(
+    findPullRequestLastApprovedReview,
+    query,
+  );
+
+  if (response === null) {
+    return undefined;
+  }
+
+  const {
+    repository: {
+      pullRequest: {
+        reviews: { edges: reviewEdges },
+      },
+    },
+  } = response;
+
+  return {
+    reviewEdges,
+  };
+};
+
 export const pullRequestHandle = async (octokit: GitHub): Promise<void> => {
-  const pullRequest = context.payload.pull_request;
+  const { repository, pull_request: pullRequest } = context.payload;
 
-  if (pullRequest === undefined) {
-    warning('Pull request information is unavailable.');
-  } else if (pullRequest.user.login === DEPENDABOT_GITHUB_LOGIN) {
-    try {
-      const commitHeadline = pullRequest.title;
-      const pullRequestId = pullRequest.node_id;
-      const pullRequestNumber = pullRequest.number;
-      const {
-        name: repositoryName,
-        owner: { login: repositoryOwner },
-      } = context.payload.repository as PayloadRepository;
+  if (pullRequest === undefined || repository === undefined) {
+    logWarning('Required pull request information is unavailable.');
 
-      info(
-        `pullRequestHandle: PullRequestId: ${pullRequestId as string}, commitHeadline: ${commitHeadline as string}.`,
+    return;
+  }
+
+  if (pullRequest.user.login !== DEPENDABOT_GITHUB_LOGIN) {
+    logInfo('Pull request was not created by Dependabot, skipping.');
+
+    return;
+  }
+
+  try {
+    const pullRequestInformation = await getPullRequestInformation(octokit, {
+      pullRequestNumber: pullRequest.number,
+      repositoryName: repository.name,
+      repositoryOwner: repository.owner.login,
+    });
+
+    if (pullRequestInformation === undefined) {
+      logWarning('Unable to fetch pull request information.');
+    } else {
+      logInfo(
+        `Found pull request information: ${JSON.stringify(
+          pullRequestInformation,
+        )}.`,
       );
-      const {
-        repository: {
-          pullRequest: {
-            reviews: {
-              edges: [reviewEdge],
-            },
-          },
-        },
-      } = await octokit.graphql(findPullRequestLastApprovedReview, {
-        pullRequestNumber,
-        repositoryName,
-        repositoryOwner,
-      });
 
-      await octokit.graphql(mutationSelector(reviewEdge), {
-        commitHeadline: pullRequest.title,
-        pullRequestId: pullRequest.node_id,
-      });
-    } catch (error) {
-      warning(error);
-      warning(JSON.stringify(error));
+      await octokit.graphql(
+        mutationSelector(pullRequestInformation.reviewEdges[0]),
+        {
+          commitHeadline: pullRequest.title,
+          pullRequestId: pullRequest.node_id,
+        },
+      );
     }
-  } else {
-    info('Pull request not created by Dependabot, skipping.');
+  } catch (error) {
+    logError(error);
   }
 };
