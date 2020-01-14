@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["file:///home/runner/work/dependabot-auto-merge-action/dependabot-auto-merge-action/src/eventHandlers/push/index.ts"],"names":[],"mappings":"AACA,OAAO,EAAW,MAAM,EAAE,MAAM,iBAAiB,CAAC;AAyBlD,eAAO,MAAM,UAAU,oCAqDtB,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["file:///home/runner/work/dependabot-auto-merge-action/dependabot-auto-merge-action/src/eventHandlers/push/index.ts"],"names":[],"mappings":"AAKA,OAAO,EAAW,MAAM,EAAE,MAAM,iBAAiB,CAAC;AAmHlD,eAAO,MAAM,UAAU,oCA+BtB,CAAC"}
