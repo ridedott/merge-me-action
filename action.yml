@@ -1,12 +1,12 @@
-name: 'Dependabot auto merge'
-description: 'Automatically merge Pull Requests from Dependabot.'
 branding:
-  color: 'gray-dark'
-  icon: 'git-merge'
+  color: gray-dark
+  icon: git-merge
+description: Automatically merge Pull Requests from various bots.
 inputs:
   GITHUB_TOKEN:
-    description: 'A GitHub token.'
+    description: A GitHub token.
     required: true
+name: Auto merge
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  main: dist/index.js
+  using: node12
