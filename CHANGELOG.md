@@ -1,3 +1,14 @@
+## [1.0.19](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.18...v1.0.19) (2020-01-15)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 24.0.25 to 24.9.0
+  ([a8b8b52](https://github.com/ridedott/dependabot-auto-merge-action/commit/a8b8b52d2d37e5806078a6c60b4c900e53e501de))
+- **deps-dev:** bump @types/node from 13.1.6 to 13.1.7
+  ([3084d69](https://github.com/ridedott/dependabot-auto-merge-action/commit/3084d698102dfab52f1569c7668466c3d503ad09))
+- **deps-dev:** bump husky from 4.0.9 to 4.0.10
+  ([baeed2c](https://github.com/ridedott/dependabot-auto-merge-action/commit/baeed2c39376654e49757c89653e46c05b9acf8f))
+
 ## [1.0.18](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.17...v1.0.18) (2020-01-14)
 
 ### Chores
