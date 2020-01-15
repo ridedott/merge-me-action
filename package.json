@@ -18,7 +18,7 @@
     "@semantic-release/git": "^8.0.0",
     "@semantic-release/npm": "^6.0.0",
     "@semantic-release/release-notes-generator": "^7.3.5",
-    "@types/jest": "^24.0.25",
+    "@types/jest": "^24.9.0",
     "@types/node": "^13.1.7",
     "@zeit/ncc": "^0.21.0",
     "commitizen": "^4.0.3",
