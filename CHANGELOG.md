@@ -1,3 +1,10 @@
+## [1.0.20](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.19...v1.0.20) (2020-01-15)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 8.3.4 to 8.3.5
+  ([6870272](https://github.com/ridedott/dependabot-auto-merge-action/commit/6870272f28d60f3c37c9c69b80f265e8b337c22b))
+
 ## [1.0.19](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.18...v1.0.19) (2020-01-15)
 
 ### Chores
