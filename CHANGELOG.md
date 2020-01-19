@@ -1,3 +1,10 @@
+## [1.0.23](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.22...v1.0.23) (2020-01-19)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 9.5.0 to 10.0.0
+  ([582e3fa](https://github.com/ridedott/dependabot-auto-merge-action/commit/582e3fac353671b274cb380d7023ba40a946e1e9))
+
 ## [1.0.22](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.21...v1.0.22) (2020-01-17)
 
 ### Chores
