@@ -1,3 +1,10 @@
+## [1.0.25](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.24...v1.0.25) (2020-01-20)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 0.4.76 to 0.4.78
+  ([a18c6c7](https://github.com/ridedott/dependabot-auto-merge-action/commit/a18c6c749681a6904e4a74b92c064827ece7d67b))
+
 ## [1.0.24](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.23...v1.0.24) (2020-01-20)
 
 ### Chores
