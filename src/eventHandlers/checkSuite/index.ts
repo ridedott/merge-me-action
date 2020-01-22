@@ -104,7 +104,16 @@ const tryMerge = async (
     logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
   } else if (merged) {
     logInfo(`Pull request is already merged.`);
-  } else if (mergeStateStatus !== 'CLEAN') {
+  } else if (
+    mergeStateStatus !== 'CLEAN' &&
+    /*
+     * cspell:ignore merlinnot
+     *
+     * TODO(merlinnot) [2020-03-01] Start pulling the value once it reaches
+     * GA.
+     */
+    mergeStateStatus !== undefined
+  ) {
     logInfo(
       'Pull request cannot be merged cleanly. ' +
         `Current state: ${mergeStateStatus}.`,
