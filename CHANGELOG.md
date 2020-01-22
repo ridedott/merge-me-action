@@ -1,3 +1,10 @@
+## [1.0.32](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.31...v1.0.32) (2020-01-22)
+
+### Bug Fixes
+
+- correctly fetch a message headline when triggered by a check suite
+  ([3be7c57](https://github.com/ridedott/dependabot-auto-merge-action/commit/3be7c579b33155cbdb3c2ea9048fbd9419636ee8))
+
 ## [1.0.31](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.30...v1.0.31) (2020-01-22)
 
 ### Bug Fixes
