@@ -34,6 +34,7 @@ export const findPullRequestInfoAndReviews = `
           }
           mergeable
           merged
+          mergeStateStatus
           state
           id
         }
@@ -65,6 +66,7 @@ export const findPullRequestInfo = `
         }
         mergeable
         merged
+        mergeStateStatus
         state
       }
     }
