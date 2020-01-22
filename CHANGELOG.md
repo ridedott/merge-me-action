@@ -1,3 +1,10 @@
+## [1.0.28](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.27...v1.0.28) (2020-01-22)
+
+### Bug Fixes
+
+- prevent false-negatives when merging PRs
+  ([0fce007](https://github.com/ridedott/dependabot-auto-merge-action/commit/0fce00715b7d38a6f858e920739f2e977597fc8f))
+
 ## [1.0.27](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.26...v1.0.27) (2020-01-21)
 
 ### Chores
