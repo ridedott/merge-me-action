@@ -1,3 +1,10 @@
+## [1.0.31](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.30...v1.0.31) (2020-01-22)
+
+### Bug Fixes
+
+- do not use preview features for PR checks
+  ([9ed9618](https://github.com/ridedott/dependabot-auto-merge-action/commit/9ed9618e84a29d0767d256d8cd218b1fb0483219))
+
 ## [1.0.30](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.29...v1.0.30) (2020-01-22)
 
 ### Chores
