@@ -58,6 +58,7 @@ export const findPullRequestInfo = `
           edges {
             node {
               commit {
+                messageHeadline
                 message
               }
             }
