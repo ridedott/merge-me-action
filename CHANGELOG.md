@@ -1,3 +1,10 @@
+## [1.0.35](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.34...v1.0.35) (2020-01-23)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 13.1.8 to 13.5.0
+  ([73181f8](https://github.com/ridedott/dependabot-auto-merge-action/commit/73181f8d9dcc1f8184d7e6cb57edde737f378930))
+
 ## [1.0.34](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.33...v1.0.34) (2020-01-23)
 
 ### Chores
