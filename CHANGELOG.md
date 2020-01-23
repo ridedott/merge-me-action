@@ -1,3 +1,10 @@
+## [1.0.37](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.36...v1.0.37) (2020-01-23)
+
+### Chores
+
+- **deps:** bump @actions/core from 1.2.1 to 1.2.2
+  ([a91a00f](https://github.com/ridedott/dependabot-auto-merge-action/commit/a91a00f1e2581775876796940d81d2302c550dc7))
+
 ## [1.0.36](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.35...v1.0.36) (2020-01-23)
 
 ### Chores
