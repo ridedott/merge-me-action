@@ -1,3 +1,10 @@
+## [1.0.34](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.33...v1.0.34) (2020-01-23)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 24.9.0 to 24.9.1
+  ([d80680c](https://github.com/ridedott/dependabot-auto-merge-action/commit/d80680c791c46ad29926da2dc976825af9ddc5ef))
+
 ## [1.0.33](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.32...v1.0.33) (2020-01-23)
 
 ### Chores
