@@ -1,3 +1,10 @@
+## [1.0.33](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.32...v1.0.33) (2020-01-23)
+
+### Chores
+
+- **deps-dev:** bump jest and ts-jest
+  ([0bff21d](https://github.com/ridedott/dependabot-auto-merge-action/commit/0bff21d231016d2846ca66847435062c34ac7385))
+
 ## [1.0.32](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.31...v1.0.32) (2020-01-22)
 
 ### Bug Fixes
