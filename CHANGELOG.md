@@ -1,3 +1,10 @@
+## [1.0.36](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.35...v1.0.36) (2020-01-23)
+
+### Chores
+
+- **deps-dev:** bump husky from 4.2.0 to 4.2.1
+  ([bdb831a](https://github.com/ridedott/dependabot-auto-merge-action/commit/bdb831a91dfc48b8541e67fcb1898cc2682cf179))
+
 ## [1.0.35](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.34...v1.0.35) (2020-01-23)
 
 ### Chores
