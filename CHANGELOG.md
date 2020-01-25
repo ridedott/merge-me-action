@@ -1,3 +1,10 @@
+## [1.0.39](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.38...v1.0.39) (2020-01-25)
+
+### Chores
+
+- **deps-dev:** bump cspell from 4.0.44 to 4.0.46
+  ([422da7e](https://github.com/ridedott/dependabot-auto-merge-action/commit/422da7ed872ace4b8a85a6931ca0d795244fdc04))
+
 ## [1.0.38](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.37...v1.0.38) (2020-01-23)
 
 ### Chores
