@@ -1,3 +1,10 @@
+## [1.0.46](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.45...v1.0.46) (2020-01-27)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/changelog from 3.0.6 to 5.0.0
+  ([ac2f6ce](https://github.com/ridedott/dependabot-auto-merge-action/commit/ac2f6cebac32ffb0856fd976c696cfaf2d5657bc))
+
 ## [1.0.45](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.44...v1.0.45) (2020-01-27)
 
 ### Chores
