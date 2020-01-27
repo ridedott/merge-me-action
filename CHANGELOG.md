@@ -1,3 +1,10 @@
+## [1.0.47](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.46...v1.0.47) (2020-01-27)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/npm from 6.0.0 to 7.0.0
+  ([57b28f9](https://github.com/ridedott/dependabot-auto-merge-action/commit/57b28f9e62b6fc28c9ac47cf81e5122d7963b5cf))
+
 ## [1.0.46](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.45...v1.0.46) (2020-01-27)
 
 ### Chores
