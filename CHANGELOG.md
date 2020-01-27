@@ -1,3 +1,11 @@
+## [1.0.45](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.44...v1.0.45) (2020-01-27)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/release-notes-generator from 7.3.5 to
+  9.0.0
+  ([1a608b6](https://github.com/ridedott/dependabot-auto-merge-action/commit/1a608b6cc3deaa548e98f054f716684f122b51df))
+
 ## [1.0.44](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.43...v1.0.44) (2020-01-27)
 
 ### Chores
