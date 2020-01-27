@@ -7,8 +7,9 @@ inputs:
   GITHUB_TOKEN:
     description: 'A GitHub token.'
     required: true
-  BOT_NAME:
-    description: 'The bot name on which you want the auto-merge to be enabled'
+  GITHUB_LOGIN:
+    description:
+      'The github login on which you want the auto-merge to be enabled'
     required: false
     default: 'dependabot-preview[bot]'
 runs:

@@ -11,18 +11,18 @@ import {
 const GITHUB_TOKEN = getInput('GITHUB_TOKEN');
 
 const octokit = new GitHub(GITHUB_TOKEN);
-const BOT_NAME = getInput('BOT_NAME');
+const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
 
 const main = async (): Promise<void> => {
-  info(`The bot name is ${BOT_NAME}`);
+  info(`The bot name is ${GITHUB_LOGIN}`);
 
   switch (context.eventName) {
     case 'check_suite':
-      return checkSuiteHandle(octokit, BOT_NAME);
+      return checkSuiteHandle(octokit, GITHUB_LOGIN);
     case 'pull_request':
-      return pullRequestHandle(octokit, BOT_NAME);
+      return pullRequestHandle(octokit, GITHUB_LOGIN);
     case 'push':
-      return pushHandle(octokit, BOT_NAME);
+      return pushHandle(octokit, GITHUB_LOGIN);
     default:
       warning(`Unknown event ${context.eventName}, skipping.`);
   }
