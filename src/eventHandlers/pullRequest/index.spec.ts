@@ -67,6 +67,18 @@ describe('pull request event handler', (): void => {
     expect(warningSpy).not.toHaveBeenCalled();
   });
 
+  it('does nothing if response is null', async (): Promise<void> => {
+    expect.assertions(0);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: null,
+      });
+
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
+  });
+
   it('does not approve an already approved pull request', async (): Promise<
     void
   > => {
