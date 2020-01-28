@@ -49,10 +49,9 @@ features, by not reporting duplicate issues.
 
 Before you submit your merge request consider the following guidelines:
 
-- Search
-  [GitHub repository](https://github.com/ridedott/auto-merge-action/issues) for
-  an open or closed Pull Request that relates to your submission. You don't want
-  to duplicate effort.
+- Search [GitHub repository](https://github.com/ridedott/merge-me-action/issues)
+  for an open or closed Pull Request that relates to your submission. You don't
+  want to duplicate effort.
 - Make your changes in a new branch:
 
   ```shell
