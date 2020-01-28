@@ -15,10 +15,9 @@ const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
 const COMMIT_HEADLINE = 'Update test';
 
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
+const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
 
 jest.spyOn(core, 'info').mockImplementation();
-
-const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
 
 describe('pull request event handler', (): void => {
   it('does not log warnings when it is triggered', async (): Promise<void> => {
@@ -62,9 +61,21 @@ describe('pull request event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await pullRequestHandle(octokit);
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
 
     expect(warningSpy).not.toHaveBeenCalled();
+  });
+
+  it('does nothing if response is null', async (): Promise<void> => {
+    expect.assertions(0);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: null,
+      });
+
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
   });
 
   it('does not approve an already approved pull request', async (): Promise<
@@ -116,6 +127,6 @@ describe('pull request event handler', (): void => {
       })
       .reply(OK);
 
-    await pullRequestHandle(octokit);
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
   });
 });

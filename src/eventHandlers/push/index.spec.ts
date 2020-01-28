@@ -15,9 +15,7 @@ const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
 const COMMIT_HEADLINE = 'Update test';
 
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
-
-jest.spyOn(core, 'info').mockImplementation();
-
+const infoSpy = jest.spyOn(core, 'info').mockImplementation();
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
 
 describe('push event handler', (): void => {
@@ -57,7 +55,7 @@ describe('push event handler', (): void => {
       .post('/graphql')
       .reply(OK);
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -104,7 +102,135 @@ describe('push event handler', (): void => {
       })
       .reply(OK);
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
+  });
+
+  it('does not approve pull requests that are not mergeable', async (): Promise<
+    void
+  > => {
+    expect.assertions(1);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: {
+          repository: {
+            pullRequests: {
+              nodes: [
+                {
+                  id: PULL_REQUEST_ID,
+                  mergeable: 'CONFLICTING',
+                  merged: false,
+                  reviews: {
+                    edges: [
+                      {
+                        node: {
+                          state: 'APPROVED',
+                        },
+                      },
+                    ],
+                  },
+                  state: 'OPEN',
+                },
+              ],
+            },
+          },
+        },
+      });
+
+    await pushHandle(octokit, 'dependabot-preview[bot]');
+
+    expect(infoSpy).toHaveBeenCalledWith(
+      'Pull request is not in a mergeable state: CONFLICTING.',
+    );
+  });
+
+  it('does not approve pull requests that are already merged', async (): Promise<
+    void
+  > => {
+    expect.assertions(1);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: {
+          repository: {
+            pullRequests: {
+              nodes: [
+                {
+                  id: PULL_REQUEST_ID,
+                  mergeable: 'MERGEABLE',
+                  merged: true,
+                  reviews: {
+                    edges: [
+                      {
+                        node: {
+                          state: 'APPROVED',
+                        },
+                      },
+                    ],
+                  },
+                  state: 'OPEN',
+                },
+              ],
+            },
+          },
+        },
+      });
+
+    await pushHandle(octokit, 'dependabot-preview[bot]');
+
+    expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
+  });
+
+  it('does not approve pull request which state is not open', async (): Promise<
+    void
+  > => {
+    expect.assertions(1);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: {
+          repository: {
+            pullRequests: {
+              nodes: [
+                {
+                  id: PULL_REQUEST_ID,
+                  mergeable: 'MERGEABLE',
+                  merged: false,
+                  reviews: {
+                    edges: [
+                      {
+                        node: {
+                          state: 'APPROVED',
+                        },
+                      },
+                    ],
+                  },
+                  state: 'CLOSED',
+                },
+              ],
+            },
+          },
+        },
+      });
+
+    await pushHandle(octokit, 'dependabot-preview[bot]');
+
+    expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
+  });
+
+  it('does not merge if request not created by the selected GITHUB_LOGIN', async (): Promise<
+    void
+  > => {
+    expect.assertions(1);
+
+    await pushHandle(octokit, 'some-other-login');
+
+    expect(infoSpy).toHaveBeenCalledWith(
+      'Pull request not created by some-other-login, skipping.',
+    );
   });
 
   it('logs a warning when it cannot find pull request node id', async (): Promise<
@@ -124,7 +250,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit);
+    await pushHandle(octokit, 'dependabot-preview[bot]');
 
     expect(warningSpy).toHaveBeenCalled();
   });

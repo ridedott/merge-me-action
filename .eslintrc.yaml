@@ -10,6 +10,7 @@ overrides:
     rules:
       '@typescript-eslint/camelcase': 'off'
       '@typescript-eslint/no-magic-numbers': 'off'
+      'max-lines': 'off'
       max-lines-per-function: 'off'
       no-magic-numbers: 'off'
 parserOptions:

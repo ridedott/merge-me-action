@@ -7,7 +7,6 @@ import {
 } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
-import { DEPENDABOT_GITHUB_LOGIN } from '../../constants';
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
 import { mutationSelector } from '../../util';
 
@@ -128,15 +127,18 @@ const tryMerge = async (
   }
 };
 
-export const checkSuiteHandle = async (octokit: GitHub): Promise<void> => {
+export const checkSuiteHandle = async (
+  octokit: GitHub,
+  gitHubLogin: string,
+): Promise<void> => {
   const pullRequests = context.payload.check_suite.pull_requests;
 
   for (const pullRequest of pullRequests) {
     if (
       typeof context.payload.sender !== 'object' ||
-      context.payload.sender.login !== DEPENDABOT_GITHUB_LOGIN
+      context.payload.sender.login !== gitHubLogin
     ) {
-      logInfo('Pull request was not created by Dependabot, skipping.');
+      logInfo(`Pull request not created by ${gitHubLogin}, skipping.`);
 
       return;
     }

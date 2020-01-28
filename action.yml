@@ -7,6 +7,10 @@ inputs:
   GITHUB_TOKEN:
     description: 'A GitHub token.'
     required: true
+  GITHUB_LOGIN:
+    description: 'The GitHub login for which automatic merges are enabled.'
+    required: false
+    default: 'dependabot-preview[bot]'
 runs:
   using: 'node12'
   main: 'dist/index.js'
