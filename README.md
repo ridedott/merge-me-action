@@ -61,17 +61,18 @@ auto-merge:
 
 ### Enable auto-merge for a different bot
 
-You may have another bot that also raises PR against your repo and you want to
-auto-merge. By default, this github action will assume the bot is dependabot.
-You can override the bot name by setting up the value `GITHUB_LOGIN`:
+You may have another bot that also creates PRs against your repository and you
+want to automatically merge those. By default, this GitHub Action assumes the
+bot is [`dependabot`](https://dependabot.com/). You can override the bot name by
+changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
 steps:
   - name: Auto merge
     uses: ridedott/dependabot-auto-merge-action@master
     with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_LOGIN: my-awesome-bot-r2d2
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Getting Started
