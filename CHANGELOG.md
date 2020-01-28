@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/ridedott/auto-merge-action/compare/v1.1.0...v1.1.1) (2020-01-28)
+
+### Chores
+
+- use new action name everywhere
+  ([6e2bf7c](https://github.com/ridedott/auto-merge-action/commit/6e2bf7c88be5be8681c57d3b1f8eab849ab29bad))
+
 # [1.1.0](https://github.com/ridedott/auto-merge-action/compare/v1.0.47...v1.1.0) (2020-01-28)
 
 ### Features
