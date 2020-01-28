@@ -1,4 +1,4 @@
-name: 'Auto merge'
+name: 'Merge me!'
 description:
   'Automatically merge Pull Requests from the indicated github account.'
 branding:

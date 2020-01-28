@@ -5,7 +5,7 @@ class CustomEnvironment extends NodeEnvironment {
   constructor(config, context) {
     switch (context.docblockPragmas['webhook-pragma']) {
       case 'check_suite':
-        env.GITHUB_ACTION = 'ridedottauto-merge-action';
+        env.GITHUB_ACTION = 'ridedottmerge-me-action';
         env.GITHUB_ACTOR = 'dependabot-preview[bot]';
         env.GITHUB_EVENT_NAME = 'check_suite';
         env.GITHUB_EVENT_PATH = './test/fixtures/ctx.check-suite.json';
@@ -15,7 +15,7 @@ class CustomEnvironment extends NodeEnvironment {
         env.GITHUB_WORKFLOW = 'Auto merge';
         break;
       case 'pull_request':
-        env.GITHUB_ACTION = 'ridedottauto-merge-action';
+        env.GITHUB_ACTION = 'ridedottmerge-me-action';
         env.GITHUB_ACTOR = 'dependabot-preview[bot]';
         env.GITHUB_EVENT_NAME = 'pull_request';
         env.GITHUB_EVENT_PATH = './test/fixtures/ctx.pull-request.json';
@@ -25,7 +25,7 @@ class CustomEnvironment extends NodeEnvironment {
         env.GITHUB_WORKFLOW = 'Auto merge';
         break;
       case 'push':
-        env.GITHUB_ACTION = 'ridedottauto-merge-action';
+        env.GITHUB_ACTION = 'ridedottmerge-me-action';
         env.GITHUB_ACTOR = 'dependabot-preview[bot]';
         env.GITHUB_EVENT_NAME = 'push';
         env.GITHUB_EVENT_PATH = './test/fixtures/ctx.push.json';

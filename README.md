@@ -1,16 +1,16 @@
-# auto-merge-action
+# merge-me-action
 
-[![license: MIT](https://img.shields.io/github/license/ridedott/auto-merge-action)](https://github.com/ridedott/auto-merge-action/blob/master/LICENSE)
-[![GitHub Actions Status](https://github.com/ridedott/auto-merge-action/workflows/Continuous%20Delivery/badge.svg?branch=master)](https://github.com/ridedott/auto-merge-action/actions)
-[![Coveralls](https://coveralls.io/repos/github/ridedott/auto-merge-action/badge.svg)](https://coveralls.io/github/ridedott/auto-merge-action)
+[![license: MIT](https://img.shields.io/github/license/ridedott/merge-me-action)](https://github.com/ridedott/merge-me-action/blob/master/LICENSE)
+[![GitHub Actions Status](https://github.com/ridedott/merge-me-action/workflows/Continuous%20Delivery/badge.svg?branch=master)](https://github.com/ridedott/merge-me-action/actions)
+[![Coveralls](https://coveralls.io/repos/github/ridedott/merge-me-action/badge.svg)](https://coveralls.io/github/ridedott/merge-me-action)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-Automatically merges Dependabot Pull Requests.
+Automatically merge Pull Requests from the indicated github account.
 
 ## Usage
 
-Create a new `.github/workflows/dependabot-auto-merge.yml` file:
+Create a new `.github/workflows/merge-me.yml` file:
 
 ```yaml
 name: Auto merge Dependabot updates
@@ -31,12 +31,12 @@ on:
       - unlocked
 
 jobs:
-  auto-merge:
-    name: Auto merge
+  merge-me:
+    name: Merge me!
     runs-on: ubuntu-latest
     steps:
-      - name: Auto merge
-        uses: ridedott/auto-merge-action@master
+      - name: Merge me!
+        uses: ridedott/merge-me-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -44,8 +44,8 @@ jobs:
 Add a job as a last step of your CI workflow:
 
 ```yaml
-auto-merge:
-  name: Auto merge
+merge-me:
+  name: Merge me!
   runs-on: ubuntu-latest
   needs:
     - all
@@ -53,8 +53,8 @@ auto-merge:
     - required
     - jobs
   steps:
-    - name: Auto merge
-      uses: ridedott/auto-merge-action@master
+    - name: Merge me!
+      uses: ridedott/merge-me-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -68,8 +68,8 @@ changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
 steps:
-  - name: Auto merge
-    uses: ridedott/auto-merge-action@master
+  - name: Merge me!
+    uses: ridedott/merge-me-action@master
     with:
       GITHUB_LOGIN: my-awesome-bot-r2d2
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -101,18 +101,18 @@ Minimal requirements to set up the project:
 Start by cloning the repository:
 
 ```bash
-git clone git@github.com:ridedott/auto-merge-action.git
+git clone git@github.com:ridedott/merge-me-action.git
 ```
 
 In case you don't have a git client, you can get the latest version directly by
 using
-[this link](https://github.com/ridedott/auto-merge-action/archive/master.zip)
-and extracting the downloaded archive.
+[this link](https://github.com/ridedott/merge-me-action/archive/master.zip) and
+extracting the downloaded archive.
 
 Go the the right directory and install dependencies:
 
 ```bash
-cd auto-merge-action
+cd merge-me-action
 npm install
 ```
 
