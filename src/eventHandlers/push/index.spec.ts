@@ -107,7 +107,7 @@ describe('push event handler', (): void => {
     await pushHandle(octokit, 'dependabot-preview[bot]');
   });
 
-  it('does not approve pull request that is not mergeable', async (): Promise<
+  it('does not approve pull requests that are not mergeable', async (): Promise<
     void
   > => {
     expect.assertions(1);
@@ -147,7 +147,7 @@ describe('push event handler', (): void => {
     );
   });
 
-  it('does not approve pull request that is already merged', async (): Promise<
+  it('does not approve pull requests that are already merged', async (): Promise<
     void
   > => {
     expect.assertions(1);

@@ -9,7 +9,7 @@ inputs:
     required: true
   GITHUB_LOGIN:
     description:
-      'The github login on which you want the auto-merge to be enabled'
+      'The GitHub login for which automatic merges are enabled.'
     required: false
     default: 'dependabot-preview[bot]'
 runs:

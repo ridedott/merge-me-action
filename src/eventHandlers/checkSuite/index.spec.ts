@@ -165,7 +165,7 @@ describe('check Suite event handler', (): void => {
     );
   });
 
-  it('does not approve pull request that is already merged', async (): Promise<
+  it('does not approve pull requests that are already merged', async (): Promise<
     void
   > => {
     expect.assertions(1);
@@ -211,7 +211,7 @@ describe('check Suite event handler', (): void => {
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
 
-  it('does not approve pull request which status is not clean', async (): Promise<
+  it('does not approve pull requests for which status is not clean', async (): Promise<
     void
   > => {
     expect.assertions(1);
@@ -259,7 +259,7 @@ describe('check Suite event handler', (): void => {
     );
   });
 
-  it('does not approve pull request which state is not open', async (): Promise<
+  it('does not approve pull requests for which state is not open', async (): Promise<
     void
   > => {
     expect.assertions(1);
