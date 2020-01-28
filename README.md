@@ -32,10 +32,10 @@ on:
 
 jobs:
   merge-me:
-    name: Auto merge
+    name: Merge me!
     runs-on: ubuntu-latest
     steps:
-      - name: Auto merge
+      - name: Merge me!
         uses: ridedott/merge-me-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,7 +45,7 @@ Add a job as a last step of your CI workflow:
 
 ```yaml
 merge-me:
-  name: Auto merge
+  name: Merge me!
   runs-on: ubuntu-latest
   needs:
     - all
@@ -53,7 +53,7 @@ merge-me:
     - required
     - jobs
   steps:
-    - name: Auto merge
+    - name: Merge me!
       uses: ridedott/merge-me-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -68,7 +68,7 @@ changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
 steps:
-  - name: Auto merge
+  - name: Merge me!
     uses: ridedott/merge-me-action@master
     with:
       GITHUB_LOGIN: my-awesome-bot-r2d2
