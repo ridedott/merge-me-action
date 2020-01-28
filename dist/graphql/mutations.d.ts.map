@@ -1,1 +1,1 @@
-{"version":3,"file":"mutations.d.ts","sourceRoot":"","sources":["file:///home/runner/work/auto-merge-action/auto-merge-action/src/graphql/mutations.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,kCAAkC,oWAS9C,CAAC;AAEF,eAAO,MAAM,wBAAwB,iPAMpC,CAAC"}
+{"version":3,"file":"mutations.d.ts","sourceRoot":"","sources":["file:///home/runner/work/merge-me-action/merge-me-action/src/graphql/mutations.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,kCAAkC,oWAS9C,CAAC;AAEF,eAAO,MAAM,wBAAwB,iPAMpC,CAAC"}
