@@ -149,6 +149,6 @@ jobs:
       - types
     steps:
       - name: Auto merge
-        uses: ridedott/dependabot-auto-merge-action@master
+        uses: ridedott/auto-merge-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_DOTTBOTT }}
