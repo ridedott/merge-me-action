@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.47...v1.1.0) (2020-01-28)
+
+### Features
+
+- allow different bot name to auto-merge
+  ([1a8a7e3](https://github.com/ridedott/dependabot-auto-merge-action/commit/1a8a7e36a367e5e6caa849101020957c3415c392))
+
 ## [1.0.47](https://github.com/ridedott/dependabot-auto-merge-action/compare/v1.0.46...v1.0.47) (2020-01-27)
 
 ### Chores
