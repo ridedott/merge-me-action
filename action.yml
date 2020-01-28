@@ -1,5 +1,6 @@
-name: 'Dependabot auto merge'
-description: 'Automatically merge Pull Requests from Dependabot.'
+name: 'Auto merge'
+description:
+  'Automatically merge Pull Requests from the indicated github account.'
 branding:
   color: 'gray-dark'
   icon: 'git-merge'

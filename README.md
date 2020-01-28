@@ -1,8 +1,8 @@
 # auto-merge-action
 
-[![license: MIT](https://img.shields.io/github/license/ridedott/dependabot-auto-merge-action)](https://github.com/ridedott/dependabot-auto-merge-action/blob/master/LICENSE)
-[![GitHub Actions Status](https://github.com/ridedott/auto-merge-action/workflows/Continuous%20Delivery/badge.svg?branch=master)](https://github.com/ridedott/dependabot-auto-merge-action/actions)
-[![Coveralls](https://coveralls.io/repos/github/ridedott/dependabot-auto-merge-action/badge.svg)](https://coveralls.io/github/ridedott/dependabot-auto-merge-action)
+[![license: MIT](https://img.shields.io/github/license/ridedott/auto-merge-action)](https://github.com/ridedott/auto-merge-action/blob/master/LICENSE)
+[![GitHub Actions Status](https://github.com/ridedott/auto-merge-action/workflows/Continuous%20Delivery/badge.svg?branch=master)](https://github.com/ridedott/auto-merge-action/actions)
+[![Coveralls](https://coveralls.io/repos/github/ridedott/auto-merge-action/badge.svg)](https://coveralls.io/github/ridedott/auto-merge-action)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Auto merge
-        uses: ridedott/dependabot-auto-merge-action@master
+        uses: ridedott/auto-merge-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -54,7 +54,7 @@ auto-merge:
     - jobs
   steps:
     - name: Auto merge
-      uses: ridedott/dependabot-auto-merge-action@master
+      uses: ridedott/auto-merge-action@master
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -69,7 +69,7 @@ changing the value of `GITHUB_LOGIN` parameter:
 ```yaml
 steps:
   - name: Auto merge
-    uses: ridedott/dependabot-auto-merge-action@master
+    uses: ridedott/auto-merge-action@master
     with:
       GITHUB_LOGIN: my-awesome-bot-r2d2
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -101,18 +101,18 @@ Minimal requirements to set up the project:
 Start by cloning the repository:
 
 ```bash
-git clone git@github.com:ridedott/dependabot-auto-merge-action.git
+git clone git@github.com:ridedott/auto-merge-action.git
 ```
 
 In case you don't have a git client, you can get the latest version directly by
 using
-[this link](https://github.com/ridedott/dependabot-auto-merge-action/archive/master.zip)
+[this link](https://github.com/ridedott/auto-merge-action/archive/master.zip)
 and extracting the downloaded archive.
 
 Go the the right directory and install dependencies:
 
 ```bash
-cd dependabot-auto-merge-action
+cd auto-merge-action
 npm install
 ```
 
