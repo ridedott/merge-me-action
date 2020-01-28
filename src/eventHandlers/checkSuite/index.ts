@@ -129,16 +129,16 @@ const tryMerge = async (
 
 export const checkSuiteHandle = async (
   octokit: GitHub,
-  GITHUB_LOGIN: string,
+  gitHubLogin: string,
 ): Promise<void> => {
   const pullRequests = context.payload.check_suite.pull_requests;
 
   for (const pullRequest of pullRequests) {
     if (
       typeof context.payload.sender !== 'object' ||
-      context.payload.sender.login !== GITHUB_LOGIN
+      context.payload.sender.login !== gitHubLogin
     ) {
-      logInfo(`Pull request not created by ${GITHUB_LOGIN}, skipping.`);
+      logInfo(`Pull request not created by ${gitHubLogin}, skipping.`);
 
       return;
     }

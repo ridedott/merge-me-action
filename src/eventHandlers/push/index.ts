@@ -119,10 +119,10 @@ const tryMerge = async (
 
 export const pushHandle = async (
   octokit: GitHub,
-  GITHUB_LOGIN: string,
+  gitHubLogin: string,
 ): Promise<void> => {
-  if (context.payload.pusher.name !== GITHUB_LOGIN) {
-    logInfo(`Pull request not created by ${GITHUB_LOGIN}, skipping.`);
+  if (context.payload.pusher.name !== gitHubLogin) {
+    logInfo(`Pull request not created by ${gitHubLogin}, skipping.`);
 
     return;
   }

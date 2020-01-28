@@ -56,7 +56,7 @@ const getPullRequestInformation = async (
 
 export const pullRequestHandle = async (
   octokit: GitHub,
-  GITHUB_LOGIN: string,
+  gitHubLogin: string,
 ): Promise<void> => {
   const { repository, pull_request: pullRequest } = context.payload;
 
@@ -66,8 +66,8 @@ export const pullRequestHandle = async (
     return;
   }
 
-  if (pullRequest.user.login !== GITHUB_LOGIN) {
-    logInfo(`Pull request not created by ${GITHUB_LOGIN}, skipping.`);
+  if (pullRequest.user.login !== gitHubLogin) {
+    logInfo(`Pull request not created by ${gitHubLogin}, skipping.`);
 
     return;
   }

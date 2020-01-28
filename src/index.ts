@@ -1,5 +1,4 @@
-import { getInput, setFailed, warning } from '@actions/core';
-import { info } from '@actions/core/lib/core';
+import { getInput, info, setFailed, warning } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import {
@@ -9,9 +8,9 @@ import {
 } from './eventHandlers';
 
 const GITHUB_TOKEN = getInput('GITHUB_TOKEN');
+const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
 
 const octokit = new GitHub(GITHUB_TOKEN);
-const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
 
 const main = async (): Promise<void> => {
   info(`The bot name is ${GITHUB_LOGIN}`);
