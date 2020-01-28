@@ -13,7 +13,7 @@ const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
 const octokit = new GitHub(GITHUB_TOKEN);
 
 const main = async (): Promise<void> => {
-  info(`The bot name is ${GITHUB_LOGIN}`);
+  info(`Automatic merges enabled for GitHub login: ${GITHUB_LOGIN}.`);
 
   switch (context.eventName) {
     case 'check_suite':
