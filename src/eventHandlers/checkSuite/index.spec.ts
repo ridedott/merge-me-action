@@ -115,7 +115,7 @@ describe('check Suite event handler', (): void => {
     await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
   });
 
-  it('does not approve pull request that is not mergeable', async (): Promise<
+  it('does not approve pull requests that are not mergeable', async (): Promise<
     void
   > => {
     expect.assertions(1);
