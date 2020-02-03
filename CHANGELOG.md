@@ -1,3 +1,38 @@
+## [1.1.4](https://github.com/ridedott/merge-me-action/compare/v1.1.3...v1.1.4) (2020-02-03)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 0.4.78 to 0.4.79
+  ([f83580e](https://github.com/ridedott/merge-me-action/commit/f83580e3ed83394cb746c6295751a9c2854d3d96))
+- **deps-dev:** bump @semantic-release/npm from 7.0.0 to 7.0.1
+  ([a57f35f](https://github.com/ridedott/merge-me-action/commit/a57f35fc6b242dd1ead60b28551501ae211faea5))
+- **deps-dev:** bump @semantic-release/npm from 7.0.1 to 7.0.2
+  ([9f1545e](https://github.com/ridedott/merge-me-action/commit/9f1545e2266bd26977f3f7529e2a43d482fb42c7))
+- **deps-dev:** bump @types/jest from 25.1.0 to 25.1.1
+  ([6e6576c](https://github.com/ridedott/merge-me-action/commit/6e6576c43b00d6c7b6bdd5f762bac1781c3ec88a))
+- **deps-dev:** bump @types/node from 13.5.0 to 13.5.1
+  ([63c5041](https://github.com/ridedott/merge-me-action/commit/63c50413a6edce488f1a09a9fcea16ce271b7f6a))
+- **deps-dev:** bump @types/node from 13.5.1 to 13.5.2
+  ([119f42e](https://github.com/ridedott/merge-me-action/commit/119f42e417ccb687ad41385d1a1c6ba15dfdd859))
+- **deps-dev:** bump @types/node from 13.5.2 to 13.5.3
+  ([89805fc](https://github.com/ridedott/merge-me-action/commit/89805fca16f41a8c1c97d1b4b3d07729e9f43449))
+- **deps-dev:** bump @types/node from 13.5.3 to 13.7.0
+  ([a3090ea](https://github.com/ridedott/merge-me-action/commit/a3090eaeeffb1fabb7fb56175b34d33d7933b677))
+- **deps-dev:** bump lint-staged from 10.0.3 to 10.0.4
+  ([b3a7843](https://github.com/ridedott/merge-me-action/commit/b3a78434476a64d1e55c19ad589dfaf14b6ca7e5))
+- **deps-dev:** bump lint-staged from 10.0.4 to 10.0.5
+  ([a774f90](https://github.com/ridedott/merge-me-action/commit/a774f90d26c87a0e5a5bc956039d584cebf3af0a))
+- **deps-dev:** bump lint-staged from 10.0.5 to 10.0.6
+  ([d2ef9fd](https://github.com/ridedott/merge-me-action/commit/d2ef9fd3cf01cf28d0e0f3abfff313124479cbb7))
+- **deps-dev:** bump lint-staged from 10.0.6 to 10.0.7
+  ([a0ad50b](https://github.com/ridedott/merge-me-action/commit/a0ad50b36ec540adfc7325c3ef3d0721510066a9))
+- **deps-dev:** bump semantic-release from 17.0.1 to 17.0.2
+  ([bc15460](https://github.com/ridedott/merge-me-action/commit/bc154602c57c61bd43328f05d5d0bddc40386473))
+- **deps-dev:** bump ts-jest from 25.0.0 to 25.1.0
+  ([29d100f](https://github.com/ridedott/merge-me-action/commit/29d100f6c0f91d82c6b99a3c33ba10c7032dd40d))
+- **deps-dev:** bump ts-jest from 25.1.0 to 25.2.0
+  ([5d7a491](https://github.com/ridedott/merge-me-action/commit/5d7a4915baa22111f348419379f3f336d2f78201))
+
 ## [1.1.3](https://github.com/ridedott/merge-me-action/compare/v1.1.2...v1.1.3) (2020-01-28)
 
 ### Chores
