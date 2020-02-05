@@ -6,14 +6,65 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-Automatically merge Pull Requests from the indicated github account.
+Automatically merge Pull Requests created from a GitHub account.
 
 ## Usage
+
+The action supports three scenarios:
+
+- Where GitHub Actions are used exclusively.
+- Where a third party CI system provider is used.
+- Where both GitHub Actions and a third party CI system provider are used.
+
+Depending on the scenario, different configuration is required, as described
+below.
+
+### GitHub Actions
+
+When a repository uses GitHub Actions exclusively, Merge Me! action should be
+added as a last job in the CI workflow.
+
+```yaml
+# .github/workflows/continuous-integration.yaml
+
+jobs:
+  # Other jobs are defined above.
+  merge-me:
+    name: Merge me!
+    needs:
+      - all
+      - other
+      - required
+      - jobs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@master
+        with:
+          # Depending on branch protection rules, a  manually populated
+          # `GITHUB_TOKEN_WORKAROUND` environment variable with permissions to
+          # push to a protected branch must be used. This variable can have an
+          # arbitrary name, as an example, this repository uses
+          # `GITHUB_TOKEN_DOTTBOTT`.
+          #
+          # When using a custom token, it is recommended to leave the following
+          # comment for other developers to be aware of the reasoning behind it:
+          #
+          # This must be used as GitHub Actions token does not support
+          # pushing to protected branches.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### Third party CI systems
+
+When a repository uses third party CI systems, Merge Me! action should be added
+as a stand-alone workflow, which is triggered by changes to checks and pull
+requests.
 
 Create a new `.github/workflows/merge-me.yml` file:
 
 ```yaml
-name: Auto merge Dependabot updates
+name: Merge me!
 
 on:
   check_suite:
@@ -38,26 +89,26 @@ jobs:
       - name: Merge me!
         uses: ridedott/merge-me-action@master
         with:
+          # Depending on branch protection rules, a  manually populated
+          # `GITHUB_TOKEN_WORKAROUND` environment variable with permissions to
+          # push to a protected branch must be used. This variable can have an
+          # arbitrary name, as an example, this repository uses
+          # `GITHUB_TOKEN_DOTTBOTT`.
+          #
+          # When using a custom token, it is recommended to leave the following
+          # comment for other developers to be aware of the reasoning behind it:
+          #
+          # This must be used as GitHub Actions token does not support
+          # pushing to protected branches.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-Add a job as a last step of your CI workflow:
+### GitHub Actions and third party CI systems
 
-```yaml
-merge-me:
-  name: Merge me!
-  runs-on: ubuntu-latest
-  needs:
-    - all
-    - other
-    - required
-    - jobs
-  steps:
-    - name: Merge me!
-      uses: ridedott/merge-me-action@master
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
+When GitHub Actions and used in combination with third party CI systems, both of
+the configurations described above should be applied.
+
+## Configuration
 
 ### Enable auto-merge for a different bot
 
@@ -80,8 +131,6 @@ steps:
 These instructions will get you a copy of the project up and running on your
 local machine for development and testing purposes. See usage notes on how to
 consume this package in your project.
-
-<!-- Instructions -->
 
 ### Prerequisites
 
@@ -118,9 +167,21 @@ npm install
 
 That's it! You can now go to the next step.
 
-## Tests
+## Testing
 
-### Formatting
+All tests are being executed using [Jest](https://jestjs.io). All tests files
+live side-to-side with a source code and have a common suffix: `.spec.ts`. Some
+helper methods are being stored in the `test` directory.
+
+There are three helper scripts to run tests in the most common scenarios:
+
+```bash
+npm run test
+npm run test:watch
+npm run test:coverage
+```
+
+## Formatting
 
 This project uses [Prettier](https://prettier.io) to automate formatting. All
 supported files are being reformatted in a pre-commit hook. You can also use one
@@ -131,7 +192,7 @@ npm run format
 npm run format:fix
 ```
 
-### Linting
+## Linting
 
 This project uses [ESLint](https://eslint.org) to enable static analysis.
 TypeScript files are linted using a [custom configuration](./.eslintrc). You can
@@ -155,8 +216,6 @@ Each commit to the master branch is automatically tagged using
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Built with
-
-### Runtime libraries
 
 ### Automation
 
