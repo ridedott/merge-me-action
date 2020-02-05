@@ -51,12 +51,10 @@
   "license": "UNLICENSED",
   "lint-staged": {
     "*.ts": [
-      "eslint",
-      "git add"
+      "eslint"
     ],
     "*.{json,md,ts,yml,yaml}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "main": "dist/index.js",

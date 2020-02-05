@@ -1,4 +1,4 @@
-import { getInput, info, setFailed, warning } from '@actions/core';
+import { getInput, setFailed } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import {
@@ -6,6 +6,7 @@ import {
   pullRequestHandle,
   pushHandle,
 } from './eventHandlers';
+import { logInfo, logWarning } from './utilities/log';
 
 const GITHUB_TOKEN = getInput('GITHUB_TOKEN');
 const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
@@ -13,7 +14,7 @@ const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
 const octokit = new GitHub(GITHUB_TOKEN);
 
 const main = async (): Promise<void> => {
-  info(`Automatic merges enabled for GitHub login: ${GITHUB_LOGIN}.`);
+  logInfo(`Automatic merges enabled for GitHub login: ${GITHUB_LOGIN}.`);
 
   switch (context.eventName) {
     case 'check_suite':
@@ -23,7 +24,7 @@ const main = async (): Promise<void> => {
     case 'push':
       return pushHandle(octokit, GITHUB_LOGIN);
     default:
-      warning(`Unknown event ${context.eventName}, skipping.`);
+      logWarning(`Unknown event ${context.eventName}, skipping.`);
   }
 };
 

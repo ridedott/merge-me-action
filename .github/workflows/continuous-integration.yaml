@@ -24,9 +24,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          key:
-            npm-${{ hashFiles(format('{0}{1}', github.workspace,
-            '/package-lock.json')) }}
+          key: npm-${{ hashFiles( 'package-lock.json') }}
           path: ~/.npm
           restore-keys: |
             npm-
@@ -49,9 +47,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          key:
-            npm-${{ hashFiles(format('{0}{1}', github.workspace,
-            '/package-lock.json')) }}
+          key: npm-${{ hashFiles( 'package-lock.json') }}
           path: ~/.npm
           restore-keys: |
             npm-
@@ -74,9 +70,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          key:
-            npm-${{ hashFiles(format('{0}{1}', github.workspace,
-            '/package-lock.json')) }}
+          key: npm-${{ hashFiles( 'package-lock.json') }}
           path: ~/.npm
           restore-keys: |
             npm-
@@ -99,9 +93,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          key:
-            npm-${{ hashFiles(format('{0}{1}', github.workspace,
-            '/package-lock.json')) }}
+          key: npm-${{ hashFiles( 'package-lock.json') }}
           path: ~/.npm
           restore-keys: |
             npm-
@@ -128,9 +120,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          key:
-            npm-${{ hashFiles(format('{0}{1}', github.workspace,
-            '/package-lock.json')) }}
+          key: npm-${{ hashFiles( 'package-lock.json') }}
           path: ~/.npm
           restore-keys: |
             npm-
