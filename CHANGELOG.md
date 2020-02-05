@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/ridedott/merge-me-action/compare/v1.1.5...v1.1.6) (2020-02-05)
+
+### Documentation
+
+- provide more detailed setup instructions
+  ([e8df91d](https://github.com/ridedott/merge-me-action/commit/e8df91d4fd50dc80cc425774b5b90875e803de17))
+
 ## [1.1.5](https://github.com/ridedott/merge-me-action/compare/v1.1.4...v1.1.5) (2020-02-04)
 
 ### Chores
