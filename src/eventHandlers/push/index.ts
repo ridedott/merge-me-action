@@ -1,12 +1,8 @@
-import {
-  error as logError,
-  info as logInfo,
-  warning as logWarning,
-} from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import { findPullRequestInfoAndReviews as findPullRequestInformationAndReviews } from '../../graphql/queries';
-import { mutationSelector } from '../../util';
+import { mutationSelector } from '../../utilities/graphql';
+import { logError, logInfo, logWarning } from '../../utilities/log';
 
 const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)[\s\S]*$/u;
 const SHORT_REFERENCE_MATCHER = /^refs\/heads\/(?<name>.*)$/u;

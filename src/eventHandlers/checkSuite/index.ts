@@ -1,14 +1,10 @@
 /* eslint-disable no-await-in-loop */
 
-import {
-  error as logError,
-  info as logInfo,
-  warning as logWarning,
-} from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
-import { mutationSelector } from '../../util';
+import { mutationSelector } from '../../utilities/graphql';
+import { logError, logInfo, logWarning } from '../../utilities/log';
 
 interface PullRequestInformation {
   commitMessageHeadline: string;
