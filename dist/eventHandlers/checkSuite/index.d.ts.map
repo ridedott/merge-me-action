@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["file:///home/runner/work/merge-me-action/merge-me-action/src/eventHandlers/checkSuite/index.ts"],"names":[],"mappings":"AAOA,OAAO,EAAW,MAAM,EAAE,MAAM,iBAAiB,CAAC;AA0HlD,eAAO,MAAM,gBAAgB,yDAsC5B,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["file:///home/runner/work/merge-me-action/merge-me-action/src/eventHandlers/checkSuite/index.ts"],"names":[],"mappings":"AAEA,OAAO,EAAW,MAAM,EAAE,MAAM,iBAAiB,CAAC;AA2HlD,eAAO,MAAM,gBAAgB,yDAsC5B,CAAC"}

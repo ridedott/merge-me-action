@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/ridedott/merge-me-action/compare/v1.1.6...v1.1.7) (2020-02-05)
+
+### Bug Fixes
+
+- ensure only plain strings are logged
+  ([808e95d](https://github.com/ridedott/merge-me-action/commit/808e95d32840e141d2810349d1914d66ec688592))
+
 ## [1.1.6](https://github.com/ridedott/merge-me-action/compare/v1.1.5...v1.1.6) (2020-02-05)
 
 ### Documentation

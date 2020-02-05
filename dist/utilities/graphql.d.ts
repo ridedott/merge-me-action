@@ -11,4 +11,4 @@ export declare const mutationSelector: (reviewEdge: {
         state: string;
     };
 } | undefined) => string;
-//# sourceMappingURL=index.d.ts.map
+//# sourceMappingURL=graphql.d.ts.map
