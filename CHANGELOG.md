@@ -1,3 +1,10 @@
+## [1.1.10](https://github.com/ridedott/merge-me-action/compare/v1.1.9...v1.1.10) (2020-02-11)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 13.7.0 to 13.7.1
+  ([3331fde](https://github.com/ridedott/merge-me-action/commit/3331fde1c3dcddaaf1177a9f54d193696814f113))
+
 ## [1.1.9](https://github.com/ridedott/merge-me-action/compare/v1.1.8...v1.1.9) (2020-02-10)
 
 ### Chores
