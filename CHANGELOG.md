@@ -1,3 +1,10 @@
+## [1.1.11](https://github.com/ridedott/merge-me-action/compare/v1.1.10...v1.1.11) (2020-02-12)
+
+### Chores
+
+- **deps-dev:** bump husky from 4.2.1 to 4.2.2
+  ([50da71d](https://github.com/ridedott/merge-me-action/commit/50da71d73def2972925332708aaea9b80db5c151))
+
 ## [1.1.10](https://github.com/ridedott/merge-me-action/compare/v1.1.9...v1.1.10) (2020-02-11)
 
 ### Chores
