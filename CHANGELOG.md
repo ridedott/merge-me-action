@@ -1,3 +1,33 @@
+## [1.1.12](https://github.com/ridedott/merge-me-action/compare/v1.1.11...v1.1.12) (2020-02-18)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 0.4.80 to 0.4.81
+  ([3efe9e4](https://github.com/ridedott/merge-me-action/commit/3efe9e4b64080f14baaff02276caf32e178e92bd))
+- **deps-dev:** bump @semantic-release/npm from 7.0.2 to 7.0.3
+  ([f6d5a69](https://github.com/ridedott/merge-me-action/commit/f6d5a693ef0c57d9c6b1cc0200f9d249df94e317))
+- **deps-dev:** bump @zeit/ncc from 0.21.0 to 0.21.1
+  ([b39334b](https://github.com/ridedott/merge-me-action/commit/b39334b099081022f4dca6bf5992cd36857e76c0))
+- **deps-dev:** bump cspell from 4.0.46 to 4.0.47
+  ([53aae0f](https://github.com/ridedott/merge-me-action/commit/53aae0f0a66bdf59445bd54a70eed0b8244ce95d))
+- **deps-dev:** bump husky from 4.2.2 to 4.2.3
+  ([723acc2](https://github.com/ridedott/merge-me-action/commit/723acc20096be79570a2c7297a5519ffa927656b))
+- **deps-dev:** bump nock from 11.8.2 to 11.9.0
+  ([b5894ed](https://github.com/ridedott/merge-me-action/commit/b5894ed83ee2d0230e88450e33d0986f6d36ae8f))
+- **deps-dev:** bump nock from 11.9.0 to 11.9.1
+  ([8987366](https://github.com/ridedott/merge-me-action/commit/898736663689c4310d42046286995a02838d1ade))
+- **deps-dev:** bump nock from 11.9.1 to 12.0.0
+  ([775786a](https://github.com/ridedott/merge-me-action/commit/775786aa4ad735ff768503dd17009c1368225ad2))
+- **deps-dev:** bump semantic-release from 17.0.2 to 17.0.3
+  ([8d89099](https://github.com/ridedott/merge-me-action/commit/8d89099b6f0848393f5d01c768d48c288ea3fc48))
+- **deps-dev:** bump semantic-release from 17.0.3 to 17.0.4
+  ([2e64744](https://github.com/ridedott/merge-me-action/commit/2e6474438eff51b326a0e62c36018208e0c44a77))
+
+### Continuous Integration
+
+- run build as part of the CI workflow
+  ([b303407](https://github.com/ridedott/merge-me-action/commit/b303407eb0d2e6000a26d8be9ea6b4d2a421e2b9))
+
 ## [1.1.11](https://github.com/ridedott/merge-me-action/compare/v1.1.10...v1.1.11) (2020-02-12)
 
 ### Chores
