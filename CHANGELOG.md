@@ -1,3 +1,10 @@
+## [1.1.13](https://github.com/ridedott/merge-me-action/compare/v1.1.12...v1.1.13) (2020-02-18)
+
+### Documentation
+
+- use a correct extension for YAML files
+  ([28ba229](https://github.com/ridedott/merge-me-action/commit/28ba229a73215f9bbfb35fcd257317fc903851e3))
+
 ## [1.1.12](https://github.com/ridedott/merge-me-action/compare/v1.1.11...v1.1.12) (2020-02-18)
 
 ### Chores
