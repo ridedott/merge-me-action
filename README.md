@@ -61,7 +61,7 @@ When a repository uses third party CI systems, Merge Me! action should be added
 as a stand-alone workflow, which is triggered by changes to checks and pull
 requests.
 
-Create a new `.github/workflows/merge-me.yml` file:
+Create a new `.github/workflows/merge-me.yaml` file:
 
 ```yaml
 name: Merge me!
