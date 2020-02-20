@@ -1,3 +1,10 @@
+## [1.1.23](https://github.com/ridedott/merge-me-action/compare/v1.1.22...v1.1.23) (2020-02-20)
+
+### Chores
+
+- **deps:** bump @actions/github from 2.1.0 to 2.1.1
+  ([797b81e](https://github.com/ridedott/merge-me-action/commit/797b81ed29e58c75250cd69a489479d714d18785))
+
 ## [1.1.22](https://github.com/ridedott/merge-me-action/compare/v1.1.21...v1.1.22) (2020-02-20)
 
 ### Chores
