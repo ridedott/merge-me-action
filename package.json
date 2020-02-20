@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.2",
-    "@actions/github": "^2.1.0"
+    "@actions/github": "^2.1.1"
   },
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
