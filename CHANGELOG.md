@@ -1,3 +1,11 @@
+## [1.1.27](https://github.com/ridedott/merge-me-action/compare/v1.1.26...v1.1.27) (2020-02-24)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/release-notes-generator from 9.0.0 to
+  9.0.1
+  ([c757545](https://github.com/ridedott/merge-me-action/commit/c7575457c842263684596446c2de7190815fcb05))
+
 ## [1.1.26](https://github.com/ridedott/merge-me-action/compare/v1.1.25...v1.1.26) (2020-02-23)
 
 ### Chores
