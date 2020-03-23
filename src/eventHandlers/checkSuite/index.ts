@@ -104,7 +104,7 @@ const tryMerge = async (
     /*
      * cspell:ignore merlinnot
      *
-     * TODO(merlinnot) [2020-03-01] Start pulling the value once it reaches
+     * TODO(merlinnot) [2020-05-01] Start pulling the value once it reaches
      * GA.
      */
     mergeStateStatus !== undefined
