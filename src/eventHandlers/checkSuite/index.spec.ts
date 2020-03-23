@@ -53,9 +53,7 @@ describe('check Suite event handler', (): void => {
           },
         },
       });
-    nock('https://api.github.com')
-      .post('/graphql')
-      .reply(OK);
+    nock('https://api.github.com').post('/graphql').reply(OK);
 
     await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
 
