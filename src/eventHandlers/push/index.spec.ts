@@ -51,9 +51,7 @@ describe('push event handler', (): void => {
           },
         },
       });
-    nock('https://api.github.com')
-      .post('/graphql')
-      .reply(OK);
+    nock('https://api.github.com').post('/graphql').reply(OK);
 
     await pushHandle(octokit, 'dependabot-preview[bot]');
 

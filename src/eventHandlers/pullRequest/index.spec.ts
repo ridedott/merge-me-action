@@ -57,9 +57,7 @@ describe('pull request event handler', (): void => {
           },
         },
       });
-    nock('https://api.github.com')
-      .post('/graphql')
-      .reply(OK);
+    nock('https://api.github.com').post('/graphql').reply(OK);
 
     await pullRequestHandle(octokit, 'dependabot-preview[bot]');
 
@@ -69,11 +67,9 @@ describe('pull request event handler', (): void => {
   it('does nothing if response is null', async (): Promise<void> => {
     expect.assertions(0);
 
-    nock('https://api.github.com')
-      .post('/graphql')
-      .reply(OK, {
-        data: null,
-      });
+    nock('https://api.github.com').post('/graphql').reply(OK, {
+      data: null,
+    });
 
     await pullRequestHandle(octokit, 'dependabot-preview[bot]');
   });
