@@ -7,6 +7,10 @@ update_configs:
       include_scope: true
       prefix: chore
     directory: /
+    ignored_updates:
+      - match:
+          dependency_name: '@types/node'
+          version_requirement: '> 12'
     package_manager: javascript
     update_schedule: live
     version_requirement_updates: increase_versions
