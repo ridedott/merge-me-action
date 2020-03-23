@@ -1,3 +1,23 @@
+## [1.1.36](https://github.com/ridedott/merge-me-action/compare/v1.1.35...v1.1.36) (2020-03-23)
+
+### Bug Fixes
+
+- use a correct version of @types/node
+  ([513ee67](https://github.com/ridedott/merge-me-action/commit/513ee67506d8f9b1a1422c16a1326d4745fb7009))
+
+### Chores
+
+- **deps:** bump @actions/core from 1.2.2 to 1.2.3
+  ([1681971](https://github.com/ridedott/merge-me-action/commit/16819718120702c2d0b86e28c38ba6aefdfb95ab))
+- **deps-dev:** bump @semantic-release/npm from 7.0.3 to 7.0.5
+  ([e18e7bb](https://github.com/ridedott/merge-me-action/commit/e18e7bb1d25643596412886147656481ca759954))
+- **deps-dev:** bump @types/jest from 25.1.3 to 25.1.4
+  ([720d60e](https://github.com/ridedott/merge-me-action/commit/720d60efd071874e194e6087ce0da3ca1b246247))
+- **deps-dev:** bump nock from 12.0.2 to 12.0.3
+  ([6144497](https://github.com/ridedott/merge-me-action/commit/614449777eb3aa5a12d0afd8b84c1d000bf35f11))
+- **deps-dev:** bump ts-node from 8.6.2 to 8.8.1
+  ([c3a9675](https://github.com/ridedott/merge-me-action/commit/c3a967551c78c2305cfbf930bee9759ee61125a0))
+
 ## [1.1.35](https://github.com/ridedott/merge-me-action/compare/v1.1.34...v1.1.35) (2020-03-23)
 
 ### Chores
