@@ -1,3 +1,10 @@
+## [1.1.37](https://github.com/ridedott/merge-me-action/compare/v1.1.36...v1.1.37) (2020-03-23)
+
+### Chores
+
+- **deps-dev:** bump prettier from 1.19.1 to 2.0.1
+  ([b628d00](https://github.com/ridedott/merge-me-action/commit/b628d00997797107a34ba463820bba93676179a7))
+
 ## [1.1.36](https://github.com/ridedott/merge-me-action/compare/v1.1.35...v1.1.36) (2020-03-23)
 
 ### Bug Fixes
