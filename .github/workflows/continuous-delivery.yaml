@@ -36,6 +36,17 @@ jobs:
           npm run build
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_DOTTBOTT }}
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN_DOTTBOTT }}
         name: Release
-        uses: ridedott/publish-me-action@master
+        uses: ridedott/release-me-action@master
+        with:
+          commit-assets: |
+            ./dist
+          node-module: true
+      - name: Setup Node.js with GitHub Packages
+        uses: actions/setup-node@v1
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+      - env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN_DOTTBOTT }}
+        name: Publish to GitHub Packages
+        run: npm publish
