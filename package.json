@@ -13,7 +13,7 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@ridedott/eslint-config": "^1.0.16",
-    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/npm": "^7.0.5",
