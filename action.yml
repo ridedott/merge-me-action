@@ -12,6 +12,12 @@ inputs:
     description: 'The GitHub login for which automatic merges are enabled.'
     required: false
     default: 'dependabot-preview[bot]'
+  MERGE_METHOD:
+    description:
+      'Represents available types of methods to use when merging a pull request.
+      One of: MERGE, STASH or REBASE'
+    required: false
+    default: SQUASH
 runs:
   using: 'node12'
   main: 'dist/index.js'
