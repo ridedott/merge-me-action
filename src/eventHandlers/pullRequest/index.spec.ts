@@ -8,6 +8,7 @@ import { OK } from 'http-status-codes';
 import * as nock from 'nock';
 
 import { mergePullRequestMutation } from '../../graphql/mutations';
+import { AllowedMergeMethods } from '../../utilities/inputParsers';
 import { pullRequestHandle } from '.';
 
 /* cspell:disable-next-line */
@@ -115,7 +116,7 @@ describe('pull request event handler', (): void => {
       });
     nock('https://api.github.com')
       .post('/graphql', {
-        query: mergePullRequestMutation,
+        query: mergePullRequestMutation(AllowedMergeMethods.SQUASH),
         variables: {
           commitHeadline: COMMIT_HEADLINE,
           pullRequestId: PULL_REQUEST_ID,

@@ -1,21 +1,23 @@
-import { getInput } from '@actions/core';
+import { AllowedMergeMethods } from '../utilities/inputParsers';
 
-const MERGE_METHOD = getInput('MERGE_METHOD');
-
-export const approveAndMergePullRequestMutation = `
+export const approveAndMergePullRequestMutation = (
+  mergeMethod: AllowedMergeMethods,
+): string => `
   mutation ($commitHeadline: String!, $pullRequestId: ID!) {
     addPullRequestReview(input: {event: APPROVE, pullRequestId: $pullRequestId}) {
       clientMutationId
     }
-    mergePullRequest(input: {commitBody: "", commitHeadline: $commitHeadline, mergeMethod: ${MERGE_METHOD}, pullRequestId: $pullRequestId}) {
+    mergePullRequest(input: {commitBody: "", commitHeadline: $commitHeadline, mergeMethod: ${mergeMethod}, pullRequestId: $pullRequestId}) {
       clientMutationId
     }
   }
 `;
 
-export const mergePullRequestMutation = `
+export const mergePullRequestMutation = (
+  mergeMethod: AllowedMergeMethods,
+): string => `
   mutation ($commitHeadline: String!, $pullRequestId: ID!) {
-    mergePullRequest(input: {commitBody: "", commitHeadline: $commitHeadline, mergeMethod: ${MERGE_METHOD}, pullRequestId: $pullRequestId}) {
+    mergePullRequest(input: {commitBody: "", commitHeadline: $commitHeadline, mergeMethod: ${mergeMethod}, pullRequestId: $pullRequestId}) {
       clientMutationId
     }
   }

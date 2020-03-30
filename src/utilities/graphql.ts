@@ -2,6 +2,7 @@ import {
   approveAndMergePullRequestMutation,
   mergePullRequestMutation,
 } from '../graphql/mutations';
+import { parseInputMergeMethod } from './inputParsers';
 
 /**
  * Returns the right GraphQl mutation depending on weather the
@@ -14,9 +15,11 @@ import {
 export const mutationSelector = (
   reviewEdge: { node: { state: string } } | undefined,
 ): string => {
+  const mergeMethod = parseInputMergeMethod();
+
   if (reviewEdge === undefined) {
-    return approveAndMergePullRequestMutation;
+    return approveAndMergePullRequestMutation(mergeMethod);
   }
 
-  return mergePullRequestMutation;
+  return mergePullRequestMutation(mergeMethod);
 };
