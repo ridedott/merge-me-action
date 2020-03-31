@@ -17,12 +17,15 @@ const COMMIT_HEADLINE = 'Update test';
 
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
+const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 
 jest.spyOn(core, 'info').mockImplementation();
 
 describe('pull request event handler', (): void => {
   it('does not log warnings when it is triggered', async (): Promise<void> => {
     expect.assertions(1);
+
+    getInputSpy.mockReturnValueOnce('SQUASH');
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -68,6 +71,8 @@ describe('pull request event handler', (): void => {
   it('does nothing if response is null', async (): Promise<void> => {
     expect.assertions(0);
 
+    getInputSpy.mockReturnValueOnce('SQUASH');
+
     nock('https://api.github.com').post('/graphql').reply(OK, {
       data: null,
     });
@@ -79,6 +84,8 @@ describe('pull request event handler', (): void => {
     void
   > => {
     expect.assertions(0);
+
+    getInputSpy.mockReturnValueOnce('SQUASH');
 
     nock('https://api.github.com')
       .post('/graphql')

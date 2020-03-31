@@ -5,13 +5,16 @@ import { parseInputMergeMethod } from './inputParsers';
 const getInputSpy = jest.spyOn(actionsCore, 'getInput').mockImplementation();
 
 describe('parseInputMergeMethod', (): void => {
-  it('parse allowed method', (): void => {
-    expect.assertions(1);
+  it.each(['MERGE', 'SQUASH', 'REBASE'])(
+    'parse allowed method',
+    (mergeMethod: string): void => {
+      expect.assertions(1);
 
-    getInputSpy.mockReturnValueOnce('MERGE');
+      getInputSpy.mockReturnValueOnce(mergeMethod);
 
-    expect(parseInputMergeMethod()).toStrictEqual('MERGE');
-  });
+      expect(parseInputMergeMethod()).toStrictEqual(mergeMethod);
+    },
+  );
 
   it('returns default merge method if merge method is not allowed', (): void => {
     expect.assertions(1);
