@@ -129,8 +129,8 @@ steps:
 ### Use of configurable pull request merge method
 
 By default, this GitHub Action assumes merge method is `SQUASH`. You can
-override the merge method by changing the value of `MERGE_METHOD` parameter (one of
-`MERGE`, `SQUASH` or `REBASE`):
+override the merge method by changing the value of `MERGE_METHOD` parameter (one
+of `MERGE`, `SQUASH` or `REBASE`):
 
 ```yaml
 steps:
