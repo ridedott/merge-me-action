@@ -1,3 +1,50 @@
+# [1.2.0](https://github.com/ridedott/merge-me-action/compare/v1.1.37...v1.2.0) (2020-03-31)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 1.0.12 to 1.0.14
+  ([289ffc2](https://github.com/ridedott/merge-me-action/commit/289ffc23f5b4532895344f7d57b6ceaf834ccc76))
+- **deps-dev:** bump @ridedott/eslint-config from 1.0.14 to 1.0.15
+  ([1782825](https://github.com/ridedott/merge-me-action/commit/17828256d9a1fc39be9dfdf979c3ee221d663bc2))
+- **deps-dev:** bump @ridedott/eslint-config from 1.0.15 to 1.0.16
+  ([02ff519](https://github.com/ridedott/merge-me-action/commit/02ff519d7d538a7553f17d3b8b1d57d77fa2f3cd))
+- **deps-dev:** bump @ridedott/eslint-config from 1.0.16 to 1.0.18
+  ([50e9b7f](https://github.com/ridedott/merge-me-action/commit/50e9b7f1d9121ff24424e9b86b334b6c69b32431))
+- **deps-dev:** bump @semantic-release/changelog from 5.0.0 to 5.0.1
+  ([f576680](https://github.com/ridedott/merge-me-action/commit/f576680e6eea6c730aac439a6ae2903c217cbcf9))
+- **deps-dev:** bump @zeit/ncc from 0.21.1 to 0.22.0
+  ([985d039](https://github.com/ridedott/merge-me-action/commit/985d03938562bb2230c81d459e14d09c3dcb7c9c))
+- **deps-dev:** bump jest from 25.1.0 to 25.2.0
+  ([2bf8a65](https://github.com/ridedott/merge-me-action/commit/2bf8a65234da10123410a8a335c63215bb35de75))
+- **deps-dev:** bump jest from 25.2.0 to 25.2.1
+  ([347c0bb](https://github.com/ridedott/merge-me-action/commit/347c0bbd230b573f4402099bb8d9056a9935ee61))
+- **deps-dev:** bump jest from 25.2.1 to 25.2.2
+  ([6449a9a](https://github.com/ridedott/merge-me-action/commit/6449a9a444e2ca0ce9fe208ee4c9ff81eec65ed9))
+- **deps-dev:** bump jest from 25.2.2 to 25.2.3
+  ([9e4e7ca](https://github.com/ridedott/merge-me-action/commit/9e4e7cae2a0102737a3d17c98f8af51b7fbd390c))
+- **deps-dev:** bump jest from 25.2.3 to 25.2.4
+  ([a5139f4](https://github.com/ridedott/merge-me-action/commit/a5139f44335e59081139c4528144d7098bd102bb))
+- **deps-dev:** bump lint-staged from 10.0.10 to 10.1.0
+  ([47776ec](https://github.com/ridedott/merge-me-action/commit/47776ec14bb7fc433a993fff3caa6588e11f1775))
+- **deps-dev:** bump lint-staged from 10.0.8 to 10.0.9
+  ([65f8516](https://github.com/ridedott/merge-me-action/commit/65f8516ec152293c0bd928b7096e29230ec8929a))
+- **deps-dev:** bump lint-staged from 10.0.9 to 10.0.10
+  ([a33c055](https://github.com/ridedott/merge-me-action/commit/a33c055495b0b0c625c8b24104148c9d313456a0))
+- **deps-dev:** bump prettier from 2.0.1 to 2.0.2
+  ([a4ef28f](https://github.com/ridedott/merge-me-action/commit/a4ef28f9c369d9ba27ed28ae0731b3338db46ef0))
+- **deps-dev:** bump ts-jest from 25.2.1 to 25.3.0
+  ([86dc6eb](https://github.com/ridedott/merge-me-action/commit/86dc6eb7bc7665b0d8e2d868d52795534e203a45))
+
+### Continuous Integration
+
+- migrate to Release me! Action
+  ([6c9faca](https://github.com/ridedott/merge-me-action/commit/6c9facad427a4a23a235010f3b6058923eabb779))
+
+### Features
+
+- use MERGE_METHOD action parameter
+  ([0b1e80d](https://github.com/ridedott/merge-me-action/commit/0b1e80d679b2a229d29847b017afad4af39e2e1e))
+
 ## [1.1.37](https://github.com/ridedott/merge-me-action/compare/v1.1.36...v1.1.37) (2020-03-23)
 
 ### Chores

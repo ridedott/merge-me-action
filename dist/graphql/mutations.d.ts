@@ -1,3 +1,4 @@
-export declare const approveAndMergePullRequestMutation = "\n  mutation ($commitHeadline: String!, $pullRequestId: ID!) {\n    addPullRequestReview(input: {event: APPROVE, pullRequestId: $pullRequestId}) {\n      clientMutationId\n    }\n    mergePullRequest(input: {commitBody: \"\", commitHeadline: $commitHeadline, mergeMethod: SQUASH, pullRequestId: $pullRequestId}) {\n      clientMutationId\n    }\n  }\n";
-export declare const mergePullRequestMutation = "\n  mutation ($commitHeadline: String!, $pullRequestId: ID!) {\n    mergePullRequest(input: {commitBody: \"\", commitHeadline: $commitHeadline, mergeMethod: SQUASH, pullRequestId: $pullRequestId}) {\n      clientMutationId\n    }\n  }\n";
+import { AllowedMergeMethods } from '../utilities/inputParsers';
+export declare const approveAndMergePullRequestMutation: (mergeMethod: AllowedMergeMethods) => string;
+export declare const mergePullRequestMutation: (mergeMethod: AllowedMergeMethods) => string;
 //# sourceMappingURL=mutations.d.ts.map
