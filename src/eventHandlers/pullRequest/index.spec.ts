@@ -22,7 +22,7 @@ const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 jest.spyOn(core, 'info').mockImplementation();
 
 beforeEach((): void => {
-  getInputSpy.mockReturnValueOnce('SQUASH');
+  getInputSpy.mockReturnValue('SQUASH');
 });
 
 describe('pull request event handler', (): void => {

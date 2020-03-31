@@ -21,7 +21,7 @@ const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
 const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 
 beforeEach((): void => {
-  getInputSpy.mockReturnValueOnce('SQUASH');
+  getInputSpy.mockReturnValue('SQUASH');
 });
 
 describe('push event handler', (): void => {
