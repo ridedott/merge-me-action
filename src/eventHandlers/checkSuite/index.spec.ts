@@ -20,13 +20,15 @@ const infoSpy = jest.spyOn(core, 'info').mockImplementation();
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
 const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 
+beforeEach((): void => {
+  getInputSpy.mockReturnValueOnce('SQUASH');
+});
+
 describe('check Suite event handler', (): void => {
   it('does not log warnings when it gets triggered by Dependabot', async (): Promise<
     void
   > => {
     expect.assertions(1);
-
-    getInputSpy.mockReturnValueOnce('SQUASH');
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -68,8 +70,6 @@ describe('check Suite event handler', (): void => {
     void
   > => {
     expect.assertions(0);
-
-    getInputSpy.mockReturnValueOnce('SQUASH');
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -124,8 +124,6 @@ describe('check Suite event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    getInputSpy.mockReturnValueOnce('SQUASH');
-
     nock('https://api.github.com')
       .post('/graphql')
       .reply(OK, {
@@ -174,8 +172,6 @@ describe('check Suite event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    getInputSpy.mockReturnValueOnce('SQUASH');
-
     nock('https://api.github.com')
       .post('/graphql')
       .reply(OK, {
@@ -221,8 +217,6 @@ describe('check Suite event handler', (): void => {
     void
   > => {
     expect.assertions(1);
-
-    getInputSpy.mockReturnValueOnce('SQUASH');
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -272,8 +266,6 @@ describe('check Suite event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    getInputSpy.mockReturnValueOnce('SQUASH');
-
     nock('https://api.github.com')
       .post('/graphql')
       .reply(OK, {
@@ -320,8 +312,6 @@ describe('check Suite event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    getInputSpy.mockReturnValueOnce('SQUASH');
-
     await checkSuiteHandle(octokit, 'some-other-login');
 
     expect(infoSpy).toHaveBeenCalledWith(
@@ -333,8 +323,6 @@ describe('check Suite event handler', (): void => {
     void
   > => {
     expect.assertions(1);
-
-    getInputSpy.mockReturnValueOnce('SQUASH');
 
     nock('https://api.github.com')
       .post('/graphql')
