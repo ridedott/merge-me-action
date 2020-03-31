@@ -126,6 +126,21 @@ steps:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+### Use of configurable pull request merge method
+
+By default, this GitHub Action assumes merge method is `SQUASH`. You can
+override the merge method by changing the value of `MERGE_METHOD` parameter (one
+of `MERGE`, `SQUASH` or `REBASE`):
+
+```yaml
+steps:
+  - name: Merge me!
+    uses: ridedott/merge-me-action@master
+    with:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MERGE_METHOD: MERGE
+```
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your

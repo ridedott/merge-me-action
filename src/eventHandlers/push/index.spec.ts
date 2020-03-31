@@ -8,6 +8,7 @@ import { OK } from 'http-status-codes';
 import * as nock from 'nock';
 
 import { mergePullRequestMutation } from '../../graphql/mutations';
+import { AllowedMergeMethods } from '../../utilities/inputParsers';
 import { pushHandle } from '.';
 
 /* cspell:disable-next-line */
@@ -17,6 +18,11 @@ const COMMIT_HEADLINE = 'Update test';
 const octokit = new GitHub('SECRET_GITHUB_TOKEN');
 const infoSpy = jest.spyOn(core, 'info').mockImplementation();
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
+const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
+
+beforeEach((): void => {
+  getInputSpy.mockReturnValue('SQUASH');
+});
 
 describe('push event handler', (): void => {
   it('does not log warnings when it is triggered by Dependabot', async (): Promise<
@@ -92,7 +98,7 @@ describe('push event handler', (): void => {
       });
     nock('https://api.github.com')
       .post('/graphql', {
-        query: mergePullRequestMutation,
+        query: mergePullRequestMutation(AllowedMergeMethods.SQUASH),
         variables: {
           commitHeadline: COMMIT_HEADLINE,
           pullRequestId: PULL_REQUEST_ID,
