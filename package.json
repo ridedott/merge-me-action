@@ -20,7 +20,7 @@
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/jest": "^25.2.1",
     "@types/node": "^12.12.30",
-    "@zeit/ncc": "^0.22.0",
+    "@zeit/ncc": "^0.22.1",
     "commitizen": "^4.0.3",
     "cspell": "^4.0.55",
     "eslint": "^6.8.0",
