@@ -1,6 +1,12 @@
 import { context, GitHub } from '@actions/github';
 
 import { findPullRequestInfoAndReviews as findPullRequestInformationAndReviews } from '../../graphql/queries';
+import {
+  CommitMessageHeadlineGroup,
+  GroupName,
+  PullRequestInformation,
+  Repository,
+} from '../../types';
 import { mutationSelector } from '../../utilities/graphql';
 import { logError, logInfo, logWarning } from '../../utilities/log';
 
@@ -10,7 +16,9 @@ const SHORT_REFERENCE_MATCHER = /^refs\/heads\/(?<name>.*)$/u;
 const getCommitMessageHeadline = (): string => {
   const {
     groups: { commitHeadline },
-  } = context.payload.commits[0].message.match(COMMIT_HEADLINE_MATCHER);
+  } = context.payload.commits[0].message.match(
+    COMMIT_HEADLINE_MATCHER,
+  ) as CommitMessageHeadlineGroup;
 
   return commitHeadline;
 };
@@ -18,30 +26,10 @@ const getCommitMessageHeadline = (): string => {
 const getReferenceName = (): string => {
   const {
     groups: { name },
-  } = context.payload.ref.match(SHORT_REFERENCE_MATCHER);
+  } = context.payload.ref.match(SHORT_REFERENCE_MATCHER) as GroupName;
 
   return name;
 };
-
-interface PullRequestInformation {
-  mergeableState: 'CONFLICTING' | 'MERGEABLE' | 'UNKNOWN';
-  merged: boolean;
-  pullRequestId: string;
-  pullRequestState: 'CLOSED' | 'MERGED' | 'OPEN';
-  reviewEdges: Array<
-    | {
-        node: {
-          state:
-            | 'APPROVED'
-            | 'CHANGES_REQUESTED'
-            | 'COMMENTED'
-            | 'DISMISSED'
-            | 'PENDING';
-        };
-      }
-    | undefined
-  >;
-}
 
 const getPullRequestInformation = async (
   octokit: GitHub,
@@ -77,7 +65,7 @@ const getPullRequestInformation = async (
         ],
       },
     },
-  } = response;
+  } = response as Repository;
 
   return {
     mergeableState,
