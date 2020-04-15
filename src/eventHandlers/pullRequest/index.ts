@@ -1,23 +1,22 @@
 import { context, GitHub } from '@actions/github';
 
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
+import { ReviewEdges } from '../../types';
 import { mutationSelector } from '../../utilities/graphql';
 import { logError, logInfo, logWarning } from '../../utilities/log';
 
 interface PullRequestInformation {
-  reviewEdges: Array<
-    | {
-        node: {
-          state:
-            | 'APPROVED'
-            | 'CHANGES_REQUESTED'
-            | 'COMMENTED'
-            | 'DISMISSED'
-            | 'PENDING';
-        };
-      }
-    | undefined
-  >;
+  reviewEdges: ReviewEdges;
+}
+
+interface Repository {
+  repository: {
+    pullRequest: {
+      reviews: {
+        edges: ReviewEdges;
+      };
+    };
+  };
 }
 
 const getPullRequestInformation = async (
@@ -43,7 +42,7 @@ const getPullRequestInformation = async (
         reviews: { edges: reviewEdges },
       },
     },
-  } = response;
+  } = response as Repository;
 
   return {
     reviewEdges,
@@ -87,8 +86,8 @@ export const pullRequestHandle = async (
       await octokit.graphql(
         mutationSelector(pullRequestInformation.reviewEdges[0]),
         {
-          commitHeadline: pullRequest.title,
-          pullRequestId: pullRequest.node_id,
+          commitHeadline: pullRequest.title as string,
+          pullRequestId: pullRequest.node_id as string,
         },
       );
     }

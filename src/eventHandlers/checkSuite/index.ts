@@ -3,37 +3,43 @@
 import { context, GitHub } from '@actions/github';
 
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
+import {
+  MergeableState,
+  MergeStateStatus,
+  PullRequestInformation,
+  PullRequestState,
+  ReviewEdges,
+} from '../../types';
 import { mutationSelector } from '../../utilities/graphql';
 import { logError, logInfo, logWarning } from '../../utilities/log';
 
-interface PullRequestInformation {
+interface Repository {
+  repository: {
+    id: string;
+    pullRequest: {
+      commits: {
+        edges: Array<{
+          node: {
+            commit: {
+              messageHeadline: string;
+            };
+          };
+        }>;
+      };
+      id: string;
+      mergeStateStatus: MergeStateStatus;
+      mergeable: MergeableState;
+      merged: boolean;
+      reviews: { edges: ReviewEdges };
+      state: PullRequestState;
+    };
+  };
+}
+
+export interface PullRequestInformationCheckSuite
+  extends PullRequestInformation {
   commitMessageHeadline: string;
-  mergeableState: 'CONFLICTING' | 'MERGEABLE' | 'UNKNOWN';
-  merged: boolean;
-  mergeStateStatus:
-    | 'BEHIND'
-    | 'BLOCKED'
-    | 'CLEAN'
-    | 'DIRTY'
-    | 'DRAFT'
-    | 'HAS_HOOKS'
-    | 'UNKNOWN'
-    | 'UNSTABLE';
-  pullRequestId: string;
-  pullRequestState: 'CLOSED' | 'MERGED' | 'OPEN';
-  reviewEdges: Array<
-    | {
-        node: {
-          state:
-            | 'APPROVED'
-            | 'CHANGES_REQUESTED'
-            | 'COMMENTED'
-            | 'DISMISSED'
-            | 'PENDING';
-        };
-      }
-    | undefined
-  >;
+  mergeStateStatus: MergeStateStatus;
 }
 
 const getPullRequestInformation = async (
@@ -43,7 +49,7 @@ const getPullRequestInformation = async (
     repositoryName: string;
     repositoryOwner: string;
   },
-): Promise<PullRequestInformation | undefined> => {
+): Promise<PullRequestInformationCheckSuite | undefined> => {
   const response = await octokit.graphql(findPullRequestInformation, query);
 
   if (response === null || response.repository.pullRequest === null) {
@@ -70,7 +76,7 @@ const getPullRequestInformation = async (
         state: pullRequestState,
       },
     },
-  } = response;
+  } = response as Repository;
 
   return {
     commitMessageHeadline,
@@ -93,7 +99,7 @@ const tryMerge = async (
     pullRequestId,
     pullRequestState,
     reviewEdges,
-  }: PullRequestInformation,
+  }: PullRequestInformationCheckSuite,
 ): Promise<void> => {
   if (mergeableState !== 'MERGEABLE') {
     logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
@@ -127,7 +133,9 @@ export const checkSuiteHandle = async (
   octokit: GitHub,
   gitHubLogin: string,
 ): Promise<void> => {
-  const pullRequests = context.payload.check_suite.pull_requests;
+  const pullRequests = context.payload.check_suite.pull_requests as Array<{
+    number: number;
+  }>;
 
   for (const pullRequest of pullRequests) {
     if (
