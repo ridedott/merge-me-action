@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/ridedott/merge-me-action/compare/v1.2.3...v1.2.4) (2020-04-16)
+
+### Chores
+
+- **deps-dev:** bump semantic-release from 17.0.4 to 17.0.5
+  ([5e0731b](https://github.com/ridedott/merge-me-action/commit/5e0731be9234c20806341759bce476330d5c57b1))
+
 ## [1.2.3](https://github.com/ridedott/merge-me-action/compare/v1.2.2...v1.2.3) (2020-04-16)
 
 ### Chores
