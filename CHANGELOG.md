@@ -1,3 +1,10 @@
+## [1.2.15](https://github.com/ridedott/merge-me-action/compare/v1.2.14...v1.2.15) (2020-04-19)
+
+### Chores
+
+- **deps-dev:** bump jest from 25.3.0 to 25.4.0
+  ([3083fc3](https://github.com/ridedott/merge-me-action/commit/3083fc366b59071b88a0acbc001a4b298b52bd90))
+
 ## [1.2.14](https://github.com/ridedott/merge-me-action/compare/v1.2.13...v1.2.14) (2020-04-19)
 
 ### Chores
