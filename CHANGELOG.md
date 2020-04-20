@@ -1,3 +1,10 @@
+## [1.2.18](https://github.com/ridedott/merge-me-action/compare/v1.2.17...v1.2.18) (2020-04-20)
+
+### Chores
+
+- **deps-dev:** bump ts-node from 8.8.2 to 8.9.0
+  ([f6c6bb0](https://github.com/ridedott/merge-me-action/commit/f6c6bb0b593a9a83b9b3c140ac60eb7e4130520d))
+
 ## [1.2.17](https://github.com/ridedott/merge-me-action/compare/v1.2.16...v1.2.17) (2020-04-20)
 
 ### Chores
