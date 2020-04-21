@@ -1,3 +1,10 @@
+## [1.2.21](https://github.com/ridedott/merge-me-action/compare/v1.2.20...v1.2.21) (2020-04-21)
+
+### Chores
+
+- **deps-dev:** bump prettier from 2.0.4 to 2.0.5
+  ([71e432e](https://github.com/ridedott/merge-me-action/commit/71e432ecdea6f421f9043e08e82008196e72e4b4))
+
 ## [1.2.20](https://github.com/ridedott/merge-me-action/compare/v1.2.19...v1.2.20) (2020-04-21)
 
 ### Chores
