@@ -21,7 +21,7 @@
     "@types/jest": "^25.2.2",
     "@types/node": "^12.12.30",
     "@zeit/ncc": "^0.22.1",
-    "commitizen": "^4.0.5",
+    "commitizen": "^4.1.2",
     "cspell": "^4.0.61",
     "eslint": "^6.8.0",
     "http-status-codes": "^1.4.0",
