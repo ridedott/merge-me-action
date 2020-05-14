@@ -1,3 +1,10 @@
+## [1.2.42](https://github.com/ridedott/merge-me-action/compare/v1.2.41...v1.2.42) (2020-05-14)
+
+### Chores
+
+- **deps-dev:** bump commitizen from 4.0.5 to 4.1.2
+  ([9f2621b](https://github.com/ridedott/merge-me-action/commit/9f2621bf4bf10992f209cb2ac173a8cd99c86158))
+
 ## [1.2.41](https://github.com/ridedott/merge-me-action/compare/v1.2.40...v1.2.41) (2020-05-14)
 
 ### Chores
