@@ -1,1 +1,1 @@
-{"version":3,"file":"graphql.d.ts","sourceRoot":"","sources":["file:///home/runner/work/merge-me-action/merge-me-action/src/utilities/graphql.ts"],"names":[],"mappings":"AAMA;;;;;;;GAOG;AACH,eAAO,MAAM,gBAAgB;;;;wBAU5B,CAAC"}
+{"version":3,"file":"graphql.d.ts","sourceRoot":"","sources":["file:///home/runner/work/merge-me-action/merge-me-action/src/utilities/graphql.ts"],"names":[],"mappings":"AAMA;;;;;;;GAOG;AACH,eAAO,MAAM,gBAAgB,eACf;IAAE,IAAI,EAAE;QAAE,KAAK,EAAE,MAAM,CAAA;KAAE,CAAA;CAAE,GAAG,SAAS,KAClD,MAQF,CAAC"}

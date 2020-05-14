@@ -1,3 +1,18 @@
+## [1.2.41](https://github.com/ridedott/merge-me-action/compare/v1.2.40...v1.2.41) (2020-05-14)
+
+### Chores
+
+- **deps:** bump @actions/github from 2.1.1 to 2.2.0
+  ([0d1c28d](https://github.com/ridedott/merge-me-action/commit/0d1c28d6cffcf5e59bf1c942cf82b41e1f3353ce))
+- **deps-dev:** bump @ridedott/eslint-config from 1.1.20 to 1.1.32
+  ([3e6c2ae](https://github.com/ridedott/merge-me-action/commit/3e6c2ae87513a6b722aba36afcf185b25b79dc90))
+- **deps-dev:** bump @types/jest from 25.2.1 to 25.2.2
+  ([ef555dc](https://github.com/ridedott/merge-me-action/commit/ef555dcb735660565026dacc8806e56f7939aa70))
+- **deps-dev:** bump jest from 25.5.3 to 25.5.4
+  ([1e4e9b3](https://github.com/ridedott/merge-me-action/commit/1e4e9b377d844a83eddb75a332d148fea953483d))
+- **deps-dev:** bump ts-node from 8.9.1 to 8.10.1
+  ([15ee82f](https://github.com/ridedott/merge-me-action/commit/15ee82fc096f9cf6fd9d5de3245069c56eb7f9ca))
+
 ## [1.2.40](https://github.com/ridedott/merge-me-action/compare/v1.2.39...v1.2.40) (2020-05-14)
 
 ### Chores
