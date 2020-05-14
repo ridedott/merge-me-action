@@ -1,3 +1,10 @@
+## [1.2.44](https://github.com/ridedott/merge-me-action/compare/v1.2.43...v1.2.44) (2020-05-14)
+
+### Chores
+
+- **deps:** bump @actions/core from 1.2.3 to 1.2.4
+  ([ff575c1](https://github.com/ridedott/merge-me-action/commit/ff575c1d4047b57b73a933c40952499571ff0284))
+
 ## [1.2.43](https://github.com/ridedott/merge-me-action/compare/v1.2.42...v1.2.43) (2020-05-14)
 
 ### Chores
