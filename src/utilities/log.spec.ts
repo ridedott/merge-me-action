@@ -15,12 +15,41 @@ const errorWithStack = new Error('I am an error.');
 errorWithStack.stack = 'I am a stack.';
 
 describe.each<
+  [string, (value: unknown) => void, jest.SpyInstance<void, [string | Error]>]
+>([
+  ['logError', logError, errorSpy],
+  ['logWarning', logWarning, warningSpy],
+])(
+  '%s',
+  (
+    _: string,
+    logFunction: (value: unknown) => void,
+    coreFunction: jest.SpyInstance<void, [string | Error]>,
+  ): void => {
+    it.each<[unknown, string]>([
+      ['I am a string.', 'I am a string.'],
+      [{ property: 1 }, '{"property":1}'],
+      [errorWithoutStack, 'Error: I am an error.'],
+      [errorWithStack, 'I am a stack.'],
+      [1, '1'],
+    ])(
+      'logs value in a correct format (sample %#)',
+      (logged: unknown, expected: string): void => {
+        expect.assertions(1);
+
+        logFunction(logged);
+
+        expect(coreFunction).toHaveBeenCalledWith(expected);
+      },
+    );
+  },
+);
+
+describe.each<
   [string, (value: unknown) => void, jest.SpyInstance<void, [string]>]
 >([
   ['logDebug', logDebug, debugSpy],
-  ['logError', logError, errorSpy],
   ['logInfo', logInfo, infoSpy],
-  ['logWarning', logWarning, warningSpy],
 ])(
   '%s',
   (
