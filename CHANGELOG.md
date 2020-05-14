@@ -1,3 +1,10 @@
+## [1.2.43](https://github.com/ridedott/merge-me-action/compare/v1.2.42...v1.2.43) (2020-05-14)
+
+### Chores
+
+- **deps-dev:** bump ts-jest from 25.4.0 to 25.5.1
+  ([b5c4024](https://github.com/ridedott/merge-me-action/commit/b5c40244977c3a4bbecb7af0d51c9da00a6be30f))
+
 ## [1.2.42](https://github.com/ridedott/merge-me-action/compare/v1.2.41...v1.2.42) (2020-05-14)
 
 ### Chores
