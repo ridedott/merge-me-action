@@ -1,3 +1,10 @@
+## [1.2.40](https://github.com/ridedott/merge-me-action/compare/v1.2.39...v1.2.40) (2020-05-14)
+
+### Chores
+
+- **deps-dev:** bump cspell from 4.0.57 to 4.0.61
+  ([c0449e8](https://github.com/ridedott/merge-me-action/commit/c0449e8c87eae225f38213ebe38d57a9611f608d))
+
 ## [1.2.39](https://github.com/ridedott/merge-me-action/compare/v1.2.38...v1.2.39) (2020-05-14)
 
 ### Bug Fixes
