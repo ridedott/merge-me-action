@@ -16,7 +16,7 @@ errorWithStack.stack = 'I am a stack.';
 
 describe.each<
   [string, (value: unknown) => void, jest.SpyInstance<void, [string | Error]>]
-  >([
+>([
   ['logError', logError, errorSpy],
   ['logWarning', logWarning, warningSpy],
 ])(
