@@ -1,3 +1,10 @@
+## [1.2.39](https://github.com/ridedott/merge-me-action/compare/v1.2.38...v1.2.39) (2020-05-14)
+
+### Bug Fixes
+
+- update todo item expiry date
+  ([685ffef](https://github.com/ridedott/merge-me-action/commit/685ffef41b37d475a9fd67df7dcf35d9ef75565c))
+
 ## [1.2.38](https://github.com/ridedott/merge-me-action/compare/v1.2.37...v1.2.38) (2020-05-01)
 
 ### Chores
