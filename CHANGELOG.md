@@ -1,3 +1,10 @@
+## [1.2.52](https://github.com/ridedott/merge-me-action/compare/v1.2.51...v1.2.52) (2020-05-18)
+
+### Chores
+
+- **deps-dev:** bump @zeit/ncc from 0.22.1 to 0.22.2
+  ([a7c0f1b](https://github.com/ridedott/merge-me-action/commit/a7c0f1b2291d0fbfec836306ad4f4593bef3625a))
+
 ## [1.2.51](https://github.com/ridedott/merge-me-action/compare/v1.2.50...v1.2.51) (2020-05-18)
 
 ### Chores
