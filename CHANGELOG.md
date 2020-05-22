@@ -1,3 +1,12 @@
+## [1.2.57](https://github.com/ridedott/merge-me-action/compare/v1.2.56...v1.2.57) (2020-05-22)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 1.1.40 to 1.1.41
+  ([9a6d79b](https://github.com/ridedott/merge-me-action/commit/9a6d79b5752adbe8b88416077925fa99137d49db))
+- **deps-dev:** bump lint-staged from 10.2.4 to 10.2.6
+  ([f4de34c](https://github.com/ridedott/merge-me-action/commit/f4de34c8e790f8588e77036116877276f403a020))
+
 ## [1.2.56](https://github.com/ridedott/merge-me-action/compare/v1.2.55...v1.2.56) (2020-05-20)
 
 ### Chores
