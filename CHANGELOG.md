@@ -1,3 +1,10 @@
+## [1.2.61](https://github.com/ridedott/merge-me-action/compare/v1.2.60...v1.2.61) (2020-05-28)
+
+### Chores
+
+- **deps-dev:** bump ts-node from 8.10.1 to 8.10.2
+  ([c4c785d](https://github.com/ridedott/merge-me-action/commit/c4c785d00e62f4142ed84c509a2b19b81007e9c7))
+
 ## [1.2.60](https://github.com/ridedott/merge-me-action/compare/v1.2.59...v1.2.60) (2020-05-24)
 
 ### Chores
