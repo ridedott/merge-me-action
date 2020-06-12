@@ -110,7 +110,7 @@ const tryMerge = async (
     /*
      * cspell:ignore merlinnot
      *
-     * TODO(merlinnot) [2020-06-01] Start pulling the value once it reaches
+     * TODO(merlinnot) [2020-09-01] Start pulling the value once it reaches
      * GA.
      */
     mergeStateStatus !== undefined
@@ -142,7 +142,12 @@ export const checkSuiteHandle = async (
       typeof context.payload.sender !== 'object' ||
       context.payload.sender.login !== gitHubLogin
     ) {
-      logInfo(`Pull request not created by ${gitHubLogin}, skipping.`);
+      logInfo(
+        `Pull request created by ${
+          (context.payload.sender?.login as string | undefined) ??
+          'unknown sender'
+        }, not ${gitHubLogin}, skipping.`,
+      );
 
       return;
     }

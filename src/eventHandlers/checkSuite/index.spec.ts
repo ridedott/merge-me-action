@@ -315,7 +315,7 @@ describe('check Suite event handler', (): void => {
     await checkSuiteHandle(octokit, 'some-other-login');
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request not created by some-other-login, skipping.',
+      'Pull request created by dependabot-preview[bot], not some-other-login, skipping.',
     );
   });
 
