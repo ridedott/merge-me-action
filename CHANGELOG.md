@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ridedott/merge-me-action/compare/v1.3.0...v1.3.1) (2020-06-12)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 25.2.3 to 26.0.0
+  ([489919e](https://github.com/ridedott/merge-me-action/commit/489919e0f209116cdab47f4022c7cf3dea728e93))
+- **deps-dev:** bump lint-staged from 10.2.7 to 10.2.10
+  ([eaecf32](https://github.com/ridedott/merge-me-action/commit/eaecf32cc4411828f7542268bff9f91ae220afbb))
+
 # [1.3.0](https://github.com/ridedott/merge-me-action/compare/v1.2.62...v1.3.0) (2020-06-12)
 
 ### Features
