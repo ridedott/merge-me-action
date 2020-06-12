@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/ridedott/merge-me-action/compare/v1.2.62...v1.3.0) (2020-06-12)
+
+### Features
+
+- make committer mismatch message more informative
+  ([6c23604](https://github.com/ridedott/merge-me-action/commit/6c23604963428384c64ac452fc218703e102df78))
+
 ## [1.2.62](https://github.com/ridedott/merge-me-action/compare/v1.2.61...v1.2.62) (2020-05-29)
 
 ### Chores
