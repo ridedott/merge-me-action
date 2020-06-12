@@ -11,20 +11,15 @@
     "dist/**",
     "node_modules/**"
   ],
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
   "eslint.codeAction.disableRuleComment": {
     "enable": true,
-    "location": "sameLine"
+    "location": "separateLine"
   },
   "eslint.codeAction.showDocumentation": {
     "enable": true
   },
   "eslint.enable": true,
-  "eslint.options": {
-    "resolvePluginsRelativeTo": "./node_modules/@ridedott/eslint-config"
-  },
+  "eslint.lintTask.enable": true,
   "eslint.run": "onType",
   "jest.autoEnable": false,
   "jest.pathToConfig": "./jest.config.js",

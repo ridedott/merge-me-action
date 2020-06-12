@@ -106,7 +106,11 @@ export const pushHandle = async (
   gitHubLogin: string,
 ): Promise<void> => {
   if (context.payload.pusher.name !== gitHubLogin) {
-    logInfo(`Pull request not created by ${gitHubLogin}, skipping.`);
+    logInfo(
+      `Pull request created by ${
+        context.payload.pusher.name as string
+      }, not ${gitHubLogin}, skipping.`,
+    );
 
     return;
   }

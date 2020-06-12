@@ -62,7 +62,11 @@ export const pullRequestHandle = async (
   }
 
   if (pullRequest.user.login !== gitHubLogin) {
-    logInfo(`Pull request not created by ${gitHubLogin}, skipping.`);
+    logInfo(
+      `Pull request created by ${
+        pullRequest.user.login as string
+      }, not ${gitHubLogin}, skipping.`,
+    );
 
     return;
   }
