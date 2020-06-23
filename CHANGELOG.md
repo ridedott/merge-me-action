@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/ridedott/merge-me-action/compare/v1.3.4...v1.3.5) (2020-06-23)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 8.3.5 to 9.0.1
+  ([1768283](https://github.com/ridedott/merge-me-action/commit/1768283fe755b6b9824503aa4066cd4b4bd04231))
+
 ## [1.3.4](https://github.com/ridedott/merge-me-action/compare/v1.3.3...v1.3.4) (2020-06-23)
 
 ### Chores
