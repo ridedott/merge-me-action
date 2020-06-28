@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/ridedott/merge-me-action/compare/v1.3.8...v1.3.9) (2020-06-28)
+
+### Chores
+
+- **deps-dev:** bump nock from 12.0.3 to 13.0.0
+  ([78732f2](https://github.com/ridedott/merge-me-action/commit/78732f2c3b7b0633908bbc40f60d6d612da22019))
+
 ## [1.3.8](https://github.com/ridedott/merge-me-action/compare/v1.3.7...v1.3.8) (2020-06-25)
 
 ### Chores
