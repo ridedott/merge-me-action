@@ -7,6 +7,7 @@ on:
 
 jobs:
   release:
+    if: contains(github.event.commits[0].message, 'chore(release)') == false
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +24,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          key: npm-${{ hashFiles( 'package-lock.json') }}
+          key: npm-${{ hashFiles( './package-lock.json') }}
           path: ~/.npm
           restore-keys: |
             npm-
@@ -35,18 +36,21 @@ jobs:
           mv tsconfig.production.json tsconfig.json
           npm run build
       - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_DOTTBOTT }}
+          GITHUB_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
+        id: release
         name: Release
-        uses: ridedott/release-me-action@master
+        uses: ridedott/release-me-action@v3
         with:
           commit-assets: |
             ./dist
           node-module: true
-      - name: Setup Node.js with GitHub Packages
+      - if: steps.release.outputs.released == 'true'
+        name: Setup Node.js with GitHub Packages
         uses: actions/setup-node@v1
         with:
           registry-url: 'https://npm.pkg.github.com'
       - env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN_DOTTBOTT }}
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
+        if: steps.release.outputs.released == 'true'
         name: Publish to GitHub Packages
         run: npm publish
