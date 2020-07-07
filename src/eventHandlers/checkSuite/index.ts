@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 
+import { setFailed } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
@@ -11,7 +12,7 @@ import {
   ReviewEdges,
 } from '../../types';
 import { mutationSelector } from '../../utilities/graphql';
-import { logError, logInfo, logWarning } from '../../utilities/log';
+import { logInfo, logWarning } from '../../utilities/log';
 
 interface Repository {
   repository: {
@@ -171,7 +172,7 @@ export const checkSuiteHandle = async (
         await tryMerge(octokit, pullRequestInformation);
       }
     } catch (error) {
-      logError(error);
+      setFailed(error);
     }
   }
 };

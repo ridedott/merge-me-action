@@ -1,9 +1,10 @@
+import { setFailed } from '@actions/core';
 import { context, GitHub } from '@actions/github';
 
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
 import { mutationSelector } from '../../utilities/graphql';
-import { logError, logInfo, logWarning } from '../../utilities/log';
+import { logInfo, logWarning } from '../../utilities/log';
 
 interface PullRequestInformation {
   reviewEdges: ReviewEdges;
@@ -96,6 +97,6 @@ export const pullRequestHandle = async (
       );
     }
   } catch (error) {
-    logError(error);
+    setFailed(error);
   }
 };
