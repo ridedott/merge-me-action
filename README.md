@@ -20,6 +20,9 @@ The action supports three scenarios:
 Depending on the scenario, different configuration is required, as described
 below.
 
+If any of supported event handlers (checkSuite, pullRequest or push) will fail,
+error will be indicated and job will be terminated.
+
 ### GitHub Actions
 
 When a repository uses GitHub Actions exclusively, Merge Me! action should be
