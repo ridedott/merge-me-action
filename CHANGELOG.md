@@ -1,3 +1,10 @@
+## [1.3.15](https://github.com/ridedott/merge-me-action/compare/v1.3.14...v1.3.15) (2020-07-09)
+
+### Chores
+
+- **deps:** bump @actions/github from 2.2.0 to 4.0.0
+  ([d9046ac](https://github.com/ridedott/merge-me-action/commit/d9046acb40d33a7dc5ae33423b403bac58a5264b))
+
 ## [1.3.14](https://github.com/ridedott/merge-me-action/compare/v1.3.13...v1.3.14) (2020-07-09)
 
 ### Bug Fixes
