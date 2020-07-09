@@ -1,3 +1,10 @@
+## [1.3.14](https://github.com/ridedott/merge-me-action/compare/v1.3.13...v1.3.14) (2020-07-09)
+
+### Bug Fixes
+
+- use setFailed instead of logError
+  ([7d4c611](https://github.com/ridedott/merge-me-action/commit/7d4c611f0c18b6a7a1194ab7830cee970c668c9f))
+
 ## [1.3.13](https://github.com/ridedott/merge-me-action/compare/v1.3.12...v1.3.13) (2020-07-07)
 
 ### Chores
