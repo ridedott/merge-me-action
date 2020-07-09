@@ -1,5 +1,5 @@
 import { setFailed } from '@actions/core';
-import { context, GitHub } from '@actions/github';
+import { context, getOctokit } from '@actions/github';
 
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
@@ -21,7 +21,7 @@ interface Repository {
 }
 
 const getPullRequestInformation = async (
-  octokit: GitHub,
+  octokit: ReturnType<typeof getOctokit>,
   query: {
     pullRequestNumber: number;
     repositoryName: string;
@@ -51,7 +51,7 @@ const getPullRequestInformation = async (
 };
 
 export const pullRequestHandle = async (
-  octokit: GitHub,
+  octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
 ): Promise<void> => {
   const { repository, pull_request: pullRequest } = context.payload;

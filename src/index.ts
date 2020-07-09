@@ -1,5 +1,5 @@
 import { getInput, setFailed } from '@actions/core';
-import { context, GitHub } from '@actions/github';
+import { context, getOctokit } from '@actions/github';
 
 import {
   checkSuiteHandle,
@@ -11,7 +11,7 @@ import { logInfo, logWarning } from './utilities/log';
 const GITHUB_TOKEN = getInput('GITHUB_TOKEN');
 const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
 
-const octokit = new GitHub(GITHUB_TOKEN);
+const octokit = getOctokit(GITHUB_TOKEN);
 
 const main = async (): Promise<void> => {
   logInfo(`Automatic merges enabled for GitHub login: ${GITHUB_LOGIN}.`);
