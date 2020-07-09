@@ -1,3 +1,10 @@
+## [1.3.16](https://github.com/ridedott/merge-me-action/compare/v1.3.15...v1.3.16) (2020-07-09)
+
+### Chores
+
+- **deps:** bump npm from 6.14.3 to 6.14.6
+  ([e58c2a7](https://github.com/ridedott/merge-me-action/commit/e58c2a7a661686febdf12ee2079a18999a4cdb19))
+
 ## [1.3.15](https://github.com/ridedott/merge-me-action/compare/v1.3.14...v1.3.15) (2020-07-09)
 
 ### Chores
