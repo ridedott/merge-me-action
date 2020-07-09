@@ -3,7 +3,7 @@
  */
 
 import * as core from '@actions/core';
-import { GitHub } from '@actions/github';
+import { getOctokit } from '@actions/github';
 import { OK } from 'http-status-codes';
 import * as nock from 'nock';
 
@@ -15,7 +15,7 @@ import { checkSuiteHandle } from '.';
 const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
 const COMMIT_HEADLINE = 'Update test';
 
-const octokit = new GitHub('SECRET_GITHUB_TOKEN');
+const octokit = getOctokit('SECRET_GITHUB_TOKEN');
 const infoSpy = jest.spyOn(core, 'info').mockImplementation();
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
 const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();

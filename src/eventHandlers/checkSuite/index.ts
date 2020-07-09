@@ -1,6 +1,6 @@
 /* eslint-disable no-await-in-loop */
 
-import { context, GitHub } from '@actions/github';
+import { context, getOctokit } from '@actions/github';
 
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
 import {
@@ -43,7 +43,7 @@ export interface PullRequestInformationCheckSuite
 }
 
 const getPullRequestInformation = async (
-  octokit: GitHub,
+  octokit: ReturnType<typeof getOctokit>,
   query: {
     pullRequestNumber: number;
     repositoryName: string;
@@ -90,7 +90,7 @@ const getPullRequestInformation = async (
 };
 
 const tryMerge = async (
-  octokit: GitHub,
+  octokit: ReturnType<typeof getOctokit>,
   {
     commitMessageHeadline,
     mergeStateStatus,
@@ -130,7 +130,7 @@ const tryMerge = async (
 };
 
 export const checkSuiteHandle = async (
-  octokit: GitHub,
+  octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
 ): Promise<void> => {
   const pullRequests = context.payload.check_suite.pull_requests as Array<{

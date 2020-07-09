@@ -1,4 +1,4 @@
-import { context, GitHub } from '@actions/github';
+import { context, getOctokit } from '@actions/github';
 
 import { findPullRequestInfoAndReviews as findPullRequestInformationAndReviews } from '../../graphql/queries';
 import {
@@ -32,7 +32,7 @@ const getReferenceName = (): string => {
 };
 
 const getPullRequestInformation = async (
-  octokit: GitHub,
+  octokit: ReturnType<typeof getOctokit>,
   query: {
     referenceName: string;
     repositoryName: string;
@@ -77,7 +77,7 @@ const getPullRequestInformation = async (
 };
 
 const tryMerge = async (
-  octokit: GitHub,
+  octokit: ReturnType<typeof getOctokit>,
   {
     commitMessageHeadline,
     mergeableState,
@@ -102,7 +102,7 @@ const tryMerge = async (
 };
 
 export const pushHandle = async (
-  octokit: GitHub,
+  octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
 ): Promise<void> => {
   if (context.payload.pusher.name !== gitHubLogin) {
