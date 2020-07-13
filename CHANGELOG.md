@@ -1,3 +1,10 @@
+## [1.3.17](https://github.com/ridedott/merge-me-action/compare/v1.3.16...v1.3.17) (2020-07-13)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional from 9.0.1 to 9.1.1
+  ([8d3dcf7](https://github.com/ridedott/merge-me-action/commit/8d3dcf7d65ec5bf9487fe49c027ed55a2f0c47b3))
+
 ## [1.3.16](https://github.com/ridedott/merge-me-action/compare/v1.3.15...v1.3.16) (2020-07-09)
 
 ### Chores
