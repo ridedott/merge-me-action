@@ -163,26 +163,22 @@ export const checkSuiteHandle = async (
       return;
     }
 
-    try {
-      const pullRequestInformation = await getPullRequestInformation(octokit, {
-        pullRequestNumber: pullRequest.number,
-        repositoryName: context.repo.repo,
-        repositoryOwner: context.repo.owner,
-      });
+    const pullRequestInformation = await getPullRequestInformation(octokit, {
+      pullRequestNumber: pullRequest.number,
+      repositoryName: context.repo.repo,
+      repositoryOwner: context.repo.owner,
+    });
 
-      if (pullRequestInformation === undefined) {
-        logWarning('Unable to fetch pull request information.');
-      } else {
-        logInfo(
-          `Found pull request information: ${JSON.stringify(
-            pullRequestInformation,
-          )}.`,
-        );
+    if (pullRequestInformation === undefined) {
+      logWarning('Unable to fetch pull request information.');
+    } else {
+      logInfo(
+        `Found pull request information: ${JSON.stringify(
+          pullRequestInformation,
+        )}.`,
+      );
 
-        await tryMerge(octokit, pullRequestInformation);
-      }
-    } catch (error) {
-      logInfo(`An error ocurred when merging the branch. This is usually an `);
+      await tryMerge(octokit, pullRequestInformation);
     }
   }
 };
