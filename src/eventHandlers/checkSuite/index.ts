@@ -2,6 +2,7 @@
 
 import { context, getOctokit } from '@actions/github';
 
+import { merge } from '../../common/merge';
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
 import {
   MergeableState,
@@ -10,8 +11,7 @@ import {
   PullRequestState,
   ReviewEdges,
 } from '../../types';
-import { mutationSelector } from '../../utilities/graphql';
-import { logDebug, logInfo, logWarning } from '../../utilities/log';
+import { logInfo, logWarning } from '../../utilities/log';
 
 interface Repository {
   repository: {
@@ -122,21 +122,11 @@ const tryMerge = async (
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);
   } else {
-    try {
-      await octokit.graphql(mutationSelector(reviewEdges[0]), {
-        commitHeadline: commitMessageHeadline,
-        pullRequestId,
-      });
-    } catch (error) {
-      logInfo(
-        'An error ocurred while merging the Pull Request. This is usually ' +
-          'caused by the base branch being out of sync with the target ' +
-          'branch. In this case, the base branch must be rebased. Some ' +
-          'tools, such as Dependabot, do that automatically.',
-      );
-      /* eslint-disable-next-line @typescript-eslint/no-base-to-string */
-      logDebug(`Original error: ${(error as Error).toString()}.`);
-    }
+    await merge(octokit, {
+      commitHeadline: commitMessageHeadline,
+      pullRequestId,
+      reviewEdge: reviewEdges[0],
+    });
   }
 };
 

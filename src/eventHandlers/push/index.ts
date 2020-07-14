@@ -1,5 +1,6 @@
 import { context, getOctokit } from '@actions/github';
 
+import { merge } from '../../common/merge';
 import { findPullRequestInfoAndReviews as findPullRequestInformationAndReviews } from '../../graphql/queries';
 import {
   CommitMessageHeadlineGroup,
@@ -7,7 +8,6 @@ import {
   PullRequestInformation,
   Repository,
 } from '../../types';
-import { mutationSelector } from '../../utilities/graphql';
 import { logInfo, logWarning } from '../../utilities/log';
 
 const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)[\s\S]*$/u;
@@ -94,9 +94,10 @@ const tryMerge = async (
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);
   } else {
-    await octokit.graphql(mutationSelector(reviewEdges[0]), {
+    await merge(octokit, {
       commitHeadline: commitMessageHeadline,
       pullRequestId,
+      reviewEdge: reviewEdges[0],
     });
   }
 };
