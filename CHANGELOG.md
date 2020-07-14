@@ -1,3 +1,15 @@
+## [1.3.18](https://github.com/ridedott/merge-me-action/compare/v1.3.17...v1.3.18) (2020-07-14)
+
+### Bug Fixes
+
+- gracefully handle merge failures
+  ([d800404](https://github.com/ridedott/merge-me-action/commit/d800404f37826b177ef98e9e6a1854cc12ba8b4a))
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 9.0.1 to 9.1.1
+  ([eaecbb8](https://github.com/ridedott/merge-me-action/commit/eaecbb832e5f834de3f1de88dc98d47477265dfb))
+
 ## [1.3.17](https://github.com/ridedott/merge-me-action/compare/v1.3.16...v1.3.17) (2020-07-13)
 
 ### Chores
