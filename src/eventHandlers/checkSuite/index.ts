@@ -1,8 +1,8 @@
 /* eslint-disable no-await-in-loop */
 
-import { setFailed } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
+import { merge } from '../../common/merge';
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
 import {
   MergeableState,
@@ -11,7 +11,6 @@ import {
   PullRequestState,
   ReviewEdges,
 } from '../../types';
-import { mutationSelector } from '../../utilities/graphql';
 import { logInfo, logWarning } from '../../utilities/log';
 
 interface Repository {
@@ -123,9 +122,10 @@ const tryMerge = async (
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);
   } else {
-    await octokit.graphql(mutationSelector(reviewEdges[0]), {
+    await merge(octokit, {
       commitHeadline: commitMessageHeadline,
       pullRequestId,
+      reviewEdge: reviewEdges[0],
     });
   }
 };
@@ -153,26 +153,22 @@ export const checkSuiteHandle = async (
       return;
     }
 
-    try {
-      const pullRequestInformation = await getPullRequestInformation(octokit, {
-        pullRequestNumber: pullRequest.number,
-        repositoryName: context.repo.repo,
-        repositoryOwner: context.repo.owner,
-      });
+    const pullRequestInformation = await getPullRequestInformation(octokit, {
+      pullRequestNumber: pullRequest.number,
+      repositoryName: context.repo.repo,
+      repositoryOwner: context.repo.owner,
+    });
 
-      if (pullRequestInformation === undefined) {
-        logWarning('Unable to fetch pull request information.');
-      } else {
-        logInfo(
-          `Found pull request information: ${JSON.stringify(
-            pullRequestInformation,
-          )}.`,
-        );
+    if (pullRequestInformation === undefined) {
+      logWarning('Unable to fetch pull request information.');
+    } else {
+      logInfo(
+        `Found pull request information: ${JSON.stringify(
+          pullRequestInformation,
+        )}.`,
+      );
 
-        await tryMerge(octokit, pullRequestInformation);
-      }
-    } catch (error) {
-      setFailed(error);
+      await tryMerge(octokit, pullRequestInformation);
     }
   }
 };

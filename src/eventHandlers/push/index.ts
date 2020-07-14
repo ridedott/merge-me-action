@@ -1,6 +1,6 @@
-import { setFailed } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
+import { merge } from '../../common/merge';
 import { findPullRequestInfoAndReviews as findPullRequestInformationAndReviews } from '../../graphql/queries';
 import {
   CommitMessageHeadlineGroup,
@@ -8,7 +8,6 @@ import {
   PullRequestInformation,
   Repository,
 } from '../../types';
-import { mutationSelector } from '../../utilities/graphql';
 import { logInfo, logWarning } from '../../utilities/log';
 
 const COMMIT_HEADLINE_MATCHER = /^(?<commitHeadline>.*)[\s\S]*$/u;
@@ -95,9 +94,10 @@ const tryMerge = async (
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);
   } else {
-    await octokit.graphql(mutationSelector(reviewEdges[0]), {
+    await merge(octokit, {
       commitHeadline: commitMessageHeadline,
       pullRequestId,
+      reviewEdge: reviewEdges[0],
     });
   }
 };
@@ -116,28 +116,24 @@ export const pushHandle = async (
     return;
   }
 
-  try {
-    const pullRequestInformation = await getPullRequestInformation(octokit, {
-      referenceName: getReferenceName(),
-      repositoryName: context.repo.repo,
-      repositoryOwner: context.repo.owner,
+  const pullRequestInformation = await getPullRequestInformation(octokit, {
+    referenceName: getReferenceName(),
+    repositoryName: context.repo.repo,
+    repositoryOwner: context.repo.owner,
+  });
+
+  if (pullRequestInformation === undefined) {
+    logWarning('Unable to fetch pull request information.');
+  } else {
+    logInfo(
+      `Found pull request information: ${JSON.stringify(
+        pullRequestInformation,
+      )}.`,
+    );
+
+    await tryMerge(octokit, {
+      ...pullRequestInformation,
+      commitMessageHeadline: getCommitMessageHeadline(),
     });
-
-    if (pullRequestInformation === undefined) {
-      logWarning('Unable to fetch pull request information.');
-    } else {
-      logInfo(
-        `Found pull request information: ${JSON.stringify(
-          pullRequestInformation,
-        )}.`,
-      );
-
-      await tryMerge(octokit, {
-        ...pullRequestInformation,
-        commitMessageHeadline: getCommitMessageHeadline(),
-      });
-    }
-  } catch (error) {
-    setFailed(error);
   }
 };
