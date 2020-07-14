@@ -1,4 +1,3 @@
-import { setFailed } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
@@ -72,31 +71,27 @@ export const pullRequestHandle = async (
     return;
   }
 
-  try {
-    const pullRequestInformation = await getPullRequestInformation(octokit, {
-      pullRequestNumber: pullRequest.number,
-      repositoryName: repository.name,
-      repositoryOwner: repository.owner.login,
-    });
+  const pullRequestInformation = await getPullRequestInformation(octokit, {
+    pullRequestNumber: pullRequest.number,
+    repositoryName: repository.name,
+    repositoryOwner: repository.owner.login,
+  });
 
-    if (pullRequestInformation === undefined) {
-      logWarning('Unable to fetch pull request information.');
-    } else {
-      logInfo(
-        `Found pull request information: ${JSON.stringify(
-          pullRequestInformation,
-        )}.`,
-      );
+  if (pullRequestInformation === undefined) {
+    logWarning('Unable to fetch pull request information.');
+  } else {
+    logInfo(
+      `Found pull request information: ${JSON.stringify(
+        pullRequestInformation,
+      )}.`,
+    );
 
-      await octokit.graphql(
-        mutationSelector(pullRequestInformation.reviewEdges[0]),
-        {
-          commitHeadline: pullRequest.title as string,
-          pullRequestId: pullRequest.node_id as string,
-        },
-      );
-    }
-  } catch (error) {
-    setFailed(error);
+    await octokit.graphql(
+      mutationSelector(pullRequestInformation.reviewEdges[0]),
+      {
+        commitHeadline: pullRequest.title as string,
+        pullRequestId: pullRequest.node_id as string,
+      },
+    );
   }
 };

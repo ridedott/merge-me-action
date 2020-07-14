@@ -1,6 +1,5 @@
 /* eslint-disable no-await-in-loop */
 
-import { setFailed } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
@@ -12,7 +11,7 @@ import {
   ReviewEdges,
 } from '../../types';
 import { mutationSelector } from '../../utilities/graphql';
-import { logInfo, logWarning } from '../../utilities/log';
+import { logDebug, logInfo, logWarning } from '../../utilities/log';
 
 interface Repository {
   repository: {
@@ -123,10 +122,21 @@ const tryMerge = async (
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);
   } else {
-    await octokit.graphql(mutationSelector(reviewEdges[0]), {
-      commitHeadline: commitMessageHeadline,
-      pullRequestId,
-    });
+    try {
+      await octokit.graphql(mutationSelector(reviewEdges[0]), {
+        commitHeadline: commitMessageHeadline,
+        pullRequestId,
+      });
+    } catch (error) {
+      logInfo(
+        'An error ocurred while merging the Pull Request. This is usually ' +
+          'caused by the base branch being out of sync with the target ' +
+          'branch. In this case, Dependabot will rebase the branch ' +
+          'automatically.',
+      );
+      /* eslint-disable-next-line @typescript-eslint/no-base-to-string */
+      logDebug(`Original error: ${(error as Error).toString()}.`);
+    }
   }
 };
 
@@ -172,7 +182,7 @@ export const checkSuiteHandle = async (
         await tryMerge(octokit, pullRequestInformation);
       }
     } catch (error) {
-      setFailed(error);
+      logInfo(`An error ocurred when merging the branch. This is usually an `);
     }
   }
 };
