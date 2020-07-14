@@ -8,12 +8,7 @@ import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo } from '../utilities/log';
 
 /**
- * Returns the right GraphQl mutation depending on weather the
- * `reviewEdge` form the Pull Request contains a review with `'Approved'`
- * state or if it is `undefined`.
- * This prevents approving an already approved pull request.
- * @param reviewEdge
- * @returns `approveAndMergePullRequestMutation` | `mergePullRequestMutation`
+ * Approves and merges a given Pull Request.
  */
 export const merge = async (
   octokit: ReturnType<typeof getOctokit>,
