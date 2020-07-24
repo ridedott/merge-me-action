@@ -1,3 +1,10 @@
+## [1.3.21](https://github.com/ridedott/merge-me-action/compare/v1.3.20...v1.3.21) (2020-07-24)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 26.0.6 to 26.0.7
+  ([394bdc8](https://github.com/ridedott/merge-me-action/commit/394bdc8e8fa9068395a1478a350f01ca77eba1a9))
+
 ## [1.3.20](https://github.com/ridedott/merge-me-action/compare/v1.3.19...v1.3.20) (2020-07-23)
 
 ### Chores
