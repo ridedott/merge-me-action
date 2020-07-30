@@ -65,7 +65,7 @@ describe('pull request event handler', (): void => {
       });
     nock('https://api.github.com').post('/graphql').reply(OK);
 
-    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -77,7 +77,7 @@ describe('pull request event handler', (): void => {
       data: null,
     });
 
-    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]', 3);
   });
 
   it('does not approve an already approved pull request', async (): Promise<
@@ -129,6 +129,6 @@ describe('pull request event handler', (): void => {
       })
       .reply(OK);
 
-    await pullRequestHandle(octokit, 'dependabot-preview[bot]');
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]', 3);
   });
 });

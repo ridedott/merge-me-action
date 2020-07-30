@@ -1,6 +1,6 @@
 import { context, getOctokit } from '@actions/github';
 
-import { merge } from '../../common/merge';
+import { mergeWithRetry } from '../../common/merge';
 import { findPullRequestInfoAndReviews as findPullRequestInformationAndReviews } from '../../graphql/queries';
 import {
   CommitMessageHeadlineGroup,
@@ -78,6 +78,7 @@ const getPullRequestInformation = async (
 
 const tryMerge = async (
   octokit: ReturnType<typeof getOctokit>,
+  numberOfRetries: number,
   {
     commitMessageHeadline,
     mergeableState,
@@ -94,10 +95,12 @@ const tryMerge = async (
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);
   } else {
-    await merge(octokit, {
+    await mergeWithRetry(octokit, {
       commitHeadline: commitMessageHeadline,
+      numberOfRetries,
       pullRequestId,
       reviewEdge: reviewEdges[0],
+      trial: 1,
     });
   }
 };
@@ -105,6 +108,7 @@ const tryMerge = async (
 export const pushHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
+  numberOfRetries: number,
 ): Promise<void> => {
   if (context.payload.pusher.name !== gitHubLogin) {
     logInfo(
@@ -131,7 +135,7 @@ export const pushHandle = async (
       )}.`,
     );
 
-    await tryMerge(octokit, {
+    await tryMerge(octokit, numberOfRetries, {
       ...pullRequestInformation,
       commitMessageHeadline: getCommitMessageHeadline(),
     });

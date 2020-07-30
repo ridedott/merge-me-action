@@ -59,7 +59,7 @@ describe('push event handler', (): void => {
       });
     nock('https://api.github.com').post('/graphql').reply(OK);
 
-    await pushHandle(octokit, 'dependabot-preview[bot]');
+    await pushHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -106,7 +106,7 @@ describe('push event handler', (): void => {
       })
       .reply(OK);
 
-    await pushHandle(octokit, 'dependabot-preview[bot]');
+    await pushHandle(octokit, 'dependabot-preview[bot]', 3);
   });
 
   it('does not approve pull requests that are not mergeable', async (): Promise<
@@ -142,7 +142,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]');
+    await pushHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request is not in a mergeable state: CONFLICTING.',
@@ -182,7 +182,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]');
+    await pushHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
@@ -220,7 +220,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]');
+    await pushHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
@@ -230,7 +230,7 @@ describe('push event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    await pushHandle(octokit, 'some-other-login');
+    await pushHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by dependabot-preview[bot], not some-other-login, skipping.',
@@ -254,7 +254,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]');
+    await pushHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(warningSpy).toHaveBeenCalled();
   });

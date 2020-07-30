@@ -61,7 +61,7 @@ describe('check Suite event handler', (): void => {
       });
     nock('https://api.github.com').post('/graphql').reply(OK);
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -116,7 +116,7 @@ describe('check Suite event handler', (): void => {
       })
       .reply(OK);
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
   });
 
   it('does not approve pull requests that are not mergeable', async (): Promise<
@@ -160,7 +160,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request is not in a mergeable state: CONFLICTING.',
@@ -208,7 +208,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
@@ -254,7 +254,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request cannot be merged cleanly. Current state: UNKNOWN.',
@@ -302,7 +302,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
@@ -312,7 +312,7 @@ describe('check Suite event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    await checkSuiteHandle(octokit, 'some-other-login');
+    await checkSuiteHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by dependabot-preview[bot], not some-other-login, skipping.',
@@ -334,7 +334,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(warningSpy).toHaveBeenCalled();
   });
