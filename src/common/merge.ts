@@ -14,7 +14,7 @@ export interface PullRequestDetails {
 }
 
 const EXPONENTIAL_BACKOFF = 2;
-const WAIT_TIME_SECONDS = 1000;
+const DEFAULT_WAIT_TIME = 1000;
 
 const delay = async (duration: number): Promise<void> => {
   return new Promise((resolve: () => void): void => {
@@ -65,7 +65,7 @@ export const mergeWithRetry = async (
     logDebug(`Original error: ${(error as Error).toString()}.`);
 
     if (trial <= numberOfRetries) {
-      const nextRetryIn = trial ** EXPONENTIAL_BACKOFF * WAIT_TIME_SECONDS;
+      const nextRetryIn = trial ** EXPONENTIAL_BACKOFF * DEFAULT_WAIT_TIME;
 
       logInfo(`Retrying in ${nextRetryIn.toString()}...`);
 
