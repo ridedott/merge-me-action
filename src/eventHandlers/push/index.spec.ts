@@ -262,7 +262,7 @@ describe('push event handler', (): void => {
   });
 
   it('retries up to two times before failing', async (): Promise<void> => {
-    expect.assertions(6);
+    expect.assertions(7);
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -310,6 +310,7 @@ describe('push event handler', (): void => {
         'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
       );
       expect(logInfoSpy.mock.calls[2][0]).toStrictEqual('Retrying in 1000...');
+      expect(logInfoSpy.mock.calls[4][0]).toStrictEqual('Retrying in 4000...');
     }
   }, 10000);
 });
