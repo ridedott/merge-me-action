@@ -91,8 +91,8 @@ export const pullRequestHandle = async (
       commitHeadline: pullRequest.title,
       numberOfRetries,
       pullRequestId: pullRequest.node_id,
+      retryCount: 1,
       reviewEdge: pullRequestInformation.reviewEdges[0],
-      trial: 1,
     });
   }
 };

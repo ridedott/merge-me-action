@@ -127,8 +127,8 @@ const tryMerge = async (
       commitHeadline: commitMessageHeadline,
       numberOfRetries,
       pullRequestId,
+      retryCount: 1,
       reviewEdge: reviewEdges[0],
-      trial: 1,
     });
   }
 };
