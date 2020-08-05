@@ -45,10 +45,10 @@ export const merge = async (
 
 export const mergeWithRetry = async (
   octokit: ReturnType<typeof getOctokit>,
-  details: {
+  details: PullRequestDetails & {
     numberOfRetries: number;
     trial: number;
-  } & PullRequestDetails,
+  },
 ): Promise<void> => {
   const { trial, numberOfRetries } = details;
 
