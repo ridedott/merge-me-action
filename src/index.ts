@@ -8,14 +8,14 @@ import {
 } from './eventHandlers';
 import { logInfo, logWarning } from './utilities/log';
 
-const DEFAULT_NUMBER_OF_RETRIES = 3;
+const DEFAULT_MAXIMUM_RETRIES = 3;
 
 const GITHUB_TOKEN = getInput('GITHUB_TOKEN');
 const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
-const NUMBER_OF_RETRIES =
-  getInput('NUMBER_OF_RETRIES') === undefined
-    ? DEFAULT_NUMBER_OF_RETRIES
-    : parseInt(getInput('NUMBER_OF_RETRIES'), 10);
+const MAXIMUM_RETRIES =
+  getInput('MAXIMUM_RETRIES') === undefined
+    ? DEFAULT_MAXIMUM_RETRIES
+    : parseInt(getInput('MAXIMUM_RETRIES'), 10);
 
 const octokit = getOctokit(GITHUB_TOKEN);
 
@@ -24,11 +24,11 @@ const main = async (): Promise<void> => {
 
   switch (context.eventName) {
     case 'check_suite':
-      return checkSuiteHandle(octokit, GITHUB_LOGIN, NUMBER_OF_RETRIES);
+      return checkSuiteHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     case 'pull_request':
-      return pullRequestHandle(octokit, GITHUB_LOGIN, NUMBER_OF_RETRIES);
+      return pullRequestHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     case 'push':
-      return pushHandle(octokit, GITHUB_LOGIN, NUMBER_OF_RETRIES);
+      return pushHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     default:
       logWarning(`Unknown event ${context.eventName}, skipping.`);
   }

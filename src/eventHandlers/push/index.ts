@@ -78,7 +78,7 @@ const getPullRequestInformation = async (
 
 const tryMerge = async (
   octokit: ReturnType<typeof getOctokit>,
-  numberOfRetries: number,
+  maximumRetries: number,
   {
     commitMessageHeadline,
     mergeableState,
@@ -97,7 +97,7 @@ const tryMerge = async (
   } else {
     await mergeWithRetry(octokit, {
       commitHeadline: commitMessageHeadline,
-      numberOfRetries,
+      maximumRetries,
       pullRequestId,
       retryCount: 1,
       reviewEdge: reviewEdges[0],
@@ -108,7 +108,7 @@ const tryMerge = async (
 export const pushHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
-  numberOfRetries: number,
+  maximumRetries: number,
 ): Promise<void> => {
   if (context.payload.pusher.name !== gitHubLogin) {
     logInfo(
@@ -135,7 +135,7 @@ export const pushHandle = async (
       )}.`,
     );
 
-    await tryMerge(octokit, numberOfRetries, {
+    await tryMerge(octokit, maximumRetries, {
       ...pullRequestInformation,
       commitMessageHeadline: getCommitMessageHeadline(),
     });

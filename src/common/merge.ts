@@ -46,11 +46,11 @@ export const merge = async (
 export const mergeWithRetry = async (
   octokit: ReturnType<typeof getOctokit>,
   details: PullRequestDetails & {
-    numberOfRetries: number;
+    maximumRetries: number;
     retryCount: number;
   },
 ): Promise<void> => {
-  const { retryCount, numberOfRetries } = details;
+  const { retryCount, maximumRetries } = details;
 
   try {
     await merge(octokit, details);
@@ -64,7 +64,7 @@ export const mergeWithRetry = async (
     /* eslint-disable-next-line @typescript-eslint/no-base-to-string */
     logDebug(`Original error: ${(error as Error).toString()}.`);
 
-    if (retryCount <= numberOfRetries) {
+    if (retryCount <= maximumRetries) {
       const nextRetryIn = retryCount ** EXPONENTIAL_BACKOFF * DEFAULT_WAIT_TIME;
 
       logInfo(`Retrying in ${nextRetryIn.toString()}...`);
@@ -73,7 +73,7 @@ export const mergeWithRetry = async (
 
       await mergeWithRetry(octokit, {
         ...details,
-        numberOfRetries,
+        maximumRetries,
         retryCount: retryCount + 1,
       });
     } else {

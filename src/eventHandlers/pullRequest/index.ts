@@ -52,7 +52,7 @@ const getPullRequestInformation = async (
 export const pullRequestHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
-  numberOfRetries: number,
+  maximumRetries: number,
 ): Promise<void> => {
   const { repository, pull_request: pullRequest } = context.payload;
 
@@ -89,7 +89,7 @@ export const pullRequestHandle = async (
 
     await mergeWithRetry(octokit, {
       commitHeadline: pullRequest.title,
-      numberOfRetries,
+      maximumRetries,
       pullRequestId: pullRequest.node_id,
       retryCount: 1,
       reviewEdge: pullRequestInformation.reviewEdges[0],

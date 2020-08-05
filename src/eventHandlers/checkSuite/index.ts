@@ -91,7 +91,7 @@ const getPullRequestInformation = async (
 
 const tryMerge = async (
   octokit: ReturnType<typeof getOctokit>,
-  numberOfRetries: number,
+  maximumRetries: number,
   {
     commitMessageHeadline,
     mergeStateStatus,
@@ -125,7 +125,7 @@ const tryMerge = async (
   } else {
     await mergeWithRetry(octokit, {
       commitHeadline: commitMessageHeadline,
-      numberOfRetries,
+      maximumRetries,
       pullRequestId,
       retryCount: 1,
       reviewEdge: reviewEdges[0],
