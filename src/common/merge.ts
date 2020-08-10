@@ -27,7 +27,7 @@ const delay = async (duration: number): Promise<void> => {
 /**
  * Approves and merges a given Pull Request.
  */
-export const merge = async (
+const merge = async (
   octokit: ReturnType<typeof getOctokit>,
   pullRequestDetails: PullRequestDetails,
 ): Promise<void> => {
