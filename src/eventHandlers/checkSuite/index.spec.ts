@@ -63,7 +63,10 @@ describe('check Suite event handler', (): void => {
       });
     nock('https://api.github.com').post('/graphql').reply(OK);
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', {
+      maximumRetries: 3,
+      minimumWaitTime: 100,
+    });
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -118,7 +121,10 @@ describe('check Suite event handler', (): void => {
       })
       .reply(OK);
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', {
+      maximumRetries: 3,
+      minimumWaitTime: 100,
+    });
   });
 
   it('does not approve pull requests that are not mergeable', async (): Promise<
@@ -162,7 +168,10 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', {
+      maximumRetries: 3,
+      minimumWaitTime: 100,
+    });
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request is not in a mergeable state: CONFLICTING.',
@@ -210,7 +219,10 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', {
+      maximumRetries: 3,
+      minimumWaitTime: 100,
+    });
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
@@ -256,7 +268,10 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', {
+      maximumRetries: 3,
+      minimumWaitTime: 100,
+    });
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request cannot be merged cleanly. Current state: UNKNOWN.',
@@ -304,7 +319,10 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', {
+      maximumRetries: 3,
+      minimumWaitTime: 100,
+    });
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
@@ -314,7 +332,10 @@ describe('check Suite event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    await checkSuiteHandle(octokit, 'some-other-login', 3);
+    await checkSuiteHandle(octokit, 'some-other-login', {
+      maximumRetries: 3,
+      minimumWaitTime: 100,
+    });
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by dependabot-preview[bot], not some-other-login, skipping.',
@@ -336,7 +357,10 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', {
+      maximumRetries: 3,
+      minimumWaitTime: 100,
+    });
 
     expect(warningSpy).toHaveBeenCalled();
   });
@@ -388,7 +412,10 @@ describe('check Suite event handler', (): void => {
     const logInfoSpy = jest.spyOn(log, 'logInfo');
 
     try {
-      await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 2);
+      await checkSuiteHandle(octokit, 'dependabot-preview[bot]', {
+        maximumRetries: 2,
+        minimumWaitTime: 100,
+      });
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect(error.message).toStrictEqual('Error when merging');
@@ -397,8 +424,8 @@ describe('check Suite event handler', (): void => {
       expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(
         'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
       );
-      expect(logInfoSpy.mock.calls[2][0]).toStrictEqual('Retrying in 1000...');
-      expect(logInfoSpy.mock.calls[4][0]).toStrictEqual('Retrying in 4000...');
+      expect(logInfoSpy.mock.calls[2][0]).toStrictEqual('Retrying in 100...');
+      expect(logInfoSpy.mock.calls[4][0]).toStrictEqual('Retrying in 400...');
     }
-  }, 10000);
+  });
 });

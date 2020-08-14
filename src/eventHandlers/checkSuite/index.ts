@@ -91,7 +91,13 @@ const getPullRequestInformation = async (
 
 const tryMerge = async (
   octokit: ReturnType<typeof getOctokit>,
-  maximumRetries: number,
+  {
+    maximumRetries,
+    minimumWaitTime,
+  }: {
+    maximumRetries: number;
+    minimumWaitTime?: number;
+  },
   {
     commitMessageHeadline,
     mergeStateStatus,
@@ -126,6 +132,7 @@ const tryMerge = async (
     await mergeWithRetry(octokit, {
       commitHeadline: commitMessageHeadline,
       maximumRetries,
+      minimumWaitTime,
       pullRequestId,
       retryCount: 1,
       reviewEdge: reviewEdges[0],
@@ -136,7 +143,13 @@ const tryMerge = async (
 export const checkSuiteHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
-  numberOfReties: number,
+  {
+    maximumRetries,
+    minimumWaitTime,
+  }: {
+    maximumRetries: number;
+    minimumWaitTime?: number;
+  },
 ): Promise<void> => {
   const pullRequests = context.payload.check_suite.pull_requests as Array<{
     number: number;
@@ -172,7 +185,11 @@ export const checkSuiteHandle = async (
         )}.`,
       );
 
-      await tryMerge(octokit, numberOfReties, pullRequestInformation);
+      await tryMerge(
+        octokit,
+        { maximumRetries, minimumWaitTime },
+        pullRequestInformation,
+      );
     }
   }
 };
