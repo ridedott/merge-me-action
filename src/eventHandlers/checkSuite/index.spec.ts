@@ -405,7 +405,10 @@ describe('check Suite event handler', (): void => {
       })
       .post('/graphql')
       .times(3)
-      .reply(403, 'Error when merging');
+      .reply(
+        403,
+        '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
+      );
 
     const mergeWithRetrySpy = jest.spyOn(merge, 'mergeWithRetry');
     const logDebugSpy = jest.spyOn(log, 'logDebug');
@@ -418,7 +421,9 @@ describe('check Suite event handler', (): void => {
       });
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
-      expect(error.message).toStrictEqual('Error when merging');
+      expect(error.message).toStrictEqual(
+        '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
+      );
       expect(mergeWithRetrySpy).toHaveBeenCalledTimes(3);
       expect(logDebugSpy).toHaveBeenCalledTimes(3);
       expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(

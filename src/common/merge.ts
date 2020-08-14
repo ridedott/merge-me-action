@@ -43,6 +43,9 @@ const merge = async (
   await octokit.graphql(mutation, { commitHeadline, pullRequestId });
 };
 
+const shouldRetry = (error: Error): boolean =>
+  error.message.includes('Base branch was modified.');
+
 export const mergeWithRetry = async (
   octokit: ReturnType<typeof getOctokit>,
   details: PullRequestDetails & {
@@ -65,7 +68,7 @@ export const mergeWithRetry = async (
     /* eslint-disable-next-line @typescript-eslint/no-base-to-string */
     logDebug(`Original error: ${(error as Error).toString()}.`);
 
-    if (retryCount <= maximumRetries) {
+    if (shouldRetry(error) && retryCount <= maximumRetries) {
       const nextRetryIn =
         retryCount ** EXPONENTIAL_BACKOFF *
         (minimumWaitTime === undefined ? MINIMUM_WAIT_TIME : minimumWaitTime);
