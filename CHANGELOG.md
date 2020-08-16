@@ -1,3 +1,10 @@
+## [1.3.26](https://github.com/ridedott/merge-me-action/compare/v1.3.25...v1.3.26) (2020-08-16)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 9.1.1 to 9.1.2
+  ([efb341f](https://github.com/ridedott/merge-me-action/commit/efb341f3d636e0994898a7e71f77be9382ce80fb))
+
 ## [1.3.25](https://github.com/ridedott/merge-me-action/compare/v1.3.24...v1.3.25) (2020-08-16)
 
 ### Chores
