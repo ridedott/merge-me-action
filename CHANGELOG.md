@@ -1,3 +1,15 @@
+## [1.3.28](https://github.com/ridedott/merge-me-action/compare/v1.3.27...v1.3.28) (2020-08-17)
+
+### Bug Fixes
+
+- add back condition for mergeStateStatus
+  ([3ec2031](https://github.com/ridedott/merge-me-action/commit/3ec2031b0023f17e921a73e2ded460f2a07c63e2))
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.2.4 to 2.2.5
+  ([d32c434](https://github.com/ridedott/merge-me-action/commit/d32c434b5612a7742f8084dcde97e05b57c039d4))
+
 ## [1.3.27](https://github.com/ridedott/merge-me-action/compare/v1.3.26...v1.3.27) (2020-08-17)
 
 ### Chores
