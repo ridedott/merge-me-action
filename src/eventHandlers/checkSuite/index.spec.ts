@@ -7,6 +7,7 @@ import { getOctokit } from '@actions/github';
 import { OK } from 'http-status-codes';
 import * as nock from 'nock';
 
+import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
 import { mergePullRequestMutation } from '../../graphql/mutations';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
 import * as log from '../../utilities/log';
@@ -388,6 +389,8 @@ describe('check Suite event handler', (): void => {
     const logDebugSpy = jest.spyOn(log, 'logDebug');
     const logInfoSpy = jest.spyOn(log, 'logInfo');
 
+    useSetTimeoutImmediateInvocation();
+
     try {
       await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 2);
     } catch (error) {
@@ -399,8 +402,8 @@ describe('check Suite event handler', (): void => {
       expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(
         'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
       );
-      expect(logInfoSpy.mock.calls[2][0]).toStrictEqual('Retrying in 100...');
-      expect(logInfoSpy.mock.calls[4][0]).toStrictEqual('Retrying in 400...');
+      expect(logInfoSpy.mock.calls[2][0]).toStrictEqual('Retrying in 1000...');
+      expect(logInfoSpy.mock.calls[4][0]).toStrictEqual('Retrying in 4000...');
     }
   });
 
