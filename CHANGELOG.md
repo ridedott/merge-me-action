@@ -1,3 +1,51 @@
+## [1.3.28](https://github.com/ridedott/merge-me-action/compare/v1.3.27...v1.3.28) (2020-08-17)
+
+### Bug Fixes
+
+- add back condition for mergeStateStatus
+  ([3ec2031](https://github.com/ridedott/merge-me-action/commit/3ec2031b0023f17e921a73e2ded460f2a07c63e2))
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.2.4 to 2.2.5
+  ([d32c434](https://github.com/ridedott/merge-me-action/commit/d32c434b5612a7742f8084dcde97e05b57c039d4))
+
+## [1.3.27](https://github.com/ridedott/merge-me-action/compare/v1.3.26...v1.3.27) (2020-08-17)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 1.1.44 to 2.2.4
+  ([acccf84](https://github.com/ridedott/merge-me-action/commit/acccf84208d704768fe3ecd2fbe5c2e62e53b7de))
+
+## [1.3.26](https://github.com/ridedott/merge-me-action/compare/v1.3.25...v1.3.26) (2020-08-16)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 9.1.1 to 9.1.2
+  ([efb341f](https://github.com/ridedott/merge-me-action/commit/efb341f3d636e0994898a7e71f77be9382ce80fb))
+
+## [1.3.25](https://github.com/ridedott/merge-me-action/compare/v1.3.24...v1.3.25) (2020-08-16)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional from 9.1.1 to 9.1.2
+  ([0154598](https://github.com/ridedott/merge-me-action/commit/01545982ec0cd69a286104883ef5257467a5f8b1))
+
+## [1.3.24](https://github.com/ridedott/merge-me-action/compare/v1.3.23...v1.3.24) (2020-08-15)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 26.0.9 to 26.0.10
+  ([d35618f](https://github.com/ridedott/merge-me-action/commit/d35618f1c51b0ce7b15848346dafeb4eb4a38920))
+- **deps-dev:** bump cspell from 4.0.63 to 4.1.0
+  ([2b605e2](https://github.com/ridedott/merge-me-action/commit/2b605e20ef7f35732a4952307489392d675f01c8))
+- **deps-dev:** bump eslint from 6.8.0 to 7.6.0
+  ([3dffeed](https://github.com/ridedott/merge-me-action/commit/3dffeed91c547742e53b76f4d8fb386da50a6e92))
+- **deps-dev:** bump eslint from 7.6.0 to 7.7.0
+  ([86cc0b0](https://github.com/ridedott/merge-me-action/commit/86cc0b0653a1a9e7c63f8be0f358065c45a07602))
+- **deps-dev:** bump nock from 13.0.3 to 13.0.4
+  ([e1a6b08](https://github.com/ridedott/merge-me-action/commit/e1a6b087602122a6eb3c3c2a077c8a34a2777511))
+
 ## [1.3.23](https://github.com/ridedott/merge-me-action/compare/v1.3.22...v1.3.23) (2020-08-06)
 
 ### Chores

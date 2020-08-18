@@ -108,6 +108,7 @@ const tryMerge = async (
     logInfo(`Pull request is already merged.`);
   } else if (
     mergeStateStatus !== 'CLEAN' &&
+    /* eslint-disable @typescript-eslint/no-unnecessary-condition */
     /*
      * cspell:ignore merlinnot
      *
@@ -115,6 +116,7 @@ const tryMerge = async (
      * GA.
      */
     mergeStateStatus !== undefined
+    /* eslint-enable @typescript-eslint/no-unnecessary-condition */
   ) {
     logInfo(
       'Pull request cannot be merged cleanly. ' +
