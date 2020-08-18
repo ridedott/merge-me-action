@@ -7,7 +7,6 @@ import { getOctokit } from '@actions/github';
 import { OK } from 'http-status-codes';
 import * as nock from 'nock';
 
-import * as merge from '../../common/merge';
 import { mergePullRequestMutation } from '../../graphql/mutations';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
 import * as log from '../../utilities/log';
@@ -144,7 +143,7 @@ describe('pull request event handler', (): void => {
   });
 
   it('retries up to two times before failing', async (): Promise<void> => {
-    expect.assertions(7);
+    expect.assertions(6);
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -187,7 +186,6 @@ describe('pull request event handler', (): void => {
         '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
       );
 
-    const mergeWithRetrySpy = jest.spyOn(merge, 'mergeWithRetry');
     const logDebugSpy = jest.spyOn(log, 'logDebug');
     const logInfoSpy = jest.spyOn(log, 'logInfo');
 
@@ -201,7 +199,6 @@ describe('pull request event handler', (): void => {
       expect(error.message).toStrictEqual(
         '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
       );
-      expect(mergeWithRetrySpy).toHaveBeenCalledTimes(3);
       expect(logDebugSpy).toHaveBeenCalledTimes(3);
       expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(
         'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
