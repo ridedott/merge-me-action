@@ -338,4 +338,57 @@ describe('push event handler', (): void => {
       expect(logInfoSpy.mock.calls[4][0]).toStrictEqual('Retrying in 400...');
     }
   });
+
+  it('fails the backoff strategy when the error is not "Base branch was modified"', async (): Promise<
+    void
+  > => {
+    expect.assertions(3);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: {
+          repository: {
+            pullRequests: {
+              nodes: [
+                {
+                  id: PULL_REQUEST_ID,
+                  mergeable: 'MERGEABLE',
+                  merged: false,
+                  reviews: {
+                    edges: [
+                      {
+                        node: {
+                          state: 'APPROVED',
+                        },
+                      },
+                    ],
+                  },
+                  state: 'OPEN',
+                },
+              ],
+            },
+          },
+        },
+      })
+      .post('/graphql')
+      .reply(403, '##[error]GraphqlError: This is a different error.');
+
+    const logInfoSpy = jest.spyOn(log, 'logInfo');
+
+    try {
+      await pushHandle(octokit, 'dependabot-preview[bot]', {
+        maximumRetries: 2,
+        minimumWaitTime: 100,
+      });
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toStrictEqual(
+        '##[error]GraphqlError: This is a different error.',
+      );
+      expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(
+        'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
+      );
+    }
+  });
 });
