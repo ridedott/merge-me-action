@@ -50,11 +50,10 @@ export const mergeWithRetry = async (
   octokit: ReturnType<typeof getOctokit>,
   details: PullRequestDetails & {
     maximumRetries: number;
-    minimumWaitTime?: number;
     retryCount: number;
   },
 ): Promise<void> => {
-  const { retryCount, maximumRetries, minimumWaitTime } = details;
+  const { retryCount, maximumRetries } = details;
 
   try {
     await merge(octokit, details);
@@ -69,9 +68,7 @@ export const mergeWithRetry = async (
     logDebug(`Original error: ${(error as Error).toString()}.`);
 
     if (shouldRetry(error) && retryCount <= maximumRetries) {
-      const nextRetryIn =
-        retryCount ** EXPONENTIAL_BACKOFF *
-        (minimumWaitTime === undefined ? MINIMUM_WAIT_TIME : minimumWaitTime);
+      const nextRetryIn = retryCount ** EXPONENTIAL_BACKOFF * MINIMUM_WAIT_TIME;
 
       logInfo(`Retrying in ${nextRetryIn.toString()}...`);
 

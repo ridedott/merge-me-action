@@ -190,10 +190,7 @@ describe('pull request event handler', (): void => {
     const logInfoSpy = jest.spyOn(log, 'logInfo');
 
     try {
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', {
-        maximumRetries: 2,
-        minimumWaitTime: 100,
-      });
+      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect(error.message).toStrictEqual(
@@ -253,10 +250,7 @@ describe('pull request event handler', (): void => {
     const logInfoSpy = jest.spyOn(log, 'logInfo');
 
     try {
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', {
-        maximumRetries: 2,
-        minimumWaitTime: 100,
-      });
+      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect(error.message).toStrictEqual(

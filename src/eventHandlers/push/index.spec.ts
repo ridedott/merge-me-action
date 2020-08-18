@@ -60,10 +60,7 @@ describe('push event handler', (): void => {
       });
     nock('https://api.github.com').post('/graphql').reply(OK);
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', {
-      maximumRetries: 2,
-      minimumWaitTime: 100,
-    });
+    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -110,10 +107,7 @@ describe('push event handler', (): void => {
       })
       .reply(OK);
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', {
-      maximumRetries: 2,
-      minimumWaitTime: 100,
-    });
+    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
   });
 
   it('does not approve pull requests that are not mergeable', async (): Promise<
@@ -149,10 +143,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', {
-      maximumRetries: 2,
-      minimumWaitTime: 100,
-    });
+    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request is not in a mergeable state: CONFLICTING.',
@@ -192,10 +183,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', {
-      maximumRetries: 2,
-      minimumWaitTime: 100,
-    });
+    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
@@ -233,10 +221,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', {
-      maximumRetries: 2,
-      minimumWaitTime: 100,
-    });
+    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
@@ -246,9 +231,7 @@ describe('push event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    await pushHandle(octokit, 'some-other-login', {
-      maximumRetries: 2,
-    });
+    await pushHandle(octokit, 'some-other-login', 2);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by dependabot-preview[bot], not some-other-login, skipping.',
@@ -272,10 +255,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', {
-      maximumRetries: 2,
-      minimumWaitTime: 100,
-    });
+    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
 
     expect(warningSpy).toHaveBeenCalled();
   });
@@ -321,10 +301,7 @@ describe('push event handler', (): void => {
     const logInfoSpy = jest.spyOn(log, 'logInfo');
 
     try {
-      await pushHandle(octokit, 'dependabot-preview[bot]', {
-        maximumRetries: 2,
-        minimumWaitTime: 100,
-      });
+      await pushHandle(octokit, 'dependabot-preview[bot]', 2);
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect(error.message).toStrictEqual(
@@ -377,10 +354,7 @@ describe('push event handler', (): void => {
     const logInfoSpy = jest.spyOn(log, 'logInfo');
 
     try {
-      await pushHandle(octokit, 'dependabot-preview[bot]', {
-        maximumRetries: 2,
-        minimumWaitTime: 100,
-      });
+      await pushHandle(octokit, 'dependabot-preview[bot]', 2);
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
       expect(error.message).toStrictEqual(
