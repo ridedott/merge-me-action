@@ -142,6 +142,24 @@ steps:
       MERGE_METHOD: MERGE
 ```
 
+### Number of retries
+
+In case the merge action fails, by default it will automatically be retried up
+to three times using an exponential backoff strategy. This means, the first
+retry will happen 1 second after the first failure, while the second will happen
+4 seconds after the previous, the third 9 seconds, and so on.
+
+It's possible to configure the number of retries by providing a value for
+`MAXIMUM_RETRIES` (by default, the value is `3`).
+
+```yaml
+steps:
+  - name: Merge me!
+    uses: ridedott/merge-me-action@master
+    with:
+      MAXIMUM_RETRIES: 2
+```
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your

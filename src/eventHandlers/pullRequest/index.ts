@@ -1,6 +1,6 @@
 import { context, getOctokit } from '@actions/github';
 
-import { merge } from '../../common/merge';
+import { mergeWithRetry } from '../../common/merge';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
@@ -52,6 +52,7 @@ const getPullRequestInformation = async (
 export const pullRequestHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
+  maximumRetries: number,
 ): Promise<void> => {
   /* eslint-disable @typescript-eslint/naming-convention */
   const { repository, pull_request: pullRequest } = context.payload;
@@ -88,9 +89,11 @@ export const pullRequestHandle = async (
       )}.`,
     );
 
-    await merge(octokit, {
+    await mergeWithRetry(octokit, {
       commitHeadline: pullRequest.title,
+      maximumRetries,
       pullRequestId: pullRequest.node_id,
+      retryCount: 1,
       reviewEdge: pullRequestInformation.reviewEdges[0],
     });
   }

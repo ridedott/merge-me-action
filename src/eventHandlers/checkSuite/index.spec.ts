@@ -7,8 +7,10 @@ import { getOctokit } from '@actions/github';
 import { OK } from 'http-status-codes';
 import * as nock from 'nock';
 
+import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
 import { mergePullRequestMutation } from '../../graphql/mutations';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
+import * as log from '../../utilities/log';
 import { checkSuiteHandle } from '.';
 
 /* cspell:disable-next-line */
@@ -61,7 +63,7 @@ describe('check Suite event handler', (): void => {
       });
     nock('https://api.github.com').post('/graphql').reply(OK);
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -116,7 +118,7 @@ describe('check Suite event handler', (): void => {
       })
       .reply(OK);
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
   });
 
   it('does not approve pull requests that are not mergeable', async (): Promise<
@@ -160,7 +162,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request is not in a mergeable state: CONFLICTING.',
@@ -208,7 +210,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
@@ -254,7 +256,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request cannot be merged cleanly. Current state: UNKNOWN.',
@@ -302,7 +304,7 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
@@ -312,7 +314,7 @@ describe('check Suite event handler', (): void => {
   > => {
     expect.assertions(1);
 
-    await checkSuiteHandle(octokit, 'some-other-login');
+    await checkSuiteHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by dependabot-preview[bot], not some-other-login, skipping.',
@@ -334,8 +336,132 @@ describe('check Suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, 'dependabot-preview[bot]');
+    await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 3);
 
     expect(warningSpy).toHaveBeenCalled();
+  });
+
+  it('retries up to two times before failing', async (): Promise<void> => {
+    expect.assertions(6);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: {
+          repository: {
+            pullRequest: {
+              commits: {
+                edges: [
+                  {
+                    node: {
+                      commit: {
+                        messageHeadline: COMMIT_HEADLINE,
+                      },
+                    },
+                  },
+                ],
+              },
+              id: PULL_REQUEST_ID,
+              mergeStateStatus: 'CLEAN',
+              mergeable: 'MERGEABLE',
+              merged: false,
+              reviews: {
+                edges: [
+                  {
+                    node: {
+                      state: 'APPROVED',
+                    },
+                  },
+                ],
+              },
+              state: 'OPEN',
+            },
+          },
+        },
+      })
+      .post('/graphql')
+      .times(3)
+      .reply(
+        403,
+        '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
+      );
+
+    const logDebugSpy = jest.spyOn(log, 'logDebug');
+    const logInfoSpy = jest.spyOn(log, 'logInfo');
+
+    useSetTimeoutImmediateInvocation();
+
+    try {
+      await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 2);
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toStrictEqual(
+        '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
+      );
+      expect(logDebugSpy).toHaveBeenCalledTimes(3);
+      expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(
+        'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
+      );
+      expect(logInfoSpy.mock.calls[2][0]).toStrictEqual('Retrying in 1000...');
+      expect(logInfoSpy.mock.calls[4][0]).toStrictEqual('Retrying in 4000...');
+    }
+  });
+
+  it('fails the backoff strategy when the error is not "Base branch was modified"', async (): Promise<
+    void
+  > => {
+    expect.assertions(3);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: {
+          repository: {
+            pullRequest: {
+              commits: {
+                edges: [
+                  {
+                    node: {
+                      commit: {
+                        messageHeadline: COMMIT_HEADLINE,
+                      },
+                    },
+                  },
+                ],
+              },
+              id: PULL_REQUEST_ID,
+              mergeStateStatus: 'CLEAN',
+              mergeable: 'MERGEABLE',
+              merged: false,
+              reviews: {
+                edges: [
+                  {
+                    node: {
+                      state: 'APPROVED',
+                    },
+                  },
+                ],
+              },
+              state: 'OPEN',
+            },
+          },
+        },
+      })
+      .post('/graphql')
+      .reply(403, '##[error]GraphqlError: This is a different error.');
+
+    const logInfoSpy = jest.spyOn(log, 'logInfo');
+
+    try {
+      await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 2);
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toStrictEqual(
+        '##[error]GraphqlError: This is a different error.',
+      );
+      expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(
+        'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
+      );
+    }
   });
 });
