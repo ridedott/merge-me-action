@@ -1,3 +1,15 @@
+## [1.3.30](https://github.com/ridedott/merge-me-action/compare/v1.3.29...v1.3.30) (2020-08-21)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.2.6 to 2.2.7
+  ([c083e2c](https://github.com/ridedott/merge-me-action/commit/c083e2cfe8cf3dc2203e25c3e1c1cf2cf1e13daf))
+
+### Features
+
+- add exponential retries on merge errors
+  ([7f3d613](https://github.com/ridedott/merge-me-action/commit/7f3d61355a28889657a5f70748811d9d2ed871a3))
+
 ## [1.3.29](https://github.com/ridedott/merge-me-action/compare/v1.3.28...v1.3.29) (2020-08-18)
 
 ### Chores

@@ -1,8 +1,5 @@
 import { getOctokit } from '@actions/github';
-/**
- * Approves and merges a given Pull Request.
- */
-export declare const merge: (octokit: ReturnType<typeof getOctokit>, { commitHeadline, pullRequestId, reviewEdge, }: {
+export interface PullRequestDetails {
     commitHeadline: string;
     pullRequestId: string;
     reviewEdge: {
@@ -10,5 +7,9 @@ export declare const merge: (octokit: ReturnType<typeof getOctokit>, { commitHea
             state: string;
         };
     } | undefined;
+}
+export declare const mergeWithRetry: (octokit: ReturnType<typeof getOctokit>, details: PullRequestDetails & {
+    maximumRetries: number;
+    retryCount: number;
 }) => Promise<void>;
 //# sourceMappingURL=merge.d.ts.map

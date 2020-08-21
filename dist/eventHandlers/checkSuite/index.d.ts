@@ -4,5 +4,5 @@ export interface PullRequestInformationCheckSuite extends PullRequestInformation
     commitMessageHeadline: string;
     mergeStateStatus: MergeStateStatus;
 }
-export declare const checkSuiteHandle: (octokit: ReturnType<typeof getOctokit>, gitHubLogin: string) => Promise<void>;
+export declare const checkSuiteHandle: (octokit: ReturnType<typeof getOctokit>, gitHubLogin: string, maximumRetries: number) => Promise<void>;
 //# sourceMappingURL=index.d.ts.map
