@@ -1,3 +1,16 @@
+## [1.3.31](https://github.com/ridedott/merge-me-action/compare/v1.3.30...v1.3.31) (2020-08-24)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.2.7 to 2.2.9
+  ([78a339b](https://github.com/ridedott/merge-me-action/commit/78a339b7f315f1afa6bbe3c86f9d0129e32ca170))
+- **deps-dev:** bump commitizen from 4.1.2 to 4.1.5
+  ([9de24d0](https://github.com/ridedott/merge-me-action/commit/9de24d04761a65de8ec7c47082f15bd20fbe3c56))
+- **deps-dev:** bump http-status-codes from 1.4.0 to 2.1.1
+  ([814d4f1](https://github.com/ridedott/merge-me-action/commit/814d4f133364e96272f0046081939c70b72155d6))
+- **deps-dev:** bump ts-node from 8.10.2 to 9.0.0
+  ([f03c6fb](https://github.com/ridedott/merge-me-action/commit/f03c6fb1a24fdb8c4c205f0958475456710e5721))
+
 ## [1.3.30](https://github.com/ridedott/merge-me-action/compare/v1.3.29...v1.3.30) (2020-08-21)
 
 ### Chores
