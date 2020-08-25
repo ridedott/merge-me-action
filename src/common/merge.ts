@@ -67,7 +67,11 @@ export const mergeWithRetry = async (
     /* eslint-disable-next-line @typescript-eslint/no-base-to-string */
     logDebug(`Original error: ${(error as Error).toString()}.`);
 
-    if (shouldRetry(error) && retryCount <= maximumRetries) {
+    if (shouldRetry(error) === false) {
+      return;
+    }
+
+    if (retryCount <= maximumRetries) {
       const nextRetryIn = retryCount ** EXPONENTIAL_BACKOFF * MINIMUM_WAIT_TIME;
 
       logInfo(`Retrying in ${nextRetryIn.toString()}...`);
@@ -80,7 +84,9 @@ export const mergeWithRetry = async (
         retryCount: retryCount + 1,
       });
     } else {
-      throw error;
+      logInfo(
+        `Unable to merge after ${retryCount.toString()} attempts. Retries exhausted.`,
+      );
     }
   }
 };
