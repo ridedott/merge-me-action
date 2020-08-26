@@ -1,5 +1,3 @@
-// cspell:ignore retryable
-
 import { getOctokit } from '@actions/github';
 
 import {
