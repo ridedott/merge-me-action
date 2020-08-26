@@ -395,7 +395,7 @@ describe('check Suite event handler', (): void => {
     );
     expect(infoSpy).toHaveBeenCalledWith('Retrying in 1000...');
     expect(infoSpy).toHaveBeenCalledWith('Retrying in 4000...');
-    expect(debugSpy).toHaveBeenCalledTimes(3);
+    expect(debugSpy).toHaveBeenCalledTimes(1);
     expect(debugSpy).toHaveBeenCalledWith(
       'Original error: HttpError: ##[error]GraphqlError: Base branch was modified. Review and try the merge again..',
     );
