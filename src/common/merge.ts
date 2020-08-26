@@ -43,8 +43,23 @@ const merge = async (
   await octokit.graphql(mutation, { commitHeadline, pullRequestId });
 };
 
-const shouldRetry = (error: Error): boolean =>
-  error.message.includes('Base branch was modified.');
+const shouldRetry = (
+  error: Error,
+  retryCount: number,
+  maximumRetries: number,
+): boolean => {
+  const isRetryableError = error.message.includes('Base branch was modified.');
+
+  if (isRetryableError && retryCount > maximumRetries) {
+    logInfo(
+      `Unable to merge after ${retryCount.toString()} attempts. Retries exhausted.`,
+    );
+
+    return false;
+  }
+
+  return isRetryableError;
+};
 
 export const mergeWithRetry = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -58,6 +73,20 @@ export const mergeWithRetry = async (
   try {
     await merge(octokit, details);
   } catch (error) {
+    if (shouldRetry(error, retryCount, maximumRetries)) {
+      const nextRetryIn = retryCount ** EXPONENTIAL_BACKOFF * MINIMUM_WAIT_TIME;
+
+      logInfo(`Retrying in ${nextRetryIn.toString()}...`);
+
+      await delay(nextRetryIn);
+
+      return await mergeWithRetry(octokit, {
+        ...details,
+        maximumRetries,
+        retryCount: retryCount + 1,
+      });
+    }
+
     logInfo(
       'An error ocurred while merging the Pull Request. This is usually ' +
         'caused by the base branch being out of sync with the target ' +
@@ -66,21 +95,5 @@ export const mergeWithRetry = async (
     );
     /* eslint-disable-next-line @typescript-eslint/no-base-to-string */
     logDebug(`Original error: ${(error as Error).toString()}.`);
-
-    if (shouldRetry(error) && retryCount <= maximumRetries) {
-      const nextRetryIn = retryCount ** EXPONENTIAL_BACKOFF * MINIMUM_WAIT_TIME;
-
-      logInfo(`Retrying in ${nextRetryIn.toString()}...`);
-
-      await delay(nextRetryIn);
-
-      await mergeWithRetry(octokit, {
-        ...details,
-        maximumRetries,
-        retryCount: retryCount + 1,
-      });
-    } else {
-      throw error;
-    }
   }
 };

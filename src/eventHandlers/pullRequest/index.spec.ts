@@ -10,7 +10,6 @@ import * as nock from 'nock';
 import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
 import { mergePullRequestMutation } from '../../graphql/mutations';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
-import * as log from '../../utilities/log';
 import { pullRequestHandle } from '.';
 
 /* cspell:disable-next-line */
@@ -18,7 +17,9 @@ const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
 const COMMIT_HEADLINE = 'Update test';
 
 const octokit = getOctokit('SECRET_GITHUB_TOKEN');
+const infoSpy = jest.spyOn(core, 'info').mockImplementation();
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
+const debugSpy = jest.spyOn(core, 'debug').mockImplementation();
 const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 
 jest.spyOn(core, 'info').mockImplementation();
@@ -135,7 +136,7 @@ describe('pull request event handler', (): void => {
   });
 
   it('retries up to two times before failing', async (): Promise<void> => {
-    expect.assertions(6);
+    expect.assertions(5);
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -178,31 +179,25 @@ describe('pull request event handler', (): void => {
         '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
       );
 
-    const logDebugSpy = jest.spyOn(log, 'logDebug');
-    const logInfoSpy = jest.spyOn(log, 'logInfo');
-
     useSetTimeoutImmediateInvocation();
 
-    try {
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
-    } catch (error) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error.message).toStrictEqual(
-        '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
-      );
-      expect(logDebugSpy).toHaveBeenCalledTimes(3);
-      expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(
-        'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
-      );
-      expect(logInfoSpy.mock.calls[2][0]).toStrictEqual('Retrying in 1000...');
-      expect(logInfoSpy.mock.calls[4][0]).toStrictEqual('Retrying in 4000...');
-    }
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+
+    expect(infoSpy).toHaveBeenCalledWith(
+      'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
+    );
+    expect(infoSpy).toHaveBeenCalledWith('Retrying in 1000...');
+    expect(infoSpy).toHaveBeenCalledWith('Retrying in 4000...');
+    expect(debugSpy).toHaveBeenCalledTimes(1);
+    expect(debugSpy).toHaveBeenCalledWith(
+      'Original error: HttpError: ##[error]GraphqlError: Base branch was modified. Review and try the merge again..',
+    );
   });
 
   it('fails the backoff strategy when the error is not "Base branch was modified"', async (): Promise<
     void
   > => {
-    expect.assertions(3);
+    expect.assertions(2);
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -241,18 +236,13 @@ describe('pull request event handler', (): void => {
       .post('/graphql')
       .reply(403, '##[error]GraphqlError: This is a different error.');
 
-    const logInfoSpy = jest.spyOn(log, 'logInfo');
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
 
-    try {
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
-    } catch (error) {
-      expect(error).toBeInstanceOf(Error);
-      expect(error.message).toStrictEqual(
-        '##[error]GraphqlError: This is a different error.',
-      );
-      expect(logInfoSpy.mock.calls[1][0]).toStrictEqual(
-        'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
-      );
-    }
+    expect(infoSpy).toHaveBeenCalledWith(
+      'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
+    );
+    expect(debugSpy).toHaveBeenCalledWith(
+      'Original error: HttpError: ##[error]GraphqlError: This is a different error..',
+    );
   });
 });
