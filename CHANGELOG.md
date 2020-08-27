@@ -1,3 +1,25 @@
+# [1.4.0](https://github.com/ridedott/merge-me-action/compare/v1.3.31...v1.4.0) (2020-08-27)
+
+### Chores
+
+- **deps:** bump @actions/core from 1.2.4 to 1.2.5
+  ([ec651ef](https://github.com/ridedott/merge-me-action/commit/ec651ef20cf2c52e867abaa12a281bdfa4ed22c1))
+- **deps-dev:** bump commitizen from 4.1.5 to 4.2.0
+  ([8c4c268](https://github.com/ridedott/merge-me-action/commit/8c4c26874df9c08321d795b78152542ac2873117))
+- **deps-dev:** bump commitizen from 4.2.0 to 4.2.1
+  ([2265eb1](https://github.com/ridedott/merge-me-action/commit/2265eb10ede8004b88f14f017f709be8b5fd2786))
+- **deps-dev:** bump http-status-codes from 2.1.1 to 2.1.2
+  ([85230c7](https://github.com/ridedott/merge-me-action/commit/85230c7ca3677221d89b209bc6a3a49cdcd7f2c3))
+- **deps-dev:** bump lint-staged from 10.2.11 to 10.2.13
+  ([1cbf286](https://github.com/ridedott/merge-me-action/commit/1cbf286ce76c3f1d75b114599a551457a29c5b5a))
+- **deps-dev:** bump prettier from 2.0.5 to 2.1.0
+  ([868b944](https://github.com/ridedott/merge-me-action/commit/868b944d16f1eb6aecd8ffa81fa750024f8f43e9))
+
+### Features
+
+- gracefully exit by logging instead of throwing on merge error
+  ([9c8e5e2](https://github.com/ridedott/merge-me-action/commit/9c8e5e2080baa956b0257d793c156b27e69bab2d))
+
 ## [1.3.31](https://github.com/ridedott/merge-me-action/compare/v1.3.30...v1.3.31) (2020-08-24)
 
 ### Chores
