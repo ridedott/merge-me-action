@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/ridedott/merge-me-action/compare/v1.4.2...v1.4.3) (2020-09-01)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.7.0 to 7.8.0
+  ([15d5d74](https://github.com/ridedott/merge-me-action/commit/15d5d74bab573ed74bd4f62b657fe238d3c0cd8d))
+
 ## [1.4.2](https://github.com/ridedott/merge-me-action/compare/v1.4.1...v1.4.2) (2020-09-01)
 
 ### Chores
