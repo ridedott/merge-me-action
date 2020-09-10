@@ -51,7 +51,7 @@ describe('parseInputMergeCategory', (): void => {
 
     getInputSpy.mockReturnValueOnce('OTHER');
 
-    expect(parseInputMergeMethod()).toStrictEqual('ANY');
+    expect(parseInputMergeCategory()).toStrictEqual('ANY');
   });
 
   it('returns undefined if merge category is not provided', (): void => {
@@ -59,6 +59,6 @@ describe('parseInputMergeCategory', (): void => {
 
     getInputSpy.mockReturnValueOnce('');
 
-    expect(parseInputMergeMethod()).toStrictEqual('ANY');
+    expect(parseInputMergeCategory()).toStrictEqual('ANY');
   });
 });
