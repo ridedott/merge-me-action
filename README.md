@@ -142,6 +142,21 @@ steps:
       MERGE_METHOD: MERGE
 ```
 
+### Specifiy the semantic versioning category to use
+
+By default, this GitHub Action assumes merge category is `ANY`. You can
+override the merge method by changing the value of `MERGE_CATEGORY` parameter (one
+of `MAJOR`, `MINOR`, `PATCH` or `ANY`):
+
+```yaml
+steps:
+  - name: Merge me!
+    uses: ridedott/merge-me-action@master
+    with:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MERGE_CATEGORY: PATCH
+```
+
 ### Number of retries
 
 In case the merge action fails, by default it will automatically be retried up
