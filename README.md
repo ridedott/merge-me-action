@@ -144,9 +144,9 @@ steps:
 
 ### Specifiy the semantic versioning category to use
 
-By default, this GitHub Action assumes merge category is `ANY`. You can
-override the merge method by changing the value of `MERGE_CATEGORY` parameter (one
-of `MAJOR`, `MINOR`, `PATCH` or `ANY`):
+By default, this GitHub Action assumes merge category is `ANY`. You can override
+the merge method by changing the value of `MERGE_CATEGORY` parameter (one of
+`MAJOR`, `MINOR`, `PATCH` or `ANY`):
 
 ```yaml
 steps:

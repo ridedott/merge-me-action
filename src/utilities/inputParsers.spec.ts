@@ -1,9 +1,6 @@
 import * as actionsCore from '@actions/core';
 
-import {
-  parseInputMergeMethod,
-  parseInputMergeCategory,
-} from './inputParsers';
+import { parseInputMergeMethod, parseInputMergeCategory } from './inputParsers';
 
 const getInputSpy = jest.spyOn(actionsCore, 'getInput').mockImplementation();
 

@@ -12,7 +12,7 @@ export enum AllowedMergeCategories {
   MAJOR = 'MAJOR',
   MINOR = 'MINOR',
   PATCH = 'PATCH',
-  ANY = 'ANY'
+  ANY = 'ANY',
 }
 
 export const parseInputMergeMethod = (): AllowedMergeMethods => {
@@ -42,4 +42,3 @@ export const parseInputMergeCategory = (): AllowedMergeCategories => {
 
   return AllowedMergeCategories[input];
 };
-
