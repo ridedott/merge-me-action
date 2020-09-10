@@ -1,6 +1,7 @@
 import * as actionsCore from '@actions/core';
 
 import { parseInputMergeMethod } from './inputParsers';
+import {parseInputMergeCategory} from './inputParsers.ts';
 
 const getInputSpy = jest.spyOn(actionsCore, 'getInput').mockImplementation();
 
@@ -30,5 +31,34 @@ describe('parseInputMergeMethod', (): void => {
     getInputSpy.mockReturnValueOnce('');
 
     expect(parseInputMergeMethod()).toStrictEqual('SQUASH');
+  });
+});
+
+describe('parseInputMergeCategory', (): void => {
+  it.each(['MAJOR', 'MINOR', 'PATCH', 'ANY'])(
+    'parse allowed category',
+    (mergeCategory: string): void => {
+      expect.assertions(1);
+
+      getInputSpy.mockReturnValueOnce(mergeCategory);
+
+      expect(parseInputMergeCategory()).toStrictEqual(mergeCategory);
+    },
+  );
+
+  it('returns default merge category if merge category is not allowed', (): void => {
+    expect.assertions(1);
+
+    getInputSpy.mockReturnValueOnce('OTHER');
+
+    expect(parseInputMergeMethod()).toStrictEqual('ANY');
+  });
+
+  it('returns undefined if merge category is not provided', (): void => {
+    expect.assertions(1);
+
+    getInputSpy.mockReturnValueOnce('');
+
+    expect(parseInputMergeMethod()).toStrictEqual('ANY');
   });
 });

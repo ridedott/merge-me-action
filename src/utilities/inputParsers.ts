@@ -8,6 +8,13 @@ export enum AllowedMergeMethods {
   REBASE = 'REBASE',
 }
 
+export enum AllowedMergeCategories {
+  MAJOR = 'MAJOR',
+  MINOR = 'MINOR',
+  PATCH = 'PATCH',
+  ANY = 'ANY'
+}
+
 export const parseInputMergeMethod = (): AllowedMergeMethods => {
   const input = getInput('MERGE_METHOD');
 
@@ -21,3 +28,18 @@ export const parseInputMergeMethod = (): AllowedMergeMethods => {
 
   return AllowedMergeMethods[input];
 };
+
+export const parseInputMergeCategory = (): AllowedMergeCategories => {
+  const input = getInput('MERGE_CATEGORY');
+
+  if (input.length === 0 || AllowedMergeCategories[input] === undefined) {
+    logWarning(
+      'MERGE_CATEGORY value input is ignored because its malformed, defaulting to ANY.',
+    );
+
+    return AllowedMergeCategories.ANY;
+  }
+
+  return AllowedMergeCategories[input];
+};
+
