@@ -12,7 +12,6 @@ export enum AllowedMergeCategories {
   MAJOR = 'MAJOR',
   MINOR = 'MINOR',
   PATCH = 'PATCH',
-  ANY = 'ANY',
 }
 
 export const parseInputMergeMethod = (): AllowedMergeMethods => {
@@ -34,10 +33,10 @@ export const parseInputMergeCategory = (): AllowedMergeCategories => {
 
   if (input.length === 0 || AllowedMergeCategories[input] === undefined) {
     logWarning(
-      'MERGE_CATEGORY value input is ignored because its malformed, defaulting to ANY.',
+      'MERGE_CATEGORY value input is ignored because its malformed, defaulting to MAJOR.',
     );
 
-    return AllowedMergeCategories.ANY;
+    return AllowedMergeCategories.MAJOR;
   }
 
   return AllowedMergeCategories[input];
