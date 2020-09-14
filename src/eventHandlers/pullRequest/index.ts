@@ -96,6 +96,7 @@ export const pullRequestHandle = async (
       logInfo(
         'Skipping auto-merge since the upgrade does not match merge category',
       );
+
       return;
     }
 
