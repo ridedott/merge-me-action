@@ -1,9 +1,6 @@
 import * as actionsCore from '@actions/core';
 
-import {
-  parseInputMergeCategory,
-  parseInputMergeMethod,
-} from './inputParsers';
+import { parseInputMergeCategory, parseInputMergeMethod } from './inputParsers';
 
 const getInputSpy = jest.spyOn(actionsCore, 'getInput').mockImplementation();
 
@@ -56,7 +53,7 @@ describe('parseInputMergeCategory', (): void => {
     expect(parseInputMergeCategory()).toStrictEqual('MAJOR');
   });
 
-  it('returns undefined if merge category is not provided', (): void => {
+  it('returns default merge category if merge category is not provided', (): void => {
     expect.assertions(1);
 
     getInputSpy.mockReturnValueOnce('');
