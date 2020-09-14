@@ -1,5 +1,7 @@
-// TODO: (dunyakirkali) Better naming
-export const parsePRTitle = (title: string, category: string): boolean => {
+export const checkPullRequestTitleForMergeCategory = (
+  title: string,
+  category: string,
+): boolean => {
   if (category === 'MAJOR') {
     return true;
   }

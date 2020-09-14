@@ -1,13 +1,15 @@
-import { parsePRTitle } from './prTitleParser';
+import { checkPullRequestTitleForMergeCategory } from './prTitleParser';
 
-describe('parsePRTitle', (): void => {
+describe('checkPullRequestTitleForMergeCategory', (): void => {
   describe('given containing MAJOR bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 27.0.13';
 
     it.each(['MAJOR'])('returns true', (mergeCategory: string): void => {
       expect.assertions(1);
 
-      expect(parsePRTitle(title, mergeCategory)).toStrictEqual(true);
+      expect(
+        checkPullRequestTitleForMergeCategory(title, mergeCategory),
+      ).toStrictEqual(true);
     });
 
     it.each(['MINOR', 'PATCH'])(
@@ -15,7 +17,9 @@ describe('parsePRTitle', (): void => {
       (mergeCategory: string): void => {
         expect.assertions(1);
 
-        expect(parsePRTitle(title, mergeCategory)).toStrictEqual(false);
+        expect(
+          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+        ).toStrictEqual(false);
       },
     );
   });
@@ -28,14 +32,18 @@ describe('parsePRTitle', (): void => {
       (mergeCategory: string): void => {
         expect.assertions(1);
 
-        expect(parsePRTitle(title, mergeCategory)).toStrictEqual(true);
+        expect(
+          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+        ).toStrictEqual(true);
       },
     );
 
     it.each(['PATCH'])('returns false', (mergeCategory: string): void => {
       expect.assertions(1);
 
-      expect(parsePRTitle(title, mergeCategory)).toStrictEqual(false);
+      expect(
+        checkPullRequestTitleForMergeCategory(title, mergeCategory),
+      ).toStrictEqual(false);
     });
   });
 
