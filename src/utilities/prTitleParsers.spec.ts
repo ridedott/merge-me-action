@@ -1,4 +1,4 @@
-import { checkPullRequestTitleForMergeCategory } from './prTitleParser';
+import { checkPullRequestTitleForMergeCategory } from './prTitleParsers';
 
 describe('checkPullRequestTitleForMergeCategory', (): void => {
   describe('given containing MAJOR bump', (): void => {

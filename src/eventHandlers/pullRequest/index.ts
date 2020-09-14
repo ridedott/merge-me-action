@@ -5,7 +5,7 @@ import { mergeWithRetry } from '../../common/merge';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
-import { checkPullRequestTitleForMergeCategory } from '../../utilities/prTitleParser';
+import { checkPullRequestTitleForMergeCategory } from '../../utilities/prTitleParsers';
 
 interface PullRequestInformation {
   reviewEdges: ReviewEdges;
