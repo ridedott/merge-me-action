@@ -1,10 +1,6 @@
 // TODO: (dunyakirkali) Better naming
-export const parsePRTitle = (
-  title: string,
-  category: string,
-): boolean => {
-
-  if(category === 'MAJOR') {
+export const parsePRTitle = (title: string, category: string): boolean => {
+  if (category === 'MAJOR') {
     return true;
   }
 
@@ -26,12 +22,12 @@ export const parsePRTitle = (
     const fromVersion = fromMatch.groups!;
     const toVersion = toMatch.groups!;
 
-    if(parseInt(fromVersion.major) !== parseInt(toVersion.major)) {
+    if (parseInt(fromVersion.major) !== parseInt(toVersion.major)) {
       return false;
     }
 
-    if(parseInt(fromVersion.minor) !== parseInt(toVersion.minor)) {
-      return category === 'MINOR'
+    if (parseInt(fromVersion.minor) !== parseInt(toVersion.minor)) {
+      return category === 'MINOR';
     }
   }
 
