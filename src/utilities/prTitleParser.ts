@@ -21,9 +21,12 @@ export const parsePRTitle = (title: string, category: string): boolean => {
     return true;
   }
 
-  // TODO: (dunyakirkali) Handle optionals
-  const fromMatch = semVerRegExp.exec(from)!;
-  const toMatch = semVerRegExp.exec(to)!;
+  const fromMatch = semVerRegExp.exec(from);
+  const toMatch = semVerRegExp.exec(to);
+
+  if (fromMatch === null || toMatch === null) {
+    return true;
+  }
 
   // TODO: (dunyakirkali) Handle optionals
   const fromVersion = fromMatch.groups!;
