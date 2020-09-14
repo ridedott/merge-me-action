@@ -28,15 +28,28 @@ export const parsePRTitle = (title: string, category: string): boolean => {
     return true;
   }
 
-  // TODO: (dunyakirkali) Handle optionals
-  const fromVersion = fromMatch.groups!;
-  const toVersion = toMatch.groups!;
+  const fromMatchGroups = fromMatch.groups;
+  const toMatchGroups = toMatch.groups;
 
-  if (parseInt(fromVersion.major, 10) !== parseInt(toVersion.major, 10)) {
+  const fromMajor = fromMatchGroups?.major;
+  const toMajor = toMatchGroups?.major;
+
+  if (fromMajor === undefined || toMajor === undefined) {
+    return true;
+  }
+
+  if (parseInt(fromMajor, 10) !== parseInt(toMajor, 10)) {
     return false;
   }
 
-  if (parseInt(fromVersion.minor, 10) !== parseInt(toVersion.minor, 10)) {
+  const fromMinor = fromMatchGroups?.minor;
+  const toMinor = toMatchGroups?.minor;
+
+  if (fromMinor === undefined || toMinor === undefined) {
+    return true;
+  }
+
+  if (parseInt(fromMinor, 10) !== parseInt(toMinor, 10)) {
     return category === 'MINOR';
   }
 
