@@ -91,11 +91,11 @@ export const pullRequestHandle = async (
       )}.`,
     );
 
-    const category = getInput('MERGE_CATEGORY');
-
     if (
-      checkPullRequestTitleForMergeCategory(pullRequest.title, category) ===
-      false
+      checkPullRequestTitleForMergeCategory(
+        pullRequest.title,
+        getInput('MERGE_CATEGORY'),
+      ) === false
     ) {
       logInfo(
         'Skipping auto-merge since the upgrade does not match merge category',
