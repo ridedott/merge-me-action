@@ -1,6 +1,8 @@
+import { AllowedMergeCategories } from './inputParsers';
+
 // TODO: (dunyakirkali) Better naming
-export const parsePRTitle = (title: string, category: string): boolean => {
-  if (category === 'MAJOR') {
+export const parsePRTitle = (title: string, category: AllowedMergeCategories): boolean => {
+  if (category === AllowedMergeCategories.MAJOR) {
     return true;
   }
 
@@ -50,7 +52,7 @@ export const parsePRTitle = (title: string, category: string): boolean => {
   }
 
   if (parseInt(fromMinor, 10) !== parseInt(toMinor, 10)) {
-    return category === 'MINOR';
+    return category === AllowedMergeCategories.MINOR;
   }
 
   return false;
