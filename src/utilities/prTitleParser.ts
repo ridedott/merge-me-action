@@ -10,9 +10,14 @@ export const parsePRTitle = (title: string, category: string): boolean => {
   if (match) {
     const semVerRegExp = /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)$/u;
 
-    // TODO: (dunyakirkali) Handle optionals
-    const from = match.groups?.from!;
-    const to = match.groups?.to!;
+    const matchGroups = match.groups;
+
+    if (matchGroups === undefined || matchGroups.to === undefined || matchGroups.from === undefined) {
+      return true;
+    }
+
+    const from = matchGroups!.from!;
+    const to = matchGroups!.to!;
 
     // TODO: (dunyakirkali) Handle optionals
     const fromMatch = semVerRegExp.exec(from)!;
