@@ -1,4 +1,5 @@
 import { context, getOctokit } from '@actions/github';
+import { getInput } from '@actions/core';
 
 import { mergeWithRetry } from '../../common/merge';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
