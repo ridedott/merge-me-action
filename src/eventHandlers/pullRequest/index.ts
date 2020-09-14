@@ -4,6 +4,7 @@ import { mergeWithRetry } from '../../common/merge';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
+import { parsePRTitle } from '../../utilities/prTitleParser';
 
 interface PullRequestInformation {
   reviewEdges: ReviewEdges;
@@ -88,6 +89,13 @@ export const pullRequestHandle = async (
         pullRequestInformation,
       )}.`,
     );
+
+    // Check merge category
+    const category = getInput('MERGE_CATEGORY');
+    if (!parsePRTitle(pullRequest.title, category)) {
+      logInfo('Skipping auto-merge since the upgrade does not match merge category');
+      return;
+    }
 
     await mergeWithRetry(octokit, {
       commitHeadline: pullRequest.title,
