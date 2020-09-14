@@ -11,13 +11,12 @@ export const parsePRTitle = (title: string, category: string): boolean => {
     const semVerRegExp = /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)$/u;
 
     const matchGroups = match.groups;
+    const from = matchGroups?.from;
+    const to = matchGroups?.to;
 
-    if (matchGroups === undefined || matchGroups.to === undefined || matchGroups.from === undefined) {
+    if (from === undefined || to === undefined) {
       return true;
     }
-
-    const from = matchGroups!.from!;
-    const to = matchGroups!.to!;
 
     // TODO: (dunyakirkali) Handle optionals
     const fromMatch = semVerRegExp.exec(from)!;
