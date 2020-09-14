@@ -32,11 +32,11 @@ export const parsePRTitle = (title: string, category: string): boolean => {
   const fromVersion = fromMatch.groups!;
   const toVersion = toMatch.groups!;
 
-  if (parseInt(fromVersion.major) !== parseInt(toVersion.major)) {
+  if (parseInt(fromVersion.major, 10) !== parseInt(toVersion.major, 10)) {
     return false;
   }
 
-  if (parseInt(fromVersion.minor) !== parseInt(toVersion.minor)) {
+  if (parseInt(fromVersion.minor, 10) !== parseInt(toVersion.minor, 10)) {
     return category === 'MINOR';
   }
 
