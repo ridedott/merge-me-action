@@ -6,11 +6,6 @@ export const parsePRTitle = (title: string, category: string): boolean => {
 
   const semVerTitleRegExp = /bump .* from (?<from>.*) to (?<to>.*)/u;
   const match = semVerTitleRegExp.exec(title);
-
-  if (match === undefined) {
-    return true;
-  }
-
   const semVerRegExp = /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)$/u;
 
   const matchGroups = match.groups;
