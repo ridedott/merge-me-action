@@ -7,32 +7,34 @@ export const parsePRTitle = (title: string, category: string): boolean => {
   const semVerTitleRegExp = /bump .* from (?<from>.*) to (?<to>.*)/u;
   const match = semVerTitleRegExp.exec(title);
 
-  if (match) {
-    const semVerRegExp = /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)$/u;
+  if (match === undefined) {
+    return true;
+  }
 
-    const matchGroups = match.groups;
-    const from = matchGroups?.from;
-    const to = matchGroups?.to;
+  const semVerRegExp = /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)$/u;
 
-    if (from === undefined || to === undefined) {
-      return true;
-    }
+  const matchGroups = match.groups;
+  const from = matchGroups?.from;
+  const to = matchGroups?.to;
 
-    // TODO: (dunyakirkali) Handle optionals
-    const fromMatch = semVerRegExp.exec(from)!;
-    const toMatch = semVerRegExp.exec(to)!;
+  if (from === undefined || to === undefined) {
+    return true;
+  }
 
-    // TODO: (dunyakirkali) Handle optionals
-    const fromVersion = fromMatch.groups!;
-    const toVersion = toMatch.groups!;
+  // TODO: (dunyakirkali) Handle optionals
+  const fromMatch = semVerRegExp.exec(from)!;
+  const toMatch = semVerRegExp.exec(to)!;
 
-    if (parseInt(fromVersion.major) !== parseInt(toVersion.major)) {
-      return false;
-    }
+  // TODO: (dunyakirkali) Handle optionals
+  const fromVersion = fromMatch.groups!;
+  const toVersion = toMatch.groups!;
 
-    if (parseInt(fromVersion.minor) !== parseInt(toVersion.minor)) {
-      return category === 'MINOR';
-    }
+  if (parseInt(fromVersion.major) !== parseInt(toVersion.major)) {
+    return false;
+  }
+
+  if (parseInt(fromVersion.minor) !== parseInt(toVersion.minor)) {
+    return category === 'MINOR';
   }
 
   return false;
