@@ -47,5 +47,18 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
     });
   });
 
-  describe('given title containing PATCH bump', (): void => {});
+  describe('given title containing PATCH bump', (): void => {
+    const title = 'bump @types/jest from 26.0.12 to 26.0.13';
+
+    it.each(['MAJOR', 'MINOR', 'PATCH'])(
+      'returns true',
+      (mergeCategory: string): void => {
+        expect.assertions(1);
+
+        expect(
+          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+        ).toStrictEqual(true);
+      },
+    );
+  });
 });
