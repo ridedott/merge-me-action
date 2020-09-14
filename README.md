@@ -142,7 +142,7 @@ steps:
       MERGE_METHOD: MERGE
 ```
 
-### Specifiy the semantic versioning category to use
+### Specify the semantic versioning category to use
 
 By default, this GitHub Action assumes merge category is `MAJOR`. You can
 override the merge method by changing the value of `MERGE_CATEGORY` parameter
