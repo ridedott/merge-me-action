@@ -61,4 +61,34 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
       },
     );
   });
+
+  describe('given title containing malformed version bump', (): void => {
+    const title = 'bump @types/jest from jora=m to natan';
+
+    it.each(['MAJOR', 'MINOR', 'PATCH'])(
+      'returns true',
+      (mergeCategory: string): void => {
+        expect.assertions(1);
+
+        expect(
+          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+        ).toStrictEqual(true);
+      },
+    );
+  });
+
+  describe('given title does not contain a version bump', (): void => {
+    const title = 'chore: format';
+
+    it.each(['MAJOR', 'MINOR', 'PATCH'])(
+      'returns true',
+      (mergeCategory: string): void => {
+        expect.assertions(1);
+
+        expect(
+          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+        ).toStrictEqual(true);
+      },
+    );
+  });
 });

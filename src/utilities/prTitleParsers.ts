@@ -55,5 +55,5 @@ export const checkPullRequestTitleForMergeCategory = (
     return category === 'MINOR';
   }
 
-  return false;
+  return true;
 };
