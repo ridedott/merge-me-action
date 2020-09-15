@@ -1,3 +1,20 @@
+## [1.4.5](https://github.com/ridedott/merge-me-action/compare/v1.4.4...v1.4.5) (2020-09-15)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 9.1.2 to 11.0.0
+  ([558edf7](https://github.com/ridedott/merge-me-action/commit/558edf774ecb2993b72df3aee177961859513a4e))
+- **deps-dev:** bump @semantic-release/npm from 7.0.5 to 7.0.6
+  ([c76057d](https://github.com/ridedott/merge-me-action/commit/c76057db2f39f144a40ffc33ef536f5e981cb0d0))
+- **deps-dev:** bump @types/jest from 26.0.12 to 26.0.13
+  ([c7537bd](https://github.com/ridedott/merge-me-action/commit/c7537bd4b64d17b3c5b1177cd9e78c38e52eaca0))
+- **deps-dev:** bump eslint from 7.8.0 to 7.9.0
+  ([465eab8](https://github.com/ridedott/merge-me-action/commit/465eab8b3a146630d1de660a1fad8f386945308b))
+- **deps-dev:** bump husky from 4.2.5 to 4.3.0
+  ([61cae0e](https://github.com/ridedott/merge-me-action/commit/61cae0ef1a4a1cf91196b6e6f18fbbbfd380fdf2))
+- **deps-dev:** bump lint-staged from 10.2.13 to 10.3.0
+  ([9e085fd](https://github.com/ridedott/merge-me-action/commit/9e085fd4b72dedf65fcf24b40083de0a6c939d1c))
+
 ## [1.4.4](https://github.com/ridedott/merge-me-action/compare/v1.4.3...v1.4.4) (2020-09-15)
 
 ### Chores
