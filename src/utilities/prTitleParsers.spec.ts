@@ -63,7 +63,7 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
   });
 
   describe('given title containing malformed version bump', (): void => {
-    const title = 'bump @types/jest from jora=m to natan';
+    const title = 'bump @types/jest from car to house';
 
     it.each(['MAJOR', 'MINOR', 'PATCH'])(
       'returns true',
