@@ -59,7 +59,6 @@ describe('pull request event handler', (): void => {
                   ],
                 },
                 state: 'OPEN',
-                title: 'ASDASD',
               },
             },
           },
