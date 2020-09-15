@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable max-statements */
 export const checkPullRequestTitleForMergeCategory = (
   title: string,
   category: string,
@@ -16,15 +18,9 @@ export const checkPullRequestTitleForMergeCategory = (
   const semVerRegExp = /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)$/u;
 
   const matchGroups = match.groups;
-  const from = matchGroups?.from;
-  const to = matchGroups?.to;
-
-  if (from === undefined || to === undefined) {
-    return true;
-  }
-
-  const fromMatch = semVerRegExp.exec(from);
-  const toMatch = semVerRegExp.exec(to);
+  // Using non-null assertions per: https://github.com/microsoft/TypeScript/issues/32098
+  const fromMatch = semVerRegExp.exec(matchGroups!.from!);
+  const toMatch = semVerRegExp.exec(matchGroups!.to!);
 
   if (fromMatch === null || toMatch === null) {
     return true;
@@ -33,23 +29,15 @@ export const checkPullRequestTitleForMergeCategory = (
   const fromMatchGroups = fromMatch.groups;
   const toMatchGroups = toMatch.groups;
 
-  const fromMajor = fromMatchGroups?.major;
-  const toMajor = toMatchGroups?.major;
-
-  if (fromMajor === undefined || toMajor === undefined) {
-    return true;
-  }
+  const fromMajor = fromMatchGroups!.major!;
+  const toMajor = toMatchGroups!.major!;
 
   if (parseInt(fromMajor, 10) !== parseInt(toMajor, 10)) {
     return false;
   }
 
-  const fromMinor = fromMatchGroups?.minor;
-  const toMinor = toMatchGroups?.minor;
-
-  if (fromMinor === undefined || toMinor === undefined) {
-    return true;
-  }
+  const fromMinor = fromMatchGroups!.minor!;
+  const toMinor = toMatchGroups!.minor!;
 
   if (parseInt(fromMinor, 10) !== parseInt(toMinor, 10)) {
     return category === 'MINOR';
