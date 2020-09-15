@@ -83,6 +83,55 @@ describe('pull request event handler', (): void => {
     await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
   });
 
+  /**
+   * @webhook-pragma pull_request_for_major_bump
+   */
+  it('does nothing if the PR title contains a major bump but PRESET specifies DEPENDABOT_PATCH', async (): Promise<
+    void
+  > => {
+    expect.assertions(0);
+
+    getInputSpy.mockReturnValue('PATCH');
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(OK, {
+        data: {
+          repository: {
+            pullRequest: {
+              commits: {
+                edges: [
+                  {
+                    node: {
+                      commit: {
+                        message: COMMIT_HEADLINE,
+                      },
+                    },
+                  },
+                ],
+              },
+              id: PULL_REQUEST_ID,
+              mergeable: 'MERGEABLE',
+              merged: false,
+              reviews: {
+                edges: [
+                  {
+                    node: {
+                      state: 'APPROVED',
+                    },
+                  },
+                ],
+              },
+              state: 'OPEN',
+            },
+          },
+        },
+      });
+    // nock('https://api.github.com').post('/graphql').reply(OK);
+
+    await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+  });
+
   it('does not approve an already approved pull request', async (): Promise<
     void
   > => {
