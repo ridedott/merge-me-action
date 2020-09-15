@@ -54,3 +54,4 @@ jobs:
         if: steps.release.outputs.released == 'true'
         name: Publish to GitHub Packages
         run: npm publish
+    timeout-minutes: 5
