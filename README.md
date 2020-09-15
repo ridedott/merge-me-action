@@ -144,9 +144,11 @@ steps:
 
 ### Specify the semantic versioning category to use
 
-By default, this GitHub Action assumes merge category is `MAJOR`. You can
-override the merge method by changing the value of `MERGE_CATEGORY` parameter
-(one of `MAJOR`, `MINOR` or `PATCH`):
+By default, this GitHub Action assumes merge category is `MAJOR`. This feature
+looks at the title of the PR to figure out what is being updated. We expect a
+dependabot style title such as: `bump @types/jest from 26.0.12 to 27.0.13`. You
+can override the merge method by changing the value of `MERGE_CATEGORY`
+parameter (one of `MAJOR`, `MINOR` or `PATCH`):
 
 ```yaml
 steps:
