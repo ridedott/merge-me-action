@@ -18,7 +18,7 @@ inputs:
       One of: MERGE, STASH or REBASE'
     required: false
     default: SQUASH
-  MERGE_CATEGORY:
+  PRESET:
     description:
       'Specify the semantic version category to automatically merge. One of:
       MAJOR, MINOR or PATCH'

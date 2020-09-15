@@ -29,11 +29,11 @@ export const parseInputMergeMethod = (): AllowedMergeMethods => {
 };
 
 export const parseInputMergeCategory = (): AllowedMergeCategories => {
-  const input = getInput('MERGE_CATEGORY');
+  const input = getInput('PRESET');
 
   if (input.length === 0 || AllowedMergeCategories[input] === undefined) {
     logWarning(
-      'MERGE_CATEGORY value input is ignored because its malformed, defaulting to MAJOR.',
+      'PRESET value input is ignored because its malformed, defaulting to MAJOR.',
     );
 
     return AllowedMergeCategories.MAJOR;

@@ -147,8 +147,8 @@ steps:
 By default, this GitHub Action assumes merge category is `MAJOR`. This feature
 looks at the title of the PR to figure out what is being updated. A dependabot
 style title such as: `bump @types/jest from 26.0.12 to 27.0.13` is expected. You
-can override the merge category by changing the value of `MERGE_CATEGORY`
-parameter (one of `MAJOR`, `MINOR` or `PATCH`):
+can override the merge category by changing the value of `PRESET` parameter (one
+of `MAJOR`, `MINOR` or `PATCH`):
 
 ```yaml
 steps:
@@ -156,7 +156,7 @@ steps:
     uses: ridedott/merge-me-action@master
     with:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      MERGE_CATEGORY: PATCH
+      PRESET: PATCH
 ```
 
 ### Number of retries

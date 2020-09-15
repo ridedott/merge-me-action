@@ -94,7 +94,7 @@ export const pullRequestHandle = async (
     if (
       checkPullRequestTitleForMergeCategory(
         pullRequest.title,
-        getInput('MERGE_CATEGORY'),
+        getInput('PRESET'),
       ) === false
     ) {
       logInfo(
