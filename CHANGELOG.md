@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/ridedott/merge-me-action/compare/v1.4.3...v1.4.4) (2020-09-15)
+
+### Chores
+
+- increase a TODO timeout
+  ([2f87692](https://github.com/ridedott/merge-me-action/commit/2f876926422cade0867399b2f7bd8501a9a2e99e))
+
 ## [1.4.3](https://github.com/ridedott/merge-me-action/compare/v1.4.2...v1.4.3) (2020-09-01)
 
 ### Chores
