@@ -1,3 +1,48 @@
+## [1.4.8](https://github.com/ridedott/merge-me-action/compare/v1.4.7...v1.4.8) (2020-09-16)
+
+### Chores
+
+- **deps-dev:** bump prettier from 2.1.1 to 2.1.2
+  ([ca9fa2c](https://github.com/ridedott/merge-me-action/commit/ca9fa2c0349961fe919fe04e5d01934ca4365372))
+
+## [1.4.7](https://github.com/ridedott/merge-me-action/compare/v1.4.6...v1.4.7) (2020-09-15)
+
+### Chores
+
+- **deps-dev:** bump http-status-codes from 2.1.2 to 2.1.3
+  ([62e5faf](https://github.com/ridedott/merge-me-action/commit/62e5faf067c6cbbcd461eeb7cd679f97759169fb))
+
+## [1.4.6](https://github.com/ridedott/merge-me-action/compare/v1.4.5...v1.4.6) (2020-09-15)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional from 9.1.2 to 11.0.0
+  ([0293189](https://github.com/ridedott/merge-me-action/commit/0293189c17eb580ab5ee26ea976bf54060d5f2f8))
+
+## [1.4.5](https://github.com/ridedott/merge-me-action/compare/v1.4.4...v1.4.5) (2020-09-15)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 9.1.2 to 11.0.0
+  ([558edf7](https://github.com/ridedott/merge-me-action/commit/558edf774ecb2993b72df3aee177961859513a4e))
+- **deps-dev:** bump @semantic-release/npm from 7.0.5 to 7.0.6
+  ([c76057d](https://github.com/ridedott/merge-me-action/commit/c76057db2f39f144a40ffc33ef536f5e981cb0d0))
+- **deps-dev:** bump @types/jest from 26.0.12 to 26.0.13
+  ([c7537bd](https://github.com/ridedott/merge-me-action/commit/c7537bd4b64d17b3c5b1177cd9e78c38e52eaca0))
+- **deps-dev:** bump eslint from 7.8.0 to 7.9.0
+  ([465eab8](https://github.com/ridedott/merge-me-action/commit/465eab8b3a146630d1de660a1fad8f386945308b))
+- **deps-dev:** bump husky from 4.2.5 to 4.3.0
+  ([61cae0e](https://github.com/ridedott/merge-me-action/commit/61cae0ef1a4a1cf91196b6e6f18fbbbfd380fdf2))
+- **deps-dev:** bump lint-staged from 10.2.13 to 10.3.0
+  ([9e085fd](https://github.com/ridedott/merge-me-action/commit/9e085fd4b72dedf65fcf24b40083de0a6c939d1c))
+
+## [1.4.4](https://github.com/ridedott/merge-me-action/compare/v1.4.3...v1.4.4) (2020-09-15)
+
+### Chores
+
+- increase a TODO timeout
+  ([2f87692](https://github.com/ridedott/merge-me-action/commit/2f876926422cade0867399b2f7bd8501a9a2e99e))
+
 ## [1.4.3](https://github.com/ridedott/merge-me-action/compare/v1.4.2...v1.4.3) (2020-09-01)
 
 ### Chores
