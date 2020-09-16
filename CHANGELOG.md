@@ -1,3 +1,10 @@
+## [1.4.9](https://github.com/ridedott/merge-me-action/compare/v1.4.8...v1.4.9) (2020-09-16)
+
+### Continuous Integration
+
+- add timeout on every job
+  ([dcfd1d4](https://github.com/ridedott/merge-me-action/commit/dcfd1d4c6191014a22728d111f59f5e584734a56))
+
 ## [1.4.8](https://github.com/ridedott/merge-me-action/compare/v1.4.7...v1.4.8) (2020-09-16)
 
 ### Chores
