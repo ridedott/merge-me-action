@@ -24,7 +24,17 @@ const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 jest.spyOn(core, 'info').mockImplementation();
 
 beforeEach((): void => {
-  getInputSpy.mockReturnValue('SQUASH');
+  getInputSpy.mockImplementation((name: string): string => {
+    if (name === 'MERGE_METHOD') {
+      return 'SQUASH';
+    }
+
+    if (name === 'PRESET') {
+      return 'DEPENDABOT_MAJOR';
+    }
+
+    return '';
+  });
 });
 
 describe('pull request event handler', (): void => {

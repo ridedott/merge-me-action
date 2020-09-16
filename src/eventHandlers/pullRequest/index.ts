@@ -5,7 +5,7 @@ import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
 import { parseInputMergePreset } from '../../utilities/inputParsers';
 import { logInfo, logWarning } from '../../utilities/log';
-import { checkPullRequestTitleForMergeCategory } from '../../utilities/prTitleParsers';
+import { checkPullRequestTitleForMergePreset } from '../../utilities/prTitleParsers';
 
 interface PullRequestInformation {
   reviewEdges: ReviewEdges;
@@ -51,6 +51,16 @@ const getPullRequestInformation = async (
   };
 };
 
+const shouldMerge = (prTitle: string): boolean => {
+  const mergePreset = parseInputMergePreset();
+
+  if (mergePreset === undefined) {
+    return true;
+  }
+
+  return checkPullRequestTitleForMergePreset(prTitle, mergePreset);
+};
+
 export const pullRequestHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
@@ -91,21 +101,8 @@ export const pullRequestHandle = async (
       )}.`,
     );
 
-    const mergeCategory = parseInputMergePreset();
-
-    if (mergeCategory !== undefined) {
-      if (
-        checkPullRequestTitleForMergeCategory(
-          pullRequest.title,
-          mergeCategory,
-        ) === false
-      ) {
-        logInfo(
-          'Skipping auto-merge since the upgrade does not match merge category',
-        );
-
-        return;
-      }
+    if (shouldMerge(pullRequest.title) === false) {
+      return;
     }
 
     await mergeWithRetry(octokit, {

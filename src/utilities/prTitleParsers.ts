@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable max-statements */
-export const checkPullRequestTitleForMergeCategory = (
+export const checkPullRequestTitleForMergePreset = (
   title: string,
   category: string,
 ): boolean => {

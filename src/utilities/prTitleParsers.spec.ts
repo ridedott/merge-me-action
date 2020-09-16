@@ -1,6 +1,6 @@
-import { checkPullRequestTitleForMergeCategory } from './prTitleParsers';
+import { checkPullRequestTitleForMergePreset } from './prTitleParsers';
 
-describe('checkPullRequestTitleForMergeCategory', (): void => {
+describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given containing DEPENDABOT_MAJOR bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 27.0.13';
 
@@ -10,7 +10,7 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
         expect.assertions(1);
 
         expect(
-          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title, mergeCategory),
         ).toStrictEqual(true);
       },
     );
@@ -21,7 +21,7 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
         expect.assertions(1);
 
         expect(
-          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title, mergeCategory),
         ).toStrictEqual(false);
       },
     );
@@ -36,7 +36,7 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
         expect.assertions(1);
 
         expect(
-          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title, mergeCategory),
         ).toStrictEqual(true);
       },
     );
@@ -47,7 +47,7 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
         expect.assertions(1);
 
         expect(
-          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title, mergeCategory),
         ).toStrictEqual(false);
       },
     );
@@ -62,7 +62,7 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
         expect.assertions(1);
 
         expect(
-          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title, mergeCategory),
         ).toStrictEqual(true);
       },
     );
@@ -77,7 +77,7 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
         expect.assertions(1);
 
         expect(
-          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title, mergeCategory),
         ).toStrictEqual(true);
       },
     );
@@ -92,7 +92,7 @@ describe('checkPullRequestTitleForMergeCategory', (): void => {
         expect.assertions(1);
 
         expect(
-          checkPullRequestTitleForMergeCategory(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title, mergeCategory),
         ).toStrictEqual(true);
       },
     );
