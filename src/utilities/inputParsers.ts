@@ -8,7 +8,7 @@ export enum AllowedMergeMethods {
   REBASE = 'REBASE',
 }
 
-export enum AllowedMergeCategories {
+export enum AllowedMergePresets {
   DEPENDABOT_MAJOR = 'DEPENDABOT_MAJOR',
   DEPENDABOT_MINOR = 'DEPENDABOT_MINOR',
   DEPENDABOT_PATCH = 'DEPENDABOT_PATCH',
@@ -28,16 +28,16 @@ export const parseInputMergeMethod = (): AllowedMergeMethods => {
   return AllowedMergeMethods[input];
 };
 
-export const parseInputMergeCategory = (): AllowedMergeCategories => {
+export const parseInputMergeCategory = (): AllowedMergePresets => {
   const input = getInput('PRESET');
 
-  if (input.length === 0 || AllowedMergeCategories[input] === undefined) {
+  if (input.length === 0 || AllowedMergePresets[input] === undefined) {
     logWarning(
       'PRESET value input is ignored because its malformed, defaulting to DEPENDABOT_MAJOR.',
     );
 
-    return AllowedMergeCategories.DEPENDABOT_MAJOR;
+    return AllowedMergePresets.DEPENDABOT_MAJOR;
   }
 
-  return AllowedMergeCategories[input];
+  return AllowedMergePresets[input];
 };
