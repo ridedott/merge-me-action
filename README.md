@@ -142,13 +142,19 @@ steps:
       MERGE_METHOD: MERGE
 ```
 
-### Specify the semantic versioning category to use
+### Presets
 
-This feature looks at the title of the PR to figure out what is being updated. A
-dependabot style title such as:
-`chore(deps): bump @types/jest from 26.0.12 to 27.0.13` is expected. You can
-override the merge category by changing the value of `PRESET` parameter (one of
-`DEPENDABOT_MAJOR`, `DEPENDABOT_MINOR` or `DEPENDABOT_PATCH`):
+Presets enable additional functionality which can be used to better personalize
+default behavior of the Merge me! Action.
+
+Available presets are:
+
+- `DEPENDABOT_MINOR` - Merge only minor and patch dependency updates for pull
+  requests created by Dependabot if the dependency version follows
+  [Semantic Versioning v2](https://semver.org/).
+- `DEPENDABOT_PATH` - Merge only patch dependency updates for pull requests
+  created by Dependabot if the dependency version follows
+  [Semantic Versioning v2](https://semver.org/).
 
 ```yaml
 steps:
