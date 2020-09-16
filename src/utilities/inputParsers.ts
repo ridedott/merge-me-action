@@ -9,7 +9,6 @@ export enum AllowedMergeMethods {
 }
 
 export enum AllowedMergePresets {
-  DEPENDABOT_MAJOR = 'DEPENDABOT_MAJOR',
   DEPENDABOT_MINOR = 'DEPENDABOT_MINOR',
   DEPENDABOT_PATCH = 'DEPENDABOT_PATCH',
 }

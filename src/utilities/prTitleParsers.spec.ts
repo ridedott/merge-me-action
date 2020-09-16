@@ -1,19 +1,8 @@
 import { checkPullRequestTitleForMergePreset } from './prTitleParsers';
 
 describe('checkPullRequestTitleForMergePreset', (): void => {
-  describe('given containing DEPENDABOT_MAJOR bump', (): void => {
+  describe('given containing major bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 27.0.13';
-
-    it.each(['DEPENDABOT_MAJOR'])(
-      'returns true',
-      (mergeCategory: string): void => {
-        expect.assertions(1);
-
-        expect(
-          checkPullRequestTitleForMergePreset(title, mergeCategory),
-        ).toStrictEqual(true);
-      },
-    );
 
     it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
       'returns false',
@@ -27,10 +16,10 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
     );
   });
 
-  describe('given title containing DEPENDABOT_MINOR bump', (): void => {
+  describe('given title containing minor bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 26.1.0';
 
-    it.each(['DEPENDABOT_MAJOR', 'DEPENDABOT_MINOR'])(
+    it.each(['DEPENDABOT_MINOR'])(
       'returns true',
       (mergeCategory: string): void => {
         expect.assertions(1);
@@ -53,10 +42,10 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
     );
   });
 
-  describe('given title containing DEPENDABOT_PATCH bump', (): void => {
+  describe('given title containing patch bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 26.0.13';
 
-    it.each(['DEPENDABOT_MAJOR', 'DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+    it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
       'returns true',
       (mergeCategory: string): void => {
         expect.assertions(1);
@@ -71,7 +60,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given title containing malformed version bump', (): void => {
     const title = 'bump @types/jest from car to house';
 
-    it.each(['DEPENDABOT_MAJOR', 'DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+    it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
       'returns true',
       (mergeCategory: string): void => {
         expect.assertions(1);
@@ -86,7 +75,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given title does not contain a version bump', (): void => {
     const title = 'chore: format';
 
-    it.each(['DEPENDABOT_MAJOR', 'DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+    it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
       'returns true',
       (mergeCategory: string): void => {
         expect.assertions(1);

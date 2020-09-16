@@ -5,10 +5,6 @@ export const checkPullRequestTitleForMergePreset = (
   title: string,
   category: string,
 ): boolean => {
-  if (category === 'DEPENDABOT_MAJOR') {
-    return true;
-  }
-
   const semVerTitleRegExp = /bump .* from (?<from>.*) to (?<to>.*)/u;
   const match = semVerTitleRegExp.exec(title);
 

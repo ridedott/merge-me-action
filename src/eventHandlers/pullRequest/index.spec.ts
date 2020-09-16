@@ -30,7 +30,7 @@ beforeEach((): void => {
     }
 
     if (name === 'PRESET') {
-      return 'DEPENDABOT_MAJOR';
+      return 'DEPENDABOT_MINOR';
     }
 
     return '';

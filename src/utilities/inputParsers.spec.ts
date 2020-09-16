@@ -34,7 +34,7 @@ describe('parseInputMergeMethod', (): void => {
 });
 
 describe('parseInputMergePreset', (): void => {
-  it.each(['DEPENDABOT_MAJOR', 'DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+  it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
     'parse allowed category',
     (mergeCategory: string): void => {
       expect.assertions(1);
