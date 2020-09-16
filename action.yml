@@ -21,9 +21,9 @@ inputs:
   PRESET:
     description:
       'Specify the semantic version category to automatically merge. One of:
-      MAJOR, MINOR or PATCH'
+      DEPENDABOT_MAJOR, DEPENDABOT_MINOR or DEPENDABOT_PATCH'
     required: false
-    default: MAJOR
+    default: DEPENDABOT_MAJOR
 runs:
   using: 'node12'
   main: 'dist/index.js'

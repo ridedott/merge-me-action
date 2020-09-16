@@ -34,7 +34,7 @@ describe('parseInputMergeMethod', (): void => {
 });
 
 describe('parseInputMergeCategory', (): void => {
-  it.each(['MAJOR', 'MINOR', 'PATCH'])(
+  it.each(['DEPENDABOT_MAJOR', 'DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
     'parse allowed category',
     (mergeCategory: string): void => {
       expect.assertions(1);
@@ -50,7 +50,7 @@ describe('parseInputMergeCategory', (): void => {
 
     getInputSpy.mockReturnValueOnce('OTHER');
 
-    expect(parseInputMergeCategory()).toStrictEqual('MAJOR');
+    expect(parseInputMergeCategory()).toStrictEqual('DEPENDABOT_MAJOR');
   });
 
   it('returns default merge category if merge category is not provided', (): void => {
@@ -58,6 +58,6 @@ describe('parseInputMergeCategory', (): void => {
 
     getInputSpy.mockReturnValueOnce('');
 
-    expect(parseInputMergeCategory()).toStrictEqual('MAJOR');
+    expect(parseInputMergeCategory()).toStrictEqual('DEPENDABOT_MAJOR');
   });
 });

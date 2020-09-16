@@ -4,7 +4,7 @@ export const checkPullRequestTitleForMergeCategory = (
   title: string,
   category: string,
 ): boolean => {
-  if (category === 'MAJOR') {
+  if (category === 'DEPENDABOT_MAJOR') {
     return true;
   }
 
@@ -40,7 +40,7 @@ export const checkPullRequestTitleForMergeCategory = (
   const toMinor = toMatchGroups!.minor!;
 
   if (parseInt(fromMinor, 10) !== parseInt(toMinor, 10)) {
-    return category === 'MINOR';
+    return category === 'DEPENDABOT_MINOR';
   }
 
   return true;

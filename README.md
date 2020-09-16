@@ -144,11 +144,12 @@ steps:
 
 ### Specify the semantic versioning category to use
 
-By default, this GitHub Action assumes merge category is `MAJOR`. This feature
-looks at the title of the PR to figure out what is being updated. A dependabot
-style title such as: `chore(deps): bump @types/jest from 26.0.12 to 27.0.13` is expected. You
-can override the merge category by changing the value of `PRESET` parameter (one
-of `MAJOR`, `MINOR` or `PATCH`):
+By default, this GitHub Action assumes merge category is `DEPENDABOT_MAJOR`.
+This feature looks at the title of the PR to figure out what is being updated. A
+dependabot style title such as:
+`chore(deps): bump @types/jest from 26.0.12 to 27.0.13` is expected. You can
+override the merge category by changing the value of `PRESET` parameter (one of
+`DEPENDABOT_MAJOR`, `DEPENDABOT_MINOR` or `DEPENDABOT_PATCH`):
 
 ```yaml
 steps:
@@ -156,7 +157,7 @@ steps:
     uses: ridedott/merge-me-action@master
     with:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      PRESET: PATCH
+      PRESET: DEPENDABOT_PATCH
 ```
 
 ### Number of retries

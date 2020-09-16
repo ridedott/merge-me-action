@@ -9,9 +9,9 @@ export enum AllowedMergeMethods {
 }
 
 export enum AllowedMergeCategories {
-  MAJOR = 'MAJOR',
-  MINOR = 'MINOR',
-  PATCH = 'PATCH',
+  DEPENDABOT_MAJOR = 'DEPENDABOT_MAJOR',
+  DEPENDABOT_MINOR = 'DEPENDABOT_MINOR',
+  DEPENDABOT_PATCH = 'DEPENDABOT_PATCH',
 }
 
 export const parseInputMergeMethod = (): AllowedMergeMethods => {
@@ -33,10 +33,10 @@ export const parseInputMergeCategory = (): AllowedMergeCategories => {
 
   if (input.length === 0 || AllowedMergeCategories[input] === undefined) {
     logWarning(
-      'PRESET value input is ignored because its malformed, defaulting to MAJOR.',
+      'PRESET value input is ignored because its malformed, defaulting to DEPENDABOT_MAJOR.',
     );
 
-    return AllowedMergeCategories.MAJOR;
+    return AllowedMergeCategories.DEPENDABOT_MAJOR;
   }
 
   return AllowedMergeCategories[input];
