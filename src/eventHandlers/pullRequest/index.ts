@@ -4,8 +4,8 @@ import { context, getOctokit } from '@actions/github';
 import { mergeWithRetry } from '../../common/merge';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
-import { logInfo, logWarning } from '../../utilities/log';
 import { parseInputMergePreset } from '../../utilities/inputParsers';
+import { logInfo, logWarning } from '../../utilities/log';
 import { checkPullRequestTitleForMergeCategory } from '../../utilities/prTitleParsers';
 
 interface PullRequestInformation {
