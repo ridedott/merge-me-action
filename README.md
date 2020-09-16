@@ -144,7 +144,6 @@ steps:
 
 ### Specify the semantic versioning category to use
 
-By default, this GitHub Action assumes merge category is `DEPENDABOT_MAJOR`.
 This feature looks at the title of the PR to figure out what is being updated. A
 dependabot style title such as:
 `chore(deps): bump @types/jest from 26.0.12 to 27.0.13` is expected. You can

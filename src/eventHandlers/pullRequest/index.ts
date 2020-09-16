@@ -5,6 +5,7 @@ import { mergeWithRetry } from '../../common/merge';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
+import { parseInputMergePreset } from '../../utilities/inputParsers';
 import { checkPullRequestTitleForMergeCategory } from '../../utilities/prTitleParsers';
 
 interface PullRequestInformation {
@@ -91,17 +92,21 @@ export const pullRequestHandle = async (
       )}.`,
     );
 
-    if (
-      checkPullRequestTitleForMergeCategory(
-        pullRequest.title,
-        getInput('PRESET'),
-      ) === false
-    ) {
-      logInfo(
-        'Skipping auto-merge since the upgrade does not match merge category',
-      );
+    const mergeCategory = parseInputMergePreset();
 
-      return;
+    if (mergeCategory !== undefined) {
+      if (
+        checkPullRequestTitleForMergeCategory(
+          pullRequest.title,
+          mergeCategory,
+        ) === false
+      ) {
+        logInfo(
+          'Skipping auto-merge since the upgrade does not match merge category',
+        );
+
+        return;
+      }
     }
 
     await mergeWithRetry(octokit, {

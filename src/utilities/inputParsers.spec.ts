@@ -1,6 +1,6 @@
 import * as actionsCore from '@actions/core';
 
-import { parseInputMergeCategory, parseInputMergeMethod } from './inputParsers';
+import { parseInputMergePreset, parseInputMergeMethod } from './inputParsers';
 
 const getInputSpy = jest.spyOn(actionsCore, 'getInput').mockImplementation();
 
@@ -33,7 +33,7 @@ describe('parseInputMergeMethod', (): void => {
   });
 });
 
-describe('parseInputMergeCategory', (): void => {
+describe('parseInputMergePreset', (): void => {
   it.each(['DEPENDABOT_MAJOR', 'DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
     'parse allowed category',
     (mergeCategory: string): void => {
@@ -41,7 +41,7 @@ describe('parseInputMergeCategory', (): void => {
 
       getInputSpy.mockReturnValueOnce(mergeCategory);
 
-      expect(parseInputMergeCategory()).toStrictEqual(mergeCategory);
+      expect(parseInputMergePreset()).toStrictEqual(mergeCategory);
     },
   );
 
@@ -50,7 +50,7 @@ describe('parseInputMergeCategory', (): void => {
 
     getInputSpy.mockReturnValueOnce('OTHER');
 
-    expect(parseInputMergeCategory()).toStrictEqual('DEPENDABOT_MAJOR');
+    expect(parseInputMergePreset()).toBeUndefined();
   });
 
   it('returns default merge category if merge category is not provided', (): void => {
@@ -58,6 +58,6 @@ describe('parseInputMergeCategory', (): void => {
 
     getInputSpy.mockReturnValueOnce('');
 
-    expect(parseInputMergeCategory()).toStrictEqual('DEPENDABOT_MAJOR');
+    expect(parseInputMergePreset()).toBeUndefined();
   });
 });

@@ -28,15 +28,13 @@ export const parseInputMergeMethod = (): AllowedMergeMethods => {
   return AllowedMergeMethods[input];
 };
 
-export const parseInputMergeCategory = (): AllowedMergePresets => {
+export const parseInputMergePreset = (): AllowedMergePresets | undefined => {
   const input = getInput('PRESET');
 
   if (input.length === 0 || AllowedMergePresets[input] === undefined) {
-    logWarning(
-      'PRESET value input is ignored because its malformed, defaulting to DEPENDABOT_MAJOR.',
-    );
+    logWarning('PRESET value input is ignored because its malformed.');
 
-    return AllowedMergePresets.DEPENDABOT_MAJOR;
+    return undefined;
   }
 
   return AllowedMergePresets[input];
