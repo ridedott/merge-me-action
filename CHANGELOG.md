@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/ridedott/merge-me-action/compare/v1.4.9...v1.5.0) (2020-09-17)
+
+### Features
+
+- add option to specify semantic version category (#532)
+  ([fedba96](https://github.com/ridedott/merge-me-action/commit/fedba96e3fab81236187a36eaba7b418c0146ec7)),
+  closes [#532](https://github.com/ridedott/merge-me-action/issues/532)
+
 ## [1.4.9](https://github.com/ridedott/merge-me-action/compare/v1.4.8...v1.4.9) (2020-09-16)
 
 ### Continuous Integration
