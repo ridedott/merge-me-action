@@ -20,8 +20,8 @@ inputs:
     default: SQUASH
   PRESET:
     description:
-      'Enable additional functionality to better personalize the behavior.`
-      DEPENDABOT_MINOR or DEPENDABOT_PATCH'
+      'Enable additional functionality to better personalize the behavior. One
+      of: DEPENDABOT_MINOR or DEPENDABOT_PATCH'
     required: false
 runs:
   using: 'node12'
