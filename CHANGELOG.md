@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/ridedott/merge-me-action/compare/v1.6.0...v1.6.1) (2020-09-17)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 10.3.0 to 10.4.0
+  ([aef516d](https://github.com/ridedott/merge-me-action/commit/aef516d5dfded0d87d3117ac5fa4807a07279d11))
+
 # [1.6.0](https://github.com/ridedott/merge-me-action/compare/v1.5.0...v1.6.0) (2020-09-17)
 
 ### Features
