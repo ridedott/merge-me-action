@@ -19,7 +19,7 @@ const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 jest.spyOn(core, 'info').mockImplementation();
 
 beforeEach((): void => {
-  getInputSpy.mockReturnValue('PATCH');
+  getInputSpy.mockReturnValue('DEPENDABOT_PATCH');
 });
 
 describe('pull request event handler', (): void => {
