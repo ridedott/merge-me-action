@@ -142,6 +142,29 @@ steps:
       MERGE_METHOD: MERGE
 ```
 
+### Presets
+
+Presets enable additional functionality which can be used to better personalize
+default behavior of the Merge me! Action.
+
+Available presets are:
+
+- `DEPENDABOT_MINOR` - Merge only minor and patch dependency updates for pull
+  requests created by Dependabot if the dependency version follows
+  [Semantic Versioning v2](https://semver.org/).
+- `DEPENDABOT_PATH` - Merge only patch dependency updates for pull requests
+  created by Dependabot if the dependency version follows
+  [Semantic Versioning v2](https://semver.org/).
+
+```yaml
+steps:
+  - name: Merge me!
+    uses: ridedott/merge-me-action@master
+    with:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PRESET: DEPENDABOT_PATCH
+```
+
 ### Number of retries
 
 In case the merge action fails, by default it will automatically be retried up

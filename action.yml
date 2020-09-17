@@ -18,6 +18,11 @@ inputs:
       One of: MERGE, STASH or REBASE'
     required: false
     default: SQUASH
+  PRESET:
+    description:
+      'Enable additional functionality to better personalize the behavior. One
+      of: DEPENDABOT_MINOR or DEPENDABOT_PATCH.'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
