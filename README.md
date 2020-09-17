@@ -152,7 +152,7 @@ Available presets are:
 - `DEPENDABOT_MINOR` - Merge only minor and patch dependency updates for pull
   requests created by Dependabot if the dependency version follows
   [Semantic Versioning v2](https://semver.org/).
-- `DEPENDABOT_PATH` - Merge only patch dependency updates for pull requests
+- `DEPENDABOT_PATCH` - Merge only patch dependency updates for pull requests
   created by Dependabot if the dependency version follows
   [Semantic Versioning v2](https://semver.org/).
 
