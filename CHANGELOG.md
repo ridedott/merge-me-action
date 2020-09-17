@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/ridedott/merge-me-action/compare/v1.5.0...v1.6.0) (2020-09-17)
+
+### Features
+
+- correct typo in Readme.md
+  ([314928d](https://github.com/ridedott/merge-me-action/commit/314928d8735cf5d05d3381c88a739316f2ddc0ac))
+
 # [1.5.0](https://github.com/ridedott/merge-me-action/compare/v1.4.9...v1.5.0) (2020-09-17)
 
 ### Features
