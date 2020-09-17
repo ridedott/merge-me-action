@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/ridedott/merge-me-action/compare/v1.6.2...v1.6.3) (2020-09-17)
+
+### Chores
+
+- **deps:** bump node-fetch from 2.6.0 to 2.6.1
+  ([db539d2](https://github.com/ridedott/merge-me-action/commit/db539d24cc1b13d5e39e1577191283360282c41b))
+
 ## [1.6.2](https://github.com/ridedott/merge-me-action/compare/v1.6.1...v1.6.2) (2020-09-17)
 
 ### Chores
