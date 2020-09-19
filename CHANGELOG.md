@@ -1,3 +1,10 @@
+## [1.6.5](https://github.com/ridedott/merge-me-action/compare/v1.6.4...v1.6.5) (2020-09-19)
+
+### Chores
+
+- **deps-dev:** bump http-status-codes from 2.1.3 to 2.1.4
+  ([47781e1](https://github.com/ridedott/merge-me-action/commit/47781e1a0c97a033744f6d85bbb3f524b1b74acf))
+
 ## [1.6.4](https://github.com/ridedott/merge-me-action/compare/v1.6.3...v1.6.4) (2020-09-18)
 
 ### Chores
