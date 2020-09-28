@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/ridedott/merge-me-action/compare/v1.6.8...v1.7.0) (2020-09-28)
+
+### Features
+
+- narrow typing in catch clause
+  ([7a977d3](https://github.com/ridedott/merge-me-action/commit/7a977d3d7eef60ad0003eb387d81216791eadbe3))
+
 ## [1.6.8](https://github.com/ridedott/merge-me-action/compare/v1.6.7...v1.6.8) (2020-09-28)
 
 ### Chores
