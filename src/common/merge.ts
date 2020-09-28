@@ -72,9 +72,8 @@ export const mergeWithRetry = async (
 
   try {
     await merge(octokit, details);
-    // eslint-disable-next-line @typescript-eslint/no-implicit-any-catch
-  } catch (error) {
-    if (shouldRetry(error, retryCount, maximumRetries)) {
+  } catch (error: unknown) {
+    if (shouldRetry(error as Error, retryCount, maximumRetries)) {
       const nextRetryIn = retryCount ** EXPONENTIAL_BACKOFF * MINIMUM_WAIT_TIME;
 
       logInfo(`Retrying in ${nextRetryIn.toString()}...`);
