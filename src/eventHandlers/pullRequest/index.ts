@@ -66,9 +66,7 @@ export const pullRequestHandle = async (
   gitHubLogin: string,
   maximumRetries: number,
 ): Promise<void> => {
-  /* eslint-disable @typescript-eslint/naming-convention */
   const { repository, pull_request: pullRequest } = context.payload;
-  /* eslint-enable @typescript-eslint/naming-convention */
 
   if (pullRequest === undefined || repository === undefined) {
     logWarning('Required pull request information is unavailable.');

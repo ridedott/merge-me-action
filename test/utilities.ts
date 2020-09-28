@@ -1,5 +1,6 @@
 export const useSetTimeoutImmediateInvocation = (): jest.SpyInstance<
   NodeJS.Timeout,
+  // eslint-disable-next-line unicorn/prevent-abbreviations
   [(...args: unknown[]) => void, number, ...unknown[]]
 > =>
   jest
