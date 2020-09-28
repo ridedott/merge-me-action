@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/ridedott/merge-me-action/compare/v1.7.0...v1.7.1) (2020-09-28)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.3.13 to 2.3.14
+  ([00f28e8](https://github.com/ridedott/merge-me-action/commit/00f28e874b3b3df774cfd07a4b4ba445fea4e0a7))
+
 # [1.7.0](https://github.com/ridedott/merge-me-action/compare/v1.6.8...v1.7.0) (2020-09-28)
 
 ### Features
