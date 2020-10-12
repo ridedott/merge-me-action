@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/ridedott/merge-me-action/compare/v1.7.10...v1.8.0) (2020-10-12)
+
+### Features
+
+- enable logHeapUsage jest option
+  ([1a5576f](https://github.com/ridedott/merge-me-action/commit/1a5576fae444d5312cf6f558944122463783b0dc))
+
 ## [1.7.10](https://github.com/ridedott/merge-me-action/compare/v1.7.9...v1.7.10) (2020-10-12)
 
 ### Chores
