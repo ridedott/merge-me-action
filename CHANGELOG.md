@@ -1,3 +1,10 @@
+## [1.7.9](https://github.com/ridedott/merge-me-action/compare/v1.7.8...v1.7.9) (2020-10-12)
+
+### Continuous Integration
+
+- update cache dependencies to actions/cache@v2
+  ([8d26f0f](https://github.com/ridedott/merge-me-action/commit/8d26f0f9cbf58664120d9292a3ed6b3e321ee21c))
+
 ## [1.7.8](https://github.com/ridedott/merge-me-action/compare/v1.7.7...v1.7.8) (2020-10-11)
 
 ### Chores
