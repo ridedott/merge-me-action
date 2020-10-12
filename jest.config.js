@@ -9,6 +9,7 @@ module.exports = {
       statements: 65,
     },
   },
+  logHeapUsage: true,
   preset: 'ts-jest',
   resetMocks: true,
   roots: ['<rootDir>/src'],
