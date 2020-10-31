@@ -27,7 +27,7 @@
     "http-status-codes": "^2.1.4",
     "husky": "^4.3.0",
     "jest": "^25.5.4",
-    "lint-staged": "^10.5.0",
+    "lint-staged": "^10.5.1",
     "nock": "^13.0.4",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
