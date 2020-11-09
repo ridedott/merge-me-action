@@ -1,3 +1,26 @@
+## [1.8.33](https://github.com/ridedott/merge-me-action/compare/v1.8.32...v1.8.33) (2020-11-09)
+
+### Chores
+
+- **release:** v1.5.0
+  ([4f4db79](https://github.com/ridedott/merge-me-action/commit/4f4db798a5e65f44c5141f21e97f515785d4e25f))
+- **release:** v1.5.0
+  ([54c855f](https://github.com/ridedott/merge-me-action/commit/54c855fa8984a1458acbe94f1dfe751f421eebf0))
+- **release:** v1.5.0
+  ([850f6e2](https://github.com/ridedott/merge-me-action/commit/850f6e2d1979eba3bfa080abc166ad4cd3e12ac9))
+
+### Continuous Integration
+
+- add tags for major versions
+  ([a0f584d](https://github.com/ridedott/merge-me-action/commit/a0f584d9103ce84091f644a50ed601f174ab47f9))
+- use native Dependabot integration
+  ([a0e4ecc](https://github.com/ridedott/merge-me-action/commit/a0e4ecc44cd2f4cfca06797554338abbc8db6263))
+
+### Documentation
+
+- clarify the purpose of the Action
+  ([6c69687](https://github.com/ridedott/merge-me-action/commit/6c69687fa903e92b661968751ad6192e542248c2))
+
 # [1.5.0](https://github.com/ridedott/merge-me-action/compare/v1.4.9...v1.5.0) (2020-11-09)
 
 ### Chores
