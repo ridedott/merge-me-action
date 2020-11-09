@@ -7,11 +7,21 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-Automatically merge Pull Requests created from a GitHub account.
+This Action approves and attempts to merge Pull Requests when triggered.
+Specific behavior can be configured in two ways:
+
+- By using the
+  [`needs`](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds)
+  configuration option in GitHub Actions, to specify which checks are required
+  to pass for the merge attempt to take place.
+- By using
+  [branch protection](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/about-protected-branches)
+  rules, to specify what are the requirements for a PR to be merged (e.g.
+  require branches to be up to date, require status checks to pass).
 
 ## Usage
 
-The action supports three scenarios:
+The Action supports three scenarios:
 
 - Where GitHub Actions are used exclusively.
 - Where a third party CI system provider is used.
@@ -40,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Merge me!
-        uses: ridedott/merge-me-action@master
+        uses: ridedott/merge-me-action@v1
         with:
           # Depending on branch protection rules, a  manually populated
           # `GITHUB_TOKEN_WORKAROUND` environment variable with permissions to
@@ -88,7 +98,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Merge me!
-        uses: ridedott/merge-me-action@master
+        uses: ridedott/merge-me-action@v1
         with:
           # Depending on branch protection rules, a  manually populated
           # `GITHUB_TOKEN_WORKAROUND` environment variable with permissions to
@@ -115,15 +125,26 @@ the configurations described above should be applied.
 
 You may have another bot that also creates PRs against your repository and you
 want to automatically merge those. By default, this GitHub Action assumes the
-bot is [`dependabot`](https://dependabot.com/). You can override the bot name by
-changing the value of `GITHUB_LOGIN` parameter:
+bot is [`dependabot-preview[bot]`](https://dependabot.com/). You can override
+the bot name by changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
 steps:
   - name: Merge me!
-    uses: ridedott/merge-me-action@master
+    uses: ridedott/merge-me-action@v1
     with:
       GITHUB_LOGIN: my-awesome-bot-r2d2
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+A common scenario is to use native Dependabot integration with GitHub:
+
+```yaml
+steps:
+  - name: Merge me!
+    uses: ridedott/merge-me-action@v1
+    with:
+      GITHUB_LOGIN: dependabot[bot]
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -136,7 +157,7 @@ of `MERGE`, `SQUASH` or `REBASE`):
 ```yaml
 steps:
   - name: Merge me!
-    uses: ridedott/merge-me-action@master
+    uses: ridedott/merge-me-action@v1
     with:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       MERGE_METHOD: MERGE
@@ -159,7 +180,7 @@ Available presets are:
 ```yaml
 steps:
   - name: Merge me!
-    uses: ridedott/merge-me-action@master
+    uses: ridedott/merge-me-action@v1
     with:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PRESET: DEPENDABOT_PATCH
@@ -178,7 +199,7 @@ It's possible to configure the number of retries by providing a value for
 ```yaml
 steps:
   - name: Merge me!
-    uses: ridedott/merge-me-action@master
+    uses: ridedott/merge-me-action@v1
     with:
       MAXIMUM_RETRIES: 2
 ```
