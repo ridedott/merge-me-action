@@ -54,4 +54,19 @@ jobs:
         if: steps.release.outputs.released == 'true'
         name: Publish to GitHub Packages
         run: npm publish
-    timeout-minutes: 5
+      - if: steps.release.outputs.released == 'true'
+        name: Authenticate Git
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+          token: ${{ secrets.DOTTBOTT_TOKEN }}
+      - if: steps.release.outputs.released == 'true'
+        name: Tag
+        run: |
+          git config --global user.name '{{ secrets.DOTTBOTT_USER_NAME }}'
+          git config --global user.email '{{ secrets.DOTTBOTT_USER_EMAIL }}'
+          git push origin :refs/tags/'v${{ steps.release.outputs.major }}'
+          git tag 'v${{ steps.release.outputs.major }}' --force
+          git push --tags
+    timeout-minutes: 10
