@@ -1,3 +1,10 @@
+## [1.8.36](https://github.com/ridedott/merge-me-action/compare/v1.8.35...v1.8.36) (2020-11-10)
+
+### Chores
+
+- **deps-dev:** bump cspell from 4.1.4 to 4.1.5
+  ([3edbd4e](https://github.com/ridedott/merge-me-action/commit/3edbd4e40364d6c34b9a4e48c059c01d4fd1deae))
+
 ## [1.8.35](https://github.com/ridedott/merge-me-action/compare/v1.8.34...v1.8.35) (2020-11-10)
 
 ### Chores
