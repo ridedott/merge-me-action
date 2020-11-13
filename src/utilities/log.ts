@@ -13,7 +13,9 @@ const stringify = (value: unknown): string =>
 
 const log = (logger: (value: string) => void): ((message: unknown) => void) => (
   message: unknown,
-): void => logger(stringify(message));
+): void => {
+  logger(stringify(message));
+};
 
 export const logDebug = log(debug);
 export const logError = log(error);
