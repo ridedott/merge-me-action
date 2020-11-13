@@ -80,11 +80,13 @@ export const mergeWithRetry = async (
 
       await delay(nextRetryIn);
 
-      return await mergeWithRetry(octokit, {
+      await mergeWithRetry(octokit, {
         ...details,
         maximumRetries,
         retryCount: retryCount + 1,
       });
+
+      return;
     }
 
     logInfo(
