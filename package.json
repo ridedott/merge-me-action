@@ -19,7 +19,7 @@
     "@semantic-release/npm": "^7.0.8",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/jest": "^26.0.15",
-    "@types/node": "^14.14.8",
+    "@types/node": "^14.14.9",
     "@zeit/ncc": "^0.22.3",
     "commitizen": "^4.2.2",
     "cspell": "^4.2.2",
