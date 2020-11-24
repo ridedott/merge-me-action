@@ -1,3 +1,11 @@
+## [1.8.57](https://github.com/ridedott/merge-me-action/compare/v1.8.56...v1.8.57) (2020-11-24)
+
+### Bug Fixes
+
+- correct warning for when PRESET is not present (#633)
+  ([ba59a33](https://github.com/ridedott/merge-me-action/commit/ba59a33496225a7a95ba87db303994124f4d87d4)),
+  closes [#633](https://github.com/ridedott/merge-me-action/issues/633)
+
 ## [1.8.56](https://github.com/ridedott/merge-me-action/compare/v1.8.55...v1.8.56) (2020-11-24)
 
 ### Chores
