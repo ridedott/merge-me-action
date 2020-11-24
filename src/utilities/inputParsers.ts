@@ -30,7 +30,11 @@ export const parseInputMergeMethod = (): AllowedMergeMethods => {
 export const parseInputMergePreset = (): AllowedMergePresets | undefined => {
   const input = getInput('PRESET');
 
-  if (input.length === 0 || AllowedMergePresets[input] === undefined) {
+  if (input.length === 0) {
+    return undefined;
+  }
+
+  if (AllowedMergePresets[input] === undefined) {
     logWarning('PRESET value input is ignored because it is malformed.');
 
     return undefined;
