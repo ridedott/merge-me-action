@@ -31,8 +31,6 @@ export const parseInputMergePreset = (): AllowedMergePresets | undefined => {
   const input = getInput('PRESET');
 
   if (input.length === 0) {
-    logWarning('PRESET is not present.');
-
     return undefined;
   }
 
