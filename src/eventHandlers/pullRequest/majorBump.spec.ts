@@ -24,9 +24,7 @@ beforeEach((): void => {
 
 describe('pull request event handler', (): void => {
   describe('for a dependabot initiated pull request', (): void => {
-    it('does nothing if the PR title contains a major bump but PRESET specifies DEPENDABOT_PATCH', async (): Promise<
-      void
-    > => {
+    it('does nothing if the PR title contains a major bump but PRESET specifies DEPENDABOT_PATCH', async (): Promise<void> => {
       expect.assertions(0);
 
       nock('https://api.github.com')

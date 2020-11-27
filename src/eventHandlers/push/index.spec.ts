@@ -27,9 +27,7 @@ beforeEach((): void => {
 });
 
 describe('push event handler', (): void => {
-  it('does not log warnings when it is triggered by Dependabot', async (): Promise<
-    void
-  > => {
+  it('does not log warnings when it is triggered by Dependabot', async (): Promise<void> => {
     expect.assertions(1);
 
     nock('https://api.github.com')
@@ -66,9 +64,7 @@ describe('push event handler', (): void => {
     expect(warningSpy).not.toHaveBeenCalled();
   });
 
-  it('does not approve an already approved pull request', async (): Promise<
-    void
-  > => {
+  it('does not approve an already approved pull request', async (): Promise<void> => {
     expect.assertions(0);
 
     nock('https://api.github.com')
@@ -111,9 +107,7 @@ describe('push event handler', (): void => {
     await pushHandle(octokit, 'dependabot-preview[bot]', 2);
   });
 
-  it('does not approve pull requests that are not mergeable', async (): Promise<
-    void
-  > => {
+  it('does not approve pull requests that are not mergeable', async (): Promise<void> => {
     expect.assertions(1);
 
     nock('https://api.github.com')
@@ -151,9 +145,7 @@ describe('push event handler', (): void => {
     );
   });
 
-  it('does not approve pull requests that are already merged', async (): Promise<
-    void
-  > => {
+  it('does not approve pull requests that are already merged', async (): Promise<void> => {
     expect.assertions(1);
 
     nock('https://api.github.com')
@@ -189,9 +181,7 @@ describe('push event handler', (): void => {
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
 
-  it('does not approve pull request which state is not open', async (): Promise<
-    void
-  > => {
+  it('does not approve pull request which state is not open', async (): Promise<void> => {
     expect.assertions(1);
 
     nock('https://api.github.com')
@@ -227,9 +217,7 @@ describe('push event handler', (): void => {
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
 
-  it('does not merge if request not created by the selected GITHUB_LOGIN', async (): Promise<
-    void
-  > => {
+  it('does not merge if request not created by the selected GITHUB_LOGIN', async (): Promise<void> => {
     expect.assertions(1);
 
     await pushHandle(octokit, 'some-other-login', 2);
@@ -239,9 +227,7 @@ describe('push event handler', (): void => {
     );
   });
 
-  it('logs a warning when it cannot find pull request node id', async (): Promise<
-    void
-  > => {
+  it('logs a warning when it cannot find pull request node id', async (): Promise<void> => {
     expect.assertions(1);
 
     nock('https://api.github.com')
@@ -313,9 +299,7 @@ describe('push event handler', (): void => {
     );
   });
 
-  it('fails the backoff strategy when the error is not "Base branch was modified"', async (): Promise<
-    void
-  > => {
+  it('fails the backoff strategy when the error is not "Base branch was modified"', async (): Promise<void> => {
     expect.assertions(2);
 
     nock('https://api.github.com')
