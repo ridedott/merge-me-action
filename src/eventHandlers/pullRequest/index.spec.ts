@@ -40,9 +40,7 @@ beforeEach((): void => {
 
 describe('pull request event handler', (): void => {
   describe('for a user initiated pull request', (): void => {
-    it('does not log warnings when it is triggered', async (): Promise<
-      void
-    > => {
+    it('does not log warnings when it is triggered', async (): Promise<void> => {
       expect.assertions(1);
 
       nock('https://api.github.com')
@@ -96,9 +94,7 @@ describe('pull request event handler', (): void => {
       await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
     });
 
-    it('does not approve an already approved pull request', async (): Promise<
-      void
-    > => {
+    it('does not approve an already approved pull request', async (): Promise<void> => {
       expect.assertions(0);
 
       nock('https://api.github.com')
@@ -207,9 +203,7 @@ describe('pull request event handler', (): void => {
       );
     });
 
-    it('fails the backoff strategy when the error is not "Base branch was modified"', async (): Promise<
-      void
-    > => {
+    it('fails the backoff strategy when the error is not "Base branch was modified"', async (): Promise<void> => {
       expect.assertions(2);
 
       nock('https://api.github.com')
