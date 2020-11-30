@@ -5,7 +5,7 @@ export const checkPullRequestTitleForMergePreset = (
   title: string,
   category: string,
 ): boolean => {
-  const semVerTitleRegExp = /bump .* from (?<from>.*) to (?<to>.*)/u;
+  const semVerTitleRegExp = /bump .* from (?<from>.*) to (?<to>.*)/iu;
   const match = semVerTitleRegExp.exec(title);
 
   if (match === null) {
