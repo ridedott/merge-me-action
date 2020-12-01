@@ -1,3 +1,17 @@
+## [1.8.66](https://github.com/ridedott/merge-me-action/compare/v1.8.65...v1.8.66) (2020-12-01)
+
+### Chores
+
+- **deps-dev:** bump cspell from 4.2.3 to 4.2.5
+  ([cd7ad10](https://github.com/ridedott/merge-me-action/commit/cd7ad100d9049ba3c6bd851e049f45245c7b036d))
+
+## [1.8.65](https://github.com/ridedott/merge-me-action/compare/v1.8.64...v1.8.65) (2020-12-01)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.5.39 to 2.5.40
+  ([f4443f9](https://github.com/ridedott/merge-me-action/commit/f4443f91fbe72c2c998c9d8441545a6257bc2e51))
+
 ## [1.8.64](https://github.com/ridedott/merge-me-action/compare/v1.8.63...v1.8.64) (2020-11-30)
 
 ### Chores
