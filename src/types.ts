@@ -24,7 +24,7 @@ export type ReviewEdges = Array<
   | undefined
 >;
 
-export interface PullRequestInformation {
+export interface PullRequestInformationContinuousIntegrationEnd {
   commitAuthorName: string;
   commitMessage: string;
   commitMessageHeadline: string;

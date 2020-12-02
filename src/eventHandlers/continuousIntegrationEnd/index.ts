@@ -6,7 +6,7 @@ import { tryMerge } from '../../common/merge';
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
 import {
   FindPullRequestInfoByNumberResponse,
-  PullRequestInformation,
+  PullRequestInformationContinuousIntegrationEnd,
 } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
 
@@ -17,7 +17,7 @@ const getPullRequestInformation = async (
     repositoryName: string;
     repositoryOwner: string;
   },
-): Promise<PullRequestInformation | undefined> => {
+): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
   const response = await octokit.graphql(findPullRequestInfoByNumber, query);
 
   if (response === null || response.repository.pullRequest === null) {
@@ -65,12 +65,15 @@ const getPullRequestInformation = async (
   };
 };
 
-export const checkSuiteHandle = async (
+export const continuousIntegrationEndHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
   maximumRetries: number,
 ): Promise<void> => {
-  const pullRequests = context.payload.check_suite.pull_requests as Array<{
+  const pullRequests = (context.eventName === 'workflow_run'
+    ? context.payload.workflow_run
+    : context.payload.check_suite
+  ).pull_requests as Array<{
     number: number;
   }>;
 

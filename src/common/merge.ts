@@ -5,7 +5,7 @@ import {
   approveAndMergePullRequestMutation,
   mergePullRequestMutation,
 } from '../graphql/mutations';
-import { PullRequestInformation } from '../types';
+import { PullRequestInformationContinuousIntegrationEnd } from '../types';
 import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
@@ -116,7 +116,7 @@ export const tryMerge = async (
     pullRequestState,
     pullRequestTitle,
     reviewEdges,
-  }: PullRequestInformation,
+  }: PullRequestInformationContinuousIntegrationEnd,
 ): Promise<void> => {
   const allowedAuthorName = getInput('GITHUB_LOGIN');
   const disabledForManualChanges =
