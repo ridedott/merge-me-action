@@ -1,3 +1,10 @@
+## [1.8.68](https://github.com/ridedott/merge-me-action/compare/v1.8.67...v1.8.68) (2020-12-02)
+
+### Bug Fixes
+
+- make PR title semver regex case-insensitive
+  ([cc650eb](https://github.com/ridedott/merge-me-action/commit/cc650ebe6e7486c49657c15a0239c5c0b8c3c171))
+
 ## [1.8.67](https://github.com/ridedott/merge-me-action/compare/v1.8.66...v1.8.67) (2020-12-02)
 
 ### Chores
