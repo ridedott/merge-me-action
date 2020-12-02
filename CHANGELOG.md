@@ -1,3 +1,10 @@
+## [1.8.67](https://github.com/ridedott/merge-me-action/compare/v1.8.66...v1.8.67) (2020-12-02)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.5.40 to 2.5.41
+  ([c1a762d](https://github.com/ridedott/merge-me-action/commit/c1a762ded2c17ef056781531f574304475c86d67))
+
 ## [1.8.66](https://github.com/ridedott/merge-me-action/compare/v1.8.65...v1.8.66) (2020-12-01)
 
 ### Chores
