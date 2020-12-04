@@ -1,3 +1,10 @@
+## [1.8.71](https://github.com/ridedott/merge-me-action/compare/v1.8.70...v1.8.71) (2020-12-04)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from v3.2.12 to v3.2.13
+  ([13f56a1](https://github.com/ridedott/merge-me-action/commit/13f56a15e1ef3b0a461cf1b399154024300dd62d))
+
 ## [1.8.70](https://github.com/ridedott/merge-me-action/compare/v1.8.69...v1.8.70) (2020-12-04)
 
 ### Chores
