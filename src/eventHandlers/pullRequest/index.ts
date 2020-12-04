@@ -88,6 +88,8 @@ export const pullRequestHandle = async (
     );
 
     if (shouldMerge(pullRequest.title) === false) {
+      logInfo(`Pull request version bump is not allowed by PRESET.`);
+
       return;
     }
 
