@@ -33,7 +33,7 @@
     "prettier": "^2.2.1",
     "semantic-release": "^17.3.0",
     "ts-jest": "^25.5.1",
-    "ts-node": "^9.0.0"
+    "ts-node": "^9.1.0"
   },
   "engines": {
     "node": "12"
