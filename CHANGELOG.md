@@ -1,3 +1,24 @@
+## [1.8.74](https://github.com/ridedott/merge-me-action/compare/v1.8.73...v1.8.74) (2020-12-07)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from v3.2.13 to v3.3.0
+  ([93b53ee](https://github.com/ridedott/merge-me-action/commit/93b53eec23af8b1b9b8e66217bebb882c8aed9b9))
+
+## [1.8.73](https://github.com/ridedott/merge-me-action/compare/v1.8.72...v1.8.73) (2020-12-07)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.14.0 to 7.15.0
+  ([ff02123](https://github.com/ridedott/merge-me-action/commit/ff021231d0a759fd42c510131aea29119928b3d7))
+
+## [1.8.72](https://github.com/ridedott/merge-me-action/compare/v1.8.71...v1.8.72) (2020-12-07)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 10.5.2 to 10.5.3
+  ([e99dd74](https://github.com/ridedott/merge-me-action/commit/e99dd74ad1cb23f0a40ddce76a0589cfcb3bbcdb))
+
 ## [1.8.71](https://github.com/ridedott/merge-me-action/compare/v1.8.70...v1.8.71) (2020-12-04)
 
 ### Chores
