@@ -18,6 +18,7 @@ export interface PullRequestInformation {
     merged: boolean;
     pullRequestId: string;
     pullRequestState: PullRequestState;
+    pullRequestTitle: string;
     reviewEdges: ReviewEdges;
 }
 export interface Repository {
@@ -31,6 +32,7 @@ export interface Repository {
                     edges: ReviewEdges;
                 };
                 state: PullRequestState;
+                title: string;
             }>;
         };
     };

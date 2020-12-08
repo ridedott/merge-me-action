@@ -1,3 +1,10 @@
+## [1.8.79](https://github.com/ridedott/merge-me-action/compare/v1.8.78...v1.8.79) (2020-12-08)
+
+### Bug Fixes
+
+- enforce PRESET setting in push and check_suite handlers
+  ([a5aec65](https://github.com/ridedott/merge-me-action/commit/a5aec65e625df95472439a2d512809adba96ea75))
+
 ## [1.8.78](https://github.com/ridedott/merge-me-action/compare/v1.8.77...v1.8.78) (2020-12-08)
 
 ### Chores
