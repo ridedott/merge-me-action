@@ -1,3 +1,31 @@
+## [1.8.78](https://github.com/ridedott/merge-me-action/compare/v1.8.77...v1.8.78) (2020-12-08)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 26.0.15 to 26.0.17
+  ([b5adaea](https://github.com/ridedott/merge-me-action/commit/b5adaea016d211bd61446adcd29b1f2b0976b1f2))
+
+## [1.8.77](https://github.com/ridedott/merge-me-action/compare/v1.8.76...v1.8.77) (2020-12-08)
+
+### Chores
+
+- **deps-dev:** bump husky from 4.3.0 to 4.3.5
+  ([8174730](https://github.com/ridedott/merge-me-action/commit/8174730412a34a0bfac5365131873b30badb3430))
+
+## [1.8.76](https://github.com/ridedott/merge-me-action/compare/v1.8.75...v1.8.76) (2020-12-08)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.5.41 to 2.5.46
+  ([6f2efa0](https://github.com/ridedott/merge-me-action/commit/6f2efa0d2eb6ce83ef86f2ca8dbeb882d6d5f1c6))
+
+## [1.8.75](https://github.com/ridedott/merge-me-action/compare/v1.8.74...v1.8.75) (2020-12-08)
+
+### Chores
+
+- **deps-dev:** bump ts-node from 9.1.0 to 9.1.1
+  ([51ad14a](https://github.com/ridedott/merge-me-action/commit/51ad14a04d36384a97d8e43c606d200c8a1ccdfc))
+
 ## [1.8.74](https://github.com/ridedott/merge-me-action/compare/v1.8.73...v1.8.74) (2020-12-07)
 
 ### Chores
