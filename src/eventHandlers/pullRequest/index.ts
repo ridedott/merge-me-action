@@ -1,11 +1,9 @@
 import { context, getOctokit } from '@actions/github';
 
-import { mergeWithRetry } from '../../common/merge';
+import { mergeWithRetry, shouldMerge } from '../../common/merge';
 import { findPullRequestLastApprovedReview } from '../../graphql/queries';
 import { ReviewEdges } from '../../types';
-import { parseInputMergePreset } from '../../utilities/inputParsers';
 import { logInfo, logWarning } from '../../utilities/log';
-import { checkPullRequestTitleForMergePreset } from '../../utilities/prTitleParsers';
 
 interface PullRequestInformation {
   reviewEdges: ReviewEdges;
@@ -51,16 +49,6 @@ const getPullRequestInformation = async (
   };
 };
 
-const shouldMerge = (prTitle: string): boolean => {
-  const mergePreset = parseInputMergePreset();
-
-  if (mergePreset === undefined) {
-    return true;
-  }
-
-  return checkPullRequestTitleForMergePreset(prTitle, mergePreset);
-};
-
 export const pullRequestHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
@@ -100,6 +88,8 @@ export const pullRequestHandle = async (
     );
 
     if (shouldMerge(pullRequest.title) === false) {
+      logInfo(`Pull request version bump is not allowed by PRESET.`);
+
       return;
     }
 

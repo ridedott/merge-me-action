@@ -23,7 +23,17 @@ const debugSpy = jest.spyOn(core, 'debug').mockImplementation();
 const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 
 beforeEach((): void => {
-  getInputSpy.mockReturnValue('SQUASH');
+  getInputSpy.mockImplementation((name: string): string => {
+    if (name === 'MERGE_METHOD') {
+      return 'SQUASH';
+    }
+
+    if (name === 'PRESET') {
+      return 'DEPENDABOT_MINOR';
+    }
+
+    return '';
+  });
 });
 
 describe('push event handler', (): void => {
@@ -51,6 +61,7 @@ describe('push event handler', (): void => {
                     ],
                   },
                   state: 'OPEN',
+                  title: 'bump @types/jest from 26.0.12 to 26.1.0',
                 },
               ],
             },
@@ -88,6 +99,7 @@ describe('push event handler', (): void => {
                     ],
                   },
                   state: 'OPEN',
+                  title: 'bump @types/jest from 26.0.12 to 26.1.0',
                 },
               ],
             },
@@ -131,6 +143,7 @@ describe('push event handler', (): void => {
                     ],
                   },
                   state: 'OPEN',
+                  title: 'bump @types/jest from 26.0.12 to 26.1.0',
                 },
               ],
             },
@@ -169,6 +182,7 @@ describe('push event handler', (): void => {
                     ],
                   },
                   state: 'OPEN',
+                  title: 'bump @types/jest from 26.0.12 to 26.1.0',
                 },
               ],
             },
@@ -205,6 +219,7 @@ describe('push event handler', (): void => {
                     ],
                   },
                   state: 'CLOSED',
+                  title: 'bump @types/jest from 26.0.12 to 26.1.0',
                 },
               ],
             },
@@ -271,6 +286,7 @@ describe('push event handler', (): void => {
                     ],
                   },
                   state: 'OPEN',
+                  title: 'bump @types/jest from 26.0.12 to 26.1.0',
                 },
               ],
             },
@@ -323,6 +339,7 @@ describe('push event handler', (): void => {
                     ],
                   },
                   state: 'OPEN',
+                  title: 'bump @types/jest from 26.0.12 to 26.1.0',
                 },
               ],
             },

@@ -2,7 +2,7 @@
 
 import { context, getOctokit } from '@actions/github';
 
-import { mergeWithRetry } from '../../common/merge';
+import { mergeWithRetry, shouldMerge } from '../../common/merge';
 import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
 import {
   MergeableState,
@@ -32,6 +32,7 @@ interface Repository {
       merged: boolean;
       reviews: { edges: ReviewEdges };
       state: PullRequestState;
+      title: string;
     };
   };
 }
@@ -74,6 +75,7 @@ const getPullRequestInformation = async (
         mergeable: mergeableState,
         merged,
         state: pullRequestState,
+        title: pullRequestTitle,
       },
     },
   } = response as Repository;
@@ -85,6 +87,7 @@ const getPullRequestInformation = async (
     merged,
     pullRequestId,
     pullRequestState,
+    pullRequestTitle,
     reviewEdges,
   };
 };
@@ -99,6 +102,7 @@ const tryMerge = async (
     merged,
     pullRequestId,
     pullRequestState,
+    pullRequestTitle,
     reviewEdges,
   }: PullRequestInformationCheckSuite,
 ): Promise<void> => {
@@ -124,6 +128,8 @@ const tryMerge = async (
     );
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);
+  } else if (shouldMerge(pullRequestTitle) === false) {
+    logInfo(`Pull request version bump is not allowed by PRESET.`);
   } else {
     await mergeWithRetry(octokit, {
       commitHeadline: commitMessageHeadline,

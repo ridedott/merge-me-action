@@ -4,8 +4,12 @@ import {
   approveAndMergePullRequestMutation,
   mergePullRequestMutation,
 } from '../graphql/mutations';
-import { parseInputMergeMethod } from '../utilities/inputParsers';
+import {
+  parseInputMergeMethod,
+  parseInputMergePreset,
+} from '../utilities/inputParsers';
 import { logDebug, logInfo } from '../utilities/log';
+import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
 
 export interface PullRequestDetails {
   commitHeadline: string;
@@ -98,4 +102,14 @@ export const mergeWithRetry = async (
     /* eslint-disable-next-line @typescript-eslint/no-base-to-string */
     logDebug(`Original error: ${(error as Error).toString()}.`);
   }
+};
+
+export const shouldMerge = (prTitle: string): boolean => {
+  const mergePreset = parseInputMergePreset();
+
+  if (mergePreset === undefined) {
+    return true;
+  }
+
+  return checkPullRequestTitleForMergePreset(prTitle, mergePreset);
 };

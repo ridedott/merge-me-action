@@ -35,6 +35,7 @@ export const findPullRequestInfoAndReviews = `
           mergeable
           merged
           state
+          title
           id
         }
       }
@@ -67,6 +68,7 @@ export const findPullRequestInfo = `
         mergeable
         merged
         state
+        title
       }
     }
   }
