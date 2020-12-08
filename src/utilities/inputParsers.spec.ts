@@ -12,7 +12,7 @@ describe('parseInputMergeMethod', (): void => {
 
       getInputSpy.mockReturnValueOnce(mergeMethod);
 
-      expect(parseInputMergeMethod()).toStrictEqual(mergeMethod);
+      expect<unknown>(parseInputMergeMethod()).toStrictEqual(mergeMethod);
     },
   );
 
@@ -21,7 +21,7 @@ describe('parseInputMergeMethod', (): void => {
 
     getInputSpy.mockReturnValueOnce('OTHER');
 
-    expect(parseInputMergeMethod()).toStrictEqual('SQUASH');
+    expect<unknown>(parseInputMergeMethod()).toStrictEqual('SQUASH');
   });
 
   it('returns undefined if merge method is not provided', (): void => {
@@ -29,7 +29,7 @@ describe('parseInputMergeMethod', (): void => {
 
     getInputSpy.mockReturnValueOnce('');
 
-    expect(parseInputMergeMethod()).toStrictEqual('SQUASH');
+    expect<unknown>(parseInputMergeMethod()).toStrictEqual('SQUASH');
   });
 });
 
@@ -41,7 +41,7 @@ describe('parseInputMergePreset', (): void => {
 
       getInputSpy.mockReturnValueOnce(mergeCategory);
 
-      expect(parseInputMergePreset()).toStrictEqual(mergeCategory);
+      expect<unknown>(parseInputMergePreset()).toStrictEqual(mergeCategory);
     },
   );
 
