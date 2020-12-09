@@ -1,3 +1,10 @@
+## [1.8.80](https://github.com/ridedott/merge-me-action/compare/v1.8.79...v1.8.80) (2020-12-09)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 14.14.10 to 14.14.11
+  ([3d66d2a](https://github.com/ridedott/merge-me-action/commit/3d66d2ada9bc283a261ce05468cccde3cbeb768f))
+
 ## [1.8.79](https://github.com/ridedott/merge-me-action/compare/v1.8.78...v1.8.79) (2020-12-08)
 
 ### Bug Fixes
