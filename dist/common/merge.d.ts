@@ -12,4 +12,5 @@ export declare const mergeWithRetry: (octokit: ReturnType<typeof getOctokit>, de
     maximumRetries: number;
     retryCount: number;
 }) => Promise<void>;
+export declare const shouldMerge: (prTitle: string) => boolean;
 //# sourceMappingURL=merge.d.ts.map
