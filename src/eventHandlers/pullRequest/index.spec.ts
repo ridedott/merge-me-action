@@ -259,10 +259,6 @@ describe('pull request event handler', (): void => {
   });
 
   describe('for a dependabot initiated pull request', (): void => {
-    beforeEach((): void => {
-      getInputSpy.mockReturnValue('DEPENDABOT_PATCH');
-    });
-
     it('does nothing if the PR title contains a major bump but PRESET specifies DEPENDABOT_PATCH', async (): Promise<void> => {
       expect.assertions(0);
 
