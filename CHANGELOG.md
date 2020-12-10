@@ -1,3 +1,10 @@
+## [1.8.83](https://github.com/ridedott/merge-me-action/compare/v1.8.82...v1.8.83) (2020-12-10)
+
+### Code Refactoring
+
+- maintain 1:1 relation between source and test files
+  ([ff27364](https://github.com/ridedott/merge-me-action/commit/ff273643f7ba653c6765d7f5097d2c36e1037cc7))
+
 ## [1.8.82](https://github.com/ridedott/merge-me-action/compare/v1.8.81...v1.8.82) (2020-12-09)
 
 ### Chores
