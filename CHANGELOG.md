@@ -1,3 +1,31 @@
+## [1.8.82](https://github.com/ridedott/merge-me-action/compare/v1.8.81...v1.8.82) (2020-12-09)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 26.0.17 to 26.0.18
+  ([026c36f](https://github.com/ridedott/merge-me-action/commit/026c36f7c7425332e522182a8e87e973a08ee45f))
+
+## [1.8.81](https://github.com/ridedott/merge-me-action/compare/v1.8.80...v1.8.81) (2020-12-09)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.5.46 to 2.5.47
+  ([20d629c](https://github.com/ridedott/merge-me-action/commit/20d629c0a2442b62438eeeb9c23763adcb7a6023))
+
+## [1.8.80](https://github.com/ridedott/merge-me-action/compare/v1.8.79...v1.8.80) (2020-12-09)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 14.14.10 to 14.14.11
+  ([3d66d2a](https://github.com/ridedott/merge-me-action/commit/3d66d2ada9bc283a261ce05468cccde3cbeb768f))
+
+## [1.8.79](https://github.com/ridedott/merge-me-action/compare/v1.8.78...v1.8.79) (2020-12-08)
+
+### Bug Fixes
+
+- enforce PRESET setting in push and check_suite handlers
+  ([a5aec65](https://github.com/ridedott/merge-me-action/commit/a5aec65e625df95472439a2d512809adba96ea75))
+
 ## [1.8.78](https://github.com/ridedott/merge-me-action/compare/v1.8.77...v1.8.78) (2020-12-08)
 
 ### Chores
