@@ -257,4 +257,48 @@ describe('pull request event handler', (): void => {
       );
     });
   });
+
+  describe('for a dependabot initiated pull request', (): void => {
+    it('does nothing if the PR title contains a major bump but PRESET specifies DEPENDABOT_PATCH', async (): Promise<void> => {
+      expect.assertions(0);
+
+      nock('https://api.github.com')
+        .post('/graphql')
+        .reply(OK, {
+          data: {
+            repository: {
+              pullRequest: {
+                commits: {
+                  edges: [
+                    {
+                      node: {
+                        commit: {
+                          message: COMMIT_HEADLINE,
+                        },
+                      },
+                    },
+                  ],
+                },
+                id: PULL_REQUEST_ID,
+                mergeable: 'MERGEABLE',
+                merged: false,
+                reviews: {
+                  edges: [
+                    {
+                      node: {
+                        state: 'APPROVED',
+                      },
+                    },
+                  ],
+                },
+                state: 'OPEN',
+                title: 'bump @types/jest from 26.0.12 to 27.0.13',
+              },
+            },
+          },
+        });
+
+      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+    });
+  });
 });

@@ -36,7 +36,7 @@ beforeEach((): void => {
   });
 });
 
-describe('check Suite event handler', (): void => {
+describe('check suite event handler', (): void => {
   it('does not log warnings when it gets triggered by Dependabot', async (): Promise<void> => {
     expect.assertions(1);
 
@@ -452,5 +452,44 @@ describe('check Suite event handler', (): void => {
     expect(debugSpy).toHaveBeenCalledWith(
       'Original error: HttpError: ##[error]GraphqlError: This is a different error..',
     );
+  });
+
+  describe('for a dependabot initiated pull request', (): void => {
+    it('does nothing if the PR title contains a major bump but PRESET specifies DEPENDABOT_PATCH', async (): Promise<void> => {
+      expect.assertions(0);
+
+      nock('https://api.github.com')
+        .post('/graphql')
+        .reply(OK, {
+          data: {
+            repository: {
+              pullRequest: {
+                commits: {
+                  edges: [
+                    {
+                      node: {
+                        commit: {
+                          messageHeadline: COMMIT_HEADLINE,
+                        },
+                      },
+                    },
+                  ],
+                },
+                id: PULL_REQUEST_ID,
+                mergeStateStatus: 'CLEAN',
+                mergeable: 'MERGEABLE',
+                merged: false,
+                reviews: {
+                  edges: [],
+                },
+                state: 'OPEN',
+                title: 'bump @types/jest from 26.0.12 to 27.0.13',
+              },
+            },
+          },
+        });
+
+      await checkSuiteHandle(octokit, 'dependabot-preview[bot]', 2);
+    });
   });
 });
