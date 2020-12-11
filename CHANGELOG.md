@@ -1,3 +1,10 @@
+## [1.8.88](https://github.com/ridedott/merge-me-action/compare/v1.8.87...v1.8.88) (2020-12-11)
+
+### Chores
+
+- **deps:** bump ini from 1.3.5 to 1.3.8
+  ([0491ff4](https://github.com/ridedott/merge-me-action/commit/0491ff4988ca0af9faae000c0535410f1f41a049))
+
 ## [1.8.87](https://github.com/ridedott/merge-me-action/compare/v1.8.86...v1.8.87) (2020-12-11)
 
 ### Chores
