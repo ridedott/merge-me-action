@@ -89,5 +89,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "1.8.86"
+  "version": "1.8.87"
 }
