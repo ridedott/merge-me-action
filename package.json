@@ -22,7 +22,7 @@
     "@types/node": "^14.14.14",
     "@zeit/ncc": "^0.22.3",
     "commitizen": "^4.2.2",
-    "cspell": "^5.0.7",
+    "cspell": "^5.0.8",
     "eslint": "^7.15.0",
     "http-status-codes": "^2.1.4",
     "husky": "^4.3.6",
