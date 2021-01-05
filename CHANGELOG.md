@@ -1,3 +1,10 @@
+## [1.8.109](https://github.com/ridedott/merge-me-action/compare/v1.8.108...v1.8.109) (2021-01-05)
+
+### Chores
+
+- extend TODO for another month
+  ([095feda](https://github.com/ridedott/merge-me-action/commit/095fedaf19791a53a07f988044de6d51b2293785))
+
 ## [1.8.108](https://github.com/ridedott/merge-me-action/compare/v1.8.107...v1.8.108) (2021-01-01)
 
 ### Chores
