@@ -1,3 +1,12 @@
+## [1.8.110](https://github.com/ridedott/merge-me-action/compare/v1.8.109...v1.8.110) (2021-01-05)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 14.14.17 to 14.14.20
+  ([4371918](https://github.com/ridedott/merge-me-action/commit/43719187c11583877f0e5e1cafc6b4ce7afcb1f2))
+- **deps-dev:** bump eslint from 7.16.0 to 7.17.0
+  ([66eb04c](https://github.com/ridedott/merge-me-action/commit/66eb04c7ec6a227b9657212ada66a55e40a4613b))
+
 ## [1.8.109](https://github.com/ridedott/merge-me-action/compare/v1.8.108...v1.8.109) (2021-01-05)
 
 ### Chores
