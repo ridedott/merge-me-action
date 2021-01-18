@@ -1,3 +1,10 @@
+## [1.8.122](https://github.com/ridedott/merge-me-action/compare/v1.8.121...v1.8.122) (2021-01-18)
+
+### Chores
+
+- **deps-dev:** bump commitizen from 4.2.2 to 4.2.3
+  ([ecf1a83](https://github.com/ridedott/merge-me-action/commit/ecf1a8323c9cc9c0ce9325d670da4a011c10c5ea))
+
 ## [1.8.121](https://github.com/ridedott/merge-me-action/compare/v1.8.120...v1.8.121) (2021-01-18)
 
 ### Chores
