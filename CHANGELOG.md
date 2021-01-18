@@ -1,3 +1,10 @@
+## [1.8.123](https://github.com/ridedott/merge-me-action/compare/v1.8.122...v1.8.123) (2021-01-18)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/npm from 7.0.9 to 7.0.10
+  ([c0c9b3d](https://github.com/ridedott/merge-me-action/commit/c0c9b3d4e3388f806ca63f864684938d6accd3e4))
+
 ## [1.8.122](https://github.com/ridedott/merge-me-action/compare/v1.8.121...v1.8.122) (2021-01-18)
 
 ### Chores
