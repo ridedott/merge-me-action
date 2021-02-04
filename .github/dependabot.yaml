@@ -1,21 +1,27 @@
-version: 2
 updates:
-  - commit-message:
-      prefix: chore
+  - allow:
+      - dependency-type: direct
+    commit-message:
       include: scope
-    directory: '/'
+      prefix: chore
+    directory: /
     open-pull-requests-limit: 99
     package-ecosystem: github-actions
+    reviewers:
+      - 'ridedott/platform'
     schedule:
       interval: daily
   - allow:
       - dependency-type: direct
     commit-message:
-      prefix: chore
       include: scope
-    directory: '/'
+      prefix: chore
+    directory: /
     open-pull-requests-limit: 99
     package-ecosystem: npm
+    reviewers:
+      - 'ridedott/platform'
     schedule:
       interval: daily
     versioning-strategy: increase
+version: 2
