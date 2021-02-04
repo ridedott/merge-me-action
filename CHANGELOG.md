@@ -1,3 +1,10 @@
+## [1.8.138](https://github.com/ridedott/merge-me-action/compare/v1.8.137...v1.8.138) (2021-02-04)
+
+### Chores
+
+- update Dependabot configuration
+  ([da85a66](https://github.com/ridedott/merge-me-action/commit/da85a669fb808a4a7e3686b8a9a33a876b0cbdf2))
+
 ## [1.8.137](https://github.com/ridedott/merge-me-action/compare/v1.8.136...v1.8.137) (2021-02-01)
 
 ### Chores
