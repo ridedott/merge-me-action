@@ -54,18 +54,18 @@
     "check_runs_url": "https://api.github.com/repos/ridedott/test-workflows/check-suites/259620466/check-runs",
     "conclusion": "success",
     "created_at": "2019-10-10T13:00:27Z",
-    "head_branch": "dependabot-preview[bot]/test-branch",
+    "head_branch": "dependabot[bot]/test-branch",
     "head_commit": {
       "author": {
-        "email": "dependabot-preview@gmail.com",
-        "name": "dependabot-preview[bot]"
+        "email": "dependabot@gmail.com",
+        "name": "dependabot[bot]"
       },
       "committer": {
-        "email": "dependabot-preview@gmail.com",
-        "name": "dependabot-preview[bot]"
+        "email": "dependabot@gmail.com",
+        "name": "dependabot[bot]"
       },
       "id": "9d00ff713d0987cc1f4d3d5c00e6fa8ff4066e1f",
-      "message": "Merge branch 'master' of github.com:ridedott/test-workflows into dependabot-preview[bot]/test-branch",
+      "message": "Merge branch 'master' of github.com:ridedott/test-workflows into dependabot[bot]/test-branch",
       "timestamp": "2019-10-10T13:00:15Z",
       "tree_id": "80e1b533ef4302db30352b39ea6fcf65965f51b5"
     },
@@ -85,7 +85,7 @@
           "sha": "d22d3e84651700bce87ca81f445b4d4778490d48"
         },
         "head": {
-          "ref": "dependabot-preview[bot]/test-branch",
+          "ref": "dependabot[bot]/test-branch",
           "repo": {
             "id": 212360168,
             "name": "test-workflows",
@@ -212,22 +212,22 @@
   },
   "sender": {
     "avatar_url": "https://avatars1.githubusercontent.com/u/9158996?v=4",
-    "events_url": "https://api.github.com/users/dependabot-preview[bot]/events{/privacy}",
-    "followers_url": "https://api.github.com/users/dependabot-preview[bot]/followers",
-    "following_url": "https://api.github.com/users/dependabot-preview[bot]/following{/other_user}",
-    "gists_url": "https://api.github.com/users/dependabot-preview[bot]/gists{/gist_id}",
+    "events_url": "https://api.github.com/users/dependabot[bot]/events{/privacy}",
+    "followers_url": "https://api.github.com/users/dependabot[bot]/followers",
+    "following_url": "https://api.github.com/users/dependabot[bot]/following{/other_user}",
+    "gists_url": "https://api.github.com/users/dependabot[bot]/gists{/gist_id}",
     "gravatar_id": "",
-    "html_url": "https://github.com/dependabot-preview[bot]",
+    "html_url": "https://github.com/dependabot[bot]",
     "id": 9158996,
-    "login": "dependabot-preview[bot]",
+    "login": "dependabot[bot]",
     "node_id": "MDQ6VXNlcjkxNTg5OTY=",
-    "organizations_url": "https://api.github.com/users/dependabot-preview[bot]/orgs",
-    "received_events_url": "https://api.github.com/users/dependabot-preview[bot]/received_events",
-    "repos_url": "https://api.github.com/users/dependabot-preview[bot]/repos",
+    "organizations_url": "https://api.github.com/users/dependabot[bot]/orgs",
+    "received_events_url": "https://api.github.com/users/dependabot[bot]/received_events",
+    "repos_url": "https://api.github.com/users/dependabot[bot]/repos",
     "site_admin": false,
-    "starred_url": "https://api.github.com/users/dependabot-preview[bot]/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/dependabot-preview[bot]/subscriptions",
+    "starred_url": "https://api.github.com/users/dependabot[bot]/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/dependabot[bot]/subscriptions",
     "type": "User",
-    "url": "https://api.github.com/users/dependabot-preview[bot]"
+    "url": "https://api.github.com/users/dependabot[bot]"
   }
 }

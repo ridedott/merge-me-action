@@ -80,7 +80,7 @@ describe('pull request event handler', (): void => {
         });
       nock('https://api.github.com').post('/graphql').reply(OK);
 
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+      await pullRequestHandle(octokit, 'dependabot[bot]', 2);
 
       expect(warningSpy).not.toHaveBeenCalled();
     });
@@ -92,7 +92,7 @@ describe('pull request event handler', (): void => {
         data: null,
       });
 
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+      await pullRequestHandle(octokit, 'dependabot[bot]', 2);
     });
 
     it('does not approve an already approved pull request', async (): Promise<void> => {
@@ -143,7 +143,7 @@ describe('pull request event handler', (): void => {
         })
         .reply(OK);
 
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+      await pullRequestHandle(octokit, 'dependabot[bot]', 2);
     });
 
     it('retries up to two times before failing', async (): Promise<void> => {
@@ -193,7 +193,7 @@ describe('pull request event handler', (): void => {
 
       useSetTimeoutImmediateInvocation();
 
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+      await pullRequestHandle(octokit, 'dependabot[bot]', 2);
 
       expect(infoSpy).toHaveBeenCalledWith(
         'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
@@ -247,7 +247,7 @@ describe('pull request event handler', (): void => {
         .post('/graphql')
         .reply(403, '##[error]GraphqlError: This is a different error.');
 
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+      await pullRequestHandle(octokit, 'dependabot[bot]', 2);
 
       expect(infoSpy).toHaveBeenCalledWith(
         'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
@@ -298,7 +298,7 @@ describe('pull request event handler', (): void => {
           },
         });
 
-      await pullRequestHandle(octokit, 'dependabot-preview[bot]', 2);
+      await pullRequestHandle(octokit, 'dependabot[bot]', 2);
     });
   });
 });

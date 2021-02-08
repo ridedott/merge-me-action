@@ -70,7 +70,7 @@ describe('push event handler', (): void => {
       });
     nock('https://api.github.com').post('/graphql').reply(OK);
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+    await pushHandle(octokit, 'dependabot[bot]', 2);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -116,7 +116,7 @@ describe('push event handler', (): void => {
       })
       .reply(OK);
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+    await pushHandle(octokit, 'dependabot[bot]', 2);
   });
 
   it('does not approve pull requests that are not mergeable', async (): Promise<void> => {
@@ -151,7 +151,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+    await pushHandle(octokit, 'dependabot[bot]', 2);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request is not in a mergeable state: CONFLICTING.',
@@ -190,7 +190,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+    await pushHandle(octokit, 'dependabot[bot]', 2);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
@@ -227,7 +227,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+    await pushHandle(octokit, 'dependabot[bot]', 2);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
@@ -238,7 +238,7 @@ describe('push event handler', (): void => {
     await pushHandle(octokit, 'some-other-login', 2);
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request created by dependabot-preview[bot], not some-other-login, skipping.',
+      'Pull request created by dependabot[bot], not some-other-login, skipping.',
     );
   });
 
@@ -257,7 +257,7 @@ describe('push event handler', (): void => {
         },
       });
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+    await pushHandle(octokit, 'dependabot[bot]', 2);
 
     expect(warningSpy).toHaveBeenCalled();
   });
@@ -302,7 +302,7 @@ describe('push event handler', (): void => {
 
     useSetTimeoutImmediateInvocation();
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+    await pushHandle(octokit, 'dependabot[bot]', 2);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
@@ -349,7 +349,7 @@ describe('push event handler', (): void => {
       .post('/graphql')
       .reply(403, '##[error]GraphqlError: This is a different error.');
 
-    await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+    await pushHandle(octokit, 'dependabot[bot]', 2);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
@@ -392,7 +392,7 @@ describe('push event handler', (): void => {
           },
         });
 
-      await pushHandle(octokit, 'dependabot-preview[bot]', 2);
+      await pushHandle(octokit, 'dependabot[bot]', 2);
     });
   });
 });
