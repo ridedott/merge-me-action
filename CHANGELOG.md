@@ -1,3 +1,14 @@
+# [2.0.0](https://github.com/ridedott/merge-me-action/compare/v1.8.138...v2.0.0) (2021-02-08)
+
+### Features
+
+- default to native Dependabot integration
+  ([2de5d50](https://github.com/ridedott/merge-me-action/commit/2de5d50f84c4a6981aa41a98a492233c0b143136))
+
+### BREAKING CHANGE
+
+- Dependabot is a new default value for GITHUB_LOGIN.
+
 ## [1.8.138](https://github.com/ridedott/merge-me-action/compare/v1.8.137...v1.8.138) (2021-02-04)
 
 ### Chores
