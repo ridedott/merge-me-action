@@ -1,3 +1,16 @@
+## [2.0.1](https://github.com/ridedott/merge-me-action/compare/v2.0.0...v2.0.1) (2021-02-08)
+
+### Chores
+
+- **deps:** bump actions/cache from v2 to v2.1.4
+  ([66adde4](https://github.com/ridedott/merge-me-action/commit/66adde4bfbb13cdd7d0f566567199352e7e6a81c))
+- **deps:** bump ridedott/release-me-action from v3.4.8 to v3.5.1
+  ([55b1636](https://github.com/ridedott/merge-me-action/commit/55b1636b9202f859e0f2ee58bedcace3bd044f1a))
+- **deps-dev:** bump @types/node from 14.14.22 to 14.14.25
+  ([e13bb3e](https://github.com/ridedott/merge-me-action/commit/e13bb3e3b7518250a9c24475eb778625eeb9f633))
+- **deps-dev:** bump lint-staged from 10.5.3 to 10.5.4
+  ([8cee047](https://github.com/ridedott/merge-me-action/commit/8cee047124dc01e45d239a331ae4775067eb2755))
+
 # [2.0.0](https://github.com/ridedott/merge-me-action/compare/v1.8.138...v2.0.0) (2021-02-08)
 
 ### Features
