@@ -6,7 +6,7 @@ class CustomEnvironment extends NodeEnvironment {
     switch (context.docblockPragmas['webhook-pragma']) {
       case 'check_suite':
         env.GITHUB_ACTION = 'ridedottmerge-me-action';
-        env.GITHUB_ACTOR = 'dependabot-preview[bot]';
+        env.GITHUB_ACTOR = 'dependabot[bot]';
         env.GITHUB_EVENT_NAME = 'check_suite';
         env.GITHUB_EVENT_PATH = './test/fixtures/ctx.check-suite.json';
         env.GITHUB_REF = 'refs/heads/test-branch';
@@ -16,7 +16,7 @@ class CustomEnvironment extends NodeEnvironment {
         break;
       case 'pull_request':
         env.GITHUB_ACTION = 'ridedottmerge-me-action';
-        env.GITHUB_ACTOR = 'dependabot-preview[bot]';
+        env.GITHUB_ACTOR = 'dependabot[bot]';
         env.GITHUB_EVENT_NAME = 'pull_request';
         env.GITHUB_EVENT_PATH = './test/fixtures/ctx.pull-request.json';
         env.GITHUB_REF = 'refs/heads/test-branch';
@@ -26,7 +26,7 @@ class CustomEnvironment extends NodeEnvironment {
         break;
       case 'pull_request_for_major_bump':
         env.GITHUB_ACTION = 'ridedottmerge-me-action';
-        env.GITHUB_ACTOR = 'dependabot-preview[bot]';
+        env.GITHUB_ACTOR = 'dependabot[bot]';
         env.GITHUB_EVENT_NAME = 'pull_request';
         env.GITHUB_EVENT_PATH =
           './test/fixtures/ctx.pull-request-for-major-bump.json';
@@ -37,7 +37,7 @@ class CustomEnvironment extends NodeEnvironment {
         break;
       case 'push':
         env.GITHUB_ACTION = 'ridedottmerge-me-action';
-        env.GITHUB_ACTOR = 'dependabot-preview[bot]';
+        env.GITHUB_ACTOR = 'dependabot[bot]';
         env.GITHUB_EVENT_NAME = 'push';
         env.GITHUB_EVENT_PATH = './test/fixtures/ctx.push.json';
         env.GITHUB_REF = 'refs/heads/test-branch';

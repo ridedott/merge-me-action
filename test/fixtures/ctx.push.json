@@ -6,9 +6,9 @@
     {
       "added": [],
       "author": {
-        "email": "dependabot-preview@gmail.com",
-        "name": "dependabot-preview",
-        "username": "dependabot-preview[bot]"
+        "email": "dependabot@gmail.com",
+        "name": "dependabot",
+        "username": "dependabot[bot]"
       },
       "committer": {
         "email": "41898282+github-actions[bot]@users.noreply.github.com",
@@ -27,18 +27,18 @@
     {
       "added": [],
       "author": {
-        "email": "dependabot-preview@gmail.com",
-        "name": "dependabot-preview",
-        "username": "dependabot-preview[bot]"
+        "email": "dependabot@gmail.com",
+        "name": "dependabot",
+        "username": "dependabot[bot]"
       },
       "committer": {
-        "email": "dependabot-preview@gmail.com",
-        "name": "dependabot-preview",
-        "username": "dependabot-preview[bot]"
+        "email": "dependabot@gmail.com",
+        "name": "dependabot",
+        "username": "dependabot[bot]"
       },
       "distinct": true,
       "id": "9d00ff713d0987cc1f4d3d5c00e6fa8ff4066e1f",
-      "message": "Merge branch 'master' of github.com:ridedott/test-workflows into dependabot-preview[bot]/test-branch",
+      "message": "Merge branch 'master' of github.com:ridedott/test-workflows into dependabot[bot]/test-branch",
       "modified": ["test"],
       "removed": [],
       "timestamp": "2019-10-10T15:00:15+02:00",
@@ -53,18 +53,18 @@
   "head_commit": {
     "added": [],
     "author": {
-      "email": "dependabot-preview@gmail.com",
-      "name": "dependabot-preview",
-      "username": "dependabot-preview[bot]"
+      "email": "dependabot@gmail.com",
+      "name": "dependabot",
+      "username": "dependabot[bot]"
     },
     "committer": {
-      "email": "dependabot-preview@gmail.com",
-      "name": "dependabot-preview",
-      "username": "dependabot-preview[bot]"
+      "email": "dependabot@gmail.com",
+      "name": "dependabot",
+      "username": "dependabot[bot]"
     },
     "distinct": true,
     "id": "9d00ff713d0987cc1f4d3d5c00e6fa8ff4066e1f",
-    "message": "Merge branch 'master' of github.com:ridedott/test-workflows into dependabot-preview[bot]/test-branch",
+    "message": "Merge branch 'master' of github.com:ridedott/test-workflows into dependabot[bot]/test-branch",
     "modified": ["test"],
     "removed": [],
     "timestamp": "2019-10-10T15:00:15+02:00",
@@ -86,10 +86,10 @@
     "url": "https://api.github.com/orgs/ridedott"
   },
   "pusher": {
-    "email": "dependabot-preview@gmail.com",
-    "name": "dependabot-preview[bot]"
+    "email": "dependabot@gmail.com",
+    "name": "dependabot[bot]"
   },
-  "ref": "refs/heads/dependabot-preview[bot]/test-branch",
+  "ref": "refs/heads/dependabot[bot]/test-branch",
   "repository": {
     "archive_url": "https://api.github.com/repos/ridedott/test-workflows/{archive_format}{/ref}",
     "archived": false,
@@ -191,22 +191,22 @@
   },
   "sender": {
     "avatar_url": "https://avatars1.githubusercontent.com/u/9158996?v=4",
-    "events_url": "https://api.github.com/users/dependabot-preview[bot]/events{/privacy}",
-    "followers_url": "https://api.github.com/users/dependabot-preview[bot]/followers",
-    "following_url": "https://api.github.com/users/dependabot-preview[bot]/following{/other_user}",
-    "gists_url": "https://api.github.com/users/dependabot-preview[bot]/gists{/gist_id}",
+    "events_url": "https://api.github.com/users/dependabot[bot]/events{/privacy}",
+    "followers_url": "https://api.github.com/users/dependabot[bot]/followers",
+    "following_url": "https://api.github.com/users/dependabot[bot]/following{/other_user}",
+    "gists_url": "https://api.github.com/users/dependabot[bot]/gists{/gist_id}",
     "gravatar_id": "",
-    "html_url": "https://github.com/dependabot-preview[bot]",
+    "html_url": "https://github.com/dependabot[bot]",
     "id": 9158996,
-    "login": "dependabot-preview[bot]",
+    "login": "dependabot[bot]",
     "node_id": "MDQ6VXNlcjkxNTg5OTY=",
-    "organizations_url": "https://api.github.com/users/dependabot-preview[bot]/orgs",
-    "received_events_url": "https://api.github.com/users/dependabot-preview[bot]/received_events",
-    "repos_url": "https://api.github.com/users/dependabot-preview[bot]/repos",
+    "organizations_url": "https://api.github.com/users/dependabot[bot]/orgs",
+    "received_events_url": "https://api.github.com/users/dependabot[bot]/received_events",
+    "repos_url": "https://api.github.com/users/dependabot[bot]/repos",
     "site_admin": false,
-    "starred_url": "https://api.github.com/users/dependabot-preview[bot]/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/dependabot-preview[bot]/subscriptions",
+    "starred_url": "https://api.github.com/users/dependabot[bot]/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/dependabot[bot]/subscriptions",
     "type": "User",
-    "url": "https://api.github.com/users/dependabot-preview[bot]"
+    "url": "https://api.github.com/users/dependabot[bot]"
   }
 }

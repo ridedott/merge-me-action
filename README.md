@@ -125,8 +125,8 @@ the configurations described above should be applied.
 
 You may have another bot that also creates PRs against your repository and you
 want to automatically merge those. By default, this GitHub Action assumes the
-bot is [`dependabot-preview[bot]`](https://dependabot.com/). You can override
-the bot name by changing the value of `GITHUB_LOGIN` parameter:
+bot is [`dependabot[bot]`](https://github.com/dependabot). You can override the
+bot name by changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
 steps:
@@ -137,14 +137,14 @@ steps:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-A common scenario is to use native Dependabot integration with GitHub:
+A common scenario is to use Dependabot Preview (consider updating instead):
 
 ```yaml
 steps:
   - name: Merge me!
     uses: ridedott/merge-me-action@v1
     with:
-      GITHUB_LOGIN: dependabot[bot]
+      GITHUB_LOGIN: dependabot-preview[bot]
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 

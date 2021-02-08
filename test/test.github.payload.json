@@ -31,11 +31,11 @@
     "number": 2,
     "title": "Update test",
     "user": {
-      "login": "dependabot-preview[bot]"
+      "login": "dependabot[bot]"
     }
   },
   "pusher": {
-    "name": "dependabot-preview[bot]"
+    "name": "dependabot[bot]"
   },
   "ref": "refs/heads/test-branch",
   "repository": {
@@ -48,7 +48,7 @@
     }
   },
   "sender": {
-    "login": "dependabot-preview[bot]",
+    "login": "dependabot[bot]",
     "type": "string"
   }
 }
