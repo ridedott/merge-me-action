@@ -64,7 +64,7 @@ const shouldRetry = (
   return isRetryableError;
 };
 
-export const mergeWithRetry = async (
+const mergeWithRetry = async (
   octokit: ReturnType<typeof getOctokit>,
   details: PullRequestDetails & {
     maximumRetries: number;
@@ -103,10 +103,6 @@ export const mergeWithRetry = async (
   }
 };
 
-export const shouldMerge = (prTitle: string): boolean => {
-  return checkPullRequestTitleForMergePreset(prTitle);
-};
-
 export const tryMerge = async (
   octokit: ReturnType<typeof getOctokit>,
   maximumRetries: number,
@@ -129,14 +125,11 @@ export const tryMerge = async (
   } else if (merged) {
     logInfo(`Pull request is already merged.`);
   } else if (
-    mergeStateStatus !== 'CLEAN' &&
-    /* eslint-disable @typescript-eslint/no-unnecessary-condition */
     /*
-     * TODO(@platform) [2021-06-01] Start pulling the value once it reaches
+     * TODO(@platform) [2021-04-01] Start pulling the value once it reaches
      * GA.
      */
-    mergeStateStatus !== undefined
-    /* eslint-enable @typescript-eslint/no-unnecessary-condition */
+    mergeStateStatus !== undefined && mergeStateStatus !== 'CLEAN'
   ) {
     logInfo(
       'Pull request cannot be merged cleanly. ' +
@@ -147,7 +140,7 @@ export const tryMerge = async (
   } else if (checkPullRequestTitleForMergePreset(pullRequestTitle) === false) {
     logInfo(`Pull request version bump is not allowed by PRESET.`);
   } else if (commitAuthorName !== allowedAuthorName) {
-    logInfo(`Pull request changes were not made by ${allowedAuthorName}`);
+    logInfo(`Pull request changes were not made by ${allowedAuthorName}.`);
   } else {
     await mergeWithRetry(octokit, {
       commitHeadline: commitMessageHeadline,

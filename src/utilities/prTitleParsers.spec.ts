@@ -1,16 +1,21 @@
+import * as inputParsers from './inputParsers';
 import { checkPullRequestTitleForMergePreset } from './prTitleParsers';
+
+const parseInputMergePresetSpy = jest.spyOn(inputParsers, 'parseInputMergePreset');
 
 describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given containing major bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 27.0.13';
 
-    it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+    it.each(Object.values(inputParsers.AllowedMergePresets))(
       'returns false',
-      (mergeCategory: string): void => {
+      (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+
         expect(
-          checkPullRequestTitleForMergePreset(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title),
         ).toStrictEqual(false);
       },
     );
@@ -19,24 +24,26 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given title containing minor bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 26.1.0';
 
-    it.each(['DEPENDABOT_MINOR'])(
-      'returns true',
-      (mergeCategory: string): void => {
+    it('returns true for DEPENDABOT_MINOR', (): void => {
         expect.assertions(1);
 
+        parseInputMergePresetSpy.mockReturnValueOnce(inputParsers.AllowedMergePresets.DEPENDABOT_MINOR)
+
         expect(
-          checkPullRequestTitleForMergePreset(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title),
         ).toStrictEqual(true);
       },
     );
 
-    it.each(['DEPENDABOT_PATCH'])(
-      'returns false',
-      (mergeCategory: string): void => {
+    it(
+      'returns false for DEPENDABOT_PATCH',
+      (): void => {
         expect.assertions(1);
 
+        parseInputMergePresetSpy.mockReturnValueOnce(inputParsers.AllowedMergePresets.DEPENDABOT_PATCH)
+
         expect(
-          checkPullRequestTitleForMergePreset(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title),
         ).toStrictEqual(false);
       },
     );
@@ -45,13 +52,15 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given title containing patch bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 26.0.13';
 
-    it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+    it.each(Object.values(inputParsers.AllowedMergePresets))(
       'returns true',
-      (mergeCategory: string): void => {
+      (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+
         expect(
-          checkPullRequestTitleForMergePreset(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title),
         ).toStrictEqual(true);
       },
     );
@@ -60,13 +69,15 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given title containing malformed version bump', (): void => {
     const title = 'bump @types/jest from car to house';
 
-    it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+    it.each(Object.values(inputParsers.AllowedMergePresets))(
       'returns true',
-      (mergeCategory: string): void => {
+      (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+
         expect(
-          checkPullRequestTitleForMergePreset(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title),
         ).toStrictEqual(true);
       },
     );
@@ -75,13 +86,15 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given title does not contain a version bump', (): void => {
     const title = 'chore: format';
 
-    it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+    it.each(Object.values(inputParsers.AllowedMergePresets))(
       'returns true',
-      (mergeCategory: string): void => {
+      (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+
         expect(
-          checkPullRequestTitleForMergePreset(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title),
         ).toStrictEqual(true);
       },
     );
@@ -90,13 +103,15 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given title is capitalized', (): void => {
     const title = 'Bump @types/jest from 26.0.12 to 27.0.13';
 
-    it.each(['DEPENDABOT_MINOR', 'DEPENDABOT_PATCH'])(
+    it.each(Object.values(inputParsers.AllowedMergePresets))(
       'returns false',
-      (mergeCategory: string): void => {
+      (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+
         expect(
-          checkPullRequestTitleForMergePreset(title, mergeCategory),
+          checkPullRequestTitleForMergePreset(title),
         ).toStrictEqual(false);
       },
     );

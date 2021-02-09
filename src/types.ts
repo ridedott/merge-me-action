@@ -28,7 +28,7 @@ export interface PullRequestInformation {
   commitAuthorName: string;
   commitMessage: string;
   commitMessageHeadline: string;
-  mergeStateStatus: MergeStateStatus;
+  mergeStateStatus?: MergeStateStatus;
   mergeableState: MergeableState;
   merged: boolean;
   pullRequestId: string;
@@ -52,7 +52,7 @@ interface PullRequest {
     }>;
   };
   id: string;
-  mergeStateStatus: MergeStateStatus;
+  mergeStateStatus?: MergeStateStatus;
   mergeable: MergeableState;
   merged: boolean;
   reviews: { edges: ReviewEdges };
@@ -70,7 +70,6 @@ export interface FindPullRequestsInfoByReferenceNameResponse {
 
 export interface FindPullRequestInfoByNumberResponse {
   repository: {
-    id: string;
     pullRequest: PullRequest;
   };
 }
