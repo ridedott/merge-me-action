@@ -1,12 +1,12 @@
 import { context, getOctokit } from '@actions/github';
 
-import { mergeWithRetry, shouldMerge } from '../../common/merge';
-import { findPullRequestInfoAndReviews as findPullRequestInformationAndReviews } from '../../graphql/queries';
+import { tryMerge } from '../../common/merge';
+import { findPullRequestsInfoByReferenceName } from '../../graphql/queries';
 import {
   CommitMessageHeadlineGroup,
+  FindPullRequestsInfoByReferenceNameResponse,
   GroupName,
   PullRequestInformation,
-  Repository,
 } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
 
@@ -40,7 +40,7 @@ const getPullRequestInformation = async (
   },
 ): Promise<PullRequestInformation | undefined> => {
   const response = await octokit.graphql(
-    findPullRequestInformationAndReviews,
+    findPullRequestsInfoByReferenceName,
     query,
   );
 
@@ -57,18 +57,36 @@ const getPullRequestInformation = async (
         nodes: [
           {
             id: pullRequestId,
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      author: { name: commitAuthorName },
+                      message: commitMessage,
+                      messageHeadline: commitMessageHeadline,
+                    },
+                  },
+                },
+              ],
+            },
+            reviews: { edges: reviewEdges },
+            mergeStateStatus,
             mergeable: mergeableState,
             merged,
-            reviews: { edges: reviewEdges },
             state: pullRequestState,
             title: pullRequestTitle,
           },
         ],
       },
     },
-  } = response as Repository;
+  } = response as FindPullRequestsInfoByReferenceNameResponse;
 
   return {
+    commitAuthorName,
+    commitMessage,
+    commitMessageHeadline,
+    mergeStateStatus,
     mergeableState,
     merged,
     pullRequestId,
@@ -76,38 +94,6 @@ const getPullRequestInformation = async (
     pullRequestTitle,
     reviewEdges,
   };
-};
-
-const tryMerge = async (
-  octokit: ReturnType<typeof getOctokit>,
-  maximumRetries: number,
-  {
-    commitMessageHeadline,
-    mergeableState,
-    merged,
-    pullRequestId,
-    pullRequestState,
-    pullRequestTitle,
-    reviewEdges,
-  }: PullRequestInformation & { commitMessageHeadline: string },
-): Promise<void> => {
-  if (mergeableState !== 'MERGEABLE') {
-    logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
-  } else if (merged) {
-    logInfo(`Pull request is already merged.`);
-  } else if (pullRequestState !== 'OPEN') {
-    logInfo(`Pull request is not open: ${pullRequestState}.`);
-  } else if (shouldMerge(pullRequestTitle) === false) {
-    logInfo(`Pull request version bump is not allowed by PRESET.`);
-  } else {
-    await mergeWithRetry(octokit, {
-      commitHeadline: commitMessageHeadline,
-      maximumRetries,
-      pullRequestId,
-      retryCount: 1,
-      reviewEdge: reviewEdges[0],
-    });
-  }
 };
 
 export const pushHandle = async (

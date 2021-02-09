@@ -1,23 +1,12 @@
 import { context, getOctokit } from '@actions/github';
 
-import { mergeWithRetry, shouldMerge } from '../../common/merge';
-import { findPullRequestLastApprovedReview } from '../../graphql/queries';
-import { ReviewEdges } from '../../types';
+import { tryMerge } from '../../common/merge';
+import { findPullRequestInfoByNumber } from '../../graphql/queries';
+import {
+  FindPullRequestInfoByNumberResponse,
+  PullRequestInformation,
+} from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
-
-interface PullRequestInformation {
-  reviewEdges: ReviewEdges;
-}
-
-interface Repository {
-  repository: {
-    pullRequest: {
-      reviews: {
-        edges: ReviewEdges;
-      };
-    };
-  };
-}
 
 const getPullRequestInformation = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -27,10 +16,7 @@ const getPullRequestInformation = async (
     repositoryOwner: string;
   },
 ): Promise<PullRequestInformation | undefined> => {
-  const response = await octokit.graphql(
-    findPullRequestLastApprovedReview,
-    query,
-  );
+  const response = await octokit.graphql(findPullRequestInfoByNumber, query);
 
   if (response === null) {
     return undefined;
@@ -39,12 +25,40 @@ const getPullRequestInformation = async (
   const {
     repository: {
       pullRequest: {
+        id: pullRequestId,
+        commits: {
+          edges: [
+            {
+              node: {
+                commit: {
+                  author: { name: commitAuthorName },
+                  message: commitMessage,
+                  messageHeadline: commitMessageHeadline,
+                },
+              },
+            },
+          ],
+        },
         reviews: { edges: reviewEdges },
+        mergeStateStatus,
+        mergeable: mergeableState,
+        merged,
+        state: pullRequestState,
+        title: pullRequestTitle,
       },
     },
-  } = response as Repository;
+  } = response as FindPullRequestInfoByNumberResponse;
 
   return {
+    commitAuthorName,
+    commitMessage,
+    commitMessageHeadline,
+    mergeStateStatus,
+    mergeableState,
+    merged,
+    pullRequestId,
+    pullRequestState,
+    pullRequestTitle,
     reviewEdges,
   };
 };
@@ -87,18 +101,9 @@ export const pullRequestHandle = async (
       )}.`,
     );
 
-    if (shouldMerge(pullRequest.title) === false) {
-      logInfo(`Pull request version bump is not allowed by PRESET.`);
-
-      return;
-    }
-
-    await mergeWithRetry(octokit, {
-      commitHeadline: pullRequest.title,
-      maximumRetries,
-      pullRequestId: pullRequest.node_id,
-      retryCount: 1,
-      reviewEdge: pullRequestInformation.reviewEdges[0],
+    await tryMerge(octokit, maximumRetries, {
+      ...pullRequestInformation,
+      commitMessageHeadline: pullRequest.title,
     });
   }
 };

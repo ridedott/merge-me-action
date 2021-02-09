@@ -1,13 +1,12 @@
+import { getInput } from '@actions/core';
 import { getOctokit } from '@actions/github';
 
 import {
   approveAndMergePullRequestMutation,
   mergePullRequestMutation,
 } from '../graphql/mutations';
-import {
-  parseInputMergeMethod,
-  parseInputMergePreset,
-} from '../utilities/inputParsers';
+import { PullRequestInformation } from '../types';
+import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
 
@@ -105,11 +104,57 @@ export const mergeWithRetry = async (
 };
 
 export const shouldMerge = (prTitle: string): boolean => {
-  const mergePreset = parseInputMergePreset();
+  return checkPullRequestTitleForMergePreset(prTitle);
+};
 
-  if (mergePreset === undefined) {
-    return true;
+export const tryMerge = async (
+  octokit: ReturnType<typeof getOctokit>,
+  maximumRetries: number,
+  {
+    commitAuthorName,
+    commitMessageHeadline,
+    mergeableState,
+    mergeStateStatus,
+    merged,
+    pullRequestId,
+    pullRequestState,
+    pullRequestTitle,
+    reviewEdges,
+  }: PullRequestInformation,
+): Promise<void> => {
+  const allowedAuthorName = getInput('GITHUB_LOGIN');
+
+  if (mergeableState !== 'MERGEABLE') {
+    logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
+  } else if (merged) {
+    logInfo(`Pull request is already merged.`);
+  } else if (
+    mergeStateStatus !== 'CLEAN' &&
+    /* eslint-disable @typescript-eslint/no-unnecessary-condition */
+    /*
+     * TODO(@platform) [2021-06-01] Start pulling the value once it reaches
+     * GA.
+     */
+    mergeStateStatus !== undefined
+    /* eslint-enable @typescript-eslint/no-unnecessary-condition */
+  ) {
+    logInfo(
+      'Pull request cannot be merged cleanly. ' +
+        `Current state: ${mergeStateStatus}.`,
+    );
+  } else if (pullRequestState !== 'OPEN') {
+    logInfo(`Pull request is not open: ${pullRequestState}.`);
+  } else if (checkPullRequestTitleForMergePreset(pullRequestTitle) === false) {
+    logInfo(`Pull request version bump is not allowed by PRESET.`);
+  } else if (commitAuthorName !== allowedAuthorName) {
+    logInfo(`Pull request changes were not made by ${allowedAuthorName}`);
+  } else {
+    await mergeWithRetry(octokit, {
+      commitHeadline: commitMessageHeadline,
+      maximumRetries,
+      pullRequestId,
+      retryCount: 1,
+      reviewEdge: reviewEdges[0],
+    });
   }
-
-  return checkPullRequestTitleForMergePreset(prTitle, mergePreset);
 };

@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable max-statements */
 
-export const checkPullRequestTitleForMergePreset = (
-  title: string,
-  category: string,
-): boolean => {
+import { parseInputMergePreset } from './inputParsers';
+
+export const checkPullRequestTitleForMergePreset = (title: string): boolean => {
+  const category = parseInputMergePreset();
+
+  if (category === undefined) {
+    return true;
+  }
+
   const semVerTitleRegExp = /bump .* from (?<from>.*) to (?<to>.*)/iu;
   const match = semVerTitleRegExp.exec(title);
 
