@@ -209,7 +209,7 @@ describe('pull request event handler', (): void => {
             },
           },
         },
-      };;
+      };
 
       nock('https://api.github.com')
         .post('/graphql')
@@ -217,7 +217,9 @@ describe('pull request event handler', (): void => {
 
       await pullRequestHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
-      expect(infoSpy).toHaveBeenCalledWith(`Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`);
+      expect(infoSpy).toHaveBeenCalledWith(
+        `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
+      );
     });
 
     it('retries up to two times before failing', async (): Promise<void> => {

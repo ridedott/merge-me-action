@@ -405,7 +405,7 @@ describe('check suite event handler', (): void => {
           },
         },
       },
-    };;
+    };
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -413,7 +413,9 @@ describe('check suite event handler', (): void => {
 
     await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
-    expect(infoSpy).toHaveBeenCalledWith(`Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`);
+    expect(infoSpy).toHaveBeenCalledWith(
+      `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
+    );
   });
 
   it('logs a warning when it cannot find pull request ID by pull request number', async (): Promise<void> => {

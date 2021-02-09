@@ -1,7 +1,10 @@
 import * as inputParsers from './inputParsers';
 import { checkPullRequestTitleForMergePreset } from './prTitleParsers';
 
-const parseInputMergePresetSpy = jest.spyOn(inputParsers, 'parseInputMergePreset');
+const parseInputMergePresetSpy = jest.spyOn(
+  inputParsers,
+  'parseInputMergePreset',
+);
 
 describe('checkPullRequestTitleForMergePreset', (): void => {
   describe('given containing major bump', (): void => {
@@ -12,11 +15,9 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
       (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
-        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(
-          checkPullRequestTitleForMergePreset(title),
-        ).toStrictEqual(false);
+        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(false);
       },
     );
   });
@@ -25,28 +26,24 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 26.1.0';
 
     it('returns true for DEPENDABOT_MINOR', (): void => {
-        expect.assertions(1);
+      expect.assertions(1);
 
-        parseInputMergePresetSpy.mockReturnValueOnce(inputParsers.AllowedMergePresets.DEPENDABOT_MINOR)
+      parseInputMergePresetSpy.mockReturnValueOnce(
+        inputParsers.AllowedMergePresets.DEPENDABOT_MINOR,
+      );
 
-        expect(
-          checkPullRequestTitleForMergePreset(title),
-        ).toStrictEqual(true);
-      },
-    );
+      expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
+    });
 
-    it(
-      'returns false for DEPENDABOT_PATCH',
-      (): void => {
-        expect.assertions(1);
+    it('returns false for DEPENDABOT_PATCH', (): void => {
+      expect.assertions(1);
 
-        parseInputMergePresetSpy.mockReturnValueOnce(inputParsers.AllowedMergePresets.DEPENDABOT_PATCH)
+      parseInputMergePresetSpy.mockReturnValueOnce(
+        inputParsers.AllowedMergePresets.DEPENDABOT_PATCH,
+      );
 
-        expect(
-          checkPullRequestTitleForMergePreset(title),
-        ).toStrictEqual(false);
-      },
-    );
+      expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(false);
+    });
   });
 
   describe('given title containing patch bump', (): void => {
@@ -57,11 +54,9 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
       (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
-        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(
-          checkPullRequestTitleForMergePreset(title),
-        ).toStrictEqual(true);
+        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
       },
     );
   });
@@ -74,11 +69,9 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
       (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
-        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(
-          checkPullRequestTitleForMergePreset(title),
-        ).toStrictEqual(true);
+        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
       },
     );
   });
@@ -91,11 +84,9 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
       (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
-        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(
-          checkPullRequestTitleForMergePreset(title),
-        ).toStrictEqual(true);
+        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
       },
     );
   });
@@ -108,11 +99,9 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
       (mergeCategory: inputParsers.AllowedMergePresets): void => {
         expect.assertions(1);
 
-        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory)
+        parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(
-          checkPullRequestTitleForMergePreset(title),
-        ).toStrictEqual(false);
+        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(false);
       },
     );
   });

@@ -390,7 +390,9 @@ describe('push event handler', (): void => {
 
     await pushHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
-    expect(infoSpy).toHaveBeenCalledWith(`Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`);
+    expect(infoSpy).toHaveBeenCalledWith(
+      `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
+    );
   });
 
   it('logs a warning when it cannot find pull request node id', async (): Promise<void> => {

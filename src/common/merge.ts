@@ -129,7 +129,8 @@ export const tryMerge = async (
      * TODO(@platform) [2021-04-01] Start pulling the value once it reaches
      * GA.
      */
-    mergeStateStatus !== undefined && mergeStateStatus !== 'CLEAN'
+    mergeStateStatus !== undefined &&
+    mergeStateStatus !== 'CLEAN'
   ) {
     logInfo(
       'Pull request cannot be merged cleanly. ' +
