@@ -339,8 +339,28 @@ describe('push event handler', (): void => {
     );
   });
 
-  it('does not merge if last commit was not created by the selected GITHUB_LOGIN', async (): Promise<void> => {
+  it('does not merge if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is set to "TRUE"', async (): Promise<void> => {
     expect.assertions(1);
+
+    getInputSpy.mockImplementation((name: string): string => {
+      if (name === 'DISABLED_FOR_MANUAL_CHANGES') {
+        return 'TRUE';
+      }
+
+      if (name === 'GITHUB_LOGIN') {
+        return DEPENDABOT_GITHUB_LOGIN;
+      }
+
+      if (name === 'MERGE_METHOD') {
+        return 'SQUASH';
+      }
+
+      if (name === 'PRESET') {
+        return 'DEPENDABOT_MINOR';
+      }
+
+      return '';
+    });
 
     const response: Response = {
       data: {
@@ -393,6 +413,60 @@ describe('push event handler', (): void => {
     expect(infoSpy).toHaveBeenCalledWith(
       `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
     );
+  });
+
+  it('does not log any warnings if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is not set to "TRUE"', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const response: Response = {
+      data: {
+        repository: {
+          pullRequests: {
+            nodes: [
+              {
+                commits: {
+                  edges: [
+                    {
+                      node: {
+                        commit: {
+                          author: {
+                            name: 'some-other-login',
+                          },
+                          message: COMMIT_MESSAGE,
+                          messageHeadline: COMMIT_HEADLINE,
+                        },
+                      },
+                    },
+                  ],
+                },
+                id: PULL_REQUEST_ID,
+                mergeable: 'MERGEABLE',
+                merged: false,
+                reviews: {
+                  edges: [
+                    {
+                      node: {
+                        state: 'APPROVED',
+                      },
+                    },
+                  ],
+                },
+                state: 'OPEN',
+                title: 'bump @types/jest from 26.0.12 to 26.1.0',
+              },
+            ],
+          },
+        },
+      },
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, response);
+
+    await pushHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(warningSpy).not.toHaveBeenCalled();
   });
 
   it('logs a warning when it cannot find pull request node id', async (): Promise<void> => {

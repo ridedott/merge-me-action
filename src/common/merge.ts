@@ -119,6 +119,8 @@ export const tryMerge = async (
   }: PullRequestInformation,
 ): Promise<void> => {
   const allowedAuthorName = getInput('GITHUB_LOGIN');
+  const disabledForManualChanges =
+    getInput('DISABLED_FOR_MANUAL_CHANGES') === 'TRUE';
 
   if (mergeableState !== 'MERGEABLE') {
     logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
@@ -140,7 +142,10 @@ export const tryMerge = async (
     logInfo(`Pull request is not open: ${pullRequestState}.`);
   } else if (checkPullRequestTitleForMergePreset(pullRequestTitle) === false) {
     logInfo(`Pull request version bump is not allowed by PRESET.`);
-  } else if (commitAuthorName !== allowedAuthorName) {
+  } else if (
+    commitAuthorName !== allowedAuthorName &&
+    disabledForManualChanges === true
+  ) {
     logInfo(`Pull request changes were not made by ${allowedAuthorName}.`);
   } else {
     await mergeWithRetry(octokit, {
