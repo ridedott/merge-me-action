@@ -208,7 +208,7 @@ steps:
 
 There are cases in which manual changes are needed, for instance, in order to
 make the CI pass or to solve some conflicts that Dependabot (or the bot you are
-using) cannot handle. By default, this Github action will automatically approve
+using) cannot handle. By default, this GitHub action will automatically approve
 and attempt to merge a Pull Request once its triggered regardless of who
 authored the changes on the Pull Request created by
 [`dependabot[bot]`](https://github.com/dependabot) (or the bot you are using).
