@@ -25,8 +25,8 @@ inputs:
   DISABLED_FOR_MANUAL_CHANGES:
     description:
       'Disable automatic merges for changes made by a different Github login
-      than the one set in GITHUB_LOGIN. One of: "TRUE" or "FALSE".'
-    default: 'FALSE'
+      than the one set in GITHUB_LOGIN. One of: "true" or "false".'
+    default: 'false'
     required: false
 name: 'Merge me!'
 runs:

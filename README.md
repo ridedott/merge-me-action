@@ -216,7 +216,7 @@ This might be undesirable as the author might prefer to get a code review before
 hastily merging the changes.
 
 It is possible to disable this default behavior by setting the value of
-`DISABLED_FOR_MANUAL_CHANGES` to `'TRUE'`.
+`DISABLED_FOR_MANUAL_CHANGES` to `'true'`.
 
 ```yaml
 steps:
@@ -224,10 +224,10 @@ steps:
     uses: ridedott/merge-me-action@v1
     with:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      DISABLED_FOR_MANUAL_CHANGES: 'TRUE'
+      DISABLED_FOR_MANUAL_CHANGES: 'true'
 ```
 
-> Important: Please note the single quotes around `TRUE`.
+> Important: Please note the single quotes around `true`.
 
 ## Getting Started
 

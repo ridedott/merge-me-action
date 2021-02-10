@@ -366,12 +366,12 @@ describe('check suite event handler', (): void => {
     );
   });
 
-  it('does not merge if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is set to "TRUE"', async (): Promise<void> => {
+  it('does not merge if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is set to "true"', async (): Promise<void> => {
     expect.assertions(1);
 
     getInputSpy.mockImplementation((name: string): string => {
       if (name === 'DISABLED_FOR_MANUAL_CHANGES') {
-        return 'TRUE';
+        return 'true';
       }
 
       if (name === 'GITHUB_LOGIN') {
@@ -438,7 +438,7 @@ describe('check suite event handler', (): void => {
     );
   });
 
-  it('does not log any warnings if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is not set to "TRUE"', async (): Promise<void> => {
+  it('does not log any warnings if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
     expect.assertions(1);
 
     const response: Response = {
