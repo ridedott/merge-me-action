@@ -1,13 +1,12 @@
+import { getInput } from '@actions/core';
 import { getOctokit } from '@actions/github';
 
 import {
   approveAndMergePullRequestMutation,
   mergePullRequestMutation,
 } from '../graphql/mutations';
-import {
-  parseInputMergeMethod,
-  parseInputMergePreset,
-} from '../utilities/inputParsers';
+import { PullRequestInformation } from '../types';
+import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
 
@@ -65,7 +64,7 @@ const shouldRetry = (
   return isRetryableError;
 };
 
-export const mergeWithRetry = async (
+const mergeWithRetry = async (
   octokit: ReturnType<typeof getOctokit>,
   details: PullRequestDetails & {
     maximumRetries: number;
@@ -104,12 +103,57 @@ export const mergeWithRetry = async (
   }
 };
 
-export const shouldMerge = (prTitle: string): boolean => {
-  const mergePreset = parseInputMergePreset();
+export const tryMerge = async (
+  octokit: ReturnType<typeof getOctokit>,
+  maximumRetries: number,
+  {
+    commitAuthorName,
+    commitMessageHeadline,
+    mergeableState,
+    mergeStateStatus,
+    merged,
+    pullRequestId,
+    pullRequestState,
+    pullRequestTitle,
+    reviewEdges,
+  }: PullRequestInformation,
+): Promise<void> => {
+  const allowedAuthorName = getInput('GITHUB_LOGIN');
+  const disabledForManualChanges =
+    getInput('DISABLED_FOR_MANUAL_CHANGES') === 'true';
 
-  if (mergePreset === undefined) {
-    return true;
+  if (mergeableState !== 'MERGEABLE') {
+    logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
+  } else if (merged) {
+    logInfo(`Pull request is already merged.`);
+  } else if (
+    /*
+     * TODO(@platform) [2021-04-01] Start pulling the value once it reaches
+     * GA.
+     */
+    mergeStateStatus !== undefined &&
+    mergeStateStatus !== 'CLEAN'
+  ) {
+    logInfo(
+      'Pull request cannot be merged cleanly. ' +
+        `Current state: ${mergeStateStatus}.`,
+    );
+  } else if (pullRequestState !== 'OPEN') {
+    logInfo(`Pull request is not open: ${pullRequestState}.`);
+  } else if (checkPullRequestTitleForMergePreset(pullRequestTitle) === false) {
+    logInfo(`Pull request version bump is not allowed by PRESET.`);
+  } else if (
+    commitAuthorName !== allowedAuthorName &&
+    disabledForManualChanges === true
+  ) {
+    logInfo(`Pull request changes were not made by ${allowedAuthorName}.`);
+  } else {
+    await mergeWithRetry(octokit, {
+      commitHeadline: commitMessageHeadline,
+      maximumRetries,
+      pullRequestId,
+      retryCount: 1,
+      reviewEdge: reviewEdges[0],
+    });
   }
-
-  return checkPullRequestTitleForMergePreset(prTitle, mergePreset);
 };

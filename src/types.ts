@@ -25,6 +25,10 @@ export type ReviewEdges = Array<
 >;
 
 export interface PullRequestInformation {
+  commitAuthorName: string;
+  commitMessage: string;
+  commitMessageHeadline: string;
+  mergeStateStatus?: MergeStateStatus;
   mergeableState: MergeableState;
   merged: boolean;
   pullRequestId: string;
@@ -33,20 +37,40 @@ export interface PullRequestInformation {
   reviewEdges: ReviewEdges;
 }
 
-export interface Repository {
+interface PullRequest {
+  commits: {
+    edges: Array<{
+      node: {
+        commit: {
+          author: {
+            name: string;
+          };
+          message: string;
+          messageHeadline: string;
+        };
+      };
+    }>;
+  };
+  id: string;
+  mergeStateStatus?: MergeStateStatus;
+  mergeable: MergeableState;
+  merged: boolean;
+  reviews: { edges: ReviewEdges };
+  state: PullRequestState;
+  title: string;
+}
+
+export interface FindPullRequestsInfoByReferenceNameResponse {
   repository: {
     pullRequests: {
-      nodes: Array<{
-        id: string;
-        mergeable: MergeableState;
-        merged: boolean;
-        reviews: {
-          edges: ReviewEdges;
-        };
-        state: PullRequestState;
-        title: string;
-      }>;
+      nodes: PullRequest[];
     };
+  };
+}
+
+export interface FindPullRequestInfoByNumberResponse {
+  repository: {
+    pullRequest: PullRequest;
   };
 }
 

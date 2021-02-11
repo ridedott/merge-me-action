@@ -2,46 +2,13 @@
 
 import { context, getOctokit } from '@actions/github';
 
-import { mergeWithRetry, shouldMerge } from '../../common/merge';
-import { findPullRequestInfo as findPullRequestInformation } from '../../graphql/queries';
+import { tryMerge } from '../../common/merge';
+import { findPullRequestInfoByNumber } from '../../graphql/queries';
 import {
-  MergeableState,
-  MergeStateStatus,
+  FindPullRequestInfoByNumberResponse,
   PullRequestInformation,
-  PullRequestState,
-  ReviewEdges,
 } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
-
-interface Repository {
-  repository: {
-    id: string;
-    pullRequest: {
-      commits: {
-        edges: Array<{
-          node: {
-            commit: {
-              messageHeadline: string;
-            };
-          };
-        }>;
-      };
-      id: string;
-      mergeStateStatus: MergeStateStatus;
-      mergeable: MergeableState;
-      merged: boolean;
-      reviews: { edges: ReviewEdges };
-      state: PullRequestState;
-      title: string;
-    };
-  };
-}
-
-export interface PullRequestInformationCheckSuite
-  extends PullRequestInformation {
-  commitMessageHeadline: string;
-  mergeStateStatus: MergeStateStatus;
-}
 
 const getPullRequestInformation = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -50,8 +17,8 @@ const getPullRequestInformation = async (
     repositoryName: string;
     repositoryOwner: string;
   },
-): Promise<PullRequestInformationCheckSuite | undefined> => {
-  const response = await octokit.graphql(findPullRequestInformation, query);
+): Promise<PullRequestInformation | undefined> => {
+  const response = await octokit.graphql(findPullRequestInfoByNumber, query);
 
   if (response === null || response.repository.pullRequest === null) {
     return undefined;
@@ -65,7 +32,11 @@ const getPullRequestInformation = async (
           edges: [
             {
               node: {
-                commit: { messageHeadline: commitMessageHeadline },
+                commit: {
+                  author: { name: commitAuthorName },
+                  message: commitMessage,
+                  messageHeadline: commitMessageHeadline,
+                },
               },
             },
           ],
@@ -78,9 +49,11 @@ const getPullRequestInformation = async (
         title: pullRequestTitle,
       },
     },
-  } = response as Repository;
+  } = response as FindPullRequestInfoByNumberResponse;
 
   return {
+    commitAuthorName,
+    commitMessage,
     commitMessageHeadline,
     mergeStateStatus,
     mergeableState,
@@ -90,55 +63,6 @@ const getPullRequestInformation = async (
     pullRequestTitle,
     reviewEdges,
   };
-};
-
-const tryMerge = async (
-  octokit: ReturnType<typeof getOctokit>,
-  maximumRetries: number,
-  {
-    commitMessageHeadline,
-    mergeStateStatus,
-    mergeableState,
-    merged,
-    pullRequestId,
-    pullRequestState,
-    pullRequestTitle,
-    reviewEdges,
-  }: PullRequestInformationCheckSuite,
-): Promise<void> => {
-  if (mergeableState !== 'MERGEABLE') {
-    logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
-  } else if (merged) {
-    logInfo(`Pull request is already merged.`);
-  } else if (
-    mergeStateStatus !== 'CLEAN' &&
-    /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-    /*
-     * cspell:ignore merlinnot
-     *
-     * TODO(merlinnot) [2021-04-01] Start pulling the value once it reaches
-     * GA.
-     */
-    mergeStateStatus !== undefined
-    /* eslint-enable @typescript-eslint/no-unnecessary-condition */
-  ) {
-    logInfo(
-      'Pull request cannot be merged cleanly. ' +
-        `Current state: ${mergeStateStatus}.`,
-    );
-  } else if (pullRequestState !== 'OPEN') {
-    logInfo(`Pull request is not open: ${pullRequestState}.`);
-  } else if (shouldMerge(pullRequestTitle) === false) {
-    logInfo(`Pull request version bump is not allowed by PRESET.`);
-  } else {
-    await mergeWithRetry(octokit, {
-      commitHeadline: commitMessageHeadline,
-      maximumRetries,
-      pullRequestId,
-      retryCount: 1,
-      reviewEdge: reviewEdges[0],
-    });
-  }
 };
 
 export const checkSuiteHandle = async (
