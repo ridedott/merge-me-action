@@ -1,4 +1,5 @@
 import { getOctokit } from '@actions/github';
+import { PullRequestInformation } from '../types';
 export interface PullRequestDetails {
     commitHeadline: string;
     pullRequestId: string;
@@ -8,9 +9,5 @@ export interface PullRequestDetails {
         };
     } | undefined;
 }
-export declare const mergeWithRetry: (octokit: ReturnType<typeof getOctokit>, details: PullRequestDetails & {
-    maximumRetries: number;
-    retryCount: number;
-}) => Promise<void>;
-export declare const shouldMerge: (prTitle: string) => boolean;
+export declare const tryMerge: (octokit: ReturnType<typeof getOctokit>, maximumRetries: number, { commitAuthorName, commitMessageHeadline, mergeableState, mergeStateStatus, merged, pullRequestId, pullRequestState, pullRequestTitle, reviewEdges, }: PullRequestInformation) => Promise<void>;
 //# sourceMappingURL=merge.d.ts.map

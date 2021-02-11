@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/ridedott/merge-me-action/compare/v2.0.6...v2.1.0) (2021-02-11)
+
+### Features
+
+- prevent auto merge for manual changes
+  ([b1f9c38](https://github.com/ridedott/merge-me-action/commit/b1f9c3814fa547ef4efa92d5cb293df66be570f7))
+
 ## [2.0.6](https://github.com/ridedott/merge-me-action/compare/v2.0.5...v2.0.6) (2021-02-11)
 
 ### Chores

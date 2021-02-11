@@ -14,6 +14,10 @@ export declare type ReviewEdges = Array<{
     };
 } | undefined>;
 export interface PullRequestInformation {
+    commitAuthorName: string;
+    commitMessage: string;
+    commitMessageHeadline: string;
+    mergeStateStatus?: MergeStateStatus;
     mergeableState: MergeableState;
     merged: boolean;
     pullRequestId: string;
@@ -21,22 +25,43 @@ export interface PullRequestInformation {
     pullRequestTitle: string;
     reviewEdges: ReviewEdges;
 }
-export interface Repository {
+interface PullRequest {
+    commits: {
+        edges: Array<{
+            node: {
+                commit: {
+                    author: {
+                        name: string;
+                    };
+                    message: string;
+                    messageHeadline: string;
+                };
+            };
+        }>;
+    };
+    id: string;
+    mergeStateStatus?: MergeStateStatus;
+    mergeable: MergeableState;
+    merged: boolean;
+    reviews: {
+        edges: ReviewEdges;
+    };
+    state: PullRequestState;
+    title: string;
+}
+export interface FindPullRequestsInfoByReferenceNameResponse {
     repository: {
         pullRequests: {
-            nodes: Array<{
-                id: string;
-                mergeable: MergeableState;
-                merged: boolean;
-                reviews: {
-                    edges: ReviewEdges;
-                };
-                state: PullRequestState;
-                title: string;
-            }>;
+            nodes: PullRequest[];
         };
+    };
+}
+export interface FindPullRequestInfoByNumberResponse {
+    repository: {
+        pullRequest: PullRequest;
     };
 }
 export declare type MergeableState = 'CONFLICTING' | 'MERGEABLE' | 'UNKNOWN';
 export declare type PullRequestState = 'CLOSED' | 'MERGED' | 'OPEN';
 export declare type MergeStateStatus = 'BEHIND' | 'BLOCKED' | 'CLEAN' | 'DIRTY' | 'DRAFT' | 'HAS_HOOKS' | 'UNKNOWN' | 'UNSTABLE';
+export {};
