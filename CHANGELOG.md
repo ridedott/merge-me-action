@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/ridedott/merge-me-action/compare/v2.1.0...v2.1.1) (2021-02-12)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 14.14.25 to 14.14.26
+  ([daf9420](https://github.com/ridedott/merge-me-action/commit/daf94205257f071a8856a1064c72d0c9c5f2916a))
+
 # [2.1.0](https://github.com/ridedott/merge-me-action/compare/v2.0.6...v2.1.0) (2021-02-11)
 
 ### Features
