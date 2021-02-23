@@ -1,3 +1,31 @@
+## [2.1.11](https://github.com/ridedott/merge-me-action/compare/v2.1.10...v2.1.11) (2021-02-23)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 11.0.0 to 12.0.0
+  ([0677ad1](https://github.com/ridedott/merge-me-action/commit/0677ad1217e7ca4f84433985975897e956278d12))
+
+## [2.1.10](https://github.com/ridedott/merge-me-action/compare/v2.1.9...v2.1.10) (2021-02-23)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from v3.5.5 to v3.5.6
+  ([fb57845](https://github.com/ridedott/merge-me-action/commit/fb578458aa26d5f9effddf1e99b03f21cc7868c7))
+
+## [2.1.9](https://github.com/ridedott/merge-me-action/compare/v2.1.8...v2.1.9) (2021-02-23)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional from 11.0.0 to 12.0.0
+  ([7b5041c](https://github.com/ridedott/merge-me-action/commit/7b5041ca5c6bc3220f4f282b51fffebadeefc042))
+
+## [2.1.8](https://github.com/ridedott/merge-me-action/compare/v2.1.7...v2.1.8) (2021-02-23)
+
+### Chores
+
+- **deps-dev:** bump husky from 5.1.0 to 5.1.1
+  ([10feec9](https://github.com/ridedott/merge-me-action/commit/10feec90837012916ee58fb08216493e7ea607d7))
+
 ## [2.1.7](https://github.com/ridedott/merge-me-action/compare/v2.1.6...v2.1.7) (2021-02-22)
 
 ### Chores

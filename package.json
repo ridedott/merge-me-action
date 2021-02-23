@@ -10,8 +10,8 @@
   },
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/cli": "^12.0.0",
+    "@commitlint/config-conventional": "^12.0.0",
     "@ridedott/eslint-config": "^2.5.56",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/exec": "^5.0.0",
@@ -25,7 +25,7 @@
     "cspell": "^5.2.4",
     "eslint": "^7.20.0",
     "http-status-codes": "^2.1.4",
-    "husky": "^5.1.0",
+    "husky": "^5.1.1",
     "jest": "^25.5.4",
     "lint-staged": "^10.5.4",
     "nock": "^13.0.7",
@@ -89,5 +89,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "2.1.7"
+  "version": "2.1.11"
 }
