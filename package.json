@@ -10,7 +10,7 @@
   },
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
+    "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
     "@ridedott/eslint-config": "^2.5.56",
     "@semantic-release/changelog": "^5.0.1",
@@ -19,7 +19,7 @@
     "@semantic-release/npm": "^7.0.10",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.30",
+    "@types/node": "^14.14.31",
     "@zeit/ncc": "^0.22.3",
     "commitizen": "^4.2.3",
     "cspell": "^5.2.4",
@@ -89,5 +89,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "2.1.9"
+  "version": "2.2.1"
 }

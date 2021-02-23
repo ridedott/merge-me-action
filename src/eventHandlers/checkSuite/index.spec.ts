@@ -3,7 +3,7 @@
  */
 
 import * as core from '@actions/core';
-import { getOctokit } from '@actions/github';
+import { context, getOctokit } from '@actions/github';
 import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
 
@@ -356,7 +356,7 @@ describe('check suite event handler', (): void => {
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
 
-  it('does not merge if request not created by the selected GITHUB_LOGIN', async (): Promise<void> => {
+  it('does not merge if request not created by the selected GITHUB_LOGIN and logs it', async (): Promise<void> => {
     expect.assertions(1);
 
     await checkSuiteHandle(octokit, 'some-other-login', 3);
@@ -364,6 +364,25 @@ describe('check suite event handler', (): void => {
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by dependabot[bot], not some-other-login, skipping.',
     );
+  });
+
+  it('does not merge if request not created by the selected GITHUB_LOGIN and logs unknown sender if the sender is undefined', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const { sender } = context.payload;
+    delete context.payload.sender;
+
+    await checkSuiteHandle(octokit, 'some-other-login', 3);
+
+    expect(infoSpy).toHaveBeenCalledWith(
+      'Pull request created by unknown sender, not some-other-login, skipping.',
+    );
+
+    /* eslint-disable require-atomic-updates */
+    /* eslint-disable immutable/no-mutation */
+    context.payload.sender = sender;
+    /* eslint-enable require-atomic-updates */
+    /* eslint-enable immutable/no-mutation */
   });
 
   it('does not merge if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is set to "true"', async (): Promise<void> => {
