@@ -3,7 +3,7 @@
  */
 
 import * as core from '@actions/core';
-import { getOctokit } from '@actions/github';
+import { context, getOctokit } from '@actions/github';
 import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
 
@@ -51,6 +51,42 @@ beforeEach((): void => {
 });
 
 describe('pull request event handler', (): void => {
+  it('does nothing if repository is undefined', async (): Promise<void> => {
+    expect.assertions(0);
+
+    const { repository } = context.payload;
+    delete context.payload.repository;
+
+    await pullRequestHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
+
+    /* eslint-disable require-atomic-updates */
+    /* eslint-disable immutable/no-mutation */
+    context.payload.repository = repository;
+    /* eslint-enable require-atomic-updates */
+    /* eslint-enable immutable/no-mutation */
+  });
+
+  it('does nothing if pullRequest is undefined', async (): Promise<void> => {
+    expect.assertions(0);
+
+    const { pull_request: pullRequest } = context.payload;
+    delete context.payload.pull_request;
+
+    await pullRequestHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
+
+    /* eslint-disable require-atomic-updates */
+    /* eslint-disable immutable/no-mutation */
+    context.payload.pull_request = pullRequest;
+    /* eslint-enable require-atomic-updates */
+    /* eslint-enable immutable/no-mutation */
+  });
+
+  it('does nothing if the context login is not the same as the github login', async (): Promise<void> => {
+    expect.assertions(0);
+
+    await pullRequestHandle(octokit, 'some-other-login', 2);
+  });
+
   describe('for a user initiated pull request', (): void => {
     it('does not log warnings when it is triggered', async (): Promise<void> => {
       expect.assertions(1);

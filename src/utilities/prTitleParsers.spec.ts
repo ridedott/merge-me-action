@@ -7,6 +7,14 @@ const parseInputMergePresetSpy = jest.spyOn(
 );
 
 describe('checkPullRequestTitleForMergePreset', (): void => {
+  it('returns true if category is undefined', (): void => {
+    expect.assertions(1);
+
+    parseInputMergePresetSpy.mockReturnValueOnce(undefined);
+
+    expect(checkPullRequestTitleForMergePreset('')).toStrictEqual(true);
+  });
+
   describe('given containing major bump', (): void => {
     const title = 'bump @types/jest from 26.0.12 to 27.0.13';
 
