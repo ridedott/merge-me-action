@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/ridedott/merge-me-action/compare/v2.1.11...v2.2.0) (2021-02-23)
+
+### Features
+
+- increase test coverage
+  ([191a1db](https://github.com/ridedott/merge-me-action/commit/191a1db2d67406ca401b720f191fe1896d371a82))
+
 ## [2.1.11](https://github.com/ridedott/merge-me-action/compare/v2.1.10...v2.1.11) (2021-02-23)
 
 ### Chores
