@@ -1,3 +1,10 @@
+## [2.2.10](https://github.com/ridedott/merge-me-action/compare/v2.2.9...v2.2.10) (2021-03-01)
+
+### Chores
+
+- **deps-dev:** bump husky from 5.1.1 to 5.1.2
+  ([8291915](https://github.com/ridedott/merge-me-action/commit/82919152d80c3a3c9c2aeea3227df5821e2e448b))
+
 ## [2.2.9](https://github.com/ridedott/merge-me-action/compare/v2.2.8...v2.2.9) (2021-03-01)
 
 ### Chores
