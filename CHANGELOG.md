@@ -1,3 +1,12 @@
+## [2.2.12](https://github.com/ridedott/merge-me-action/compare/v2.2.11...v2.2.12) (2021-03-02)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional from 12.0.0 to 12.0.1
+  ([0a80e2d](https://github.com/ridedott/merge-me-action/commit/0a80e2df99445189d341be008745fce15af04ebe))
+- **deps-dev:** bump husky from 5.1.2 to 5.1.3
+  ([df943f5](https://github.com/ridedott/merge-me-action/commit/df943f51f1262af989b534558c8bb7f2ac1f3bab))
+
 ## [2.2.11](https://github.com/ridedott/merge-me-action/compare/v2.2.10...v2.2.11) (2021-03-01)
 
 ### Chores
