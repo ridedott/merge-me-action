@@ -24,4 +24,10 @@ updates:
     schedule:
       interval: daily
     versioning-strategy: increase
+    ignore:
+      # Husky version 5 is in early access, with a license for sponsors and open
+      # source projects only. After the early access, husky v5 will be MIT.
+      - dependency-name: husky
+        versions:
+          - "5"
 version: 2
