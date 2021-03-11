@@ -52,9 +52,7 @@ interface PullRequest {
       };
     }>;
   };
-  head: {
-    ref: string;
-  };
+  headRefName: string;
   id: string;
   mergeStateStatus?: MergeStateStatus;
   mergeable: MergeableState;
