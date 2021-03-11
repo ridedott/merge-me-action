@@ -72,7 +72,7 @@ const getPullRequestInformation = async (
 
 const DEPENDS_ON = getInput('DEPENDS_ON');
 
-// eslint-disable-next-line max-statements
+// eslint-disable-next-line max-statements,max-lines-per-function
 export const pullRequestHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
