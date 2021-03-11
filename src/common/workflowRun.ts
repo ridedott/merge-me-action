@@ -30,7 +30,7 @@ export const getLastWorkflowRunConclusion = async (
     branch: query.branch,
     owner: query.owner,
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    per_page: 10,
+    per_page: 1,
     repo: query.repository,
     status: 'completed',
     // eslint-disable-next-line @typescript-eslint/naming-convention
