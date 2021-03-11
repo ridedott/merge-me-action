@@ -1,6 +1,11 @@
+import { getInput } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
 import { tryMerge } from '../../common/merge';
+import {
+  getLastWorkflowRunConclusion,
+  WorkflowRunConclusion,
+} from '../../common/workflowRun';
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
 import {
   FindPullRequestInfoByNumberResponse,
@@ -45,6 +50,7 @@ const getPullRequestInformation = async (
         merged,
         state: pullRequestState,
         title: pullRequestTitle,
+        head: { ref: pullRequestBranch },
       },
     },
   } = response as FindPullRequestInfoByNumberResponse;
@@ -56,6 +62,7 @@ const getPullRequestInformation = async (
     mergeStateStatus,
     mergeableState,
     merged,
+    pullRequestBranch,
     pullRequestId,
     pullRequestState,
     pullRequestTitle,
@@ -63,6 +70,9 @@ const getPullRequestInformation = async (
   };
 };
 
+const DEPENDS_ON = getInput('DEPENDS_ON');
+
+// eslint-disable-next-line max-statements
 export const pullRequestHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
@@ -76,16 +86,6 @@ export const pullRequestHandle = async (
     return;
   }
 
-  if (pullRequest.user.login !== gitHubLogin) {
-    logInfo(
-      `Pull request created by ${
-        pullRequest.user.login as string
-      }, not ${gitHubLogin}, skipping.`,
-    );
-
-    return;
-  }
-
   const pullRequestInformation = await getPullRequestInformation(octokit, {
     pullRequestNumber: pullRequest.number,
     repositoryName: repository.name,
@@ -95,6 +95,41 @@ export const pullRequestHandle = async (
   if (pullRequestInformation === undefined) {
     logWarning('Unable to fetch pull request information.');
   } else {
+    if (DEPENDS_ON.length > 0) {
+      logInfo(
+        `Depends on: ${DEPENDS_ON}, context ref is: ${pullRequestInformation.pullRequestBranch}, sha: ${context.sha}, event: ${context.eventName}, owner: ${context.repo.owner}, repo: ${context.repo.repo}`,
+      );
+
+      const conclusion = await getLastWorkflowRunConclusion(octokit, {
+        branch: pullRequestInformation.pullRequestBranch,
+        event: context.eventName,
+        owner: context.repo.owner,
+        repository: context.repo.repo,
+        sha: context.sha,
+        workflowFileName: DEPENDS_ON,
+      });
+
+      if (conclusion !== WorkflowRunConclusion.Success) {
+        logInfo(
+          `The last run of ${DEPENDS_ON} workflow is expected to be 'success' but it is '${
+            conclusion ?? 'unknown'
+          }', skipping.`,
+        );
+
+        return;
+      }
+    }
+
+    if (pullRequest.user.login !== gitHubLogin) {
+      logInfo(
+        `Pull request created by ${
+          pullRequest.user.login as string
+        }, not ${gitHubLogin}, skipping.`,
+      );
+
+      return;
+    }
+
     logInfo(
       `Found pull request information: ${JSON.stringify(
         pullRequestInformation,

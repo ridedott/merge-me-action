@@ -31,6 +31,7 @@ export interface PullRequestInformation {
   mergeStateStatus?: MergeStateStatus;
   mergeableState: MergeableState;
   merged: boolean;
+  pullRequestBranch: string;
   pullRequestId: string;
   pullRequestState: PullRequestState;
   pullRequestTitle: string;
@@ -50,6 +51,9 @@ interface PullRequest {
         };
       };
     }>;
+  };
+  head: {
+    ref: string;
   };
   id: string;
   mergeStateStatus?: MergeStateStatus;
