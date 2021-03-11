@@ -28,6 +28,9 @@ inputs:
       than the one set in GITHUB_LOGIN. One of: "true" or "false".'
     default: 'false'
     required: false
+  DEPENDS_ON:
+    description: 'Action workflows dependency'
+    required: false
 name: 'Merge me!'
 runs:
   main: dist/index.js

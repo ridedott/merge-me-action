@@ -2,6 +2,10 @@ import { getInput, setFailed } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
 import {
+  getLastWorkflowRunConclusion,
+  WorkflowRunConclusion,
+} from './common/workflowRun';
+import {
   checkSuiteHandle,
   pullRequestHandle,
   pushHandle,
@@ -12,6 +16,7 @@ const DEFAULT_MAXIMUM_RETRIES = 3;
 
 const GITHUB_TOKEN = getInput('GITHUB_TOKEN');
 const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
+const DEPENDS_ON_WORKFLOW = getInput('DEPENDS_ON');
 const MAXIMUM_RETRIES =
   getInput('MAXIMUM_RETRIES').trim() === ''
     ? DEFAULT_MAXIMUM_RETRIES
@@ -21,6 +26,31 @@ const octokit = getOctokit(GITHUB_TOKEN);
 
 const main = async (): Promise<void> => {
   logInfo(`Automatic merges enabled for GitHub login: ${GITHUB_LOGIN}.`);
+
+  if (DEPENDS_ON_WORKFLOW.length > 0) {
+    logInfo(
+      `Context ref is: ${context.ref}, sha: ${context.sha}, event: ${context.eventName}, owner: ${context.repo.owner}, repo: ${context.repo.repo}, dependant workflow id: ${DEPENDS_ON_WORKFLOW}`,
+    );
+
+    const conclusion = await getLastWorkflowRunConclusion(octokit, {
+      branch: context.ref,
+      event: context.eventName,
+      owner: context.repo.owner,
+      repository: context.repo.repo,
+      sha: context.sha,
+      workflowFileName: DEPENDS_ON_WORKFLOW,
+    });
+
+    if (conclusion !== WorkflowRunConclusion.Success) {
+      logInfo(
+        `The last run of ${DEPENDS_ON_WORKFLOW} workflow is expected to be 'success' but it is '${
+          conclusion ?? 'unknown'
+        }', skipping.`,
+      );
+
+      return;
+    }
+  }
 
   switch (context.eventName) {
     case 'check_suite':
