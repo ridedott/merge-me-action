@@ -19,10 +19,10 @@ export const getLastWorkflowRunConclusion = async (
   octokit: ReturnType<typeof getOctokit>,
   query: {
     branch: string;
+    commit: string;
     event: string;
     owner: string;
     repository: string;
-    sha: string;
     workflowId: string | number;
   },
 ): Promise<WorkflowRunConclusion | undefined> => {
@@ -44,7 +44,7 @@ export const getLastWorkflowRunConclusion = async (
   logInfo(response.data.workflow_runs);
 
   const runsForCommit = response.data.workflow_runs.filter(
-    (run): boolean => run.head_sha === query.sha,
+    (run): boolean => run.head_sha === query.commit,
   );
 
   if (runsForCommit.length === 0) {

@@ -8,6 +8,21 @@ const pullRequestFields = `{
           }
           messageHeadline
           message
+          checkSuites {
+            edges {
+              node {
+                checkRuns {
+                  edges {
+                    node {
+                      name
+                      status
+                      conclusion
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

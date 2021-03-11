@@ -1,11 +1,6 @@
-import { getInput } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
 import { tryMerge } from '../../common/merge';
-import {
-  getLastWorkflowRunConclusion,
-  WorkflowRunConclusion,
-} from '../../common/workflowRun';
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
 import {
   FindPullRequestInfoByNumberResponse,
@@ -27,6 +22,8 @@ const getPullRequestInformation = async (
     return undefined;
   }
 
+  logInfo(response);
+
   const {
     repository: {
       pullRequest: {
@@ -44,7 +41,6 @@ const getPullRequestInformation = async (
             },
           ],
         },
-        headRefName: pullRequestBranch,
         reviews: { edges: reviewEdges },
         mergeStateStatus,
         mergeable: mergeableState,
@@ -62,7 +58,6 @@ const getPullRequestInformation = async (
     mergeStateStatus,
     mergeableState,
     merged,
-    pullRequestBranch,
     pullRequestId,
     pullRequestState,
     pullRequestTitle,
@@ -70,9 +65,6 @@ const getPullRequestInformation = async (
   };
 };
 
-const DEPENDS_ON = getInput('DEPENDS_ON');
-
-// eslint-disable-next-line max-statements,max-lines-per-function
 export const pullRequestHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
@@ -95,33 +87,6 @@ export const pullRequestHandle = async (
   if (pullRequestInformation === undefined) {
     logWarning('Unable to fetch pull request information.');
   } else {
-    if (DEPENDS_ON.length > 0) {
-      logInfo(
-        `Depends on: ${DEPENDS_ON}, context ref is: ${pullRequestInformation.pullRequestBranch}, sha: ${context.sha}, event: ${context.eventName}, owner: ${context.repo.owner}, repo: ${context.repo.repo}`,
-      );
-
-      const conclusion = await getLastWorkflowRunConclusion(octokit, {
-        branch: pullRequestInformation.pullRequestBranch,
-        event: context.eventName,
-        owner: context.repo.owner,
-        repository: context.repo.repo,
-        sha: context.sha,
-        workflowId: DEPENDS_ON,
-      });
-
-      if (conclusion !== WorkflowRunConclusion.Success) {
-        logInfo(
-          `The last run of ${DEPENDS_ON} workflow is expected to be 'success' but it is '${
-            conclusion ?? 'unknown'
-          }', skipping.`,
-        );
-
-        return;
-      }
-
-      logInfo(`The last run of ${DEPENDS_ON} workflow is '${conclusion}'.`);
-    }
-
     if (pullRequest.user.login !== gitHubLogin) {
       logInfo(
         `Pull request created by ${

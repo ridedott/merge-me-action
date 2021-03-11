@@ -89,7 +89,6 @@ const getPullRequestInformation = async (
     mergeStateStatus,
     mergeableState,
     merged,
-    pullRequestBranch: 'test',
     pullRequestId,
     pullRequestState,
     pullRequestTitle,

@@ -31,7 +31,6 @@ export interface PullRequestInformation {
   mergeStateStatus?: MergeStateStatus;
   mergeableState: MergeableState;
   merged: boolean;
-  pullRequestBranch: string;
   pullRequestId: string;
   pullRequestState: PullRequestState;
   pullRequestTitle: string;
@@ -46,13 +45,27 @@ interface PullRequest {
           author: {
             name: string;
           };
+          checkSuites: {
+            edges: Array<{
+              node: {
+                checkRuns: {
+                  edges: Array<{
+                    node: {
+                      conclusion: string;
+                      name: string;
+                      status: string;
+                    };
+                  }>;
+                };
+              };
+            }>;
+          };
           message: string;
           messageHeadline: string;
         };
       };
     }>;
   };
-  headRefName: string;
   id: string;
   mergeStateStatus?: MergeStateStatus;
   mergeable: MergeableState;
