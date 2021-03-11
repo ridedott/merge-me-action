@@ -32,7 +32,7 @@ export const getLastWorkflowRunConclusion = async (
     // eslint-disable-next-line @typescript-eslint/naming-convention
     per_page: 10,
     repo: query.repository,
-    status: 'conclusion',
+    status: 'completed',
   });
 
   if (response.status !== HTTP_OK) {
