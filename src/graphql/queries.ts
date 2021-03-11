@@ -24,6 +24,9 @@ const pullRequestFields = `{
   }
   state
   title
+  head {
+    ref
+  }
 }`;
 
 export const findPullRequestsInfoByReferenceName = `
