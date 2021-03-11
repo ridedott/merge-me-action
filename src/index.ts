@@ -28,7 +28,7 @@ const main = async (): Promise<void> => {
   logInfo(`Automatic merges enabled for GitHub login: ${GITHUB_LOGIN}.`);
 
   logInfo(
-    `Depends on: ${DEPENDS_ON}, context ref is: ${context.ref}, sha: ${context.sha}, event: ${context.eventName}, owner: ${context.repo.owner}, repo: ${context.repo.repo}, dependant workflow id: ${DEPENDS_ON_WORKFLOW}`,
+    `Depends on: ${DEPENDS_ON}, context ref is: ${context.ref}, sha: ${context.sha}, event: ${context.eventName}, owner: ${context.repo.owner}, repo: ${context.repo.repo}, dependant workflow id: ${DEPENDS_ON}`,
   );
 
   if (DEPENDS_ON.length > 0) {
