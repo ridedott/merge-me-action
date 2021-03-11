@@ -1,4 +1,5 @@
 import { getOctokit } from '@actions/github';
+import { logInfo } from '../utilities/log';
 
 const HTTP_OK = 200;
 
@@ -38,6 +39,8 @@ export const getLastWorkflowRunConclusion = async (
   if (response.status !== HTTP_OK) {
     return;
   }
+
+  logInfo(response.data.workflow_runs);
 
   const runsForCommit = response.data.workflow_runs.filter(
     (run): boolean => run.head_sha === query.sha,
