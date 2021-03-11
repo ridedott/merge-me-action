@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Merge me!
-        uses: ridedott/merge-me-action@d1902dadabfb0cbe5417ec12884f18d780b78825
+        uses: ridedott/merge-me-action@fix/merge-failed
         with:
           GITHUB_LOGIN: dependabot[bot]
           GITHUB_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}

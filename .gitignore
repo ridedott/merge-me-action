@@ -45,5 +45,5 @@ node_modules
 coverage
 
 # Build output
-dist
+#dist
 lib
