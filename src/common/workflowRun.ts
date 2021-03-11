@@ -1,4 +1,5 @@
 import { getOctokit } from '@actions/github';
+
 import { logInfo } from '../utilities/log';
 
 const HTTP_OK = 200;
