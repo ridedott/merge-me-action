@@ -1,10 +1,12 @@
-name: Merge Me
+name: Merge me!
 
 on:
   pull_request_target:
     branches:
       - master
-
+  pull_request:
+    branches:
+      - master
 jobs:
   merge-me:
     name: Merge me!
