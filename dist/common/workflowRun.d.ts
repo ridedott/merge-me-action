@@ -15,6 +15,6 @@ export declare const getLastWorkflowRunConclusion: (octokit: ReturnType<typeof g
     owner: string;
     repository: string;
     sha: string;
-    workflowFileName: string;
+    workflowId: string | number;
 }) => Promise<WorkflowRunConclusion | undefined>;
 //# sourceMappingURL=workflowRun.d.ts.map

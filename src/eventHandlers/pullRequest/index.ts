@@ -106,7 +106,7 @@ export const pullRequestHandle = async (
         owner: context.repo.owner,
         repository: context.repo.repo,
         sha: context.sha,
-        workflowFileName: DEPENDS_ON,
+        workflowId: DEPENDS_ON,
       });
 
       if (conclusion !== WorkflowRunConclusion.Success) {
@@ -118,6 +118,8 @@ export const pullRequestHandle = async (
 
         return;
       }
+
+      logInfo(`The last run of ${DEPENDS_ON} workflow is '${conclusion}'.`);
     }
 
     if (pullRequest.user.login !== gitHubLogin) {

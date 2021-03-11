@@ -23,16 +23,18 @@ export const getLastWorkflowRunConclusion = async (
     owner: string;
     repository: string;
     sha: string;
-    workflowFileName: string;
+    workflowId: string | number;
   },
 ): Promise<WorkflowRunConclusion | undefined> => {
-  const response = await octokit.actions.listWorkflowRunsForRepo({
+  const response = await octokit.actions.listWorkflowRuns({
     branch: query.branch,
     owner: query.owner,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     per_page: 10,
     repo: query.repository,
     status: 'completed',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    workflow_id: (query.workflowId as unknown) as number,
   });
 
   if (response.status !== HTTP_OK) {
