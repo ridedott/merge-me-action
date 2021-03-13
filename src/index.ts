@@ -25,6 +25,7 @@ const main = async (): Promise<void> => {
   switch (context.eventName) {
     case 'check_suite':
       return checkSuiteHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
+    case 'pull_request_target':
     case 'pull_request':
       return pullRequestHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     case 'push':

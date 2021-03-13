@@ -24,6 +24,15 @@ class CustomEnvironment extends NodeEnvironment {
         env.GITHUB_SHA = 'ffac537e6cbbf934b08745a378932722df287a53';
         env.GITHUB_WORKFLOW = 'Auto merge';
         break;
+      case 'pull_request_target':
+        env.GITHUB_ACTION = 'ridedottmerge-me-action';
+        env.GITHUB_ACTOR = 'pull_request_target';
+        env.GITHUB_EVENT_PATH = './test/fixtures/ctx.pull-request.json';
+        env.GITHUB_REF = 'refs/heads/master';
+        env.GITHUB_REPOSITORY = 'test-actor/Test-Repo';
+        env.GITHUB_SHA = 'ffac537e6cbbf934b08745a378932722df287a53';
+        env.GITHUB_WORKFLOW = 'Auto merge';
+        break;
       case 'pull_request_for_major_bump':
         env.GITHUB_ACTION = 'ridedottmerge-me-action';
         env.GITHUB_ACTOR = 'dependabot[bot]';
