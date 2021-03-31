@@ -2,11 +2,8 @@
 import { context, getOctokit } from '@actions/github';
 
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
-import {
-  FindPullRequestInfoByNumberResponse,
-  PullRequestInformation,
-} from '../../types';
-import { logInfo, logWarning } from '../../utilities/log';
+import { FindPullRequestInfoByNumberResponse, PullRequestInformation } from '../../types';
+import { logError, logInfo, logWarning } from '../../utilities/log';
 
 const TWO = 2;
 
@@ -24,6 +21,46 @@ interface WorkflowRunInformation {
   pullRequestNumber: number;
   status: string;
 }
+
+const getWorkflowRunInformation = async (
+  octokit: ReturnType<typeof getOctokit>,
+  query: {
+    repositoryName: string;
+    repositoryOwner: string;
+    runId: number;
+  },
+): Promise<WorkflowRunInformation | undefined> => {
+  try {
+    const { data } = await octokit.request(
+      'GET /repos/:owner/:repo/actions/runs/:run_id',
+      {
+        owner: query.repositoryOwner,
+        repo: query.repositoryName,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        run_id: query.runId,
+      },
+    );
+
+    const pullRequests = data.pull_requests as Array<{
+      number: number;
+    }>;
+
+    if (pullRequests.length !== 1) {
+      throw new Error('Expected exactly one pull request in the workflow run.');
+    }
+
+    return {
+      conclusion: data.conclusion,
+      event: data.event,
+      pullRequestNumber: pullRequests[0].number,
+      status: data.status,
+    };
+  } catch (error: unknown) {
+    logError(error);
+
+    return undefined;
+  }
+};
 
 const getPullRequestInformation = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -131,10 +168,24 @@ export const workflowRunHandle = async (
   logInfo(`context.issue: ${JSON.stringify(context.issue, null, TWO)}`);
   logInfo(`context.repo: ${JSON.stringify(context.repo, null, TWO)}`);
 
+  const workflowRunInformation1 = await getWorkflowRunInformation(octokit, {
+    repositoryName: context.repo.repo,
+    repositoryOwner: context.repo.owner,
+    runId: context.runId,
+  });
+
+  logInfo(
+    `Found workflow run information 1: ${JSON.stringify(
+      workflowRunInformation1,
+    )}.`,
+  );
+
   const workflowRunInformation = extractWorkflowRunInformation(context.payload);
 
   if (workflowRunInformation === undefined) {
-    return undefined;
+    logWarning('Unable to fetch pull request information.');
+
+    return;
   }
 
   logInfo(
