@@ -4,3 +4,4 @@
 export * from './checkSuite';
 export * from './pullRequest';
 export * from './push';
+export * from './workflowRunHandle';

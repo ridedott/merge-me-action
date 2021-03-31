@@ -5,6 +5,7 @@ import {
   checkSuiteHandle,
   pullRequestHandle,
   pushHandle,
+  workflowRunHandle,
 } from './eventHandlers';
 import { logInfo, logWarning } from './utilities/log';
 
@@ -29,6 +30,8 @@ const main = async (): Promise<void> => {
       return pullRequestHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     case 'push':
       return pushHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
+    case 'workflow_run':
+      return workflowRunHandle(octokit);
     default:
       logWarning(`Unknown event ${context.eventName}, skipping.`);
   }
