@@ -85,7 +85,7 @@ const extractWorkflowRunInformation = (
 ): WorkflowRunInformation | undefined => {
   if (
     payload.workflow_run === undefined ||
-    Array.isArray(payload.workflow_run.pull_requests)
+    Array.isArray(payload.workflow_run.pull_requests) === false
   ) {
     logWarning(new Error('Incorrect workflow_run information.'));
 
