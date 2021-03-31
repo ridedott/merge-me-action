@@ -2,55 +2,28 @@
 import { context, getOctokit } from '@actions/github';
 
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
-import { FindPullRequestInfoByNumberResponse, PullRequestInformation } from '../../types';
-import { logError, logInfo, logWarning } from '../../utilities/log';
+import {
+  FindPullRequestInfoByNumberResponse,
+  PullRequestInformation,
+} from '../../types';
+import { logInfo, logWarning } from '../../utilities/log';
 
 const TWO = 2;
 
+interface WorkflowRunPayload {
+  conclusion: string;
+  event: string;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  pull_requests: Array<{ number: number }>;
+  status: string;
+}
+
 interface WorkflowRunInformation {
+  conclusion: string;
   event: string;
   pullRequestNumber: number;
   status: string;
 }
-
-const getWorkflowRunInformation = async (
-  octokit: ReturnType<typeof getOctokit>,
-  query: {
-    repositoryName: string;
-    repositoryOwner: string;
-    runId: number;
-  },
-): Promise<WorkflowRunInformation | undefined> => {
-  try {
-    const { data } = await octokit.request(
-      'GET /repos/:owner/:repo/actions/runs/:run_id',
-      {
-        owner: query.repositoryOwner,
-        repo: query.repositoryName,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        run_id: query.runId,
-      },
-    );
-
-    const pullRequests = data.pull_requests as Array<{
-      number: number;
-    }>;
-
-    if (pullRequests.length !== 1) {
-      throw new Error('Expected exactly one pull request in the workflow run.');
-    }
-
-    return {
-      event: data.event,
-      pullRequestNumber: pullRequests[0].number,
-      status: data.status,
-    };
-  } catch (error: unknown) {
-    logError(error);
-
-    return undefined;
-  }
-};
 
 const getPullRequestInformation = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -107,6 +80,41 @@ const getPullRequestInformation = async (
   };
 };
 
+const extractWorkflowRunInformation = (
+  payload: typeof context['payload'],
+): WorkflowRunInformation | undefined => {
+  if (
+    payload.workflow_run === undefined ||
+    Array.isArray(payload.workflow_run.pull_requests)
+  ) {
+    logWarning(new Error('Incorrect workflow_run information.'));
+
+    return;
+  }
+
+  const {
+    conclusion,
+    event,
+    pull_requests: pullRequests,
+    status,
+  } = payload.workflow_run as WorkflowRunPayload;
+
+  if (pullRequests.length !== 1) {
+    logWarning(
+      new Error('Expected exactly one pull request in the workflow run.'),
+    );
+
+    return;
+  }
+
+  return {
+    conclusion,
+    event,
+    pullRequestNumber: pullRequests[0].number,
+    status,
+  };
+};
+
 export const workflowRunHandle = async (
   octokit: ReturnType<typeof getOctokit>,
 ): Promise<void> => {
@@ -123,16 +131,10 @@ export const workflowRunHandle = async (
   logInfo(`context.issue: ${JSON.stringify(context.issue, null, TWO)}`);
   logInfo(`context.repo: ${JSON.stringify(context.repo, null, TWO)}`);
 
-  const workflowRunInformation = await getWorkflowRunInformation(octokit, {
-    repositoryName: context.repo.repo,
-    repositoryOwner: context.repo.owner,
-    runId: context.runId,
-  });
+  const workflowRunInformation = extractWorkflowRunInformation(context.payload);
 
   if (workflowRunInformation === undefined) {
-    logWarning('Unable to fetch pull request information.');
-
-    return;
+    return undefined;
   }
 
   logInfo(
@@ -142,7 +144,11 @@ export const workflowRunHandle = async (
   );
 
   // What about pull_request events?
-  if (workflowRunInformation.event !== 'push' || workflowRunInformation.status !== 'success') {
+  if (
+    workflowRunInformation.event !== 'push' ||
+    workflowRunInformation.status !== 'completed' ||
+    workflowRunInformation.conclusion !== 'success'
+  ) {
     logInfo('Ignoring.');
 
     // Also return.
