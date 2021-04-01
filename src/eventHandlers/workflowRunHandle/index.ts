@@ -41,6 +41,10 @@ const getWorkflowRunInformation = async (
       },
     );
 
+    logInfo(
+      `getWorkflowRunInformation: ${JSON.stringify(data)}.`,
+    );
+
     const pullRequests = data.pull_requests as Array<{
       number: number;
     }>;
