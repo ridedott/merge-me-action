@@ -31,7 +31,7 @@ const main = async (): Promise<void> => {
     case 'push':
       return pushHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     case 'workflow_run':
-      return workflowRunHandle(octokit);
+      return workflowRunHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     default:
       logWarning(`Unknown event ${context.eventName}, skipping.`);
   }

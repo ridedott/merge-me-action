@@ -1,8 +1,14 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable max-statements */
+
 import { context, getOctokit } from '@actions/github';
 
+import { tryMerge } from '../../common/merge';
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
-import { FindPullRequestInfoByNumberResponse, PullRequestInformation } from '../../types';
+import {
+  FindPullRequestInfoByNumberResponse,
+  PullRequestInformation,
+} from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
 
 const TWO = 2;
@@ -114,6 +120,8 @@ const extractWorkflowRunInformation = (
 
 export const workflowRunHandle = async (
   octokit: ReturnType<typeof getOctokit>,
+  gitHubLogin: string,
+  maximumRetries: number,
 ): Promise<void> => {
   logInfo(`context.payload: ${JSON.stringify(context.payload, null, TWO)}`);
   logInfo(`context.eventName: ${context.eventName}`);
@@ -150,7 +158,7 @@ export const workflowRunHandle = async (
   ) {
     logInfo('Ignoring.');
 
-    // Also return.
+    return;
   }
 
   const pullRequestInformation = await getPullRequestInformation(octokit, {
@@ -161,11 +169,35 @@ export const workflowRunHandle = async (
 
   if (pullRequestInformation === undefined) {
     logWarning('Unable to fetch pull request information.');
-  } else {
-    logInfo(
-      `Found pull request information: ${JSON.stringify(
-        pullRequestInformation,
-      )}.`,
-    );
+
+    return;
   }
+
+  logInfo(
+    `Found pull request information: ${JSON.stringify(
+      pullRequestInformation,
+    )}.`,
+  );
+
+  if (pullRequestInformation.commitAuthorName !== gitHubLogin) {
+    logInfo(
+      `Pull request created by ${
+        pullRequestInformation.commitAuthorName
+      }, not ${gitHubLogin}, skipping.`,
+    );
+
+    return;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+  if (workflowRunInformation.pullRequestNumber !== 486) {
+    logInfo('Temporarily hardcoded the PR number.');
+
+    return;
+  }
+
+  await tryMerge(octokit, maximumRetries, {
+    ...pullRequestInformation,
+    commitMessageHeadline: pullRequestInformation.pullRequestTitle,
+  });
 };
