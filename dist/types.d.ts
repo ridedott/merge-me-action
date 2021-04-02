@@ -13,7 +13,7 @@ export declare type ReviewEdges = Array<{
         state: 'APPROVED' | 'CHANGES_REQUESTED' | 'COMMENTED' | 'DISMISSED' | 'PENDING';
     };
 } | undefined>;
-export interface PullRequestInformation {
+export interface PullRequestInformationContinuousIntegrationEnd {
     commitAuthorName: string;
     commitMessage: string;
     commitMessageHeadline: string;

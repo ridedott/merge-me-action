@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/ridedott/merge-me-action/compare/v2.2.21...v2.3.0) (2021-04-02)
+
+### Features
+
+- **eventhandlers:** support of event type workflow_run
+  ([c023b9c](https://github.com/ridedott/merge-me-action/commit/c023b9c908397ce71417b23dbeb10f7769e1471e))
+
+### Other
+
+- Use version 2
+  ([73d6414](https://github.com/ridedott/merge-me-action/commit/73d64144872c1c85d6e67b021a668df66c6544c6))
+
 ## [2.2.21](https://github.com/ridedott/merge-me-action/compare/v2.2.20...v2.2.21) (2021-03-08)
 
 ### Chores
