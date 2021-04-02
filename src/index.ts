@@ -2,7 +2,7 @@ import { getInput, setFailed } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
 import {
-  checkSuiteHandle,
+  continuousIntegrationEndHandle,
   pullRequestHandle,
   pushHandle,
 } from './eventHandlers';
@@ -24,7 +24,17 @@ const main = async (): Promise<void> => {
 
   switch (context.eventName) {
     case 'check_suite':
-      return checkSuiteHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
+      return continuousIntegrationEndHandle(
+        octokit,
+        GITHUB_LOGIN,
+        MAXIMUM_RETRIES,
+      );
+    case 'workflow_run':
+      return continuousIntegrationEndHandle(
+        octokit,
+        GITHUB_LOGIN,
+        MAXIMUM_RETRIES,
+      );
     case 'pull_request':
       return pullRequestHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     case 'push':
