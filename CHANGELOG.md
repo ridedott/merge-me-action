@@ -2,7 +2,7 @@
 
 ### Features
 
-- **eventhandlers:** support of event type workflow_run
+- **eventHandlers:** support of event type workflow_run
   ([c023b9c](https://github.com/ridedott/merge-me-action/commit/c023b9c908397ce71417b23dbeb10f7769e1471e))
 
 ### Other
