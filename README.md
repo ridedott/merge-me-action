@@ -81,17 +81,10 @@ on:
   check_suite:
     types:
       - completed
-  pull_request:
+  workflow_run:
+    workflows: ['Continuous Integration']
     types:
-      - edited
-      - labeled
-      - opened
-      - ready_for_review
-      - reopened
-      - synchronize
-      - unlabeled
-      - unlocked
-
+      - completed
 jobs:
   merge-me:
     name: Merge me!
