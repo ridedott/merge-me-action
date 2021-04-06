@@ -27,6 +27,9 @@ const getPullRequestInformation = async (
   const {
     repository: {
       pullRequest: {
+        author: {
+          login: authorLogin,
+        },
         id: pullRequestId,
         commits: {
           edges: [
@@ -47,13 +50,12 @@ const getPullRequestInformation = async (
         merged,
         state: pullRequestState,
         title: pullRequestTitle,
-        user: { name: authorName },
       },
     },
   } = response as FindPullRequestInfoByNumberResponse;
 
   return {
-    authorName,
+    authorLogin,
     commitAuthorName,
     commitMessage,
     commitMessageHeadline,
@@ -89,9 +91,9 @@ export const continuousIntegrationEndHandle = async (
     if (pullRequestInformation === undefined) {
       logWarning('Unable to fetch pull request information.');
     } else {
-      if (pullRequestInformation.authorName !== gitHubLogin) {
+      if (pullRequestInformation.authorLogin !== gitHubLogin) {
         logInfo(
-          `Pull request created by ${pullRequestInformation.authorName}, not ${gitHubLogin}, skipping.`,
+          `Pull request created by ${pullRequestInformation.authorLogin}, not ${gitHubLogin}, skipping.`,
         );
 
         return;

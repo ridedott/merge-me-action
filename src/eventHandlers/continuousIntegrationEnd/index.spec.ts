@@ -56,6 +56,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -79,9 +82,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -104,6 +104,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -133,9 +136,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -164,6 +164,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -193,9 +196,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -219,6 +219,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -248,9 +251,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -272,6 +272,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -302,9 +305,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -328,6 +328,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -357,9 +360,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'CLOSED',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -381,6 +381,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -410,9 +413,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'CLOSED',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -456,6 +456,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -485,9 +488,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -511,6 +511,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -540,9 +543,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -582,6 +582,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -611,9 +614,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -651,6 +651,9 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
+            author: {
+              login: 'dependabot[bot]',
+            },
             commits: {
               edges: [
                 {
@@ -680,9 +683,6 @@ describe('continuous integration end event handler', (): void => {
             },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
-            user: {
-              name: 'dependabot[bot]',
-            }
           },
         },
       },
@@ -712,6 +712,9 @@ describe('continuous integration end event handler', (): void => {
         data: {
           repository: {
             pullRequest: {
+              author: {
+                login: 'dependabot[bot]',
+              },
               commits: {
                 edges: [
                   {
@@ -735,9 +738,6 @@ describe('continuous integration end event handler', (): void => {
               },
               state: 'OPEN',
               title: 'bump @types/jest from 26.0.12 to 27.0.13',
-              user: {
-                name: 'dependabot[bot]',
-              }
             },
           },
         },
