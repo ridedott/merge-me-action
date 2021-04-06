@@ -24,7 +24,12 @@ export type ReviewEdges = Array<
   | undefined
 >;
 
+export interface GithubUser {
+  name: string;
+}
+
 export interface PullRequestInformationContinuousIntegrationEnd {
+  authorName: string;
   commitAuthorName: string;
   commitMessage: string;
   commitMessageHeadline: string;
@@ -42,9 +47,7 @@ interface PullRequest {
     edges: Array<{
       node: {
         commit: {
-          author: {
-            name: string;
-          };
+          author: GithubUser;
           message: string;
           messageHeadline: string;
         };
@@ -58,6 +61,7 @@ interface PullRequest {
   reviews: { edges: ReviewEdges };
   state: PullRequestState;
   title: string;
+  user: GithubUser;
 }
 
 export interface FindPullRequestsInfoByReferenceNameResponse {
