@@ -21,32 +21,27 @@ Specific behavior can be configured in two ways:
 
 ## Usage
 
-The Action supports three scenarios:
+The Action supports two run triggers:
 
-- Where GitHub Actions are used exclusively.
-- Where a third party CI system provider is used.
-- Where both GitHub Actions and a third party CI system provider are used.
+- `check_suite` (works only on the default branch).
+- `workflow_run` for all other branches.
 
-Depending on the scenario, different configuration is required, as described
-below.
+In both cases, Merge Me! action should be added as a stand-alone workflow.
 
-### GitHub Actions
-
-When a repository uses GitHub Actions exclusively, Merge Me! action should be
-added as a last job in the CI workflow.
+Create a new `.github/workflows/merge-me.yaml` file:
 
 ```yaml
-# .github/workflows/continuous-integration.yaml
+name: Merge me!
 
+on:
+  # Triggers when a check suite is run.
+  check_suite:
+    types:
+      - completed
+       
 jobs:
-  # Other jobs are defined above.
   merge-me:
     name: Merge me!
-    needs:
-      - all
-      - other
-      - required
-      - jobs
     runs-on: ubuntu-latest
     steps:
       - name: Merge me!
@@ -66,45 +61,22 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### Third party CI systems
-
-When a repository uses third party CI systems, Merge Me! action should be added
-as a stand-alone workflow, which is triggered by changes to checks and pull
-requests.
-
-Create a new `.github/workflows/merge-me.yaml` file:
+Triggering on `workflow_run` is similar:
 
 ```yaml
 name: Merge me!
 
 on:
-  check_suite:
-    types:
-      - completed
+  # Triggers when a workflow is run.
   workflow_run:
     workflows: ['Continuous Integration']
     types:
       - completed
 jobs:
   merge-me:
-    name: Merge me!
-    runs-on: ubuntu-latest
-    steps:
-      - name: Merge me!
-        uses: ridedott/merge-me-action@v2
-        with:
-          # Depending on branch protection rules, a  manually populated
-          # `GITHUB_TOKEN_WORKAROUND` environment variable with permissions to
-          # push to a protected branch must be used. This variable can have an
-          # arbitrary name, as an example, this repository uses
-          # `GITHUB_TOKEN_DOTTBOTT`.
-          #
-          # When using a custom token, it is recommended to leave the following
-          # comment for other developers to be aware of the reasoning behind it:
-          #
-          # This must be used as GitHub Actions token does not support
-          # pushing to protected branches.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # Add any additional filters to indicate when the merge should be done.
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # ...
 ```
 
 ### GitHub Actions and third party CI systems
