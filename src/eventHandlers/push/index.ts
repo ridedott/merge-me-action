@@ -6,7 +6,7 @@ import {
   CommitMessageHeadlineGroup,
   FindPullRequestsInfoByReferenceNameResponse,
   GroupName,
-  PullRequestInformation,
+  PullRequestInformationContinuousIntegrationEnd,
 } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
 
@@ -38,7 +38,7 @@ const getPullRequestInformation = async (
     repositoryName: string;
     repositoryOwner: string;
   },
-): Promise<PullRequestInformation | undefined> => {
+): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
   const response = await octokit.graphql(
     findPullRequestsInfoByReferenceName,
     query,

@@ -4,7 +4,7 @@ import { tryMerge } from '../../common/merge';
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
 import {
   FindPullRequestInfoByNumberResponse,
-  PullRequestInformation,
+  PullRequestInformationContinuousIntegrationEnd,
 } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
 
@@ -15,7 +15,7 @@ const getPullRequestInformation = async (
     repositoryName: string;
     repositoryOwner: string;
   },
-): Promise<PullRequestInformation | undefined> => {
+): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
   const response = await octokit.graphql(findPullRequestInfoByNumber, query);
 
   if (response === null) {

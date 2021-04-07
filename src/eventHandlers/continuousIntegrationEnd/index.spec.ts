@@ -11,7 +11,7 @@ import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
 import { mergePullRequestMutation } from '../../graphql/mutations';
 import { FindPullRequestInfoByNumberResponse } from '../../types';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
-import { checkSuiteHandle } from '.';
+import { continuousIntegrationEndHandle } from '.';
 
 /* cspell:disable-next-line */
 const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
@@ -48,7 +48,7 @@ beforeEach((): void => {
   });
 });
 
-describe('check suite event handler', (): void => {
+describe('continuous integration end event handler', (): void => {
   it('does not log warnings when it gets triggered by Dependabot', async (): Promise<void> => {
     expect.assertions(1);
 
@@ -89,7 +89,7 @@ describe('check suite event handler', (): void => {
       .reply(StatusCodes.OK, response);
     nock('https://api.github.com').post('/graphql').reply(StatusCodes.OK);
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -148,7 +148,7 @@ describe('check suite event handler', (): void => {
       })
       .reply(StatusCodes.OK);
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
   });
 
   it('does not approve pull requests that are not mergeable', async (): Promise<void> => {
@@ -196,7 +196,7 @@ describe('check suite event handler', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, response);
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request is not in a mergeable state: CONFLICTING.',
@@ -248,7 +248,7 @@ describe('check suite event handler', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, response);
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
@@ -299,7 +299,7 @@ describe('check suite event handler', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, response);
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request cannot be merged cleanly. Current state: UNKNOWN.',
@@ -351,7 +351,7 @@ describe('check suite event handler', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, response);
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
@@ -359,7 +359,7 @@ describe('check suite event handler', (): void => {
   it('does not merge if request not created by the selected GITHUB_LOGIN and logs it', async (): Promise<void> => {
     expect.assertions(1);
 
-    await checkSuiteHandle(octokit, 'some-other-login', 3);
+    await continuousIntegrationEndHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by dependabot[bot], not some-other-login, skipping.',
@@ -372,7 +372,7 @@ describe('check suite event handler', (): void => {
     const { sender } = context.payload;
     delete context.payload.sender;
 
-    await checkSuiteHandle(octokit, 'some-other-login', 3);
+    await continuousIntegrationEndHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by unknown sender, not some-other-login, skipping.',
@@ -450,7 +450,7 @@ describe('check suite event handler', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, response);
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
@@ -502,7 +502,7 @@ describe('check suite event handler', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, response);
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -520,7 +520,7 @@ describe('check suite event handler', (): void => {
         },
       });
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(warningSpy).toHaveBeenCalled();
   });
@@ -578,7 +578,7 @@ describe('check suite event handler', (): void => {
 
     useSetTimeoutImmediateInvocation();
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
@@ -638,7 +638,7 @@ describe('check suite event handler', (): void => {
       .post('/graphql')
       .reply(403, '##[error]GraphqlError: This is a different error.');
 
-    await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
@@ -688,7 +688,7 @@ describe('check suite event handler', (): void => {
         .post('/graphql')
         .reply(StatusCodes.OK, response);
 
-      await checkSuiteHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
+      await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
     });
   });
 });
