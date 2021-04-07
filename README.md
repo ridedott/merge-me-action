@@ -38,7 +38,7 @@ on:
   check_suite:
     types:
       - completed
-       
+
 jobs:
   merge-me:
     name: Merge me!
