@@ -9,6 +9,11 @@
 
 This Action approves and attempts to merge Pull Requests when triggered.
 
+By using
+[branch protection](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/about-protected-branches)
+rules, it can be specified what the requirements are for a PR to be merged (e.g.
+require branches to be up to date, require status checks to pass).
+
 ## Usage
 
 The Action supports two run triggers:
@@ -114,7 +119,7 @@ jobs:
     steps:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
-        with:      
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MERGE_METHOD: MERGE
 ```
@@ -139,7 +144,7 @@ jobs:
     steps:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
-        with:      
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PRESET: DEPENDABOT_PATCH
 ```
@@ -160,7 +165,7 @@ jobs:
     steps:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
-        with:      
+        with:
           MAXIMUM_RETRIES: 2
 ```
 
@@ -184,7 +189,7 @@ jobs:
     steps:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
-        with:      
+        with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLED_FOR_MANUAL_CHANGES: 'true'
 ```
