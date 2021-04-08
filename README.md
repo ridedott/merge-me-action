@@ -169,19 +169,17 @@ jobs:
           MAXIMUM_RETRIES: 2
 ```
 
-### Disable for manual changes
+### Enable for manual changes
 
 There are cases in which manual changes are needed, for instance, in order to
 make the CI pass or to solve some conflicts that Dependabot (or the bot you are
-using) cannot handle. By default, this GitHub action will automatically approve
-and attempt to merge a Pull Request once its triggered regardless of who
-authored the changes on the Pull Request created by
-[`dependabot[bot]`](https://github.com/dependabot) (or the bot you are using).
-This might be undesirable as the author might prefer to get a code review before
-hastily merging the changes.
+using) cannot handle. By default, this GitHub action will skip this case where
+the author is not [`dependabot[bot]`](https://github.com/dependabot) (or the bot
+you are using). This is often desirable as the author might prefer to get a code
+review before merging the changes.
 
-It is possible to disable this default behavior by setting the value of
-`DISABLED_FOR_MANUAL_CHANGES` to `'true'`.
+It is possible to override this default behavior by setting the value of
+`ENABLE_FOR_MANUAL_CHANGES` to `'true'`.
 
 ```yaml
 jobs:
@@ -191,7 +189,7 @@ jobs:
         uses: ridedott/merge-me-action@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DISABLED_FOR_MANUAL_CHANGES: 'true'
+          ENABLE_FOR_MANUAL_CHANGES: 'true'
 ```
 
 > Important: Please note the single quotes around `true`.
