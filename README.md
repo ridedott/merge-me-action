@@ -29,8 +29,9 @@ Create a new `.github/workflows/merge-me.yaml` file:
 name: Merge me!
 
 on:
-  # Triggers when a check suite is run.
-  check_suite:
+  # Triggers when a workflow is run.
+  workflow_run:
+    workflows: ['Continuous Integration']
     types:
       - completed
 
@@ -56,22 +57,26 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-Triggering on `workflow_run` is similar:
+Triggering on `check_suite` is similar:
 
 ```yaml
 name: Merge me!
 
 on:
-  # Triggers when a workflow is run.
-  workflow_run:
-    workflows: ['Continuous Integration']
+  # Triggers when a check suite is run.
+  check_suite:
     types:
       - completed
+
 jobs:
   merge-me:
-    # Add any additional filters to indicate when the merge should be done.
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    # ...
+    name: Merge me!
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Configuration
