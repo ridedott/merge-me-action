@@ -79,11 +79,6 @@ jobs:
     # ...
 ```
 
-### GitHub Actions and third party CI systems
-
-When GitHub Actions and used in combination with third party CI systems, both of
-the configurations described above should be applied.
-
 ## Configuration
 
 ### Enable auto-merge for a different bot
