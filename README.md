@@ -8,69 +8,20 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 This Action approves and attempts to merge Pull Requests when triggered.
-Specific behavior can be configured in two ways:
 
-- By using the
-  [`needs`](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds)
-  configuration option in GitHub Actions, to specify which checks are required
-  to pass for the merge attempt to take place.
-- By using
-  [branch protection](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/about-protected-branches)
-  rules, to specify what are the requirements for a PR to be merged (e.g.
-  require branches to be up to date, require status checks to pass).
+By using
+[branch protection](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/about-protected-branches)
+rules, it can be specified what the requirements are for a PR to be merged (e.g.
+require branches to be up to date, require status checks to pass).
 
 ## Usage
 
-The Action supports three scenarios:
+The Action supports two run triggers:
 
-- Where GitHub Actions are used exclusively.
-- Where a third party CI system provider is used.
-- Where both GitHub Actions and a third party CI system provider are used.
+- `check_suite` (works only on the default branch).
+- `workflow_run` for all branches.
 
-Depending on the scenario, different configuration is required, as described
-below.
-
-### GitHub Actions
-
-When a repository uses GitHub Actions exclusively, Merge Me! action should be
-added as a last job in the CI workflow.
-
-```yaml
-# .github/workflows/continuous-integration.yaml
-
-jobs:
-  # Other jobs are defined above.
-  merge-me:
-    name: Merge me!
-    needs:
-      - all
-      - other
-      - required
-      - jobs
-    runs-on: ubuntu-latest
-    steps:
-      - name: Merge me!
-        uses: ridedott/merge-me-action@v2
-        with:
-          # Depending on branch protection rules, a  manually populated
-          # `GITHUB_TOKEN_WORKAROUND` environment variable with permissions to
-          # push to a protected branch must be used. This variable can have an
-          # arbitrary name, as an example, this repository uses
-          # `GITHUB_TOKEN_DOTTBOTT`.
-          #
-          # When using a custom token, it is recommended to leave the following
-          # comment for other developers to be aware of the reasoning behind it:
-          #
-          # This must be used as GitHub Actions token does not support
-          # pushing to protected branches.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
-### Third party CI systems
-
-When a repository uses third party CI systems, Merge Me! action should be added
-as a stand-alone workflow, which is triggered by changes to checks and pull
-requests.
+In both cases, Merge Me! action should be added as a stand-alone workflow.
 
 Create a new `.github/workflows/merge-me.yaml` file:
 
@@ -78,19 +29,11 @@ Create a new `.github/workflows/merge-me.yaml` file:
 name: Merge me!
 
 on:
-  check_suite:
+  # Triggers when a workflow is run.
+  workflow_run:
+    workflows: ['Continuous Integration']
     types:
       - completed
-  pull_request:
-    types:
-      - edited
-      - labeled
-      - opened
-      - ready_for_review
-      - reopened
-      - synchronize
-      - unlabeled
-      - unlocked
 
 jobs:
   merge-me:
@@ -114,10 +57,27 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### GitHub Actions and third party CI systems
+Triggering on `check_suite` is similar:
 
-When GitHub Actions and used in combination with third party CI systems, both of
-the configurations described above should be applied.
+```yaml
+name: Merge me!
+
+on:
+  # Triggers when a check suite is run.
+  check_suite:
+    types:
+      - completed
+
+jobs:
+  merge-me:
+    name: Merge me!
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
 
 ## Configuration
 
@@ -129,23 +89,27 @@ bot is [`dependabot[bot]`](https://github.com/dependabot). You can override the
 bot name by changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_LOGIN: my-awesome-bot-r2d2
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_LOGIN: my-awesome-bot-r2d2
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 A common scenario is to use Dependabot Preview (consider updating instead):
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_LOGIN: dependabot-preview[bot]
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_LOGIN: dependabot-preview[bot]
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### Use of configurable pull request merge method
@@ -155,12 +119,14 @@ override the merge method by changing the value of `MERGE_METHOD` parameter (one
 of `MERGE`, `SQUASH` or `REBASE`):
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      MERGE_METHOD: MERGE
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: MERGE
 ```
 
 ### Presets
@@ -178,12 +144,14 @@ Available presets are:
   [Semantic Versioning v2](https://semver.org/).
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      PRESET: DEPENDABOT_PATCH
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRESET: DEPENDABOT_PATCH
 ```
 
 ### Number of retries
@@ -197,11 +165,13 @@ It's possible to configure the number of retries by providing a value for
 `MAXIMUM_RETRIES` (by default, the value is `3`).
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      MAXIMUM_RETRIES: 2
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          MAXIMUM_RETRIES: 2
 ```
 
 ### Disable for manual changes
@@ -219,12 +189,14 @@ It is possible to disable this default behavior by setting the value of
 `DISABLED_FOR_MANUAL_CHANGES` to `'true'`.
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      DISABLED_FOR_MANUAL_CHANGES: 'true'
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISABLED_FOR_MANUAL_CHANGES: 'true'
 ```
 
 > Important: Please note the single quotes around `true`.
