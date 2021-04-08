@@ -1,3 +1,10 @@
+## [2.4.1](https://github.com/ridedott/merge-me-action/compare/v2.4.0...v2.4.1) (2021-04-08)
+
+### Bug Fixes
+
+- verify actual PR author on CI event
+  ([1dc3117](https://github.com/ridedott/merge-me-action/commit/1dc31170ed9f5bbde255a2e89b468a196d6179eb))
+
 # [2.4.0](https://github.com/ridedott/merge-me-action/compare/v2.3.0...v2.4.0) (2021-04-08)
 
 ### Features
