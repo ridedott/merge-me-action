@@ -27,6 +27,7 @@ const getPullRequestInformation = async (
   const {
     repository: {
       pullRequest: {
+        author: { login: authorLogin },
         id: pullRequestId,
         commits: {
           edges: [
@@ -52,6 +53,7 @@ const getPullRequestInformation = async (
   } = response as FindPullRequestInfoByNumberResponse;
 
   return {
+    authorLogin,
     commitAuthorName,
     commitMessage,
     commitMessageHeadline,
@@ -78,20 +80,6 @@ export const continuousIntegrationEndHandle = async (
   }>;
 
   for (const pullRequest of pullRequests) {
-    if (
-      typeof context.payload.sender !== 'object' ||
-      context.payload.sender.login !== gitHubLogin
-    ) {
-      logInfo(
-        `Pull request created by ${
-          (context.payload.sender?.login as string | undefined) ??
-          'unknown sender'
-        }, not ${gitHubLogin}, skipping.`,
-      );
-
-      return;
-    }
-
     const pullRequestInformation = await getPullRequestInformation(octokit, {
       pullRequestNumber: pullRequest.number,
       repositoryName: context.repo.repo,
@@ -101,6 +89,14 @@ export const continuousIntegrationEndHandle = async (
     if (pullRequestInformation === undefined) {
       logWarning('Unable to fetch pull request information.');
     } else {
+      if (pullRequestInformation.authorLogin !== gitHubLogin) {
+        logInfo(
+          `Pull request created by ${pullRequestInformation.authorLogin}, not ${gitHubLogin}, skipping.`,
+        );
+
+        return;
+      }
+
       logInfo(
         `Found pull request information: ${JSON.stringify(
           pullRequestInformation,
