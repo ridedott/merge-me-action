@@ -24,7 +24,7 @@ Specific behavior can be configured in two ways:
 The Action supports two run triggers:
 
 - `check_suite` (works only on the default branch).
-- `workflow_run` for all other branches.
+- `workflow_run` for all branches.
 
 In both cases, Merge Me! action should be added as a stand-alone workflow.
 
