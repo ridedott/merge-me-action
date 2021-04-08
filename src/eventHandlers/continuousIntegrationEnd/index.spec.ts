@@ -388,22 +388,6 @@ describe('continuous integration end event handler', (): void => {
   it('does not merge if last commit was not created by the selected GITHUB_LOGIN and ENABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
     expect.assertions(1);
 
-    getInputSpy.mockImplementation((name: string): string => {
-      if (name === 'GITHUB_LOGIN') {
-        return DEPENDABOT_GITHUB_LOGIN;
-      }
-
-      if (name === 'MERGE_METHOD') {
-        return 'SQUASH';
-      }
-
-      if (name === 'PRESET') {
-        return 'DEPENDABOT_MINOR';
-      }
-
-      return '';
-    });
-
     const response: Response = {
       data: {
         repository: {
