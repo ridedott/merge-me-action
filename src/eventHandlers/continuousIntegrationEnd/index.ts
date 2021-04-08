@@ -27,9 +27,7 @@ const getPullRequestInformation = async (
   const {
     repository: {
       pullRequest: {
-        author: {
-          login: authorLogin,
-        },
+        author: { login: authorLogin },
         id: pullRequestId,
         commits: {
           edges: [
