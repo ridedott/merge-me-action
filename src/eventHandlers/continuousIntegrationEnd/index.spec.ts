@@ -385,14 +385,10 @@ describe('continuous integration end event handler', (): void => {
     /* eslint-enable immutable/no-mutation */
   });
 
-  it('does not merge if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is set to "true"', async (): Promise<void> => {
+  it('does not merge if last commit was not created by the selected GITHUB_LOGIN and ENABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
     expect.assertions(1);
 
     getInputSpy.mockImplementation((name: string): string => {
-      if (name === 'DISABLED_FOR_MANUAL_CHANGES') {
-        return 'true';
-      }
-
       if (name === 'GITHUB_LOGIN') {
         return DEPENDABOT_GITHUB_LOGIN;
       }
@@ -457,8 +453,28 @@ describe('continuous integration end event handler', (): void => {
     );
   });
 
-  it('does not log any warnings if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
+  it('does not log any warnings if last commit was not created by the selected GITHUB_LOGIN and ENABLED_FOR_MANUAL_CHANGES is set to "true"', async (): Promise<void> => {
     expect.assertions(1);
+
+    getInputSpy.mockImplementation((name: string): string => {
+      if (name === 'ENABLED_FOR_MANUAL_CHANGES') {
+        return 'true';
+      }
+
+      if (name === 'GITHUB_LOGIN') {
+        return DEPENDABOT_GITHUB_LOGIN;
+      }
+
+      if (name === 'MERGE_METHOD') {
+        return 'SQUASH';
+      }
+
+      if (name === 'PRESET') {
+        return 'DEPENDABOT_MINOR';
+      }
+
+      return '';
+    });
 
     const response: Response = {
       data: {
@@ -504,7 +520,9 @@ describe('continuous integration end event handler', (): void => {
 
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
-    expect(warningSpy).not.toHaveBeenCalled();
+    expect(infoSpy).not.toHaveBeenCalledWith(
+      `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
+    );
   });
 
   it('logs a warning when it cannot find pull request ID by pull request number', async (): Promise<void> => {

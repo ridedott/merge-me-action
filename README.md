@@ -179,7 +179,7 @@ you are using). This is often desirable as the author might prefer to get a code
 review before merging the changes.
 
 It is possible to override this default behavior by setting the value of
-`ENABLE_FOR_MANUAL_CHANGES` to `'true'`.
+`ENABLED_FOR_MANUAL_CHANGES` to `'true'`.
 
 ```yaml
 jobs:
@@ -189,7 +189,7 @@ jobs:
         uses: ridedott/merge-me-action@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ENABLE_FOR_MANUAL_CHANGES: 'true'
+          ENABLED_FOR_MANUAL_CHANGES: 'true'
 ```
 
 > Important: Please note the single quotes around `true`.
