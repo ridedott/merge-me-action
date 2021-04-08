@@ -89,23 +89,27 @@ bot is [`dependabot[bot]`](https://github.com/dependabot). You can override the
 bot name by changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_LOGIN: my-awesome-bot-r2d2
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_LOGIN: my-awesome-bot-r2d2
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 A common scenario is to use Dependabot Preview (consider updating instead):
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_LOGIN: dependabot-preview[bot]
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          GITHUB_LOGIN: dependabot-preview[bot]
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### Use of configurable pull request merge method
@@ -115,12 +119,14 @@ override the merge method by changing the value of `MERGE_METHOD` parameter (one
 of `MERGE`, `SQUASH` or `REBASE`):
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      MERGE_METHOD: MERGE
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:      
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: MERGE
 ```
 
 ### Presets
@@ -138,12 +144,14 @@ Available presets are:
   [Semantic Versioning v2](https://semver.org/).
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      PRESET: DEPENDABOT_PATCH
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:      
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRESET: DEPENDABOT_PATCH
 ```
 
 ### Number of retries
@@ -157,11 +165,13 @@ It's possible to configure the number of retries by providing a value for
 `MAXIMUM_RETRIES` (by default, the value is `3`).
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      MAXIMUM_RETRIES: 2
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:      
+          MAXIMUM_RETRIES: 2
 ```
 
 ### Disable for manual changes
@@ -179,12 +189,14 @@ It is possible to disable this default behavior by setting the value of
 `DISABLED_FOR_MANUAL_CHANGES` to `'true'`.
 
 ```yaml
-steps:
-  - name: Merge me!
-    uses: ridedott/merge-me-action@v2
-    with:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      DISABLED_FOR_MANUAL_CHANGES: 'true'
+jobs:
+  merge-me:
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:      
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISABLED_FOR_MANUAL_CHANGES: 'true'
 ```
 
 > Important: Please note the single quotes around `true`.
