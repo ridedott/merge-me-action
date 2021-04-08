@@ -1,8 +1,15 @@
+# [2.4.0](https://github.com/ridedott/merge-me-action/compare/v2.3.0...v2.4.0) (2021-04-08)
+
+### Features
+
+- remove pullRequest/push event handlers
+  ([aa86df2](https://github.com/ridedott/merge-me-action/commit/aa86df2c5166c6d5db956d54d7cf0176cdce73ff))
+
 # [2.3.0](https://github.com/ridedott/merge-me-action/compare/v2.2.21...v2.3.0) (2021-04-02)
 
 ### Features
 
-- **eventhandlers:** support of event type workflow_run
+- **eventHandlers:** support of event type workflow_run
   ([c023b9c](https://github.com/ridedott/merge-me-action/commit/c023b9c908397ce71417b23dbeb10f7769e1471e))
 
 ### Other
