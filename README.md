@@ -8,16 +8,6 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 This Action approves and attempts to merge Pull Requests when triggered.
-Specific behavior can be configured in two ways:
-
-- By using the
-  [`needs`](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds)
-  configuration option in GitHub Actions, to specify which checks are required
-  to pass for the merge attempt to take place.
-- By using
-  [branch protection](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/about-protected-branches)
-  rules, to specify what are the requirements for a PR to be merged (e.g.
-  require branches to be up to date, require status checks to pass).
 
 ## Usage
 
