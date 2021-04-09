@@ -60,14 +60,17 @@
       "prettier --write"
     ]
   },
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "name": "@ridedott/merge-me-action",
   "private": false,
   "publishConfig": {
     "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
-  "repository": "https://github.com/ridedott/merge-me-action",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ridedott/merge-me-action.git"
+  },
   "scripts": {
     "build": "run-s clean:dist build:dist",
     "build:dist": "ncc build src/index.ts --minify --source-map --v8-cache",
@@ -78,14 +81,14 @@
     "clean:lib": "rm -rf lib",
     "cz": "git-cz",
     "cz:retry": "git-cz --retry",
-    "format": "prettier --check \"**/*.{js,json,md,ts,yml,yaml}\"",
-    "format:fix": "prettier --write \"**/*.{js,json,md,ts,yml,yaml}\"",
+    "format": "prettier --check '**/*.{js,json,md,ts,yml,yaml}'",
+    "format:fix": "prettier --write '**/*.{js,json,md,ts,yml,yaml}'",
     "husky:lint-staged": "lint-staged",
     "husky:pre-commit": "run-p spellcheck husky:lint-staged",
-    "lint": "eslint --resolve-plugins-relative-to \"./node_modules/@ridedott/eslint-config\" \"**/*.ts\"",
-    "lint:fix": "eslint --fix --resolve-plugins-relative-to \"./node_modules/@ridedott/eslint-config\" \"**/*.ts\"",
+    "lint": "eslint --resolve-plugins-relative-to './node_modules/@ridedott/eslint-config' '**/*.ts'",
+    "lint:fix": "eslint --fix --resolve-plugins-relative-to './node_modules/@ridedott/eslint-config' '**/*.ts'",
     "semantic-release": "semantic-release",
-    "spellcheck": "cspell \"**/*\"",
+    "spellcheck": "cspell '**/*'",
     "test": "jest",
     "test:ci": "jest --ci --collect-coverage",
     "test:coverage": "jest --collect-coverage",
