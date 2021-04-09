@@ -1,5 +1,6 @@
 import { getInput } from '@actions/core';
 import { getOctokit } from '@actions/github';
+import { GraphQlQueryResponseData } from '@octokit/graphql';
 
 import {
   approveAndMergePullRequestMutation,
@@ -14,7 +15,6 @@ import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo, logWarning } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
 import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';
-import { GraphQlQueryResponseData } from '@octokit/graphql';
 
 export interface PullRequestDetails {
   commitHeadline: string;
@@ -25,7 +25,6 @@ export interface PullRequestDetails {
 const EXPONENTIAL_BACKOFF = 2;
 const MINIMUM_WAIT_TIME = 1000;
 
-// eslint-disable-next-line max-statements
 const getIsModified = async (
   octokit: ReturnType<typeof getOctokit>,
   query: {
@@ -42,8 +41,13 @@ const getIsModified = async (
       response.repository?.pullRequest?.commits,
   );
 
-  // eslint-disable-next-line immutable/no-let
-  let originalAuthor: string | undefined = undefined;
+  const firstResult: IteratorResult<PullRequestCommitNode> = await iterator.next();
+
+  if (firstResult.done === true) {
+    logWarning('Could not find PR commits, aborting.');
+
+    return true;
+  }
 
   for await (const commitNode of iterator) {
     const { author, signature } = commitNode.commit;
@@ -54,22 +58,9 @@ const getIsModified = async (
       return true;
     }
 
-    if (originalAuthor === undefined) {
-      originalAuthor = author.user.login;
-
-      // eslint-disable-next-line no-continue
-      continue;
-    }
-
-    if (author.user.login !== originalAuthor) {
+    if (author.user.login !== firstResult.value.commit.author.user.login) {
       return true;
     }
-  }
-
-  if (originalAuthor === undefined) {
-    logWarning('Could not find PR commits, aborting.');
-
-    return true;
   }
 
   return false;
