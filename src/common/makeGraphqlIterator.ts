@@ -33,15 +33,13 @@ export const makeGraphqlIterator = <ResponseData, IterableData>(
     return {
       async next(): Promise<IteratorResult<IterableData>> {
         if (current === fetched.length && hasNextPage) {
-          const response = await octokit.graphql(query, {
+          const response = await octokit.graphql<ResponseData>(query, {
             ...parameters,
             endCursor: cursor,
             pageSize,
           });
 
-          const { edges, pageInfo } = extractListFunction(
-            response as ResponseData,
-          );
+          const { edges, pageInfo } = extractListFunction(response);
 
           cursor = pageInfo.endCursor;
           hasNextPage = pageInfo.hasNextPage;
