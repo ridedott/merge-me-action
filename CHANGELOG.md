@@ -1,3 +1,10 @@
+## [2.4.5](https://github.com/ridedott/merge-me-action/compare/v2.4.4...v2.4.5) (2021-04-09)
+
+### Bug Fixes
+
+- use correct default GitHub login for Dependabot
+  ([71301e5](https://github.com/ridedott/merge-me-action/commit/71301e58fdfe98c90ec9dac2a11aa2026f89e1fb))
+
 ## [2.4.4](https://github.com/ridedott/merge-me-action/compare/v2.4.3...v2.4.4) (2021-04-09)
 
 ### Continuous Integration
