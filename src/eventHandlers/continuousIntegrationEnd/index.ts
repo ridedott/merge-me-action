@@ -1,6 +1,8 @@
 /* eslint-disable no-await-in-loop */
 
 import { context, getOctokit } from '@actions/github';
+import type { GraphQlQueryResponseData } from '@octokit/graphql';
+import { isMatch } from 'micromatch';
 
 import { tryMerge } from '../../common/merge';
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
@@ -18,7 +20,10 @@ const getPullRequestInformation = async (
     repositoryOwner: string;
   },
 ): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
-  const response = await octokit.graphql(findPullRequestInfoByNumber, query);
+  const response = await octokit.graphql<GraphQlQueryResponseData | null>(
+    findPullRequestInfoByNumber,
+    query,
+  );
 
   if (response === null || response.repository.pullRequest === null) {
     return undefined;
@@ -27,6 +32,7 @@ const getPullRequestInformation = async (
   const {
     repository: {
       pullRequest: {
+        author: { login: authorLogin },
         id: pullRequestId,
         commits: {
           edges: [
@@ -52,6 +58,7 @@ const getPullRequestInformation = async (
   } = response as FindPullRequestInfoByNumberResponse;
 
   return {
+    authorLogin,
     commitAuthorName,
     commitMessage,
     commitMessageHeadline,
@@ -78,20 +85,6 @@ export const continuousIntegrationEndHandle = async (
   }>;
 
   for (const pullRequest of pullRequests) {
-    if (
-      typeof context.payload.sender !== 'object' ||
-      context.payload.sender.login !== gitHubLogin
-    ) {
-      logInfo(
-        `Pull request created by ${
-          (context.payload.sender?.login as string | undefined) ??
-          'unknown sender'
-        }, not ${gitHubLogin}, skipping.`,
-      );
-
-      return;
-    }
-
     const pullRequestInformation = await getPullRequestInformation(octokit, {
       pullRequestNumber: pullRequest.number,
       repositoryName: context.repo.repo,
@@ -101,6 +94,14 @@ export const continuousIntegrationEndHandle = async (
     if (pullRequestInformation === undefined) {
       logWarning('Unable to fetch pull request information.');
     } else {
+      if (isMatch(pullRequestInformation.authorLogin, gitHubLogin) === false) {
+        logInfo(
+          `Pull request created by ${pullRequestInformation.authorLogin}, not ${gitHubLogin}, skipping.`,
+        );
+
+        return;
+      }
+
       logInfo(
         `Found pull request information: ${JSON.stringify(
           pullRequestInformation,

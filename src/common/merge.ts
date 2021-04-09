@@ -1,5 +1,6 @@
 import { getInput } from '@actions/core';
 import { getOctokit } from '@actions/github';
+import { isMatch } from 'micromatch';
 
 import {
   approveAndMergePullRequestMutation,
@@ -19,13 +20,12 @@ export interface PullRequestDetails {
 const EXPONENTIAL_BACKOFF = 2;
 const MINIMUM_WAIT_TIME = 1000;
 
-const delay = async (duration: number): Promise<void> => {
-  return new Promise((resolve: () => void): void => {
+const delay = async (duration: number): Promise<void> =>
+  new Promise((resolve: () => void): void => {
     setTimeout((): void => {
       resolve();
     }, duration);
   });
-};
 
 /**
  * Approves and merges a given Pull Request.
@@ -120,7 +120,7 @@ export const tryMerge = async (
 ): Promise<void> => {
   const allowedAuthorName = getInput('GITHUB_LOGIN');
   const disabledForManualChanges =
-    getInput('DISABLED_FOR_MANUAL_CHANGES') === 'true';
+    getInput('ENABLED_FOR_MANUAL_CHANGES') !== 'true';
 
   if (mergeableState !== 'MERGEABLE') {
     logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
@@ -128,7 +128,7 @@ export const tryMerge = async (
     logInfo(`Pull request is already merged.`);
   } else if (
     /*
-     * TODO(@platform) [2021-04-01] Start pulling the value once it reaches
+     * TODO(@platform) [2021-06-01] Start pulling the value once it reaches
      * GA.
      */
     mergeStateStatus !== undefined &&
@@ -143,7 +143,7 @@ export const tryMerge = async (
   } else if (checkPullRequestTitleForMergePreset(pullRequestTitle) === false) {
     logInfo(`Pull request version bump is not allowed by PRESET.`);
   } else if (
-    commitAuthorName !== allowedAuthorName &&
+    isMatch(commitAuthorName, allowedAuthorName) === false &&
     disabledForManualChanges === true
   ) {
     logInfo(`Pull request changes were not made by ${allowedAuthorName}.`);

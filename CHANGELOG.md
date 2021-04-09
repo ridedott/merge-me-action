@@ -1,8 +1,118 @@
+## [2.6.1](https://github.com/ridedott/merge-me-action/compare/v2.6.0...v2.6.1) (2021-04-09)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from v3.5.10 to v3.5.16
+  ([fadd11e](https://github.com/ridedott/merge-me-action/commit/fadd11e0f9b68d5a8e8e32ed02367e75209eade2))
+
+# [2.6.0](https://github.com/ridedott/merge-me-action/compare/v2.5.0...v2.6.0) (2021-04-09)
+
+### Bug Fixes
+
+- regenerate package lock
+  ([23282bb](https://github.com/ridedott/merge-me-action/commit/23282bb835b261aada58ce8ed5e61ffb9c46998e))
+
+### Features
+
+- support micromatch
+  ([1dac4e8](https://github.com/ridedott/merge-me-action/commit/1dac4e83e272e11346086dd6e132261ff949dd26))
+
+# [2.5.0](https://github.com/ridedott/merge-me-action/compare/v2.4.11...v2.5.0) (2021-04-09)
+
+### Features
+
+- disable merging after manual change by default
+  ([ae90388](https://github.com/ridedott/merge-me-action/commit/ae903883f6a4f337e0e4a92918ef9beb34ba8e1d))
+
+## [2.4.11](https://github.com/ridedott/merge-me-action/compare/v2.4.10...v2.4.11) (2021-04-09)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 14.14.32 to 14.14.37
+  ([78f7faf](https://github.com/ridedott/merge-me-action/commit/78f7fafa42735a8845cc3d799cf5da22e40307ea))
+
+## [2.4.10](https://github.com/ridedott/merge-me-action/compare/v2.4.9...v2.4.10) (2021-04-09)
+
+### Chores
+
+- **deps:** bump y18n from 4.0.0 to 4.0.3
+  ([1b291fa](https://github.com/ridedott/merge-me-action/commit/1b291fae00cb2a543534939b8c972dfee5ad323f))
+
+## [2.4.9](https://github.com/ridedott/merge-me-action/compare/v2.4.8...v2.4.9) (2021-04-09)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 26.0.20 to 26.0.22
+  ([e279d79](https://github.com/ridedott/merge-me-action/commit/e279d792ef447d32c6a2b7882cf1c23c39ac7486))
+
+## [2.4.8](https://github.com/ridedott/merge-me-action/compare/v2.4.7...v2.4.8) (2021-04-09)
+
+### Chores
+
+- **deps-dev:** bump semantic-release from 17.4.1 to 17.4.2
+  ([c3767c5](https://github.com/ridedott/merge-me-action/commit/c3767c5c36bdbfd8a250cd193c91c6c3513d97f6))
+
+## [2.4.7](https://github.com/ridedott/merge-me-action/compare/v2.4.6...v2.4.7) (2021-04-09)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/release-notes-generator
+  ([cce9553](https://github.com/ridedott/merge-me-action/commit/cce9553c9b9b658fc507282f781d4e80681840df))
+
+## [2.4.6](https://github.com/ridedott/merge-me-action/compare/v2.4.5...v2.4.6) (2021-04-09)
+
+### Documentation
+
+- add a recommendation for workflow conclusion status check
+  ([742267b](https://github.com/ridedott/merge-me-action/commit/742267b863629c31cc853f6c4169567d4ab0195a))
+
+## [2.4.5](https://github.com/ridedott/merge-me-action/compare/v2.4.4...v2.4.5) (2021-04-09)
+
+### Bug Fixes
+
+- use correct default GitHub login for Dependabot
+  ([71301e5](https://github.com/ridedott/merge-me-action/commit/71301e58fdfe98c90ec9dac2a11aa2026f89e1fb))
+
+## [2.4.4](https://github.com/ridedott/merge-me-action/compare/v2.4.3...v2.4.4) (2021-04-09)
+
+### Continuous Integration
+
+- update merge-me action to new workflow
+  ([c975bb0](https://github.com/ridedott/merge-me-action/commit/c975bb0a6229c0f7362deeae062f683d7d4609a4))
+
+## [2.4.3](https://github.com/ridedott/merge-me-action/compare/v2.4.2...v2.4.3) (2021-04-09)
+
+### Documentation
+
+- use a correct name for GitHub Actions secrets
+  ([6811429](https://github.com/ridedott/merge-me-action/commit/6811429628317b282d68f95a1cbcbd8026fe8bee))
+
+## [2.4.2](https://github.com/ridedott/merge-me-action/compare/v2.4.1...v2.4.2) (2021-04-09)
+
+### Bug Fixes
+
+- pull request grapqhQL query
+  ([35615da](https://github.com/ridedott/merge-me-action/commit/35615da3e47bb288cff3877ff65357a67e7e454b))
+
+## [2.4.1](https://github.com/ridedott/merge-me-action/compare/v2.4.0...v2.4.1) (2021-04-08)
+
+### Bug Fixes
+
+- verify actual PR author on CI event
+  ([1dc3117](https://github.com/ridedott/merge-me-action/commit/1dc31170ed9f5bbde255a2e89b468a196d6179eb))
+
+# [2.4.0](https://github.com/ridedott/merge-me-action/compare/v2.3.0...v2.4.0) (2021-04-08)
+
+### Features
+
+- remove pullRequest/push event handlers
+  ([aa86df2](https://github.com/ridedott/merge-me-action/commit/aa86df2c5166c6d5db956d54d7cf0176cdce73ff))
+
 # [2.3.0](https://github.com/ridedott/merge-me-action/compare/v2.2.21...v2.3.0) (2021-04-02)
 
 ### Features
 
-- **eventhandlers:** support of event type workflow_run
+- **eventHandlers:** support of event type workflow_run
   ([c023b9c](https://github.com/ridedott/merge-me-action/commit/c023b9c908397ce71417b23dbeb10f7769e1471e))
 
 ### Other

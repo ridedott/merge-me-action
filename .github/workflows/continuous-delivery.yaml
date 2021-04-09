@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 15
       - name: Cache dependencies
         uses: actions/cache@v2.1.4
         with:
@@ -39,7 +39,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         id: release
         name: Release
-        uses: ridedott/release-me-action@v3.5.10
+        uses: ridedott/release-me-action@v3.5.16
         with:
           commit-assets: |
             ./dist

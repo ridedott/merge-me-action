@@ -1,11 +1,7 @@
 import { getInput, setFailed } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
-import {
-  continuousIntegrationEndHandle,
-  pullRequestHandle,
-  pushHandle,
-} from './eventHandlers';
+import { continuousIntegrationEndHandle } from './eventHandlers';
 import { logInfo, logWarning } from './utilities/log';
 
 const DEFAULT_MAXIMUM_RETRIES = 3;
@@ -15,7 +11,7 @@ const GITHUB_LOGIN = getInput('GITHUB_LOGIN');
 const MAXIMUM_RETRIES =
   getInput('MAXIMUM_RETRIES').trim() === ''
     ? DEFAULT_MAXIMUM_RETRIES
-    : parseInt(getInput('MAXIMUM_RETRIES'), 10);
+    : Number.parseInt(getInput('MAXIMUM_RETRIES'), 10);
 
 const octokit = getOctokit(GITHUB_TOKEN);
 
