@@ -9,6 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2019"],
     "module": "commonjs",
+    "moduleResolution": "node",
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
