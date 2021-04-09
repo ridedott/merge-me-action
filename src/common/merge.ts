@@ -20,7 +20,8 @@ export interface PullRequestDetails {
 const EXPONENTIAL_BACKOFF = 2;
 const MINIMUM_WAIT_TIME = 1000;
 
-const delay = async (duration: number): Promise<void> => new Promise((resolve: () => void): void => {
+const delay = async (duration: number): Promise<void> =>
+  new Promise((resolve: () => void): void => {
     setTimeout((): void => {
       resolve();
     }, duration);
