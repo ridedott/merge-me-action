@@ -21,7 +21,7 @@
     "@semantic-release/release-notes-generator": "^9.0.2",
     "@types/jest": "^26.0.22",
     "@types/micromatch": "^4.0.1",
-    "@types/node": "^14.14.32",
+    "@types/node": "^14.14.37",
     "@zeit/ncc": "^0.22.3",
     "commitizen": "^4.2.3",
     "cspell": "^5.3.7",
@@ -92,5 +92,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "2.4.10"
+  "version": "2.5.0"
 }

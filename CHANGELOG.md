@@ -1,3 +1,17 @@
+# [2.5.0](https://github.com/ridedott/merge-me-action/compare/v2.4.11...v2.5.0) (2021-04-09)
+
+### Features
+
+- disable merging after manual change by default
+  ([ae90388](https://github.com/ridedott/merge-me-action/commit/ae903883f6a4f337e0e4a92918ef9beb34ba8e1d))
+
+## [2.4.11](https://github.com/ridedott/merge-me-action/compare/v2.4.10...v2.4.11) (2021-04-09)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 14.14.32 to 14.14.37
+  ([78f7faf](https://github.com/ridedott/merge-me-action/commit/78f7fafa42735a8845cc3d799cf5da22e40307ea))
+
 ## [2.4.10](https://github.com/ridedott/merge-me-action/compare/v2.4.9...v2.4.10) (2021-04-09)
 
 ### Chores
