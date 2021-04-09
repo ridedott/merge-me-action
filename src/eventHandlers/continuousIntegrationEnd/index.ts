@@ -21,7 +21,11 @@ const getPullRequestInformation = async (
 ): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
   const response = await octokit.graphql(findPullRequestInfoByNumber, query);
 
-  if (response === null || response.repository.pullRequest === null) {
+  if (
+    response === null ||
+    (response as FindPullRequestInfoByNumberResponse).repository.pullRequest ===
+      null
+  ) {
     return undefined;
   }
 

@@ -40,7 +40,9 @@ const getIsModified = async (
     octokit,
     findPullRequestCommits,
     query,
-    (response: FindPullRequestCommitsResponse): IterableList<PullRequestCommitNode> =>
+    (
+      response: FindPullRequestCommitsResponse,
+    ): IterableList<PullRequestCommitNode> =>
       response.repository.pullRequest.commits,
   );
 
@@ -71,13 +73,12 @@ const getIsModified = async (
   return false;
 };
 
-const delay = async (duration: number): Promise<void> => {
-  return new Promise((resolve: () => void): void => {
+const delay = async (duration: number): Promise<void> =>
+  new Promise((resolve: () => void): void => {
     setTimeout((): void => {
       resolve();
     }, duration);
   });
-};
 
 /**
  * Approves and merges a given Pull Request.
