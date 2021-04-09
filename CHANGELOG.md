@@ -1,3 +1,24 @@
+## [2.4.4](https://github.com/ridedott/merge-me-action/compare/v2.4.3...v2.4.4) (2021-04-09)
+
+### Continuous Integration
+
+- update merge-me action to new workflow
+  ([c975bb0](https://github.com/ridedott/merge-me-action/commit/c975bb0a6229c0f7362deeae062f683d7d4609a4))
+
+## [2.4.3](https://github.com/ridedott/merge-me-action/compare/v2.4.2...v2.4.3) (2021-04-09)
+
+### Documentation
+
+- use a correct name for GitHub Actions secrets
+  ([6811429](https://github.com/ridedott/merge-me-action/commit/6811429628317b282d68f95a1cbcbd8026fe8bee))
+
+## [2.4.2](https://github.com/ridedott/merge-me-action/compare/v2.4.1...v2.4.2) (2021-04-09)
+
+### Bug Fixes
+
+- pull request grapqhQL query
+  ([35615da](https://github.com/ridedott/merge-me-action/commit/35615da3e47bb288cff3877ff65357a67e7e454b))
+
 ## [2.4.1](https://github.com/ridedott/merge-me-action/compare/v2.4.0...v2.4.1) (2021-04-08)
 
 ### Bug Fixes

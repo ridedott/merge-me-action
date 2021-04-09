@@ -16,9 +16,10 @@
     "*.log",
     "*.yaml",
     "**/*.json",
+    "CHANGELOG.md",
     "coverage/**",
-    "generated/**",
     "dist/**",
+    "generated/**",
     "lib/**",
     "node_modules/**"
   ],
