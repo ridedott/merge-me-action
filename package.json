@@ -22,7 +22,7 @@
     "@types/jest": "^26.0.22",
     "@types/micromatch": "^4.0.1",
     "@types/node": "^14.14.37",
-    "@zeit/ncc": "^0.22.3",
+    "@vercel/ncc": "^0.28.2",
     "commitizen": "^4.2.3",
     "cspell": "^5.3.7",
     "eslint": "^7.21.0",
@@ -73,7 +73,7 @@
   },
   "scripts": {
     "build": "run-s clean:dist build:dist",
-    "build:dist": "ncc build src/index.ts --minify --source-map --v8-cache",
+    "build:dist": "ncc build ./src/index.ts --minify --source-map --v8-cache",
     "build:ts": "tsc --project tsconfig.production.json",
     "build:ts:watch": "tsc --project tsconfig.production.json --watch",
     "clean": "run-p clean:*",
