@@ -94,6 +94,22 @@ describe('continuous integration end event handler', (): void => {
   it('does not log warnings when it gets triggered with a login matching a pattern', async (): Promise<void> => {
     expect.assertions(1);
 
+    getInputSpy.mockImplementationOnce((name: string): string => {
+      if (name === 'GITHUB_LOGIN') {
+        return '(foo|bar)';
+      }
+
+      if (name === 'MERGE_METHOD') {
+        return 'SQUASH';
+      }
+
+      if (name === 'PRESET') {
+        return 'DEPENDABOT_MINOR';
+      }
+
+      return '';
+    });
+
     const response: Response = {
       data: {
         repository: {
