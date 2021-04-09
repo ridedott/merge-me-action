@@ -41,7 +41,10 @@ jobs:
     name: Merge me!
     runs-on: ubuntu-latest
     steps:
-      - name: Merge me!
+      - # It is often a desired behavior to merge only when a workflow execution
+        # succeeds. This can be changed as needed.
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
           # Depending on branch protection rules, a  manually populated
