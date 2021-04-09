@@ -1,3 +1,15 @@
+# [2.6.0](https://github.com/ridedott/merge-me-action/compare/v2.5.0...v2.6.0) (2021-04-09)
+
+### Bug Fixes
+
+- regenerate package lock
+  ([23282bb](https://github.com/ridedott/merge-me-action/commit/23282bb835b261aada58ce8ed5e61ffb9c46998e))
+
+### Features
+
+- support micromatch
+  ([1dac4e8](https://github.com/ridedott/merge-me-action/commit/1dac4e83e272e11346086dd6e132261ff949dd26))
+
 # [2.5.0](https://github.com/ridedott/merge-me-action/compare/v2.4.11...v2.5.0) (2021-04-09)
 
 ### Features
