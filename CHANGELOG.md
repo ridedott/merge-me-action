@@ -1,3 +1,10 @@
+## [2.4.4](https://github.com/ridedott/merge-me-action/compare/v2.4.3...v2.4.4) (2021-04-09)
+
+### Continuous Integration
+
+- update merge-me action to new workflow
+  ([c975bb0](https://github.com/ridedott/merge-me-action/commit/c975bb0a6229c0f7362deeae062f683d7d4609a4))
+
 ## [2.4.3](https://github.com/ridedott/merge-me-action/compare/v2.4.2...v2.4.3) (2021-04-09)
 
 ### Documentation
