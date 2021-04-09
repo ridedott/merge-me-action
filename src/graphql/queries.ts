@@ -27,7 +27,7 @@ const pullRequestFields = `{
   }
   state
   title
-`;
+}`;
 
 export const findPullRequestsInfoByReferenceName = `
   query FindPullRequestsInfoByReferenceName($repositoryOwner: String!, $repositoryName: String!, $referenceName: String!) {
