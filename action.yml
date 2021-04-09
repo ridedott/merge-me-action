@@ -5,7 +5,7 @@ description:
   'Automatically merge Pull Requests from the indicated github account.'
 inputs:
   GITHUB_LOGIN:
-    default: 'dependabot[bot]'
+    default: 'dependabot'
     description: 'The GitHub login for which automatic merges are enabled.'
     required: false
   GITHUB_TOKEN:
