@@ -47,7 +47,7 @@ jobs:
           # Depending on branch protection rules, a  manually populated
           # `GITHUB_TOKEN_WORKAROUND` secret with permissions to push to
           # a protected branch must be used. This secret can have an arbitrary
-          # name, as an example, this repository uses `GITHUB_TOKEN_DOTTBOTT`.
+          # name, as an example, this repository uses `DOTTBOTT_TOKEN`.
           #
           # When using a custom token, it is recommended to leave the following
           # comment for other developers to be aware of the reasoning behind it:
