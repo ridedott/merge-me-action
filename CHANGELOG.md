@@ -1,3 +1,10 @@
+## [2.4.6](https://github.com/ridedott/merge-me-action/compare/v2.4.5...v2.4.6) (2021-04-09)
+
+### Documentation
+
+- add a recommendation for workflow conclusion status check
+  ([742267b](https://github.com/ridedott/merge-me-action/commit/742267b863629c31cc853f6c4169567d4ab0195a))
+
 ## [2.4.5](https://github.com/ridedott/merge-me-action/compare/v2.4.4...v2.4.5) (2021-04-09)
 
 ### Bug Fixes
