@@ -1,15 +1,20 @@
 import { getInput } from '@actions/core';
 import { getOctokit } from '@actions/github';
-import { isMatch } from 'micromatch';
 
 import {
   approveAndMergePullRequestMutation,
   mergePullRequestMutation,
 } from '../graphql/mutations';
-import { PullRequestInformationContinuousIntegrationEnd } from '../types';
+import { findPullRequestCommitInfo } from '../graphql/queries';
+import {
+  FindPullRequestCommits,
+  PullRequestCommitNode,
+  PullRequestInformationContinuousIntegrationEnd,
+} from '../types';
 import { parseInputMergeMethod } from '../utilities/inputParsers';
-import { logDebug, logInfo } from '../utilities/log';
+import { logDebug, logInfo, logWarning } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
+import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';
 
 export interface PullRequestDetails {
   commitHeadline: string;
@@ -20,12 +25,59 @@ export interface PullRequestDetails {
 const EXPONENTIAL_BACKOFF = 2;
 const MINIMUM_WAIT_TIME = 1000;
 
-const delay = async (duration: number): Promise<void> =>
-  new Promise((resolve: () => void): void => {
+const getIsModified = async (
+  octokit: ReturnType<typeof getOctokit>,
+  query: {
+    pullRequestNumber: number;
+    repositoryName: string;
+    repositoryOwner: string;
+  },
+): Promise<boolean> => {
+  const iterator = makeGraphqlIterator<
+    FindPullRequestCommits,
+    PullRequestCommitNode
+  >(
+    octokit,
+    findPullRequestCommitInfo,
+    query,
+    (response: FindPullRequestCommits): IterableList<PullRequestCommitNode> =>
+      response.repository.pullRequest.commits,
+  );
+
+  // eslint-disable-next-line immutable/no-let
+  let originalAuthor: string | undefined = undefined;
+
+  for await (const commitNode of iterator) {
+    const { author, signature } = commitNode.commit;
+
+    if (signature.isValid !== true) {
+      logWarning('Commit signature is not valid, assuming PR is modified.');
+
+      return true;
+    }
+
+    if (originalAuthor === undefined) {
+      originalAuthor = author.user.login;
+
+      // eslint-disable-next-line no-continue
+      continue;
+    }
+
+    if (author.user.login !== originalAuthor) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const delay = async (duration: number): Promise<void> => {
+  return new Promise((resolve: () => void): void => {
     setTimeout((): void => {
       resolve();
     }, duration);
   });
+};
 
 /**
  * Approves and merges a given Pull Request.
@@ -107,15 +159,17 @@ export const tryMerge = async (
   octokit: ReturnType<typeof getOctokit>,
   maximumRetries: number,
   {
-    commitAuthorName,
     commitMessageHeadline,
     mergeableState,
     mergeStateStatus,
     merged,
     pullRequestId,
+    pullRequestNumber,
     pullRequestState,
     pullRequestTitle,
     reviewEdges,
+    repositoryName,
+    repositoryOwner,
   }: PullRequestInformationContinuousIntegrationEnd,
 ): Promise<void> => {
   const allowedAuthorName = getInput('GITHUB_LOGIN');
@@ -143,8 +197,12 @@ export const tryMerge = async (
   } else if (checkPullRequestTitleForMergePreset(pullRequestTitle) === false) {
     logInfo(`Pull request version bump is not allowed by PRESET.`);
   } else if (
-    isMatch(commitAuthorName, allowedAuthorName) === false &&
-    disabledForManualChanges === true
+    disabledForManualChanges === true &&
+    (await getIsModified(octokit, {
+      pullRequestNumber,
+      repositoryName,
+      repositoryOwner,
+    })) === true
   ) {
     logInfo(`Pull request changes were not made by ${allowedAuthorName}.`);
   } else {

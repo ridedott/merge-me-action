@@ -1,7 +1,6 @@
 /* eslint-disable no-await-in-loop */
 
 import { context, getOctokit } from '@actions/github';
-import type { GraphQlQueryResponseData } from '@octokit/graphql';
 import { isMatch } from 'micromatch';
 
 import { tryMerge } from '../../common/merge';
@@ -20,10 +19,7 @@ const getPullRequestInformation = async (
     repositoryOwner: string;
   },
 ): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
-  const response = await octokit.graphql<GraphQlQueryResponseData | null>(
-    findPullRequestInfoByNumber,
-    query,
-  );
+  const response = await octokit.graphql(findPullRequestInfoByNumber, query);
 
   if (response === null || response.repository.pullRequest === null) {
     return undefined;
@@ -39,7 +35,6 @@ const getPullRequestInformation = async (
             {
               node: {
                 commit: {
-                  author: { name: commitAuthorName },
                   message: commitMessage,
                   messageHeadline: commitMessageHeadline,
                 },
@@ -47,6 +42,7 @@ const getPullRequestInformation = async (
             },
           ],
         },
+        pullRequest: { number: pullRequestNumber },
         reviews: { edges: reviewEdges },
         mergeStateStatus,
         mergeable: mergeableState,
@@ -59,15 +55,17 @@ const getPullRequestInformation = async (
 
   return {
     authorLogin,
-    commitAuthorName,
     commitMessage,
     commitMessageHeadline,
     mergeStateStatus,
     mergeableState,
     merged,
     pullRequestId,
+    pullRequestNumber,
     pullRequestState,
     pullRequestTitle,
+    repositoryName: query.repositoryName,
+    repositoryOwner: query.repositoryOwner,
     reviewEdges,
   };
 };
