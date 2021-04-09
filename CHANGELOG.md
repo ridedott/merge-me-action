@@ -1,3 +1,10 @@
+## [2.4.10](https://github.com/ridedott/merge-me-action/compare/v2.4.9...v2.4.10) (2021-04-09)
+
+### Chores
+
+- **deps:** bump y18n from 4.0.0 to 4.0.3
+  ([1b291fa](https://github.com/ridedott/merge-me-action/commit/1b291fae00cb2a543534939b8c972dfee5ad323f))
+
 ## [2.4.9](https://github.com/ridedott/merge-me-action/compare/v2.4.8...v2.4.9) (2021-04-09)
 
 ### Chores
