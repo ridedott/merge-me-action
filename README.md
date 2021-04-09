@@ -84,8 +84,8 @@ jobs:
 
 You may have another bot that also creates PRs against your repository and you
 want to automatically merge those. By default, this GitHub Action assumes the
-bot is [`dependabot[bot]`](https://github.com/dependabot). You can override the
-bot name by changing the value of `GITHUB_LOGIN` parameter:
+bot is [`dependabot`](https://github.com/dependabot). You can override the bot
+name by changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
 jobs:
@@ -107,7 +107,7 @@ jobs:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
-          GITHUB_LOGIN: dependabot-preview[bot]
+          GITHUB_LOGIN: dependabot-preview
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -180,8 +180,8 @@ make the CI pass or to solve some conflicts that Dependabot (or the bot you are
 using) cannot handle. By default, this GitHub action will automatically approve
 and attempt to merge a Pull Request once its triggered regardless of who
 authored the changes on the Pull Request created by
-[`dependabot[bot]`](https://github.com/dependabot) (or the bot you are using).
-This might be undesirable as the author might prefer to get a code review before
+[`dependabot`](https://github.com/dependabot) (or the bot you are using). This
+might be undesirable as the author might prefer to get a code review before
 hastily merging the changes.
 
 It is possible to disable this default behavior by setting the value of
