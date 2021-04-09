@@ -18,7 +18,7 @@ export interface IterableList<Iterable> {
   };
 }
 
-// eslint-disable-next-line func-style,max-params
+/* eslint-disable-next-line func-style,max-params */
 export async function* makeGraphqlIterator<IterableData>(
   octokit: ReturnType<typeof getOctokit>,
   query: string,
@@ -61,10 +61,10 @@ export async function* makeGraphqlIterator<IterableData>(
     return edges.map((edge): IterableData => edge.node);
   };
 
-  // eslint-disable-next-line no-unmodified-loop-condition
+  /* eslint-disable-next-line no-unmodified-loop-condition */
   while (current !== items.length || hasNextPage) {
     if (current === items.length && hasNextPage) {
-      // eslint-disable-next-line no-await-in-loop
+      /* eslint-disable-next-line no-await-in-loop */
       const data = await fetchPage();
 
       if (data === undefined) {
