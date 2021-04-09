@@ -1,3 +1,10 @@
+## [2.4.3](https://github.com/ridedott/merge-me-action/compare/v2.4.2...v2.4.3) (2021-04-09)
+
+### Documentation
+
+- use a correct name for GitHub Actions secrets
+  ([6811429](https://github.com/ridedott/merge-me-action/commit/6811429628317b282d68f95a1cbcbd8026fe8bee))
+
 ## [2.4.2](https://github.com/ridedott/merge-me-action/compare/v2.4.1...v2.4.2) (2021-04-09)
 
 ### Bug Fixes
