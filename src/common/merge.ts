@@ -1,5 +1,6 @@
 import { getInput } from '@actions/core';
 import { getOctokit } from '@actions/github';
+import { isMatch } from 'micromatch';
 
 import {
   approveAndMergePullRequestMutation,
@@ -143,7 +144,7 @@ export const tryMerge = async (
   } else if (checkPullRequestTitleForMergePreset(pullRequestTitle) === false) {
     logInfo(`Pull request version bump is not allowed by PRESET.`);
   } else if (
-    commitAuthorName !== allowedAuthorName &&
+    isMatch(commitAuthorName, allowedAuthorName) === false &&
     disabledForManualChanges === true
   ) {
     logInfo(`Pull request changes were not made by ${allowedAuthorName}.`);

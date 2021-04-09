@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 
 import { context, getOctokit } from '@actions/github';
+import { isMatch } from 'micromatch';
 
 import { tryMerge } from '../../common/merge';
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
@@ -89,7 +90,7 @@ export const continuousIntegrationEndHandle = async (
     if (pullRequestInformation === undefined) {
       logWarning('Unable to fetch pull request information.');
     } else {
-      if (pullRequestInformation.authorLogin !== gitHubLogin) {
+      if (isMatch(pullRequestInformation.authorLogin, gitHubLogin) === false) {
         logInfo(
           `Pull request created by ${pullRequestInformation.authorLogin}, not ${gitHubLogin}, skipping.`,
         );

@@ -18,7 +18,7 @@ const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
 const COMMIT_HEADLINE = 'Update test';
 const COMMIT_MESSAGE =
   'Update test\n\nSigned-off-by:dependabot[bot]<support@dependabot.com>';
-const DEPENDABOT_GITHUB_LOGIN = 'dependabot[bot]';
+const DEPENDABOT_GITHUB_LOGIN = 'dependabot';
 
 const octokit = getOctokit('SECRET_GITHUB_TOKEN');
 const infoSpy = jest.spyOn(core, 'info').mockImplementation();
@@ -56,17 +56,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -77,9 +73,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
-              edges: [],
-            },
+            reviews: { edges: [] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -97,24 +91,20 @@ describe('continuous integration end event handler', (): void => {
     expect(warningSpy).not.toHaveBeenCalled();
   });
 
-  it('does not approve an already approved pull request', async (): Promise<void> => {
-    expect.assertions(0);
+  it('does not log warnings when it gets triggered with a login matching a pattern', async (): Promise<void> => {
+    expect.assertions(1);
 
     const response: Response = {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'bar' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: 'bar' },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -125,15 +115,49 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
+            reviews: { edges: [] },
+            state: 'OPEN',
+            title: 'chore(deps-dev): bump @types/jest from 26.0.12 to 26.1.0',
+          },
+        },
+      },
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, response);
+    nock('https://api.github.com').post('/graphql').reply(StatusCodes.OK);
+
+    await continuousIntegrationEndHandle(octokit, '(foo|bar)', 3);
+
+    expect(warningSpy).not.toHaveBeenCalled();
+  });
+
+  it('does not approve an already approved pull request', async (): Promise<void> => {
+    expect.assertions(0);
+
+    const response: Response = {
+      data: {
+        repository: {
+          pullRequest: {
+            author: { login: 'dependabot' },
+            commits: {
               edges: [
                 {
                   node: {
-                    state: 'APPROVED',
+                    commit: {
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
+                      message: COMMIT_MESSAGE,
+                      messageHeadline: COMMIT_HEADLINE,
+                    },
                   },
                 },
               ],
             },
+            id: PULL_REQUEST_ID,
+            mergeable: 'MERGEABLE',
+            merged: false,
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -164,17 +188,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -185,15 +205,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'CONFLICTING',
             merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -219,17 +231,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -240,15 +248,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: true,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -272,17 +272,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -294,15 +290,7 @@ describe('continuous integration end event handler', (): void => {
             mergeStateStatus: 'UNKNOWN',
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -328,17 +316,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -349,15 +333,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'CLOSED',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -381,17 +357,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -402,15 +374,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'CLOSED',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -425,7 +389,7 @@ describe('continuous integration end event handler', (): void => {
     await continuousIntegrationEndHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request created by dependabot[bot], not some-other-login, skipping.',
+      'Pull request created by dependabot, not some-other-login, skipping.',
     );
   });
 
@@ -456,17 +420,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: 'some-other-login',
-                      },
+                      author: { name: 'some-other-login' },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -477,15 +437,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -511,17 +463,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: 'some-other-login',
-                      },
+                      author: { name: 'some-other-login' },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -532,15 +480,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -562,13 +502,7 @@ describe('continuous integration end event handler', (): void => {
 
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(StatusCodes.OK, {
-        data: {
-          repository: {
-            pullRequest: null,
-          },
-        },
-      });
+      .reply(StatusCodes.OK, { data: { repository: { pullRequest: null } } });
 
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
@@ -582,17 +516,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -603,15 +533,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -651,17 +573,13 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
+            author: { login: 'dependabot' },
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
+                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -672,15 +590,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
           },
@@ -712,17 +622,13 @@ describe('continuous integration end event handler', (): void => {
         data: {
           repository: {
             pullRequest: {
-              author: {
-                login: 'dependabot[bot]',
-              },
+              author: { login: 'dependabot' },
               commits: {
                 edges: [
                   {
                     node: {
                       commit: {
-                        author: {
-                          name: DEPENDABOT_GITHUB_LOGIN,
-                        },
+                        author: { name: DEPENDABOT_GITHUB_LOGIN },
                         message: COMMIT_MESSAGE,
                         messageHeadline: COMMIT_HEADLINE,
                       },
@@ -733,9 +639,7 @@ describe('continuous integration end event handler', (): void => {
               id: PULL_REQUEST_ID,
               mergeable: 'MERGEABLE',
               merged: false,
-              reviews: {
-                edges: [],
-              },
+              reviews: { edges: [] },
               state: 'OPEN',
               title: 'bump @types/jest from 26.0.12 to 27.0.13',
             },

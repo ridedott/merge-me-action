@@ -6,7 +6,8 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0"
+    "@actions/github": "^4.0.0",
+    "micromatch": "^4.0.2"
   },
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@semantic-release/npm": "^7.0.10",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "@types/jest": "^26.0.20",
+    "@types/micromatch": "^4.0.1",
     "@types/node": "^14.14.32",
     "@zeit/ncc": "^0.22.3",
     "commitizen": "^4.2.3",
