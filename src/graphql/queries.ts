@@ -50,7 +50,7 @@ export const findPullRequestInfoByNumber = `
   }
 `;
 
-export const findPullRequestCommitInfo = `
+export const findPullRequestCommits = `
   query FindPullRequestsInfoByReferenceName($repositoryOwner: String!, $repositoryName: String!, $pullRequestNumber: Int!, $pageSize: Int!, $endCursor: String) {
     repository(owner: $repositoryOwner, name: $repositoryName) {
       pullRequest(number: $pullRequestNumber) {

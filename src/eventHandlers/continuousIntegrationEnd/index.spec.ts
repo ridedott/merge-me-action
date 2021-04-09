@@ -10,7 +10,7 @@ import * as nock from 'nock';
 import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
 import { mergePullRequestMutation } from '../../graphql/mutations';
 import {
-  FindPullRequestCommits,
+  FindPullRequestCommitsResponse,
   FindPullRequestInfoByNumberResponse,
 } from '../../types';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
@@ -35,7 +35,7 @@ interface Response {
 }
 
 interface CommitsResponse {
-  data: FindPullRequestCommits;
+  data: FindPullRequestCommitsResponse;
 }
 
 const validCommitResponse: CommitsResponse = {

@@ -5,9 +5,9 @@ import {
   approveAndMergePullRequestMutation,
   mergePullRequestMutation,
 } from '../graphql/mutations';
-import { findPullRequestCommitInfo } from '../graphql/queries';
+import { findPullRequestCommits } from '../graphql/queries';
 import {
-  FindPullRequestCommits,
+  FindPullRequestCommitsResponse,
   PullRequestCommitNode,
   PullRequestInformationContinuousIntegrationEnd,
 } from '../types';
@@ -34,13 +34,13 @@ const getIsModified = async (
   },
 ): Promise<boolean> => {
   const iterator = makeGraphqlIterator<
-    FindPullRequestCommits,
+    FindPullRequestCommitsResponse,
     PullRequestCommitNode
   >(
     octokit,
-    findPullRequestCommitInfo,
+    findPullRequestCommits,
     query,
-    (response: FindPullRequestCommits): IterableList<PullRequestCommitNode> =>
+    (response: FindPullRequestCommitsResponse): IterableList<PullRequestCommitNode> =>
       response.repository.pullRequest.commits,
   );
 

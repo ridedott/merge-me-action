@@ -93,7 +93,7 @@ export interface FindPullRequestInfoByNumberResponse {
   };
 }
 
-export interface FindPullRequestCommits {
+export interface FindPullRequestCommitsResponse {
   repository: {
     pullRequest: {
       commits: {
