@@ -120,7 +120,7 @@ export const tryMerge = async (
 ): Promise<void> => {
   const allowedAuthorName = getInput('GITHUB_LOGIN');
   const disabledForManualChanges =
-    getInput('DISABLED_FOR_MANUAL_CHANGES') === 'true';
+    getInput('ENABLED_FOR_MANUAL_CHANGES') !== 'true';
 
   if (mergeableState !== 'MERGEABLE') {
     logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
