@@ -1,6 +1,7 @@
 /* eslint-disable no-await-in-loop */
 
 import { context, getOctokit } from '@actions/github';
+import type { GraphQlQueryResponseData } from '@octokit/graphql';
 import { isMatch } from 'micromatch';
 
 import { tryMerge } from '../../common/merge';
@@ -19,7 +20,10 @@ const getPullRequestInformation = async (
     repositoryOwner: string;
   },
 ): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
-  const response = await octokit.graphql(findPullRequestInfoByNumber, query);
+  const response = await octokit.graphql<GraphQlQueryResponseData | null>(
+    findPullRequestInfoByNumber,
+    query,
+  );
 
   if (response === null || response.repository.pullRequest === null) {
     return undefined;
