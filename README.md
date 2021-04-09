@@ -21,7 +21,7 @@ The Action supports two run triggers:
 - `check_suite` (works only on the default branch).
 - `workflow_run` for all branches.
 
-In both cases, Merge Me! action should be added as a stand-alone workflow.
+In both cases, Merge Me! Action should be added as a stand-alone workflow.
 
 Create a new `.github/workflows/merge-me.yaml` file:
 
@@ -29,11 +29,12 @@ Create a new `.github/workflows/merge-me.yaml` file:
 name: Merge me!
 
 on:
-  # Triggers when a workflow is run.
   workflow_run:
-    workflows: ['Continuous Integration']
     types:
       - completed
+    workflows:
+      # List all required workflow names here.
+      - 'Continuous Integration'
 
 jobs:
   merge-me:
@@ -44,16 +45,15 @@ jobs:
         uses: ridedott/merge-me-action@v2
         with:
           # Depending on branch protection rules, a  manually populated
-          # `GITHUB_TOKEN_WORKAROUND` environment variable with permissions to
-          # push to a protected branch must be used. This variable can have an
-          # arbitrary name, as an example, this repository uses
-          # `GITHUB_TOKEN_DOTTBOTT`.
+          # `GITHUB_TOKEN_WORKAROUND` secret with permissions to push to
+          # a protected branch must be used. This secret can have an arbitrary
+          # name, as an example, this repository uses `GITHUB_TOKEN_DOTTBOTT`.
           #
           # When using a custom token, it is recommended to leave the following
           # comment for other developers to be aware of the reasoning behind it:
           #
-          # This must be used as GitHub Actions token does not support
-          # pushing to protected branches.
+          # This must be used as GitHub Actions token does not support pushing
+          # to protected branches.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -63,7 +63,6 @@ Triggering on `check_suite` is similar:
 name: Merge me!
 
 on:
-  # Triggers when a check suite is run.
   check_suite:
     types:
       - completed
