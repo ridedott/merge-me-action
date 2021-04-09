@@ -6,7 +6,8 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0"
+    "@actions/github": "^4.0.0",
+    "micromatch": "^4.0.2"
   },
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@semantic-release/npm": "^7.0.10",
     "@semantic-release/release-notes-generator": "^9.0.2",
     "@types/jest": "^26.0.22",
+    "@types/micromatch": "^4.0.1",
     "@types/node": "^14.14.37",
     "@zeit/ncc": "^0.22.3",
     "commitizen": "^4.2.3",
@@ -26,17 +28,18 @@
     "eslint": "^7.21.0",
     "http-status-codes": "^2.1.4",
     "husky": "^5.1.3",
-    "jest": "^25.5.4",
+    "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
     "nock": "^13.0.11",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
     "semantic-release": "^17.4.2",
-    "ts-jest": "^25.5.1",
+    "ts-jest": "^26.5.4",
     "ts-node": "^9.1.1"
   },
   "engines": {
-    "node": "12"
+    "node": "12 || >=14",
+    "npm": ">=7"
   },
   "files": [
     "dist",
@@ -57,14 +60,17 @@
       "prettier --write"
     ]
   },
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "name": "@ridedott/merge-me-action",
   "private": false,
   "publishConfig": {
     "access": "restricted",
     "registry": "https://npm.pkg.github.com"
   },
-  "repository": "https://github.com/ridedott/merge-me-action",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ridedott/merge-me-action.git"
+  },
   "scripts": {
     "build": "run-s clean:dist build:dist",
     "build:dist": "ncc build src/index.ts --minify --source-map --v8-cache",
@@ -75,14 +81,14 @@
     "clean:lib": "rm -rf lib",
     "cz": "git-cz",
     "cz:retry": "git-cz --retry",
-    "format": "prettier --check \"**/*.{js,json,md,ts,yml,yaml}\"",
-    "format:fix": "prettier --write \"**/*.{js,json,md,ts,yml,yaml}\"",
+    "format": "prettier --check '**/*.{js,json,md,ts,yml,yaml}'",
+    "format:fix": "prettier --write '**/*.{js,json,md,ts,yml,yaml}'",
     "husky:lint-staged": "lint-staged",
     "husky:pre-commit": "run-p spellcheck husky:lint-staged",
-    "lint": "eslint --resolve-plugins-relative-to \"./node_modules/@ridedott/eslint-config\" \"**/*.ts\"",
-    "lint:fix": "eslint --fix --resolve-plugins-relative-to \"./node_modules/@ridedott/eslint-config\" \"**/*.ts\"",
+    "lint": "eslint --resolve-plugins-relative-to './node_modules/@ridedott/eslint-config' '**/*.ts'",
+    "lint:fix": "eslint --fix --resolve-plugins-relative-to './node_modules/@ridedott/eslint-config' '**/*.ts'",
     "semantic-release": "semantic-release",
-    "spellcheck": "cspell \"**/*\"",
+    "spellcheck": "cspell '**/*'",
     "test": "jest",
     "test:ci": "jest --ci --collect-coverage",
     "test:coverage": "jest --collect-coverage",

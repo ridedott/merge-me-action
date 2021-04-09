@@ -6,7 +6,9 @@ description:
 inputs:
   GITHUB_LOGIN:
     default: 'dependabot'
-    description: 'The GitHub login for which automatic merges are enabled.'
+    description: >
+      The GitHub login for which automatic merges are enabled. Supports
+      micromatch.
     required: false
   GITHUB_TOKEN:
     description: 'A GitHub token.'

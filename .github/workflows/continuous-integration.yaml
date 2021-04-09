@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 15
       - name: Cache dependencies
         uses: actions/cache@v2.1.4
         with:
@@ -47,7 +47,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 15
       - name: Cache dependencies
         uses: actions/cache@v2.1.4
         with:
@@ -71,7 +71,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 15
       - name: Cache dependencies
         uses: actions/cache@v2.1.4
         with:
@@ -95,7 +95,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 15
       - name: Cache dependencies
         uses: actions/cache@v2.1.4
         with:
@@ -120,6 +120,8 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: 12
+      - name: Install latest npm
+        run: npm install --global npm@latest
       - name: Cache dependencies
         uses: actions/cache@v2.1.4
         with:
@@ -147,7 +149,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 12
+          node-version: 15
       - name: Cache dependencies
         uses: actions/cache@v2.1.4
         with:

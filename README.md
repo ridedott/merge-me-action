@@ -114,6 +114,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+`GITHUB_LOGIN` option supports
+[micromatch](https://github.com/micromatch/micromatch).
+
 ### Use of configurable pull request merge method
 
 By default, this GitHub Action assumes merge method is `SQUASH`. You can
