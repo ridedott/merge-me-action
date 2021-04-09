@@ -1,8 +1,29 @@
+## [2.4.2](https://github.com/ridedott/merge-me-action/compare/v2.4.1...v2.4.2) (2021-04-09)
+
+### Bug Fixes
+
+- pull request grapqhQL query
+  ([35615da](https://github.com/ridedott/merge-me-action/commit/35615da3e47bb288cff3877ff65357a67e7e454b))
+
+## [2.4.1](https://github.com/ridedott/merge-me-action/compare/v2.4.0...v2.4.1) (2021-04-08)
+
+### Bug Fixes
+
+- verify actual PR author on CI event
+  ([1dc3117](https://github.com/ridedott/merge-me-action/commit/1dc31170ed9f5bbde255a2e89b468a196d6179eb))
+
+# [2.4.0](https://github.com/ridedott/merge-me-action/compare/v2.3.0...v2.4.0) (2021-04-08)
+
+### Features
+
+- remove pullRequest/push event handlers
+  ([aa86df2](https://github.com/ridedott/merge-me-action/commit/aa86df2c5166c6d5db956d54d7cf0176cdce73ff))
+
 # [2.3.0](https://github.com/ridedott/merge-me-action/compare/v2.2.21...v2.3.0) (2021-04-02)
 
 ### Features
 
-- **eventhandlers:** support of event type workflow_run
+- **eventHandlers:** support of event type workflow_run
   ([c023b9c](https://github.com/ridedott/merge-me-action/commit/c023b9c908397ce71417b23dbeb10f7769e1471e))
 
 ### Other
