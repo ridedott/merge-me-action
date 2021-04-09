@@ -1,3 +1,24 @@
+## [2.4.7](https://github.com/ridedott/merge-me-action/compare/v2.4.6...v2.4.7) (2021-04-09)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/release-notes-generator
+  ([cce9553](https://github.com/ridedott/merge-me-action/commit/cce9553c9b9b658fc507282f781d4e80681840df))
+
+## [2.4.6](https://github.com/ridedott/merge-me-action/compare/v2.4.5...v2.4.6) (2021-04-09)
+
+### Documentation
+
+- add a recommendation for workflow conclusion status check
+  ([742267b](https://github.com/ridedott/merge-me-action/commit/742267b863629c31cc853f6c4169567d4ab0195a))
+
+## [2.4.5](https://github.com/ridedott/merge-me-action/compare/v2.4.4...v2.4.5) (2021-04-09)
+
+### Bug Fixes
+
+- use correct default GitHub login for Dependabot
+  ([71301e5](https://github.com/ridedott/merge-me-action/commit/71301e58fdfe98c90ec9dac2a11aa2026f89e1fb))
+
 ## [2.4.4](https://github.com/ridedott/merge-me-action/compare/v2.4.3...v2.4.4) (2021-04-09)
 
 ### Continuous Integration

@@ -41,7 +41,10 @@ jobs:
     name: Merge me!
     runs-on: ubuntu-latest
     steps:
-      - name: Merge me!
+      - # It is often a desired behavior to merge only when a workflow execution
+        # succeeds. This can be changed as needed.
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
           # Depending on branch protection rules, a  manually populated
@@ -84,8 +87,8 @@ jobs:
 
 You may have another bot that also creates PRs against your repository and you
 want to automatically merge those. By default, this GitHub Action assumes the
-bot is [`dependabot[bot]`](https://github.com/dependabot). You can override the
-bot name by changing the value of `GITHUB_LOGIN` parameter:
+bot is [`dependabot`](https://github.com/dependabot). You can override the bot
+name by changing the value of `GITHUB_LOGIN` parameter:
 
 ```yaml
 jobs:
@@ -107,7 +110,7 @@ jobs:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
-          GITHUB_LOGIN: dependabot-preview[bot]
+          GITHUB_LOGIN: dependabot-preview
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -178,7 +181,7 @@ jobs:
 There are cases in which manual changes are needed, for instance, in order to
 make the CI pass or to solve some conflicts that Dependabot (or the bot you are
 using) cannot handle. By default, this GitHub action will skip this case where
-the author is not [`dependabot[bot]`](https://github.com/dependabot) (or the bot
+the author is not [`dependabot`](https://github.com/dependabot) (or the bot
 you are using). This is often desirable as the author might prefer to get a code
 review before merging the changes.
 
