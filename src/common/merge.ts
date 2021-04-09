@@ -7,7 +7,6 @@ import {
 } from '../graphql/mutations';
 import { findPullRequestCommits } from '../graphql/queries';
 import {
-  FindPullRequestCommitsResponse,
   PullRequestCommitNode,
   PullRequestInformationContinuousIntegrationEnd,
 } from '../types';
@@ -15,6 +14,7 @@ import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo, logWarning } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
 import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';
+import { GraphQlQueryResponseData } from '@octokit/graphql';
 
 export interface PullRequestDetails {
   commitHeadline: string;
@@ -25,6 +25,7 @@ export interface PullRequestDetails {
 const EXPONENTIAL_BACKOFF = 2;
 const MINIMUM_WAIT_TIME = 1000;
 
+// eslint-disable-next-line max-statements
 const getIsModified = async (
   octokit: ReturnType<typeof getOctokit>,
   query: {
@@ -33,17 +34,12 @@ const getIsModified = async (
     repositoryOwner: string;
   },
 ): Promise<boolean> => {
-  const iterator = makeGraphqlIterator<
-    FindPullRequestCommitsResponse,
-    PullRequestCommitNode
-  >(
+  const iterator = makeGraphqlIterator<PullRequestCommitNode>(
     octokit,
     findPullRequestCommits,
     query,
-    (
-      response: FindPullRequestCommitsResponse,
-    ): IterableList<PullRequestCommitNode> =>
-      response.repository.pullRequest.commits,
+    (response: GraphQlQueryResponseData): IterableList<PullRequestCommitNode> =>
+      response.repository?.pullRequest?.commits,
   );
 
   // eslint-disable-next-line immutable/no-let
@@ -68,6 +64,12 @@ const getIsModified = async (
     if (author.user.login !== originalAuthor) {
       return true;
     }
+  }
+
+  if (originalAuthor === undefined) {
+    logWarning('Could not find PR commits, aborting.');
+
+    return true;
   }
 
   return false;
@@ -174,8 +176,8 @@ export const tryMerge = async (
   }: PullRequestInformationContinuousIntegrationEnd,
 ): Promise<void> => {
   const allowedAuthorName = getInput('GITHUB_LOGIN');
-  const disabledForManualChanges =
-    getInput('ENABLED_FOR_MANUAL_CHANGES') !== 'true';
+  const enabledForManualChanges =
+    getInput('ENABLED_FOR_MANUAL_CHANGES') === 'true';
 
   if (mergeableState !== 'MERGEABLE') {
     logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
@@ -198,7 +200,7 @@ export const tryMerge = async (
   } else if (checkPullRequestTitleForMergePreset(pullRequestTitle) === false) {
     logInfo(`Pull request version bump is not allowed by PRESET.`);
   } else if (
-    disabledForManualChanges === true &&
+    enabledForManualChanges === false &&
     (await getIsModified(octokit, {
       pullRequestNumber,
       repositoryName,

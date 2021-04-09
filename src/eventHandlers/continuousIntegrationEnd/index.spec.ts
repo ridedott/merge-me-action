@@ -426,7 +426,7 @@ describe('continuous integration end event handler', (): void => {
       },
     };
 
-    const commitsResponse = {
+    const commitsResponse: CommitsResponse = {
       data: {
         repository: {
           pullRequest: {
@@ -516,7 +516,7 @@ describe('continuous integration end event handler', (): void => {
       },
     };
 
-    const commitsResponse = {
+    const commitsResponse: CommitsResponse = {
       data: {
         repository: {
           pullRequest: {
@@ -626,7 +626,7 @@ describe('continuous integration end event handler', (): void => {
       },
     };
 
-    const commitsResponse = {
+    const commitsResponse: CommitsResponse = {
       data: {
         repository: {
           pullRequest: {
@@ -681,6 +681,57 @@ describe('continuous integration end event handler', (): void => {
 
     expect(infoSpy).not.toHaveBeenCalledWith(
       `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
+    );
+  });
+
+  it('logs a warning if it cannot find the PR commits', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const response: Response = {
+      data: {
+        repository: {
+          pullRequest: {
+            author: { login: 'dependabot' },
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      message: COMMIT_MESSAGE,
+                      messageHeadline: COMMIT_HEADLINE,
+                    },
+                  },
+                },
+              ],
+            },
+            id: PULL_REQUEST_ID,
+            mergeable: 'MERGEABLE',
+            merged: false,
+            pullRequest: { number: PULL_REQUEST_NUMBER },
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
+            state: 'OPEN',
+            title: 'bump @types/jest from 26.0.12 to 26.1.0',
+          },
+        },
+      },
+    };
+
+    const commitsResponse = {
+      data: {
+        repository: undefined,
+      },
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, commitsResponse);
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(warningSpy).toHaveBeenCalledWith(
+      `Could not find PR commits, aborting.`,
     );
   });
 

@@ -3,6 +3,7 @@
 /* eslint-disable immutable/no-let */
 
 import { getOctokit } from '@actions/github';
+import { GraphQlQueryResponseData } from '@octokit/graphql';
 
 const MAX_PAGE_SIZE = 100;
 
@@ -16,11 +17,13 @@ export interface IterableList<Iterable> {
   };
 }
 
-export const makeGraphqlIterator = <ResponseData, IterableData>(
+export const makeGraphqlIterator = <IterableData>(
   octokit: ReturnType<typeof getOctokit>,
   query: string,
   parameters: object,
-  extractListFunction: (response: ResponseData) => IterableList<IterableData>,
+  extractListFunction: (
+    response: GraphQlQueryResponseData,
+  ) => IterableList<IterableData> | undefined,
   pageSize: number = MAX_PAGE_SIZE,
   // eslint-disable-next-line max-params
 ): AsyncIterable<IterableData> => ({
@@ -33,13 +36,26 @@ export const makeGraphqlIterator = <ResponseData, IterableData>(
     return {
       async next(): Promise<IteratorResult<IterableData>> {
         if (current === fetched.length && hasNextPage) {
-          const response = await octokit.graphql<ResponseData>(query, {
-            ...parameters,
-            endCursor: cursor,
-            pageSize,
-          });
+          const response = await octokit.graphql<GraphQlQueryResponseData | null>(
+            query,
+            {
+              ...parameters,
+              endCursor: cursor,
+              pageSize,
+            },
+          );
 
-          const { edges, pageInfo } = extractListFunction(response);
+          if (response === null) {
+            return { done: true, value: undefined };
+          }
+
+          const list = extractListFunction(response);
+
+          if (list === undefined) {
+            return { done: true, value: undefined };
+          }
+
+          const { edges, pageInfo } = list;
 
           cursor = pageInfo.endCursor;
           hasNextPage = pageInfo.hasNextPage;
