@@ -1,3 +1,10 @@
+## [2.4.2](https://github.com/ridedott/merge-me-action/compare/v2.4.1...v2.4.2) (2021-04-09)
+
+### Bug Fixes
+
+- pull request grapqhQL query
+  ([35615da](https://github.com/ridedott/merge-me-action/commit/35615da3e47bb288cff3877ff65357a67e7e454b))
+
 ## [2.4.1](https://github.com/ridedott/merge-me-action/compare/v2.4.0...v2.4.1) (2021-04-08)
 
 ### Bug Fixes
