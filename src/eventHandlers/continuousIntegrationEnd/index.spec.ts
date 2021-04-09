@@ -3,7 +3,7 @@
  */
 
 import * as core from '@actions/core';
-import { getOctokit } from '@actions/github';
+import { context, getOctokit } from '@actions/github';
 import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
 
@@ -56,9 +56,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -104,9 +101,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -164,9 +158,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -219,9 +210,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -272,9 +260,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -328,9 +313,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -377,56 +359,30 @@ describe('continuous integration end event handler', (): void => {
   it('does not merge if request not created by the selected GITHUB_LOGIN and logs it', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      author: {
-                        name: DEPENDABOT_GITHUB_LOGIN,
-                      },
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            reviews: {
-              edges: [
-                {
-                  node: {
-                    state: 'APPROVED',
-                  },
-                },
-              ],
-            },
-            state: 'CLOSED',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
-    };
-
-    nock('https://api.github.com')
-      .post('/graphql')
-      .reply(StatusCodes.OK, response);
-
     await continuousIntegrationEndHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request created by dependabot[bot], not some-other-login, skipping.',
     );
+  });
+
+  it('does not merge if request not created by the selected GITHUB_LOGIN and logs unknown sender if the sender is undefined', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const { sender } = context.payload;
+    delete context.payload.sender;
+
+    await continuousIntegrationEndHandle(octokit, 'some-other-login', 3);
+
+    expect(infoSpy).toHaveBeenCalledWith(
+      'Pull request created by unknown sender, not some-other-login, skipping.',
+    );
+
+    /* eslint-disable require-atomic-updates */
+    /* eslint-disable immutable/no-mutation */
+    context.payload.sender = sender;
+    /* eslint-enable require-atomic-updates */
+    /* eslint-enable immutable/no-mutation */
   });
 
   it('does not merge if last commit was not created by the selected GITHUB_LOGIN and DISABLED_FOR_MANUAL_CHANGES is set to "true"', async (): Promise<void> => {
@@ -456,9 +412,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -511,9 +464,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -582,9 +532,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -651,9 +598,6 @@ describe('continuous integration end event handler', (): void => {
       data: {
         repository: {
           pullRequest: {
-            author: {
-              login: 'dependabot[bot]',
-            },
             commits: {
               edges: [
                 {
@@ -712,9 +656,6 @@ describe('continuous integration end event handler', (): void => {
         data: {
           repository: {
             pullRequest: {
-              author: {
-                login: 'dependabot[bot]',
-              },
               commits: {
                 edges: [
                   {

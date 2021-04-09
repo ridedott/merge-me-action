@@ -1,7 +1,4 @@
 const pullRequestFields = `{
-  author {
-    login
-  }
   commits(last: 1) {
     edges {
       node {

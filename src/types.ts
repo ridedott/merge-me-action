@@ -25,7 +25,6 @@ export type ReviewEdges = Array<
 >;
 
 export interface PullRequestInformationContinuousIntegrationEnd {
-  authorLogin: string;
   commitAuthorName: string;
   commitMessage: string;
   commitMessageHeadline: string;
@@ -39,9 +38,6 @@ export interface PullRequestInformationContinuousIntegrationEnd {
 }
 
 interface PullRequest {
-  author: {
-    login: string;
-  };
   commits: {
     edges: Array<{
       node: {
