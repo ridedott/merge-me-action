@@ -33,7 +33,6 @@ const getIsModified = async (
     repositoryOwner: string;
   },
 ): Promise<boolean> => {
-  logInfo("starting getIsMOdified");
   const iterator = makeGraphqlIterator<PullRequestCommitNode>(
     octokit,
     findPullRequestCommits,
@@ -50,8 +49,6 @@ const getIsModified = async (
     return true;
   }
 
-  logInfo("past warning");
-
   for await (const commitNode of iterator) {
     const { author, signature } = commitNode.commit;
 
@@ -61,9 +58,10 @@ const getIsModified = async (
       return true;
     }
 
-    logInfo("first iter");
-
     if (author.user.login !== firstResult.value.commit.author.user.login) {
+      logInfo(author);
+      logInfo(firstResult.value.commit.author);
+
       return true;
     }
   }
