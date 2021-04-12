@@ -61,9 +61,6 @@ const getIsModified = async (
     }
 
     if (author.user.login !== firstResult.value.commit.author.user.login) {
-      logInfo(author);
-      logInfo(firstResult.value.commit.author);
-
       return true;
     }
   }

@@ -570,7 +570,7 @@ describe('continuous integration end event handler', (): void => {
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(warningSpy).toHaveBeenCalledWith(
-      `Commit signature is not valid, assuming PR is modified.`,
+      `Commit signature not present or invalid, regarding PR as modified.`,
     );
   });
 
@@ -718,7 +718,7 @@ describe('continuous integration end event handler', (): void => {
 
     const commitsResponse = {
       data: {
-        repository: undefined,
+        repository: {},
       },
     };
 
