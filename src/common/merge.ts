@@ -33,13 +33,14 @@ const getIsModified = async (
     repositoryOwner: string;
   },
 ): Promise<boolean> => {
-  const iterator = makeGraphqlIterator<PullRequestCommitNode>(
-    octokit,
-    findPullRequestCommits,
-    query,
-    (response: GraphQlQueryResponseData): IterableList<PullRequestCommitNode> =>
+  const iterator = makeGraphqlIterator<PullRequestCommitNode>(octokit, {
+    extractListFunction: (
+      response: GraphQlQueryResponseData,
+    ): IterableList<PullRequestCommitNode> =>
       response.repository.pullRequest?.commits,
-  );
+    parameters: query,
+    query: findPullRequestCommits,
+  });
 
   const firstResult: IteratorResult<PullRequestCommitNode> = await iterator.next();
 
