@@ -1,5 +1,5 @@
-/* eslint-disable no-await-in-loop */
 /* eslint-disable immutable/no-let */
+/* eslint-disable no-await-in-loop */
 /* eslint-disable prefer-destructuring */
 
 import { getOctokit } from '@actions/github';
@@ -17,8 +17,8 @@ export interface IterableList<Iterable> {
   };
 }
 
-/* eslint-disable-next-line func-style,max-params */
-export async function* makeGraphqlIterator<IterableData>(
+/* eslint-disable-next-line max-params */
+export const makeGraphqlIterator = async function* <IterableData>(
   octokit: ReturnType<typeof getOctokit>,
   query: string,
   parameters: object,
@@ -50,4 +50,4 @@ export async function* makeGraphqlIterator<IterableData>(
       yield node;
     }
   }
-}
+};
