@@ -7,7 +7,7 @@
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
-    "micromatch": "^4.0.2"
+    "micromatch": "^4.0.4"
   },
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
