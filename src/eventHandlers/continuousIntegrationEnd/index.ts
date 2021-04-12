@@ -39,7 +39,6 @@ const getPullRequestInformation = async (
             {
               node: {
                 commit: {
-                  author: { name: commitAuthorName },
                   message: commitMessage,
                   messageHeadline: commitMessageHeadline,
                 },
@@ -47,6 +46,7 @@ const getPullRequestInformation = async (
             },
           ],
         },
+        number: pullRequestNumber,
         reviews: { edges: reviewEdges },
         mergeStateStatus,
         mergeable: mergeableState,
@@ -59,15 +59,17 @@ const getPullRequestInformation = async (
 
   return {
     authorLogin,
-    commitAuthorName,
     commitMessage,
     commitMessageHeadline,
     mergeStateStatus,
     mergeableState,
     merged,
     pullRequestId,
+    pullRequestNumber,
     pullRequestState,
     pullRequestTitle,
+    repositoryName: query.repositoryName,
+    repositoryOwner: query.repositoryOwner,
     reviewEdges,
   };
 };

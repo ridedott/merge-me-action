@@ -186,7 +186,8 @@ make the CI pass or to solve some conflicts that Dependabot (or the bot you are
 using) cannot handle. By default, this GitHub action will skip this case where
 the author is not [`dependabot`](https://github.com/dependabot) (or the bot you
 are using). This is often desirable as the author might prefer to get a code
-review before merging the changes.
+review before merging the changes. For this, it checks whether all commits were
+made by the original author and that the commit signature is valid.
 
 It is possible to override this default behavior by setting the value of
 `ENABLED_FOR_MANUAL_CHANGES` to `'true'`.

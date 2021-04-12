@@ -9,12 +9,16 @@ import * as nock from 'nock';
 
 import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
 import { mergePullRequestMutation } from '../../graphql/mutations';
-import { FindPullRequestInfoByNumberResponse } from '../../types';
+import {
+  FindPullRequestCommitsResponse,
+  FindPullRequestInfoByNumberResponse,
+} from '../../types';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
 import { continuousIntegrationEndHandle } from '.';
 
 /* cspell:disable-next-line */
 const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
+const PULL_REQUEST_NUMBER = 1234;
 const COMMIT_HEADLINE = 'Update test';
 const COMMIT_MESSAGE =
   'Update test\n\nSigned-off-by:dependabot[bot]<support@dependabot.com>';
@@ -29,6 +33,41 @@ const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 interface Response {
   data: FindPullRequestInfoByNumberResponse;
 }
+
+interface CommitsResponse {
+  data: FindPullRequestCommitsResponse;
+}
+
+const validCommitResponse: CommitsResponse = {
+  data: {
+    repository: {
+      pullRequest: {
+        commits: {
+          edges: [
+            {
+              node: {
+                commit: {
+                  author: {
+                    user: {
+                      login: 'dependabot',
+                    },
+                  },
+                  signature: {
+                    isValid: true,
+                  },
+                },
+              },
+            },
+          ],
+          pageInfo: {
+            endCursor: '',
+            hasNextPage: false,
+          },
+        },
+      },
+    },
+  },
+};
 
 beforeEach((): void => {
   getInputSpy.mockImplementation((name: string): string => {
@@ -62,7 +101,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -73,6 +111,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -83,68 +122,12 @@ describe('continuous integration end event handler', (): void => {
 
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(StatusCodes.OK, response);
+      .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, validCommitResponse);
     nock('https://api.github.com').post('/graphql').reply(StatusCodes.OK);
 
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
-
-    expect(warningSpy).not.toHaveBeenCalled();
-  });
-
-  it('does not log warnings when it gets triggered with a login matching a pattern', async (): Promise<void> => {
-    expect.assertions(1);
-
-    getInputSpy.mockImplementationOnce((name: string): string => {
-      if (name === 'GITHUB_LOGIN') {
-        return '(foo|bar)';
-      }
-
-      if (name === 'MERGE_METHOD') {
-        return 'SQUASH';
-      }
-
-      if (name === 'PRESET') {
-        return 'DEPENDABOT_MINOR';
-      }
-
-      return '';
-    });
-
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'bar' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      author: { name: 'bar' },
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            reviews: { edges: [] },
-            state: 'OPEN',
-            title: 'chore(deps-dev): bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
-    };
-
-    nock('https://api.github.com')
-      .post('/graphql')
-      .reply(StatusCodes.OK, response);
-    nock('https://api.github.com').post('/graphql').reply(StatusCodes.OK);
-
-    await continuousIntegrationEndHandle(octokit, '(foo|bar)', 3);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -162,7 +145,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -173,6 +155,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -183,7 +166,9 @@ describe('continuous integration end event handler', (): void => {
 
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(StatusCodes.OK, response);
+      .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, validCommitResponse);
     nock('https://api.github.com')
       .post('/graphql', {
         query: mergePullRequestMutation(AllowedMergeMethods.SQUASH),
@@ -210,7 +195,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -221,6 +205,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'CONFLICTING',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -253,7 +238,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -264,6 +248,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: true,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -294,7 +279,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -306,6 +290,7 @@ describe('continuous integration end event handler', (): void => {
             mergeStateStatus: 'UNKNOWN',
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -338,7 +323,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -349,6 +333,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'CLOSED',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -379,7 +364,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -390,6 +374,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'CLOSED',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -409,7 +394,7 @@ describe('continuous integration end event handler', (): void => {
     );
   });
 
-  it('does not merge if last commit was not created by the selected GITHUB_LOGIN and ENABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
+  it('does not merge if a commit was not created by the original author and ENABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
     expect.assertions(1);
 
     const response: Response = {
@@ -422,7 +407,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: 'some-other-login' },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -433,6 +417,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -441,14 +426,151 @@ describe('continuous integration end event handler', (): void => {
       },
     };
 
+    const commitsResponse: CommitsResponse = {
+      data: {
+        repository: {
+          pullRequest: {
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      author: {
+                        user: {
+                          login: 'dependabot',
+                        },
+                      },
+                      signature: {
+                        isValid: true,
+                      },
+                    },
+                  },
+                },
+                {
+                  node: {
+                    commit: {
+                      author: {
+                        user: {
+                          login: 'not-dependabot',
+                        },
+                      },
+                      signature: {
+                        isValid: true,
+                      },
+                    },
+                  },
+                },
+              ],
+              pageInfo: {
+                endCursor: '',
+                hasNextPage: false,
+              },
+            },
+          },
+        },
+      },
+    };
+
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(StatusCodes.OK, response);
+      .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, commitsResponse);
 
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
       `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
+    );
+  });
+
+  it('does not merge if a commit signature is not valid and ENABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const response: Response = {
+      data: {
+        repository: {
+          pullRequest: {
+            author: { login: 'dependabot' },
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      message: COMMIT_MESSAGE,
+                      messageHeadline: COMMIT_HEADLINE,
+                    },
+                  },
+                },
+              ],
+            },
+            id: PULL_REQUEST_ID,
+            mergeable: 'MERGEABLE',
+            merged: false,
+            number: PULL_REQUEST_NUMBER,
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
+            state: 'OPEN',
+            title: 'bump @types/jest from 26.0.12 to 26.1.0',
+          },
+        },
+      },
+    };
+
+    const commitsResponse: CommitsResponse = {
+      data: {
+        repository: {
+          pullRequest: {
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      author: {
+                        user: {
+                          login: 'dependabot',
+                        },
+                      },
+                      signature: {
+                        isValid: true,
+                      },
+                    },
+                  },
+                },
+                {
+                  node: {
+                    commit: {
+                      author: {
+                        user: {
+                          login: 'dependabot',
+                        },
+                      },
+                      signature: {
+                        isValid: false,
+                      },
+                    },
+                  },
+                },
+              ],
+              pageInfo: {
+                endCursor: '',
+                hasNextPage: false,
+              },
+            },
+          },
+        },
+      },
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, commitsResponse);
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(warningSpy).toHaveBeenCalledWith(
+      `Commit signature not present or invalid, regarding PR as modified.`,
     );
   });
 
@@ -485,7 +607,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: 'some-other-login' },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -496,6 +617,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -504,14 +626,112 @@ describe('continuous integration end event handler', (): void => {
       },
     };
 
+    const commitsResponse: CommitsResponse = {
+      data: {
+        repository: {
+          pullRequest: {
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      author: {
+                        user: {
+                          login: 'dependabot',
+                        },
+                      },
+                      signature: {
+                        isValid: true,
+                      },
+                    },
+                  },
+                },
+                {
+                  node: {
+                    commit: {
+                      author: {
+                        user: {
+                          login: 'not-dependabot',
+                        },
+                      },
+                      signature: {
+                        isValid: true,
+                      },
+                    },
+                  },
+                },
+              ],
+              pageInfo: {
+                endCursor: '',
+                hasNextPage: false,
+              },
+            },
+          },
+        },
+      },
+    };
+
     nock('https://api.github.com')
       .post('/graphql')
-      .reply(StatusCodes.OK, response);
+      .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, commitsResponse);
 
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(infoSpy).not.toHaveBeenCalledWith(
       `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
+    );
+  });
+
+  it('logs a warning if it cannot find the PR commits', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const response: Response = {
+      data: {
+        repository: {
+          pullRequest: {
+            author: { login: 'dependabot' },
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      message: COMMIT_MESSAGE,
+                      messageHeadline: COMMIT_HEADLINE,
+                    },
+                  },
+                },
+              ],
+            },
+            id: PULL_REQUEST_ID,
+            mergeable: 'MERGEABLE',
+            merged: false,
+            number: PULL_REQUEST_NUMBER,
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
+            state: 'OPEN',
+            title: 'bump @types/jest from 26.0.12 to 26.1.0',
+          },
+        },
+      },
+    };
+
+    const commitsResponse = {
+      data: {
+        repository: {},
+      },
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, commitsResponse);
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(warningSpy).toHaveBeenCalledWith(
+      `Could not find PR commits, aborting.`,
     );
   });
 
@@ -540,7 +760,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -551,6 +770,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -562,6 +782,8 @@ describe('continuous integration end event handler', (): void => {
     nock('https://api.github.com')
       .post('/graphql')
       .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, validCommitResponse)
       .post('/graphql')
       .times(3)
       .reply(
@@ -597,7 +819,6 @@ describe('continuous integration end event handler', (): void => {
                 {
                   node: {
                     commit: {
-                      author: { name: DEPENDABOT_GITHUB_LOGIN },
                       message: COMMIT_MESSAGE,
                       messageHeadline: COMMIT_HEADLINE,
                     },
@@ -608,6 +829,7 @@ describe('continuous integration end event handler', (): void => {
             id: PULL_REQUEST_ID,
             mergeable: 'MERGEABLE',
             merged: false,
+            number: PULL_REQUEST_NUMBER,
             reviews: { edges: [{ node: { state: 'APPROVED' } }] },
             state: 'OPEN',
             title: 'bump @types/jest from 26.0.12 to 26.1.0',
@@ -619,6 +841,8 @@ describe('continuous integration end event handler', (): void => {
     nock('https://api.github.com')
       .post('/graphql')
       .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, validCommitResponse)
       .post('/graphql')
       .reply(403, '##[error]GraphqlError: This is a different error.');
 
@@ -646,7 +870,6 @@ describe('continuous integration end event handler', (): void => {
                   {
                     node: {
                       commit: {
-                        author: { name: DEPENDABOT_GITHUB_LOGIN },
                         message: COMMIT_MESSAGE,
                         messageHeadline: COMMIT_HEADLINE,
                       },
@@ -657,6 +880,7 @@ describe('continuous integration end event handler', (): void => {
               id: PULL_REQUEST_ID,
               mergeable: 'MERGEABLE',
               merged: false,
+              number: PULL_REQUEST_NUMBER,
               reviews: { edges: [] },
               state: 'OPEN',
               title: 'bump @types/jest from 26.0.12 to 27.0.13',

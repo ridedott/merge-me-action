@@ -26,15 +26,17 @@ export type ReviewEdges = Array<
 
 export interface PullRequestInformationContinuousIntegrationEnd {
   authorLogin: string;
-  commitAuthorName: string;
   commitMessage: string;
   commitMessageHeadline: string;
   mergeStateStatus?: MergeStateStatus;
   mergeableState: MergeableState;
   merged: boolean;
   pullRequestId: string;
+  pullRequestNumber: number;
   pullRequestState: PullRequestState;
   pullRequestTitle: string;
+  repositoryName: string;
+  repositoryOwner: string;
   reviewEdges: ReviewEdges;
 }
 
@@ -46,9 +48,6 @@ interface PullRequest {
     edges: Array<{
       node: {
         commit: {
-          author: {
-            name: string;
-          };
           message: string;
           messageHeadline: string;
         };
@@ -59,9 +58,23 @@ interface PullRequest {
   mergeStateStatus?: MergeStateStatus;
   mergeable: MergeableState;
   merged: boolean;
+  number: number;
   reviews: { edges: ReviewEdges };
   state: PullRequestState;
   title: string;
+}
+
+export interface PullRequestCommitNode {
+  commit: {
+    author: {
+      user: {
+        login: string;
+      };
+    };
+    signature: {
+      isValid: boolean;
+    } | null;
+  };
 }
 
 export interface FindPullRequestsInfoByReferenceNameResponse {
@@ -75,6 +88,22 @@ export interface FindPullRequestsInfoByReferenceNameResponse {
 export interface FindPullRequestInfoByNumberResponse {
   repository: {
     pullRequest: PullRequest;
+  };
+}
+
+export interface FindPullRequestCommitsResponse {
+  repository: {
+    pullRequest: {
+      commits: {
+        edges: Array<{
+          node: PullRequestCommitNode;
+        }>;
+        pageInfo: {
+          endCursor;
+          hasNextPage;
+        };
+      };
+    };
   };
 }
 

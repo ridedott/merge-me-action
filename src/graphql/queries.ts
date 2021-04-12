@@ -18,6 +18,7 @@ const pullRequestFields = `{
   id
   mergeable
   merged
+  number
   reviews(last: 1, states: APPROVED) {
     edges {
       node {
@@ -43,6 +44,35 @@ export const findPullRequestInfoByNumber = `
   query FindPullRequestInfoByNumber($repositoryOwner: String!, $repositoryName: String!, $pullRequestNumber: Int!) {
     repository(owner: $repositoryOwner, name: $repositoryName) {
       pullRequest(number: $pullRequestNumber) ${pullRequestFields}
+    }
+  }
+`;
+
+export const findPullRequestCommits = `
+  query FindPullRequestsInfoByReferenceName($repositoryOwner: String!, $repositoryName: String!, $pullRequestNumber: Int!, $pageSize: Int!, $endCursor: String) {
+    repository(owner: $repositoryOwner, name: $repositoryName) {
+      pullRequest(number: $pullRequestNumber) {
+        commits(first: $pageSize, after: $endCursor) {
+          edges {
+            node {
+              commit {
+                author {
+                  user {
+                    login
+                  }
+                }
+                signature {
+                  isValid
+                }
+              }
+            }
+          }
+          pageInfo {
+            endCursor
+            hasNextPage
+          }
+        }
+      }
     }
   }
 `;

@@ -24,10 +24,11 @@ inputs:
       'Enable additional functionality to better personalize the behavior. One
       of: DEPENDABOT_MINOR or DEPENDABOT_PATCH.'
     required: false
-  DISABLED_FOR_MANUAL_CHANGES:
+  ENABLED_FOR_MANUAL_CHANGES:
     description:
-      'Disable automatic merges for changes made by a different Github login
-      than the one set in GITHUB_LOGIN. One of: "true" or "false".'
+      'Enable automatic merges when changes are made to the PR by a different
+      author than the original one. Requires commits to be signed. One of:
+      "true" or "false".'
     default: 'false'
     required: false
 name: 'Merge me!'
