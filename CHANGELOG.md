@@ -1,3 +1,10 @@
+## [2.6.2](https://github.com/ridedott/merge-me-action/compare/v2.6.1...v2.6.2) (2021-04-12)
+
+### Bug Fixes
+
+- check if PR is modified by verifying all commits' signatures
+  ([53d86db](https://github.com/ridedott/merge-me-action/commit/53d86db04a6d1473f12bbd244315df65f308530c))
+
 ## [2.6.1](https://github.com/ridedott/merge-me-action/compare/v2.6.0...v2.6.1) (2021-04-09)
 
 ### Chores
