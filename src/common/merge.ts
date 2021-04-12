@@ -38,7 +38,7 @@ const getIsModified = async (
     findPullRequestCommits,
     query,
     (response: GraphQlQueryResponseData): IterableList<PullRequestCommitNode> =>
-      response.repository?.pullRequest?.commits,
+      response.repository.pullRequest?.commits,
   );
 
   const firstResult: IteratorResult<PullRequestCommitNode> = await iterator.next();
@@ -52,8 +52,10 @@ const getIsModified = async (
   for await (const commitNode of iterator) {
     const { author, signature } = commitNode.commit;
 
-    if (signature.isValid !== true) {
-      logWarning('Commit signature is not valid, assuming PR is modified.');
+    if (signature === null || signature.isValid !== true) {
+      logWarning(
+        'Commit signature not present or invalid, regarding PR as modified.',
+      );
 
       return true;
     }

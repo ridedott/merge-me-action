@@ -73,7 +73,7 @@ export interface PullRequestCommitNode {
     };
     signature: {
       isValid: boolean;
-    };
+    } | null;
   };
 }
 
