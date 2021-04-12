@@ -1,7 +1,7 @@
 /* eslint-disable no-await-in-loop */
 
 import { context, getOctokit } from '@actions/github';
-import { GraphQlQueryResponseData } from '@octokit/graphql';
+import type { GraphQlQueryResponseData } from '@octokit/graphql';
 import { isMatch } from 'micromatch';
 
 import { tryMerge } from '../../common/merge';
