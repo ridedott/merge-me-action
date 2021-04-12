@@ -58,9 +58,7 @@ interface PullRequest {
   mergeStateStatus?: MergeStateStatus;
   mergeable: MergeableState;
   merged: boolean;
-  pullRequest: {
-    number: number;
-  };
+  number: number;
   reviews: { edges: ReviewEdges };
   state: PullRequestState;
   title: string;

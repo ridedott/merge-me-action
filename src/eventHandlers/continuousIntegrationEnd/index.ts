@@ -46,7 +46,7 @@ const getPullRequestInformation = async (
             },
           ],
         },
-        pullRequest: { number: pullRequestNumber },
+        number: pullRequestNumber,
         reviews: { edges: reviewEdges },
         mergeStateStatus,
         mergeable: mergeableState,
