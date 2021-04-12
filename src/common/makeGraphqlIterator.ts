@@ -17,18 +17,22 @@ export interface IterableList<Iterable> {
   };
 }
 
-/* eslint-disable-next-line max-params */
 export const makeGraphqlIterator = async function* <IterableData>(
   octokit: ReturnType<typeof getOctokit>,
-  query: string,
-  parameters: object,
-  extractListFunction: (
-    response: GraphQlQueryResponseData,
-  ) => IterableList<IterableData> | undefined,
-  pageSize: number = MAX_PAGE_SIZE,
+  options: {
+    extractListFunction: (
+      response: GraphQlQueryResponseData,
+    ) => IterableList<IterableData> | undefined;
+    parameters: object;
+    query: string;
+  },
 ): AsyncGenerator<IterableData> {
+  const { query, parameters, extractListFunction } = options;
+
   let cursor: string | undefined = undefined;
   let hasNextPage: boolean = true;
+
+  const { pageSize = MAX_PAGE_SIZE }: { pageSize?: number } = parameters;
 
   while (hasNextPage) {
     const response = await octokit.graphql<GraphQlQueryResponseData>(query, {
