@@ -67,6 +67,10 @@ export const findPullRequestCommits = `
               }
             }
           }
+          pageInfo {
+            endCursor
+            hasNextPage
+          }
         }
       }
     }
