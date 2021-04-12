@@ -62,8 +62,8 @@ export async function* makeGraphqlIterator<IterableData>(
   };
 
   /* eslint-disable-next-line no-unmodified-loop-condition */
-  while (current !== items.length || hasNextPage) {
-    if (current === items.length && hasNextPage) {
+  while (current < items.length || hasNextPage) {
+    if ((current + 1) >= items.length && hasNextPage) {
       /* eslint-disable-next-line no-await-in-loop */
       const data = await fetchPage();
 
