@@ -18,9 +18,7 @@ const pullRequestFields = `{
   id
   mergeable
   merged
-  pullRequest {
-    number
-  }
+  number
   reviews(last: 1, states: APPROVED) {
     edges {
       node {
