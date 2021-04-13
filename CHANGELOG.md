@@ -1,3 +1,10 @@
+## [2.6.6](https://github.com/ridedott/merge-me-action/compare/v2.6.5...v2.6.6) (2021-04-13)
+
+### Chores
+
+- **deps-dev:** bump @vercel/ncc from 0.28.2 to 0.28.3
+  ([a061067](https://github.com/ridedott/merge-me-action/commit/a06106776af9e32a08c39e134af00c9fd733a70e))
+
 ## [2.6.5](https://github.com/ridedott/merge-me-action/compare/v2.6.4...v2.6.5) (2021-04-12)
 
 ### Chores
