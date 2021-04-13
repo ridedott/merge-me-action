@@ -1,10 +1,12 @@
-/* eslint-disable no-await-in-loop */
-
 import { context, getOctokit } from '@actions/github';
 import type { GraphQlQueryResponseData } from '@octokit/graphql';
 import { isMatch } from 'micromatch';
 
-import { delay } from '../../common/delay';
+import {
+  delay,
+  EXPONENTIAL_BACKOFF,
+  MINIMUM_WAIT_TIME,
+} from '../../common/delay';
 import { tryMerge } from '../../common/merge';
 import { findPullRequestInfoByNumber } from '../../graphql/queries';
 import {
@@ -12,9 +14,6 @@ import {
   PullRequestInformationContinuousIntegrationEnd,
 } from '../../types';
 import { logDebug, logInfo, logWarning } from '../../utilities/log';
-
-const EXPONENTIAL_BACKOFF = 2;
-const MINIMUM_WAIT_TIME = 1000;
 
 const MERGEABLE_STATUS_UNKNOWN_ERROR = 'Mergeable state is not known yet.';
 
@@ -186,25 +185,29 @@ export const continuousIntegrationEndHandle = async (
     pullRequestsInformationPromises,
   );
 
+  const mergePromises: Array<Promise<void>> = [];
+
   for (const pullRequestInformation of pullRequestsInformation) {
     if (pullRequestInformation === undefined) {
       logWarning('Unable to fetch pull request information.');
-    } else {
-      if (isMatch(pullRequestInformation.authorLogin, gitHubLogin) === false) {
-        logInfo(
-          `Pull request created by ${pullRequestInformation.authorLogin}, not ${gitHubLogin}, skipping.`,
-        );
-
-        return;
-      }
-
+    } else if (isMatch(pullRequestInformation.authorLogin, gitHubLogin)) {
       logInfo(
         `Found pull request information: ${JSON.stringify(
           pullRequestInformation,
         )}.`,
       );
 
-      await tryMerge(octokit, maximumRetries, pullRequestInformation);
+      mergePromises.push(
+        tryMerge(octokit, maximumRetries, pullRequestInformation),
+      );
+    } else {
+      logInfo(
+        `Pull request #${pullRequestInformation.pullRequestNumber.toString()} created by ${
+          pullRequestInformation.authorLogin
+        }, not ${gitHubLogin}, skipping.`,
+      );
     }
   }
+
+  await Promise.all(mergePromises);
 };

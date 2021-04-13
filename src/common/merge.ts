@@ -14,7 +14,7 @@ import {
 import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo, logWarning } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
-import { delay } from './delay';
+import { delay, EXPONENTIAL_BACKOFF, MINIMUM_WAIT_TIME } from './delay';
 import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';
 
 export interface PullRequestDetails {
@@ -22,9 +22,6 @@ export interface PullRequestDetails {
   pullRequestId: string;
   reviewEdge: { node: { state: string } } | undefined;
 }
-
-const EXPONENTIAL_BACKOFF = 2;
-const MINIMUM_WAIT_TIME = 1000;
 
 const getIsModified = async (
   octokit: ReturnType<typeof getOctokit>,
