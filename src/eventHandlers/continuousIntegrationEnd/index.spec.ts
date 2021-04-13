@@ -466,7 +466,7 @@ describe('continuous integration end event handler', (): void => {
     await continuousIntegrationEndHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request created by dependabot, not some-other-login, skipping.',
+      'Pull request #1234 created by dependabot, not some-other-login, skipping.',
     );
   });
 
