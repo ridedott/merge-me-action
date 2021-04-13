@@ -14,6 +14,7 @@ import {
 import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo, logWarning } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
+import { delay } from './delay';
 import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';
 
 export interface PullRequestDetails {
@@ -68,13 +69,6 @@ const getIsModified = async (
 
   return false;
 };
-
-const delay = async (duration: number): Promise<void> =>
-  new Promise((resolve: () => void): void => {
-    setTimeout((): void => {
-      resolve();
-    }, duration);
-  });
 
 /**
  * Approves and merges a given Pull Request.
