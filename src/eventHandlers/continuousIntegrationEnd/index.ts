@@ -11,7 +11,7 @@ import {
   FindPullRequestInfoByNumberResponse,
   PullRequestInformationContinuousIntegrationEnd,
 } from '../../types';
-import { logInfo, logWarning } from '../../utilities/log';
+import { logDebug, logInfo, logWarning } from '../../utilities/log';
 
 const EXPONENTIAL_BACKOFF = 2;
 const MINIMUM_WAIT_TIME = 1000;
@@ -123,8 +123,14 @@ const getMergeablePullRequestInformationWithRetry = async (
   try {
     return await getMergeablePullRequestInformation(octokit, query);
   } catch (error: unknown) {
+    logDebug(
+      `Failed to get pull request #${query.pullRequestNumber.toString()} information: ${
+        (error as Error).message
+      }.`,
+    );
+
     if (retryCount < retries.maximum) {
-      logInfo(
+      logDebug(
         `Retrying get pull request #${query.pullRequestNumber.toString()} information in ${nextRetryIn.toString()}...`,
       );
 
@@ -135,6 +141,10 @@ const getMergeablePullRequestInformationWithRetry = async (
         count: retryCount + 1,
       });
     }
+
+    logDebug(
+      `Failed to get pull request #${query.pullRequestNumber.toString()} information after ${retryCount.toString()} attempts. Retries exhausted.`,
+    );
 
     return Promise.reject(error);
   }

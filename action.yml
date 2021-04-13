@@ -31,6 +31,10 @@ inputs:
       "true" or "false".'
     default: 'false'
     required: false
+  MAXIMUM_RETRIES:
+    description: 'Maximum retry attempts to merge or get the PR information.'
+    default: '3'
+    required: false
 name: 'Merge me!'
 runs:
   main: dist/index.js
