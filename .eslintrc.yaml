@@ -13,6 +13,7 @@ overrides:
       'max-lines': 'off'
       max-lines-per-function: 'off'
       no-magic-numbers: 'off'
+      max-statements: 'off'
 parserOptions:
   ecmaVersion: 2020
   project: tsconfig.json
