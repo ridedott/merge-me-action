@@ -1,3 +1,10 @@
+## [2.6.10](https://github.com/ridedott/merge-me-action/compare/v2.6.9...v2.6.10) (2021-04-14)
+
+### Bug Fixes
+
+- retry on mergeable state unknown
+  ([1625aa4](https://github.com/ridedott/merge-me-action/commit/1625aa49e47509d7b3645a790d4b2ffca41e0139))
+
 ## [2.6.9](https://github.com/ridedott/merge-me-action/compare/v2.6.8...v2.6.9) (2021-04-14)
 
 ### Chores
