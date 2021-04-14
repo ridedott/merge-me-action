@@ -310,6 +310,82 @@ describe('continuous integration end event handler', (): void => {
     );
   });
 
+  it('retries fetching pull request information for which mergeable status is unknown', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const firstResponse: Response = {
+      data: {
+        repository: {
+          pullRequest: {
+            author: { login: 'dependabot' },
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      message: COMMIT_MESSAGE,
+                      messageHeadline: COMMIT_HEADLINE,
+                    },
+                  },
+                },
+              ],
+            },
+            id: PULL_REQUEST_ID,
+            mergeStateStatus: 'UNKNOWN',
+            mergeable: 'UNKNOWN',
+            merged: false,
+            number: PULL_REQUEST_NUMBER,
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
+            state: 'OPEN',
+            title: 'bump @types/jest from 26.0.12 to 26.1.0',
+          },
+        },
+      },
+    };
+
+    const secondResponse: Response = {
+      data: {
+        repository: {
+          pullRequest: {
+            author: { login: 'dependabot' },
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      message: COMMIT_MESSAGE,
+                      messageHeadline: COMMIT_HEADLINE,
+                    },
+                  },
+                },
+              ],
+            },
+            id: PULL_REQUEST_ID,
+            mergeStateStatus: 'CLEAN',
+            mergeable: 'MERGEABLE',
+            merged: true,
+            number: PULL_REQUEST_NUMBER,
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
+            state: 'OPEN',
+            title: 'bump @types/jest from 26.0.12 to 26.1.0',
+          },
+        },
+      },
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, firstResponse);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, secondResponse);
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(infoSpy).toHaveBeenLastCalledWith('Pull request is already merged.');
+  });
+
   it('does not approve pull requests for which state is not open', async (): Promise<void> => {
     expect.assertions(1);
 
@@ -390,7 +466,7 @@ describe('continuous integration end event handler', (): void => {
     await continuousIntegrationEndHandle(octokit, 'some-other-login', 3);
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request created by dependabot, not some-other-login, skipping.',
+      'Pull request #1234 created by dependabot, not some-other-login, skipping.',
     );
   });
 
