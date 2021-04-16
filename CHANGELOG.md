@@ -1,3 +1,10 @@
+## [2.6.13](https://github.com/ridedott/merge-me-action/compare/v2.6.12...v2.6.13) (2021-04-16)
+
+### Chores
+
+- **deps-dev:** bump ts-jest from 26.5.4 to 26.5.5
+  ([caf61ea](https://github.com/ridedott/merge-me-action/commit/caf61ead3c4e88f2f81a3b3a592fd583ce1f5fef))
+
 ## [2.6.12](https://github.com/ridedott/merge-me-action/compare/v2.6.11...v2.6.12) (2021-04-15)
 
 ### Chores
