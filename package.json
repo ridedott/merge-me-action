@@ -38,8 +38,8 @@
     "ts-node": "^9.1.1"
   },
   "engines": {
-    "node": "12 || >=14",
-    "npm": ">=7"
+    "node": "^15",
+    "npm": "^7"
   },
   "files": [
     "dist",
@@ -95,5 +95,6 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "2.6.13"
+  "version": "2.6.13",
+  "enginesStrict": true
 }
