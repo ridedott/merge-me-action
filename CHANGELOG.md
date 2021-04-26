@@ -1,3 +1,10 @@
+## [2.6.14](https://github.com/ridedott/merge-me-action/compare/v2.6.13...v2.6.14) (2021-04-26)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.24.0 to 7.25.0
+  ([3349626](https://github.com/ridedott/merge-me-action/commit/3349626d3343534e6d76b7ddc3c00e3b9e308d7d))
+
 ## [2.6.13](https://github.com/ridedott/merge-me-action/compare/v2.6.12...v2.6.13) (2021-04-16)
 
 ### Chores
