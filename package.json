@@ -21,7 +21,7 @@
     "@semantic-release/release-notes-generator": "^9.0.2",
     "@types/jest": "^26.0.22",
     "@types/micromatch": "^4.0.1",
-    "@types/node": "^14.14.39",
+    "@types/node": "^15.0.0",
     "@vercel/ncc": "^0.28.3",
     "commitizen": "^4.2.3",
     "cspell": "^5.3.7",
