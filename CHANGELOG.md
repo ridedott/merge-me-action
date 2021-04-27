@@ -1,3 +1,12 @@
+## [2.6.15](https://github.com/ridedott/merge-me-action/compare/v2.6.14...v2.6.15) (2021-04-27)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 26.0.22 to 26.0.23
+  ([81449f8](https://github.com/ridedott/merge-me-action/commit/81449f810bab936400cbeb28fc607fe99d751542))
+- **deps-dev:** bump @types/node from 14.14.39 to 15.0.0
+  ([0d0ed8b](https://github.com/ridedott/merge-me-action/commit/0d0ed8bab1a7ea027edce8650a058ac7caf1468c))
+
 ## [2.6.14](https://github.com/ridedott/merge-me-action/compare/v2.6.13...v2.6.14) (2021-04-26)
 
 ### Chores
