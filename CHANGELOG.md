@@ -1,3 +1,12 @@
+## [2.6.16](https://github.com/ridedott/merge-me-action/compare/v2.6.15...v2.6.16) (2021-04-28)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.12.2 to 2.13.0
+  ([0caea25](https://github.com/ridedott/merge-me-action/commit/0caea255592919789f63a05bb542391f8c050520))
+- **deps-dev:** bump @types/node from 15.0.0 to 15.0.1
+  ([dd06be7](https://github.com/ridedott/merge-me-action/commit/dd06be703e74315031df2a9485cc00dcde40fa63))
+
 ## [2.6.15](https://github.com/ridedott/merge-me-action/compare/v2.6.14...v2.6.15) (2021-04-27)
 
 ### Chores
