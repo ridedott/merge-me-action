@@ -1,3 +1,12 @@
+## [2.6.19](https://github.com/ridedott/merge-me-action/compare/v2.6.18...v2.6.19) (2021-05-03)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.13.11 to 2.13.12
+  ([fa19b06](https://github.com/ridedott/merge-me-action/commit/fa19b0666a38ae57f7f5bd9387144cf53848c61f))
+- **deps-dev:** bump @vercel/ncc from 0.28.4 to 0.28.5
+  ([d8e4e99](https://github.com/ridedott/merge-me-action/commit/d8e4e994e6f333df9107569ac8b233393e9a0031))
+
 ## [2.6.18](https://github.com/ridedott/merge-me-action/compare/v2.6.17...v2.6.18) (2021-04-30)
 
 ### Chores
