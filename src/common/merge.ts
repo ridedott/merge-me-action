@@ -9,7 +9,7 @@ import {
 import { findPullRequestCommits } from '../graphql/queries';
 import {
   PullRequestCommitNode,
-  PullRequestInformationContinuousIntegrationEnd,
+  PullRequestInformation,
 } from '../types';
 import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo, logWarning } from '../utilities/log';
@@ -158,7 +158,7 @@ export const tryMerge = async (
     reviewEdges,
     repositoryName,
     repositoryOwner,
-  }: PullRequestInformationContinuousIntegrationEnd,
+  }: PullRequestInformation,
 ): Promise<void> => {
   const allowedAuthorName = getInput('GITHUB_LOGIN');
   const enabledForManualChanges =
