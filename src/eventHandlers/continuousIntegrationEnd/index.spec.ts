@@ -88,6 +88,34 @@ beforeEach((): void => {
 });
 
 describe('continuous integration end event handler', (): void => {
+  it('logs a warning when it cannot find pull request ID by pull request number (null)', async (): Promise<void> => {
+    expect.assertions(1);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, { data: null });
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(warningSpy).toHaveBeenCalledWith(
+      'Unable to fetch pull request information.',
+    );
+  });
+
+  it('logs a warning when it cannot find pull request ID by pull request number', async (): Promise<void> => {
+    expect.assertions(1);
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, { data: { repository: { pullRequest: null } } });
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(warningSpy).toHaveBeenCalledWith(
+      'Unable to fetch pull request information.',
+    );
+  });
+
   it('does not log warnings when it gets triggered by Dependabot', async (): Promise<void> => {
     expect.assertions(1);
 
@@ -646,7 +674,7 @@ describe('continuous integration end event handler', (): void => {
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(warningSpy).toHaveBeenCalledWith(
-      `Commit signature not present or invalid, regarding PR as modified.`,
+      'Commit signature not present or invalid, regarding PR as modified.',
     );
   });
 
@@ -807,20 +835,8 @@ describe('continuous integration end event handler', (): void => {
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     expect(warningSpy).toHaveBeenCalledWith(
-      `Could not find PR commits, aborting.`,
+      'Could not find PR commits, aborting.',
     );
-  });
-
-  it('logs a warning when it cannot find pull request ID by pull request number', async (): Promise<void> => {
-    expect.assertions(1);
-
-    nock('https://api.github.com')
-      .post('/graphql')
-      .reply(StatusCodes.OK, { data: { repository: { pullRequest: null } } });
-
-    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
-
-    expect(warningSpy).toHaveBeenCalled();
   });
 
   it('retries up to two times before failing', async (): Promise<void> => {
