@@ -85,7 +85,7 @@ export const getMergeablePullRequestInformationByPullRequestNumber = async (
   );
 
   if (pullRequestInformation === undefined) {
-    return pullRequestInformation;
+    return undefined;
   }
 
   if (pullRequestInformation.mergeableState === 'UNKNOWN') {
