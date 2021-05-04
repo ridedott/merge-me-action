@@ -9,7 +9,10 @@ import * as nock from 'nock';
 
 import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
 import { approveAndMergePullRequestMutation } from '../../graphql/mutations';
-import { FindPullRequestCommitsResponse, FindPullRequestInfoByNumberResponse } from '../../types';
+import {
+  FindPullRequestCommitsResponse,
+  FindPullRequestInfoByNumberResponse,
+} from '../../types';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
 import { continuousIntegrationEndHandle } from '.';
 
