@@ -1,67 +1,9 @@
 import { context, getOctokit } from '@actions/github';
+import { isMatch } from 'micromatch';
 
+import { getMergeablePullRequestInformationByPullRequestNumber } from '../../common/getPullRequestInformation';
 import { tryMerge } from '../../common/merge';
-import { findPullRequestInfoByNumber } from '../../graphql/queries';
-import {
-  FindPullRequestInfoByNumberResponse,
-  PullRequestInformationContinuousIntegrationEnd,
-} from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
-
-const getPullRequestInformation = async (
-  octokit: ReturnType<typeof getOctokit>,
-  query: {
-    pullRequestNumber: number;
-    repositoryName: string;
-    repositoryOwner: string;
-  },
-): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
-  const response = await octokit.graphql(findPullRequestInfoByNumber, query);
-
-  if (response === null) {
-    return undefined;
-  }
-
-  const {
-    repository: {
-      pullRequest: {
-        id: pullRequestId,
-        commits: {
-          edges: [
-            {
-              node: {
-                commit: {
-                  author: { name: commitAuthorName },
-                  message: commitMessage,
-                  messageHeadline: commitMessageHeadline,
-                },
-              },
-            },
-          ],
-        },
-        reviews: { edges: reviewEdges },
-        mergeStateStatus,
-        mergeable: mergeableState,
-        merged,
-        state: pullRequestState,
-        title: pullRequestTitle,
-      },
-    },
-  } = response as FindPullRequestInfoByNumberResponse;
-
-  return {
-    commitAuthorName,
-    commitMessage,
-    commitMessageHeadline,
-    mergeStateStatus,
-    mergeableState,
-    merged,
-    pullRequestId,
-    pullRequestState,
-    pullRequestTitle,
-    reviewEdges,
-  };
-};
 
 export const pullRequestHandle = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -76,25 +18,18 @@ export const pullRequestHandle = async (
     return;
   }
 
-  if (pullRequest.user.login !== gitHubLogin) {
-    logInfo(
-      `Pull request created by ${
-        pullRequest.user.login as string
-      }, not ${gitHubLogin}, skipping.`,
-    );
-
-    return;
-  }
-
-  const pullRequestInformation = await getPullRequestInformation(octokit, {
-    pullRequestNumber: pullRequest.number,
-    repositoryName: repository.name,
-    repositoryOwner: repository.owner.login,
-  });
+  const pullRequestInformation = await getMergeablePullRequestInformationByPullRequestNumber(
+    octokit,
+    {
+      pullRequestNumber: pullRequest.number,
+      repositoryName: repository.name,
+      repositoryOwner: repository.owner.login,
+    },
+  );
 
   if (pullRequestInformation === undefined) {
     logWarning('Unable to fetch pull request information.');
-  } else {
+  } else if (isMatch(pullRequestInformation.authorLogin, gitHubLogin)) {
     logInfo(
       `Found pull request information: ${JSON.stringify(
         pullRequestInformation,
@@ -105,5 +40,11 @@ export const pullRequestHandle = async (
       ...pullRequestInformation,
       commitMessageHeadline: pullRequest.title,
     });
+  } else {
+    logInfo(
+      `Pull request #${pullRequestInformation.pullRequestNumber.toString()} created by ${
+        pullRequestInformation.authorLogin
+      }, not ${gitHubLogin}, skipping.`,
+    );
   }
 };
