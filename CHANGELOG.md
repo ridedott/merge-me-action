@@ -1,3 +1,10 @@
+# [2.7.0](https://github.com/ridedott/merge-me-action/compare/v2.6.20...v2.7.0) (2021-05-04)
+
+### Features
+
+- add pull_request and pull_request_target event handlers
+  ([31adad2](https://github.com/ridedott/merge-me-action/commit/31adad21375b6b6eb5e65a9a668ab9e73f45917c))
+
 ## [2.6.20](https://github.com/ridedott/merge-me-action/compare/v2.6.19...v2.6.20) (2021-05-04)
 
 ### Code Refactoring
