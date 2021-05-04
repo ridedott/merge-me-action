@@ -1,4 +1,5 @@
 import { context, getOctokit } from '@actions/github';
+import type { GraphQlQueryResponseData } from '@octokit/graphql';
 
 import { tryMerge } from '../../common/merge';
 import { findPullRequestsInfoByReferenceName } from '../../graphql/queries';
@@ -6,7 +7,7 @@ import {
   CommitMessageHeadlineGroup,
   FindPullRequestsInfoByReferenceNameResponse,
   GroupName,
-  PullRequestInformationContinuousIntegrationEnd,
+  PullRequestInformation,
 } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
 
@@ -38,8 +39,8 @@ const getPullRequestInformation = async (
     repositoryName: string;
     repositoryOwner: string;
   },
-): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
-  const response = await octokit.graphql(
+): Promise<PullRequestInformation | undefined> => {
+  const response = await octokit.graphql<GraphQlQueryResponseData | null>(
     findPullRequestsInfoByReferenceName,
     query,
   );
@@ -56,13 +57,13 @@ const getPullRequestInformation = async (
       pullRequests: {
         nodes: [
           {
+            author: { login: authorLogin },
             id: pullRequestId,
             commits: {
               edges: [
                 {
                   node: {
                     commit: {
-                      author: { name: commitAuthorName },
                       message: commitMessage,
                       messageHeadline: commitMessageHeadline,
                     },
@@ -70,6 +71,7 @@ const getPullRequestInformation = async (
                 },
               ],
             },
+            number: pullRequestNumber,
             reviews: { edges: reviewEdges },
             mergeStateStatus,
             mergeable: mergeableState,
@@ -83,15 +85,18 @@ const getPullRequestInformation = async (
   } = response as FindPullRequestsInfoByReferenceNameResponse;
 
   return {
-    commitAuthorName,
+    authorLogin,
     commitMessage,
     commitMessageHeadline,
     mergeStateStatus,
     mergeableState,
     merged,
     pullRequestId,
+    pullRequestNumber,
     pullRequestState,
     pullRequestTitle,
+    repositoryName: query.repositoryName,
+    repositoryOwner: query.repositoryOwner,
     reviewEdges,
   };
 };
