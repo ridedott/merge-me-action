@@ -1,5 +1,4 @@
 import { context, getOctokit } from '@actions/github';
-import type { GraphQlQueryResponseData } from '@octokit/graphql';
 import { isMatch } from 'micromatch';
 
 import {
@@ -7,101 +6,10 @@ import {
   EXPONENTIAL_BACKOFF,
   MINIMUM_WAIT_TIME,
 } from '../../common/delay';
+import { getMergeablePullRequestInformationByPullRequestNumber } from '../../common/getPullRequestInformation';
 import { tryMerge } from '../../common/merge';
-import { findPullRequestInfoByNumber } from '../../graphql/queries';
-import {
-  FindPullRequestInfoByNumberResponse,
-  PullRequestInformationContinuousIntegrationEnd,
-} from '../../types';
+import { PullRequestInformation } from '../../types';
 import { logDebug, logInfo, logWarning } from '../../utilities/log';
-
-const MERGEABLE_STATUS_UNKNOWN_ERROR = 'Mergeable state is not known yet.';
-
-const getPullRequestInformation = async (
-  octokit: ReturnType<typeof getOctokit>,
-  query: {
-    pullRequestNumber: number;
-    repositoryName: string;
-    repositoryOwner: string;
-  },
-): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
-  const response = await octokit.graphql<GraphQlQueryResponseData | null>(
-    findPullRequestInfoByNumber,
-    query,
-  );
-
-  if (response === null || response.repository.pullRequest === null) {
-    return undefined;
-  }
-
-  const {
-    repository: {
-      pullRequest: {
-        author: { login: authorLogin },
-        id: pullRequestId,
-        commits: {
-          edges: [
-            {
-              node: {
-                commit: {
-                  message: commitMessage,
-                  messageHeadline: commitMessageHeadline,
-                },
-              },
-            },
-          ],
-        },
-        number: pullRequestNumber,
-        reviews: { edges: reviewEdges },
-        mergeStateStatus,
-        mergeable: mergeableState,
-        merged,
-        state: pullRequestState,
-        title: pullRequestTitle,
-      },
-    },
-  } = response as FindPullRequestInfoByNumberResponse;
-
-  return {
-    authorLogin,
-    commitMessage,
-    commitMessageHeadline,
-    mergeStateStatus,
-    mergeableState,
-    merged,
-    pullRequestId,
-    pullRequestNumber,
-    pullRequestState,
-    pullRequestTitle,
-    repositoryName: query.repositoryName,
-    repositoryOwner: query.repositoryOwner,
-    reviewEdges,
-  };
-};
-
-const getMergeablePullRequestInformation = async (
-  octokit: ReturnType<typeof getOctokit>,
-  query: {
-    pullRequestNumber: number;
-    repositoryName: string;
-    repositoryOwner: string;
-  },
-): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
-  const pullRequestInformation = await getPullRequestInformation(
-    octokit,
-    query,
-  );
-
-  if (pullRequestInformation === undefined) {
-    return pullRequestInformation;
-  }
-
-  if (pullRequestInformation.mergeableState === 'UNKNOWN') {
-    throw new Error(MERGEABLE_STATUS_UNKNOWN_ERROR);
-  }
-
-  return pullRequestInformation;
-};
 
 const getMergeablePullRequestInformationWithRetry = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -114,13 +22,16 @@ const getMergeablePullRequestInformationWithRetry = async (
     count?: number;
     maximum: number;
   },
-): Promise<PullRequestInformationContinuousIntegrationEnd | undefined> => {
+): Promise<PullRequestInformation | undefined> => {
   const retryCount = retries.count ?? 1;
 
   const nextRetryIn = retryCount ** EXPONENTIAL_BACKOFF * MINIMUM_WAIT_TIME;
 
   try {
-    return await getMergeablePullRequestInformation(octokit, query);
+    return await getMergeablePullRequestInformationByPullRequestNumber(
+      octokit,
+      query,
+    );
   } catch (error: unknown) {
     logDebug(
       `Failed to get pull request #${query.pullRequestNumber.toString()} information: ${
@@ -162,7 +73,7 @@ export const continuousIntegrationEndHandle = async (
   }>;
 
   const pullRequestsInformationPromises: Array<
-    Promise<PullRequestInformationContinuousIntegrationEnd | undefined>
+    Promise<PullRequestInformation | undefined>
   > = [];
 
   for (const pullRequest of pullRequests) {
@@ -174,9 +85,7 @@ export const continuousIntegrationEndHandle = async (
           repositoryName: context.repo.repo,
           repositoryOwner: context.repo.owner,
         },
-        {
-          maximum: maximumRetries,
-        },
+        { maximum: maximumRetries },
       ).catch((): undefined => undefined),
     );
   }
