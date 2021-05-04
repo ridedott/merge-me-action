@@ -8,10 +8,10 @@ import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
 
 import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
-import { FindPullRequestCommitsResponse, FindPullRequestInfoByNumberResponse } from '../../types';
-import { continuousIntegrationEndHandle } from '.';
 import { approveAndMergePullRequestMutation } from '../../graphql/mutations';
+import { FindPullRequestCommitsResponse, FindPullRequestInfoByNumberResponse } from '../../types';
 import { AllowedMergeMethods } from '../../utilities/inputParsers';
+import { continuousIntegrationEndHandle } from '.';
 
 /* cspell:disable-next-line */
 const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
