@@ -3,7 +3,7 @@
  */
 
 import * as core from '@actions/core';
-import { getOctokit } from '@actions/github';
+import { context, getOctokit } from '@actions/github';
 import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
 
@@ -110,6 +110,36 @@ describe('continuous integration end event handler', (): void => {
       .reply(StatusCodes.OK, { data: { repository: { pullRequest: null } } });
 
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(warningSpy).toHaveBeenCalledWith(
+      'Unable to fetch pull request information.',
+    );
+  });
+
+  it('logs a warning when the event is workflow_run and it cannot find pull request ID by pull request number', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const { check_suite: checkSuite, eventName } = context.payload;
+
+    /* eslint-disable immutable/no-mutation */
+    context.eventName = 'workflow_run';
+    context.payload.workflow_run = checkSuite;
+    delete context.payload.check_suite;
+    /* eslint-enable immutable/no-mutation */
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, { data: { repository: { pullRequest: null } } });
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    /* eslint-disable require-atomic-updates */
+    /* eslint-disable immutable/no-mutation */
+    context.eventName = eventName;
+    context.payload.check_suite = checkSuite;
+    delete context.payload.workflow_run;
+    /* eslint-enable require-atomic-updates */
+    /* eslint-enable immutable/no-mutation */
 
     expect(warningSpy).toHaveBeenCalledWith(
       'Unable to fetch pull request information.',

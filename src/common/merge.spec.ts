@@ -311,6 +311,20 @@ describe('merge', (): void => {
                     commit: {
                       author: {
                         user: {
+                          login: 'dependabot',
+                        },
+                      },
+                      signature: {
+                        isValid: true,
+                      },
+                    },
+                  },
+                },
+                {
+                  node: {
+                    commit: {
+                      author: {
+                        user: {
                           login: 'not-dependabot',
                         },
                       },
