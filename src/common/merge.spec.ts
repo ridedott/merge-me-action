@@ -11,7 +11,6 @@ import { useSetTimeoutImmediateInvocation } from '../../test/utilities';
 import { mergePullRequestMutation } from '../graphql/mutations';
 import {
   FindPullRequestCommitsResponse,
-  FindPullRequestInfoByNumberResponse,
   PullRequestInformation,
 } from '../types';
 import { AllowedMergeMethods } from '../utilities/inputParsers';
@@ -32,10 +31,6 @@ const infoSpy = jest.spyOn(core, 'info').mockImplementation();
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
 const debugSpy = jest.spyOn(core, 'debug').mockImplementation();
 const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
-
-interface Response {
-  data: FindPullRequestInfoByNumberResponse;
-}
 
 interface CommitsResponse {
   data: FindPullRequestCommitsResponse;
@@ -72,52 +67,6 @@ const validCommitResponse: CommitsResponse = {
   },
 };
 
-const responseToPullRequestInformation = (
-  {
-    repository: {
-      pullRequest: {
-        author: { login: authorLogin },
-        id: pullRequestId,
-        commits: {
-          edges: [
-            {
-              node: {
-                commit: {
-                  message: commitMessage,
-                  messageHeadline: commitMessageHeadline,
-                },
-              },
-            },
-          ],
-        },
-        number: pullRequestNumber,
-        reviews: { edges: reviewEdges },
-        mergeStateStatus,
-        mergeable: mergeableState,
-        merged,
-        state: pullRequestState,
-        title: pullRequestTitle,
-      },
-    },
-  }: FindPullRequestInfoByNumberResponse,
-  repositoryName: string,
-  repositoryOwner: string,
-): PullRequestInformation => ({
-  authorLogin,
-  commitMessage,
-  commitMessageHeadline,
-  mergeStateStatus,
-  mergeableState,
-  merged,
-  pullRequestId,
-  pullRequestNumber,
-  pullRequestState,
-  pullRequestTitle,
-  repositoryName,
-  repositoryOwner,
-  reviewEdges,
-});
-
 beforeEach((): void => {
   getInputSpy.mockImplementation((name: string): string => {
     if (name === 'GITHUB_LOGIN') {
@@ -140,33 +89,19 @@ describe('merge', (): void => {
   it('does not log warnings when it gets triggered by Dependabot', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [],
     };
 
     nock('https://api.github.com')
@@ -174,15 +109,7 @@ describe('merge', (): void => {
       .reply(StatusCodes.OK, validCommitResponse);
     nock('https://api.github.com').post('/graphql').reply(StatusCodes.OK);
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(warningSpy).not.toHaveBeenCalled();
   });
@@ -190,33 +117,19 @@ describe('merge', (): void => {
   it('does not approve an already approved pull request', async (): Promise<void> => {
     expect.assertions(0);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
     nock('https://api.github.com')
@@ -231,58 +144,28 @@ describe('merge', (): void => {
       })
       .reply(StatusCodes.OK);
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
   });
 
   it('does not approve pull requests that are not mergeable', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'CONFLICTING',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'CONFLICTING',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request is not in a mergeable state: CONFLICTING.',
@@ -292,44 +175,22 @@ describe('merge', (): void => {
   it('does not approve pull requests that are already merged', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: true,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: true,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is already merged.');
   });
@@ -337,45 +198,23 @@ describe('merge', (): void => {
   it('does not approve pull requests for which status is not clean', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeStateStatus: 'UNKNOWN',
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeStateStatus: 'UNKNOWN',
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request cannot be merged cleanly. Current state: UNKNOWN.',
@@ -385,44 +224,22 @@ describe('merge', (): void => {
   it('does not approve pull requests for which state is not open', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'CLOSED',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'CLOSED',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(infoSpy).toHaveBeenCalledWith('Pull request is not open: CLOSED.');
   });
@@ -430,45 +247,23 @@ describe('merge', (): void => {
   it('approves pull request and merges it', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeStateStatus: 'CLEAN',
-            mergeable: 'MERGEABLE',
-            merged: true,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeStateStatus: 'CLEAN',
+      mergeableState: 'MERGEABLE',
+      merged: true,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(infoSpy).toHaveBeenLastCalledWith('Pull request is already merged.');
   });
@@ -476,33 +271,19 @@ describe('merge', (): void => {
   it('does not merge if a commit was not created by the original author and ENABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
     const commitsResponse: CommitsResponse = {
@@ -554,15 +335,7 @@ describe('merge', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, commitsResponse);
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(infoSpy).toHaveBeenCalledWith(
       `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
@@ -572,33 +345,19 @@ describe('merge', (): void => {
   it('does not merge if a commit signature is not valid and ENABLED_FOR_MANUAL_CHANGES is not set to "true"', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
     const commitsResponse: CommitsResponse = {
@@ -650,15 +409,7 @@ describe('merge', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, commitsResponse);
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(warningSpy).toHaveBeenCalledWith(
       'Commit signature not present or invalid, regarding PR as modified.',
@@ -688,33 +439,19 @@ describe('merge', (): void => {
       return '';
     });
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
     const commitsResponse: CommitsResponse = {
@@ -766,52 +503,29 @@ describe('merge', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, commitsResponse);
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(infoSpy).not.toHaveBeenCalledWith(
       `Pull request changes were not made by ${DEPENDABOT_GITHUB_LOGIN}.`,
     );
   });
 
-
   it('logs a warning if it cannot find the PR commits', async (): Promise<void> => {
     expect.assertions(1);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
     const commitsResponse = {
@@ -824,15 +538,7 @@ describe('merge', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, commitsResponse);
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(warningSpy).toHaveBeenCalledWith(
       'Could not find PR commits, aborting.',
@@ -842,33 +548,19 @@ describe('merge', (): void => {
   it('retries up to two times before failing', async (): Promise<void> => {
     expect.assertions(5);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
     nock('https://api.github.com')
@@ -883,15 +575,7 @@ describe('merge', (): void => {
 
     useSetTimeoutImmediateInvocation();
 
-    await tryMerge(
-      octokit,
-      2,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 2, pullRequestInformation);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
@@ -907,33 +591,19 @@ describe('merge', (): void => {
   it('fails the backoff strategy when the error is not "Base branch was modified"', async (): Promise<void> => {
     expect.assertions(2);
 
-    const response: Response = {
-      data: {
-        repository: {
-          pullRequest: {
-            author: { login: 'dependabot' },
-            commits: {
-              edges: [
-                {
-                  node: {
-                    commit: {
-                      message: COMMIT_MESSAGE,
-                      messageHeadline: COMMIT_HEADLINE,
-                    },
-                  },
-                },
-              ],
-            },
-            id: PULL_REQUEST_ID,
-            mergeable: 'MERGEABLE',
-            merged: false,
-            number: PULL_REQUEST_NUMBER,
-            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
-            state: 'OPEN',
-            title: 'bump @types/jest from 26.0.12 to 26.1.0',
-          },
-        },
-      },
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
     };
 
     nock('https://api.github.com')
@@ -942,15 +612,7 @@ describe('merge', (): void => {
       .post('/graphql')
       .reply(403, '##[error]GraphqlError: This is a different error.');
 
-    await tryMerge(
-      octokit,
-      3,
-      responseToPullRequestInformation(
-        response.data,
-        REPOSITORY_NAME,
-        REPOSITORY_OWNER,
-      ),
-    );
+    await tryMerge(octokit, 3, pullRequestInformation);
 
     expect(infoSpy).toHaveBeenCalledWith(
       'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
@@ -964,44 +626,22 @@ describe('merge', (): void => {
     it('does nothing if the PR title contains a major bump but PRESET specifies DEPENDABOT_PATCH', async (): Promise<void> => {
       expect.assertions(0);
 
-      const response: Response = {
-        data: {
-          repository: {
-            pullRequest: {
-              author: { login: 'dependabot' },
-              commits: {
-                edges: [
-                  {
-                    node: {
-                      commit: {
-                        message: COMMIT_MESSAGE,
-                        messageHeadline: COMMIT_HEADLINE,
-                      },
-                    },
-                  },
-                ],
-              },
-              id: PULL_REQUEST_ID,
-              mergeable: 'MERGEABLE',
-              merged: false,
-              number: PULL_REQUEST_NUMBER,
-              reviews: { edges: [] },
-              state: 'OPEN',
-              title: 'bump @types/jest from 26.0.12 to 27.0.13',
-            },
-          },
-        },
+      const pullRequestInformation: PullRequestInformation = {
+        authorLogin: 'dependabot',
+        commitMessage: COMMIT_MESSAGE,
+        commitMessageHeadline: COMMIT_HEADLINE,
+        mergeableState: 'MERGEABLE',
+        merged: false,
+        pullRequestId: PULL_REQUEST_ID,
+        pullRequestNumber: PULL_REQUEST_NUMBER,
+        pullRequestState: 'OPEN',
+        pullRequestTitle: 'bump @types/jest from 26.0.12 to 27.0.13',
+        repositoryName: REPOSITORY_NAME,
+        repositoryOwner: REPOSITORY_OWNER,
+        reviewEdges: [],
       };
 
-      await tryMerge(
-        octokit,
-        3,
-        responseToPullRequestInformation(
-          response.data,
-          REPOSITORY_NAME,
-          REPOSITORY_OWNER,
-        ),
-      );
+      await tryMerge(octokit, 3, pullRequestInformation);
     });
   });
 });
