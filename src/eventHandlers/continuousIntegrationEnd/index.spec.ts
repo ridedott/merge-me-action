@@ -116,7 +116,7 @@ describe('continuous integration end event handler', (): void => {
     );
   });
 
-  it('logs a warning when the evnt is workflow_run and it cannot find pull request ID by pull request number', async (): Promise<void> => {
+  it('logs a warning when the event is workflow_run and it cannot find pull request ID by pull request number', async (): Promise<void> => {
     expect.assertions(1);
 
     const { check_suite: checkSuite, eventName } = context.payload;
