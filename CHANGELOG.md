@@ -1,3 +1,10 @@
+## [2.6.20](https://github.com/ridedott/merge-me-action/compare/v2.6.19...v2.6.20) (2021-05-04)
+
+### Code Refactoring
+
+- move tests and functions to dedicated files
+  ([4d86639](https://github.com/ridedott/merge-me-action/commit/4d86639cb9d1347687f5a2144a5ca3659e23ca54))
+
 ## [2.6.19](https://github.com/ridedott/merge-me-action/compare/v2.6.18...v2.6.19) (2021-05-03)
 
 ### Chores
