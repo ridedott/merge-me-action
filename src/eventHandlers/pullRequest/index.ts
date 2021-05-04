@@ -10,9 +10,9 @@ export const pullRequestHandle = async (
   gitHubLogin: string,
   maximumRetries: number,
 ): Promise<void> => {
-  const { repository, pull_request: pullRequest } = context.payload;
+  const { pull_request: pullRequest } = context.payload;
 
-  if (pullRequest === undefined || repository === undefined) {
+  if (pullRequest === undefined) {
     logWarning('Required pull request information is unavailable.');
 
     return;
@@ -22,8 +22,8 @@ export const pullRequestHandle = async (
     octokit,
     {
       pullRequestNumber: pullRequest.number,
-      repositoryName: repository.name,
-      repositoryOwner: repository.owner.login,
+      repositoryName: context.repo.repo,
+      repositoryOwner: context.repo.owner,
     },
   );
 

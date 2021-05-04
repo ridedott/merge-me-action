@@ -8,8 +8,10 @@ import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
 
 import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
-import { FindPullRequestInfoByNumberResponse } from '../../types';
+import { FindPullRequestCommitsResponse, FindPullRequestInfoByNumberResponse } from '../../types';
 import { continuousIntegrationEndHandle } from '.';
+import { approveAndMergePullRequestMutation } from '../../graphql/mutations';
+import { AllowedMergeMethods } from '../../utilities/inputParsers';
 
 /* cspell:disable-next-line */
 const PULL_REQUEST_ID = 'MDExOlB1bGxSZXF1ZXN0MzE3MDI5MjU4';
@@ -28,6 +30,41 @@ const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 interface Response {
   data: FindPullRequestInfoByNumberResponse;
 }
+
+interface CommitsResponse {
+  data: FindPullRequestCommitsResponse;
+}
+
+const validCommitResponse: CommitsResponse = {
+  data: {
+    repository: {
+      pullRequest: {
+        commits: {
+          edges: [
+            {
+              node: {
+                commit: {
+                  author: {
+                    user: {
+                      login: 'dependabot',
+                    },
+                  },
+                  signature: {
+                    isValid: true,
+                  },
+                },
+              },
+            },
+          ],
+          pageInfo: {
+            endCursor: '',
+            hasNextPage: false,
+          },
+        },
+      },
+    },
+  },
+};
 
 beforeEach((): void => {
   getInputSpy.mockImplementation((name: string): string => {
@@ -242,5 +279,62 @@ describe('continuous integration end event handler', (): void => {
     expect(infoSpy).toHaveBeenCalledWith(
       'Pull request #1234 created by dependabot, not some-other-login, skipping.',
     );
+  });
+
+  it('retries, approves and merges a pull request', async (): Promise<void> => {
+    expect.assertions(0);
+
+    const response: Response = {
+      data: {
+        repository: {
+          pullRequest: {
+            author: { login: 'dependabot' },
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      message: COMMIT_MESSAGE,
+                      messageHeadline: COMMIT_HEADLINE,
+                    },
+                  },
+                },
+              ],
+            },
+            id: PULL_REQUEST_ID,
+            mergeable: 'MERGEABLE',
+            merged: false,
+            number: PULL_REQUEST_NUMBER,
+            reviews: { edges: [] },
+            state: 'OPEN',
+            title: 'bump @types/jest from 26.0.12 to 26.1.0',
+          },
+        },
+      },
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, response)
+      .post('/graphql')
+      .reply(StatusCodes.OK, validCommitResponse)
+      .post('/graphql')
+      .times(2)
+      .reply(
+        403,
+        '##[error]GraphqlError: Base branch was modified. Review and try the merge again.',
+      )
+      .post('/graphql', {
+        query: approveAndMergePullRequestMutation(AllowedMergeMethods.SQUASH),
+        variables: {
+          commitHeadline: COMMIT_HEADLINE,
+          pullRequestId: PULL_REQUEST_ID,
+        },
+      })
+      .reply(StatusCodes.OK);
+
+    useSetTimeoutImmediateInvocation();
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
   });
 });
