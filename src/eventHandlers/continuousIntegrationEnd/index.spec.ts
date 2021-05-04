@@ -7,10 +7,8 @@ import { getOctokit } from '@actions/github';
 import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
 
-import {
-  FindPullRequestCommitsResponse,
-  FindPullRequestInfoByNumberResponse,
-} from '../../types';
+import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
+import { FindPullRequestInfoByNumberResponse } from '../../types';
 import { continuousIntegrationEndHandle } from '.';
 
 /* cspell:disable-next-line */
@@ -24,48 +22,12 @@ const DEPENDABOT_GITHUB_LOGIN = 'dependabot';
 const octokit = getOctokit('SECRET_GITHUB_TOKEN');
 const infoSpy = jest.spyOn(core, 'info').mockImplementation();
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
+const debugSpy = jest.spyOn(core, 'debug').mockImplementation();
 const getInputSpy = jest.spyOn(core, 'getInput').mockImplementation();
 
 interface Response {
   data: FindPullRequestInfoByNumberResponse;
 }
-
-interface CommitsResponse {
-  data: FindPullRequestCommitsResponse;
-}
-
-// Use this to add some tests
-// eslint-disable-next-line jest/no-export
-export const validCommitResponse: CommitsResponse = {
-  data: {
-    repository: {
-      pullRequest: {
-        commits: {
-          edges: [
-            {
-              node: {
-                commit: {
-                  author: {
-                    user: {
-                      login: 'dependabot',
-                    },
-                  },
-                  signature: {
-                    isValid: true,
-                  },
-                },
-              },
-            },
-          ],
-          pageInfo: {
-            endCursor: '',
-            hasNextPage: false,
-          },
-        },
-      },
-    },
-  },
-};
 
 beforeEach((): void => {
   getInputSpy.mockImplementation((name: string): string => {
@@ -111,6 +73,53 @@ describe('continuous integration end event handler', (): void => {
 
     expect(warningSpy).toHaveBeenCalledWith(
       'Unable to fetch pull request information.',
+    );
+  });
+
+  it('retries fetching pull request information for which mergeable status is unknown until retries are exceeded', async (): Promise<void> => {
+    expect.assertions(1);
+
+    const firstResponse: Response = {
+      data: {
+        repository: {
+          pullRequest: {
+            author: { login: 'dependabot' },
+            commits: {
+              edges: [
+                {
+                  node: {
+                    commit: {
+                      message: COMMIT_MESSAGE,
+                      messageHeadline: COMMIT_HEADLINE,
+                    },
+                  },
+                },
+              ],
+            },
+            id: PULL_REQUEST_ID,
+            mergeStateStatus: 'UNKNOWN',
+            mergeable: 'UNKNOWN',
+            merged: false,
+            number: PULL_REQUEST_NUMBER,
+            reviews: { edges: [{ node: { state: 'APPROVED' } }] },
+            state: 'OPEN',
+            title: 'bump @types/jest from 26.0.12 to 26.1.0',
+          },
+        },
+      },
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .times(3)
+      .reply(StatusCodes.OK, firstResponse);
+
+    useSetTimeoutImmediateInvocation();
+
+    await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
+
+    expect(debugSpy).toHaveBeenLastCalledWith(
+      'Failed to get pull request #7 information after 3 attempts. Retries exhausted.',
     );
   });
 
@@ -184,6 +193,8 @@ describe('continuous integration end event handler', (): void => {
     nock('https://api.github.com')
       .post('/graphql')
       .reply(StatusCodes.OK, secondResponse);
+
+    useSetTimeoutImmediateInvocation();
 
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
