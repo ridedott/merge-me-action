@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/ridedott/merge-me-action/compare/v2.7.0...v2.8.0) (2021-05-04)
+
+### Features
+
+- increase coverage to 100%
+  ([ffa023c](https://github.com/ridedott/merge-me-action/commit/ffa023c8c91b3b8fce03e280826219b6f0fc4291))
+
 # [2.7.0](https://github.com/ridedott/merge-me-action/compare/v2.6.20...v2.7.0) (2021-05-04)
 
 ### Features
