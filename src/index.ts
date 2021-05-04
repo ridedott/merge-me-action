@@ -4,7 +4,6 @@ import { context, getOctokit } from '@actions/github';
 import {
   continuousIntegrationEndHandle,
   pullRequestHandle,
-  pushHandle,
 } from './eventHandlers';
 import { logInfo, logWarning } from './utilities/log';
 
@@ -33,8 +32,6 @@ const main = async (): Promise<void> => {
     case 'pull_request':
     case 'pull_request_target':
       return pullRequestHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
-    case 'push':
-      return pushHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     default:
       logWarning(`Unknown event ${context.eventName}, skipping.`);
   }
