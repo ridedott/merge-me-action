@@ -30,8 +30,8 @@ const main = async (): Promise<void> => {
         GITHUB_LOGIN,
         MAXIMUM_RETRIES,
       );
-    case 'pull_request_target':
     case 'pull_request':
+    case 'pull_request_target':
       return pullRequestHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     case 'push':
       return pushHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
