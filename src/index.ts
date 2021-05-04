@@ -1,7 +1,11 @@
 import { getInput, setFailed } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
-import { continuousIntegrationEndHandle } from './eventHandlers';
+import {
+  continuousIntegrationEndHandle,
+  pullRequestHandle,
+  pushHandle,
+} from './eventHandlers';
 import { logInfo, logWarning } from './utilities/log';
 
 const DEFAULT_MAXIMUM_RETRIES = 3;
@@ -26,6 +30,11 @@ const main = async (): Promise<void> => {
         GITHUB_LOGIN,
         MAXIMUM_RETRIES,
       );
+    case 'pull_request_target':
+    case 'pull_request':
+      return pullRequestHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
+    case 'push':
+      return pushHandle(octokit, GITHUB_LOGIN, MAXIMUM_RETRIES);
     default:
       logWarning(`Unknown event ${context.eventName}, skipping.`);
   }
