@@ -7,10 +7,7 @@ import {
   mergePullRequestMutation,
 } from '../graphql/mutations';
 import { findPullRequestCommits } from '../graphql/queries';
-import {
-  PullRequestCommitNode,
-  PullRequestInformation,
-} from '../types';
+import { PullRequestCommitNode, PullRequestInformation } from '../types';
 import { parseInputMergeMethod } from '../utilities/inputParsers';
 import { logDebug, logInfo, logWarning } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
