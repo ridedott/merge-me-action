@@ -1,3 +1,12 @@
+## [2.8.1](https://github.com/ridedott/merge-me-action/compare/v2.8.0...v2.8.1) (2021-05-05)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/npm from 7.1.1 to 7.1.3
+  ([df208d9](https://github.com/ridedott/merge-me-action/commit/df208d9a7c5b5315a8f8dbb8ae183d388679349c))
+- **deps-dev:** bump @types/node from 15.0.1 to 15.0.2
+  ([6aa8f43](https://github.com/ridedott/merge-me-action/commit/6aa8f43b7f180d3844b5a03d045ee52843279728))
+
 # [2.8.0](https://github.com/ridedott/merge-me-action/compare/v2.7.0...v2.8.0) (2021-05-04)
 
 ### Features
