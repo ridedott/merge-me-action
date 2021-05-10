@@ -1,3 +1,12 @@
+## [2.8.5](https://github.com/ridedott/merge-me-action/compare/v2.8.4...v2.8.5) (2021-05-10)
+
+### Chores
+
+- **deps-dev:** bump commitizen from 4.2.3 to 4.2.4
+  ([e7fabad](https://github.com/ridedott/merge-me-action/commit/e7fabad21244f5fb5c56fddeb2614d389dc4a270))
+- **deps-dev:** bump eslint from 7.25.0 to 7.26.0
+  ([0574341](https://github.com/ridedott/merge-me-action/commit/05743411654bb0998c0d1ee5609d716579104ef6))
+
 ## [2.8.4](https://github.com/ridedott/merge-me-action/compare/v2.8.3...v2.8.4) (2021-05-06)
 
 ### Chores
