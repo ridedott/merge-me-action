@@ -1,3 +1,14 @@
+## [2.8.10](https://github.com/ridedott/merge-me-action/compare/v2.8.9...v2.8.10) (2021-05-13)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional
+  ([fc877fd](https://github.com/ridedott/merge-me-action/commit/fc877fd916a7917f411bb0127bc1623b00178dd0))
+- **deps-dev:** bump @types/node from 15.0.2 to 15.0.3
+  ([ed55008](https://github.com/ridedott/merge-me-action/commit/ed550088fee591501ce29c79454006c73734e5a2))
+- **deps-dev:** bump semantic-release from 17.4.2 to 17.4.3
+  ([96fc09f](https://github.com/ridedott/merge-me-action/commit/96fc09fcb6989f0261568532803fb02add92b17e))
+
 ## [2.8.9](https://github.com/ridedott/merge-me-action/compare/v2.8.8...v2.8.9) (2021-05-12)
 
 ### Chores
