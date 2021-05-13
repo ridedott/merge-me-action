@@ -1,3 +1,14 @@
+## [2.8.12](https://github.com/ridedott/merge-me-action/compare/v2.8.11...v2.8.12) (2021-05-13)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 12.1.1 to 12.1.4
+  ([def1638](https://github.com/ridedott/merge-me-action/commit/def16380a3a126f86ecf86aa104ab4e85afb1982))
+- **deps-dev:** bump lint-staged from 10.5.4 to 11.0.0
+  ([f115f92](https://github.com/ridedott/merge-me-action/commit/f115f92b272e297f79386b9e347ee44baaa98791))
+- **deps-dev:** bump ts-jest from 26.5.5 to 26.5.6
+  ([9106dbc](https://github.com/ridedott/merge-me-action/commit/9106dbca22252fe2b203bda5e8a4ad526857df05))
+
 ## [2.8.11](https://github.com/ridedott/merge-me-action/compare/v2.8.10...v2.8.11) (2021-05-13)
 
 ### Chores
