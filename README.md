@@ -151,11 +151,7 @@ jobs:
     name: Merge me!
     needs:
       # List all required job names here.
-      - format
-      - lint
-      - spellcheck
       - test
-      - types
     runs-on: ubuntu-latest
     steps:
       - name: Merge me!
