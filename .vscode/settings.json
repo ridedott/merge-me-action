@@ -1,5 +1,6 @@
 {
   "cSpell.diagnosticLevel": "Error",
+  "cSpell.enabled": true,
   "cSpell.ignorePaths": [
     ".eslintrc",
     "*.config.js",
@@ -11,6 +12,7 @@
     "dist/**",
     "node_modules/**"
   ],
+  "editor.formatOnSave": true,
   "eslint.codeAction.disableRuleComment": {
     "enable": true,
     "location": "separateLine"
@@ -18,10 +20,8 @@
   "eslint.codeAction.showDocumentation": {
     "enable": true
   },
-  "eslint.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.run": "onType",
-  "jest.autoEnable": false,
-  "jest.pathToConfig": "./jest.config.js",
+  "jest.autoRun": {},
   "typescript.tsdk": "./node_modules/typescript/lib"
 }

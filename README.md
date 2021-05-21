@@ -16,12 +16,26 @@ require branches to be up to date, require status checks to pass).
 
 ## Usage
 
-The Action supports two run triggers:
+The Action supports three run triggers:
 
 - `check_suite` (works only on the default branch).
+- `pull_request_target` for all branches.
 - `workflow_run` for all branches.
 
-In both cases, Merge Me! Action should be added as a stand-alone workflow.
+When using the Merge Me! Action, ensure security of your workflows. GitHub
+Security Lab provides more
+[detailed](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)
+overview of these risks involved in using `pull_request_target` and
+`workflow_run` triggers, as well as recommendations on how to avoid these risks.
+
+Recommended setup differs between public and private repositories, however the
+Action can be used in other combinations as well.
+
+### Public repositories
+
+Using a `workflow_run` trigger allows to provide the Merge Me! Action with
+necessary credentials, while allowing the CI to keep using `pull_request`
+trigger, which is safer than `pull_request_target`.
 
 Create a new `.github/workflows/merge-me.yaml` file:
 
@@ -79,6 +93,82 @@ jobs:
         uses: ridedott/merge-me-action@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### Private repositories
+
+Private repositories are less prone attacks, as only a restricted set of
+accounts has access to them. At the same time, CIs in private repositories often
+require access to secrets for other purposes as well, such as installing private
+dependencies. For these reasons, it is recommended to use `pull_request_target`
+trigger, which allows to combine regular CI checks and the Merge Me! Action into
+one workflow:
+
+```yaml
+name: Continuous Integration
+
+on:
+  # Trigger on Pull Requests against the master branch.
+  pull_request_target:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+  # Trigger on Pull Requests to the master branch.
+  push:
+    branches:
+      - master
+
+jobs:
+  # Add other CI jobs, such as testing and linting. The example test job
+  # showcases checkout settings which support `pull_request_target` and `push`
+  # triggers at the same time.
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # This adds support for both `pull_request_target` and `push` events.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://npm.pkg.github.com
+      - # This allows private dependencies from GitHub Packages to be installed.
+        # Depending on the setup, it might be required to use a personal access
+        # token instead.
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-progress
+      - name: Test
+        run: npm run test
+  merge-me:
+    name: Merge me!
+    needs:
+      # List all required job names here.
+      - test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@v2
+        with:
+          # Depending on branch protection rules, a  manually populated
+          # `GITHUB_TOKEN_WORKAROUND` secret with permissions to push to
+          # a protected branch must be used. This secret can have an arbitrary
+          # name, as an example, this repository uses `DOTTBOTT_TOKEN`.
+          #
+          # When using a custom token, it is recommended to leave the following
+          # comment for other developers to be aware of the reasoning behind it:
+          #
+          # This must be used as GitHub Actions token does not support pushing
+          # to protected branches.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    timeout-minutes: 5
 ```
 
 ## Configuration
