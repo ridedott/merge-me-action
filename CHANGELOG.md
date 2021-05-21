@@ -1,3 +1,10 @@
+## [2.8.16](https://github.com/ridedott/merge-me-action/compare/v2.8.15...v2.8.16) (2021-05-21)
+
+### Documentation
+
+- document the recommended setup
+  ([6f97edb](https://github.com/ridedott/merge-me-action/commit/6f97edb7ef8ab4ef2b8d3daefaeb50c51286c59b))
+
 ## [2.8.15](https://github.com/ridedott/merge-me-action/compare/v2.8.14...v2.8.15) (2021-05-21)
 
 ### Chores
