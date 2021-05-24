@@ -1,3 +1,18 @@
+## [2.8.17](https://github.com/ridedott/merge-me-action/compare/v2.8.16...v2.8.17) (2021-05-24)
+
+### Chores
+
+- **deps:** bump @actions/core from 1.2.7 to 1.3.0
+  ([801f116](https://github.com/ridedott/merge-me-action/commit/801f116ed280ba2472e9c90b581fbee876f242b8))
+- **deps-dev:** bump @ridedott/eslint-config from 2.13.19 to 2.13.21
+  ([695528a](https://github.com/ridedott/merge-me-action/commit/695528acefc8190274248cf5444ab5aa5c7451d3))
+- **deps-dev:** bump @types/node from 15.3.1 to 15.6.0
+  ([addc29e](https://github.com/ridedott/merge-me-action/commit/addc29e8e8e4bdcc1cfd85fe479404f020bf2912))
+- **deps-dev:** bump eslint from 7.26.0 to 7.27.0
+  ([4fede53](https://github.com/ridedott/merge-me-action/commit/4fede53f335af32323c045cda900f5fc117c5723))
+- **deps-dev:** bump ts-node from 9.1.1 to 10.0.0
+  ([b5e5a4b](https://github.com/ridedott/merge-me-action/commit/b5e5a4b854b585dc0b5d0aad2179fa729f84199b))
+
 ## [2.8.16](https://github.com/ridedott/merge-me-action/compare/v2.8.15...v2.8.16) (2021-05-21)
 
 ### Documentation
