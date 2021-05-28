@@ -1,3 +1,12 @@
+## [2.8.21](https://github.com/ridedott/merge-me-action/compare/v2.8.20...v2.8.21) (2021-05-28)
+
+### Chores
+
+- **deps:** bump actions/cache from 2.1.5 to 2.1.6
+  ([2030210](https://github.com/ridedott/merge-me-action/commit/203021083305c91a95aa1438d0be58b8d48f9779))
+- **deps:** bump ridedott/release-me-action from 3.5.29 to 3.5.31
+  ([b810c6b](https://github.com/ridedott/merge-me-action/commit/b810c6bd3f9b332f6865b5ae6785f8d0e635014a))
+
 ## [2.8.20](https://github.com/ridedott/merge-me-action/compare/v2.8.19...v2.8.20) (2021-05-26)
 
 ### Chores
