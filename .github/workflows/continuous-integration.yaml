@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 15
       - name: Cache dependencies
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         with:
           key: npm-${{ hashFiles('./package-lock.json') }}
           path: ~/.npm
@@ -49,7 +49,7 @@ jobs:
         with:
           node-version: 15
       - name: Cache dependencies
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         with:
           key: npm-${{ hashFiles('./package-lock.json') }}
           path: ~/.npm
@@ -73,7 +73,7 @@ jobs:
         with:
           node-version: 15
       - name: Cache dependencies
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         with:
           key: npm-${{ hashFiles('./package-lock.json') }}
           path: ~/.npm
@@ -97,7 +97,7 @@ jobs:
         with:
           node-version: 15
       - name: Cache dependencies
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         with:
           key: npm-${{ hashFiles('./package-lock.json') }}
           path: ~/.npm
@@ -123,7 +123,7 @@ jobs:
       - name: Install latest npm
         run: npm install --global npm@latest
       - name: Cache dependencies
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         with:
           key: npm-${{ hashFiles('./package-lock.json') }}
           path: ~/.npm
@@ -151,7 +151,7 @@ jobs:
         with:
           node-version: 15
       - name: Cache dependencies
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2.1.6
         with:
           key: npm-${{ hashFiles('./package-lock.json') }}
           path: ~/.npm
