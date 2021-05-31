@@ -1,3 +1,10 @@
+## [2.8.22](https://github.com/ridedott/merge-me-action/compare/v2.8.21...v2.8.22) (2021-05-31)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.5.31 to 3.5.32
+  ([d784f6e](https://github.com/ridedott/merge-me-action/commit/d784f6ea069894537b715551d80d33d5094a2400))
+
 ## [2.8.21](https://github.com/ridedott/merge-me-action/compare/v2.8.20...v2.8.21) (2021-05-28)
 
 ### Chores
