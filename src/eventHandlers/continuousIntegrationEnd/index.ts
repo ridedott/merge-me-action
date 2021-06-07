@@ -7,8 +7,12 @@ import {
   MINIMUM_WAIT_TIME,
 } from '../../common/delay';
 import { getMergeablePullRequestInformationByPullRequestNumber } from '../../common/getPullRequestInformation';
+import { getRequiresStrictStatusChecks } from '../../common/getRequireStrictStatusChecks';
 import { tryMerge } from '../../common/merge';
-import { PullRequestInformation } from '../../types';
+import {
+  PullRequest,
+  PullRequestInformation,
+} from '../../types';
 import { logDebug, logInfo, logWarning } from '../../utilities/log';
 
 const getMergeablePullRequestInformationWithRetry = async (
@@ -60,6 +64,8 @@ const getMergeablePullRequestInformationWithRetry = async (
   }
 };
 
+
+
 export const continuousIntegrationEndHandle = async (
   octokit: ReturnType<typeof getOctokit>,
   gitHubLogin: string,
@@ -68,9 +74,19 @@ export const continuousIntegrationEndHandle = async (
   const pullRequests = (context.eventName === 'workflow_run'
     ? context.payload.workflow_run
     : context.payload.check_suite
-  ).pull_requests as Array<{
-    number: number;
-  }>;
+  ).pull_requests as PullRequest[];
+
+  //
+  const requiresStrictStatusChecks = await getRequiresStrictStatusChecks(
+    octokit,
+    {
+      repositoryName: context.repo.repo,
+      repositoryOwner: context.repo.owner,
+    },
+    Array.from(
+      new Set(pullRequests.map(({ base }: PullRequest): string => base.ref)),
+    ),
+  );
 
   const pullRequestsInformationPromises: Array<
     Promise<PullRequestInformation | undefined>
@@ -107,7 +123,10 @@ export const continuousIntegrationEndHandle = async (
       );
 
       mergePromises.push(
-        tryMerge(octokit, maximumRetries, pullRequestInformation),
+        tryMerge(octokit, {
+          maximumRetries,
+          requiresStrictStatusChecks,
+        }, pullRequestInformation),
       );
     } else {
       logInfo(

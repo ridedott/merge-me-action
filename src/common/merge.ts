@@ -142,7 +142,13 @@ const mergeWithRetry = async (
 
 export const tryMerge = async (
   octokit: ReturnType<typeof getOctokit>,
-  maximumRetries: number,
+  {
+    maximumRetries,
+    requiresStrictStatusChecks,
+  }: {
+    maximumRetries: number;
+    requiresStrictStatusChecks: boolean;
+  },
   {
     commitMessageHeadline,
     mergeableState,
@@ -165,6 +171,8 @@ export const tryMerge = async (
     logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
   } else if (merged) {
     logInfo(`Pull request is already merged.`);
+  } else if (mergeStateStatus === 'BEHIND' && ) {
+
   } else if (
     /*
      * TODO(@platform) [2021-06-01] Start pulling the value once it reaches

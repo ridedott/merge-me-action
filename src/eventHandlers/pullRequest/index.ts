@@ -2,7 +2,9 @@ import { context, getOctokit } from '@actions/github';
 import { isMatch } from 'micromatch';
 
 import { getMergeablePullRequestInformationByPullRequestNumber } from '../../common/getPullRequestInformation';
+import { getRequiresStrictStatusChecks } from '../../common/getRequireStrictStatusChecks';
 import { tryMerge } from '../../common/merge';
+import { PullRequest } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
 
 export const pullRequestHandle = async (
@@ -10,7 +12,7 @@ export const pullRequestHandle = async (
   gitHubLogin: string,
   maximumRetries: number,
 ): Promise<void> => {
-  const { pull_request: pullRequest } = context.payload;
+  const { pull_request: pullRequest} = context.payload;
 
   if (pullRequest === undefined) {
     logWarning('Required pull request information is unavailable.');
@@ -18,14 +20,24 @@ export const pullRequestHandle = async (
     return;
   }
 
-  const pullRequestInformation = await getMergeablePullRequestInformationByPullRequestNumber(
-    octokit,
-    {
-      pullRequestNumber: pullRequest.number,
-      repositoryName: context.repo.repo,
-      repositoryOwner: context.repo.owner,
-    },
-  );
+  const [requiresStrictStatusChecks, pullRequestInformation] = await Promise.all([
+    await getRequiresStrictStatusChecks(
+      octokit,
+      {
+        repositoryName: context.repo.repo,
+        repositoryOwner: context.repo.owner,
+      },
+      [(pullRequest as PullRequest).base.ref],
+    ),
+    getMergeablePullRequestInformationByPullRequestNumber(
+      octokit,
+      {
+        pullRequestNumber: pullRequest.number,
+        repositoryName: context.repo.repo,
+        repositoryOwner: context.repo.owner,
+      },
+    )
+  ]);
 
   if (pullRequestInformation === undefined) {
     logWarning('Unable to fetch pull request information.');
@@ -36,7 +48,10 @@ export const pullRequestHandle = async (
       )}.`,
     );
 
-    await tryMerge(octokit, maximumRetries, {
+    await tryMerge(octokit, {
+      maximumRetries,
+      requiresStrictStatusChecks,
+    }, {
       ...pullRequestInformation,
       commitMessageHeadline: pullRequest.title,
     });
