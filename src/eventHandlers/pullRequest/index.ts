@@ -2,9 +2,8 @@ import { context, getOctokit } from '@actions/github';
 import { isMatch } from 'micromatch';
 
 import { getMergeablePullRequestInformationByPullRequestNumber } from '../../common/getPullRequestInformation';
-import { getRequiresStrictStatusChecks } from '../../common/getRequireStrictStatusChecks';
+import { getRequiresStrictStatusChecks } from '../../common/getRequiresStrictStatusChecks';
 import { tryMerge } from '../../common/merge';
-import { PullRequest } from '../../types';
 import { logInfo, logWarning } from '../../utilities/log';
 
 export const pullRequestHandle = async (
@@ -12,7 +11,7 @@ export const pullRequestHandle = async (
   gitHubLogin: string,
   maximumRetries: number,
 ): Promise<void> => {
-  const { pull_request: pullRequest} = context.payload;
+  const { pull_request: pullRequest } = context.payload;
 
   if (pullRequest === undefined) {
     logWarning('Required pull request information is unavailable.');
@@ -20,23 +19,23 @@ export const pullRequestHandle = async (
     return;
   }
 
-  const [requiresStrictStatusChecks, pullRequestInformation] = await Promise.all([
+  const [
+    [requiresStrictStatusChecks],
+    pullRequestInformation,
+  ] = await Promise.all([
     await getRequiresStrictStatusChecks(
       octokit,
       {
         repositoryName: context.repo.repo,
         repositoryOwner: context.repo.owner,
       },
-      [(pullRequest as PullRequest).base.ref],
+      [pullRequest.base.ref as string],
     ),
-    getMergeablePullRequestInformationByPullRequestNumber(
-      octokit,
-      {
-        pullRequestNumber: pullRequest.number,
-        repositoryName: context.repo.repo,
-        repositoryOwner: context.repo.owner,
-      },
-    )
+    getMergeablePullRequestInformationByPullRequestNumber(octokit, {
+      pullRequestNumber: pullRequest.number,
+      repositoryName: context.repo.repo,
+      repositoryOwner: context.repo.owner,
+    }),
   ]);
 
   if (pullRequestInformation === undefined) {
@@ -48,13 +47,17 @@ export const pullRequestHandle = async (
       )}.`,
     );
 
-    await tryMerge(octokit, {
-      maximumRetries,
-      requiresStrictStatusChecks,
-    }, {
-      ...pullRequestInformation,
-      commitMessageHeadline: pullRequest.title,
-    });
+    await tryMerge(
+      octokit,
+      {
+        maximumRetries,
+        requiresStrictStatusChecks,
+      },
+      {
+        ...pullRequestInformation,
+        commitMessageHeadline: pullRequest.title,
+      },
+    );
   } else {
     logInfo(
       `Pull request #${pullRequestInformation.pullRequestNumber.toString()} created by ${

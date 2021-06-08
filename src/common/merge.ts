@@ -171,8 +171,11 @@ export const tryMerge = async (
     logInfo(`Pull request is not in a mergeable state: ${mergeableState}.`);
   } else if (merged) {
     logInfo(`Pull request is already merged.`);
-  } else if (mergeStateStatus === 'BEHIND' && ) {
-
+  } else if (
+    requiresStrictStatusChecks === true &&
+    mergeStateStatus === 'BEHIND'
+  ) {
+    logInfo(`Pull request is not up to date with the base ref.`);
   } else if (
     /*
      * TODO(@platform) [2021-06-01] Start pulling the value once it reaches

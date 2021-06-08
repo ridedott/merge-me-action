@@ -45,8 +45,8 @@ export interface PullRequest {
     login: string;
   };
   base: {
-    ref: string
-  }
+    ref: string;
+  };
   commits: {
     edges: Array<{
       node: {
