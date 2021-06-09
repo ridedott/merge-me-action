@@ -175,18 +175,19 @@ export const tryMerge = async (
     requiresStrictStatusChecks === true &&
     mergeStateStatus === 'BEHIND'
   ) {
-    logInfo(`Pull request is not up to date with the base ref.`);
+    logInfo(`Pull request branch is behind base branch.`);
   } else if (
-    /*
-     * TODO(@platform) [2021-06-01] Start pulling the value once it reaches
-     * GA.
-     */
+    requiresStrictStatusChecks === true &&
+    mergeStateStatus !== 'CLEAN'
+  ) {
+    logInfo(`Pull request cannot be merged cleanly. Current state: ${mergeStateStatus as string}.`);
+  } else if (
+    requiresStrictStatusChecks === false &&
     mergeStateStatus !== undefined &&
     mergeStateStatus !== 'CLEAN'
   ) {
     logInfo(
-      'Pull request cannot be merged cleanly. ' +
-        `Current state: ${mergeStateStatus}.`,
+      `Pull request cannot be merged cleanly. Current state: ${mergeStateStatus as string}.`,
     );
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);

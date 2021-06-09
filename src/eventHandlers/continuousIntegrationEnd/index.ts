@@ -1,13 +1,14 @@
 import { context, getOctokit } from '@actions/github';
 import { isMatch } from 'micromatch';
 
+import { computeRequiresStrictStatusChecksForRefs as computeRequiresStrictStatusChecksForReferences } from '../../common/computeRequiresStrictStatusChecksForRefs';
 import {
   delay,
   EXPONENTIAL_BACKOFF,
   MINIMUM_WAIT_TIME,
 } from '../../common/delay';
 import { getMergeablePullRequestInformationByPullRequestNumber } from '../../common/getPullRequestInformation';
-import { getRequiresStrictStatusChecks } from '../../common/getRequiresStrictStatusChecks';
+import { listBranchProtectionRules } from '../../common/listBranchProtectionRules';
 import { tryMerge } from '../../common/merge';
 import { PullRequest, PullRequestInformation } from '../../types';
 import { logDebug, logInfo, logWarning } from '../../utilities/log';
@@ -71,12 +72,14 @@ export const continuousIntegrationEndHandle = async (
     : context.payload.check_suite
   ).pull_requests as PullRequest[];
 
-  const requiresStrictStatusChecksArray = await getRequiresStrictStatusChecks(
+  const branchProtectionRules = await listBranchProtectionRules(
     octokit,
-    {
-      repositoryName: context.repo.repo,
-      repositoryOwner: context.repo.owner,
-    },
+    context.repo.owner,
+    context.repo.repo,
+  );
+
+  const requiresStrictStatusChecksArray = computeRequiresStrictStatusChecksForReferences(
+    branchProtectionRules,
     pullRequests.map(({ base }: PullRequest): string => base.ref),
   );
 

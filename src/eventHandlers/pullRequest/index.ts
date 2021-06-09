@@ -1,8 +1,9 @@
 import { context, getOctokit } from '@actions/github';
 import { isMatch } from 'micromatch';
 
+import { computeRequiresStrictStatusChecksForRefs as computeRequiresStrictStatusChecksForReferences } from '../../common/computeRequiresStrictStatusChecksForRefs';
 import { getMergeablePullRequestInformationByPullRequestNumber } from '../../common/getPullRequestInformation';
-import { getRequiresStrictStatusChecks } from '../../common/getRequiresStrictStatusChecks';
+import { listBranchProtectionRules } from '../../common/listBranchProtectionRules';
 import { tryMerge } from '../../common/merge';
 import { logInfo, logWarning } from '../../utilities/log';
 
@@ -19,23 +20,23 @@ export const pullRequestHandle = async (
     return;
   }
 
-  const [
-    [requiresStrictStatusChecks],
-    pullRequestInformation,
-  ] = await Promise.all([
-    await getRequiresStrictStatusChecks(
+  const [branchProtectionRules, pullRequestInformation] = await Promise.all([
+    await listBranchProtectionRules(
       octokit,
-      {
-        repositoryName: context.repo.repo,
-        repositoryOwner: context.repo.owner,
-      },
-      [pullRequest.base.ref as string],
+      context.repo.owner,
+      context.repo.repo,
     ),
     getMergeablePullRequestInformationByPullRequestNumber(octokit, {
       pullRequestNumber: pullRequest.number,
       repositoryName: context.repo.repo,
       repositoryOwner: context.repo.owner,
     }),
+  ]);
+
+  const [
+    requiresStrictStatusChecks,
+  ] = computeRequiresStrictStatusChecksForReferences(branchProtectionRules, [
+    pullRequest.base.ref as string,
   ]);
 
   if (pullRequestInformation === undefined) {

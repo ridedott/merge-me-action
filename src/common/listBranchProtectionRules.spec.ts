@@ -27,7 +27,7 @@ interface GraphQLResponse {
 }
 
 /**
- * Test utilitites
+ * Test utilities
  */
 const octokit = getOctokit('SECRET_GITHUB_TOKEN');
 const repositoryName = 'test-repository';
