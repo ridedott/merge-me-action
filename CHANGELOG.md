@@ -1,3 +1,10 @@
+## [2.8.26](https://github.com/ridedott/merge-me-action/compare/v2.8.25...v2.8.26) (2021-06-14)
+
+### Chores
+
+- **deps:** bump @actions/core from 1.3.0 to 1.4.0
+  ([735e22e](https://github.com/ridedott/merge-me-action/commit/735e22e66adae2e919b237e125de54f16c14aefc))
+
 ## [2.8.25](https://github.com/ridedott/merge-me-action/compare/v2.8.24...v2.8.25) (2021-06-14)
 
 ### Chores
