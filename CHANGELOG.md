@@ -1,3 +1,10 @@
+## [2.8.24](https://github.com/ridedott/merge-me-action/compare/v2.8.23...v2.8.24) (2021-06-14)
+
+### Continuous Integration
+
+- update dependabot configuration
+  ([1f0fe9d](https://github.com/ridedott/merge-me-action/commit/1f0fe9de1e1353654fd8001b5ca52c79b4ffb761))
+
 ## [2.8.23](https://github.com/ridedott/merge-me-action/compare/v2.8.22...v2.8.23) (2021-06-01)
 
 ### Chores
