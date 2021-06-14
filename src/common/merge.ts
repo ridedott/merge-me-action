@@ -167,7 +167,7 @@ export const tryMerge = async (
     logInfo(`Pull request is already merged.`);
   } else if (
     /*
-     * TODO(@platform) [2021-06-01] Start pulling the value once it reaches
+     * TODO(@platform) [2021-07-01] Start pulling the value once it reaches
      * GA.
      */
     mergeStateStatus !== undefined &&
