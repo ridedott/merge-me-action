@@ -1,3 +1,10 @@
+## [2.8.30](https://github.com/ridedott/merge-me-action/compare/v2.8.29...v2.8.30) (2021-06-16)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/release-notes-generator
+  ([b1ba638](https://github.com/ridedott/merge-me-action/commit/b1ba638e1a71b71281fa0cd2b924b565a9f239c4))
+
 ## [2.8.29](https://github.com/ridedott/merge-me-action/compare/v2.8.28...v2.8.29) (2021-06-16)
 
 ### Chores
