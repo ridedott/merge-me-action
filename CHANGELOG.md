@@ -1,3 +1,12 @@
+## [2.8.27](https://github.com/ridedott/merge-me-action/compare/v2.8.26...v2.8.27) (2021-06-16)
+
+### Chores
+
+- **deps-dev:** bump cspell from 5.4.1 to 5.6.4
+  ([0d80882](https://github.com/ridedott/merge-me-action/commit/0d808828f48e004bb84e53a7604610e3ad4cc4b2))
+- **deps-dev:** bump semantic-release from 17.4.3 to 17.4.4
+  ([36f1c02](https://github.com/ridedott/merge-me-action/commit/36f1c02edc6355957b1778f99e1191fef09aff34))
+
 ## [2.8.26](https://github.com/ridedott/merge-me-action/compare/v2.8.25...v2.8.26) (2021-06-14)
 
 ### Chores
