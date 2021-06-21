@@ -1,3 +1,10 @@
+## [2.8.34](https://github.com/ridedott/merge-me-action/compare/v2.8.33...v2.8.34) (2021-06-21)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.28.0 to 7.29.0
+  ([6d913a4](https://github.com/ridedott/merge-me-action/commit/6d913a48ddc44be317fe3c15cdbed5b8ad7fa788))
+
 ## [2.8.33](https://github.com/ridedott/merge-me-action/compare/v2.8.32...v2.8.33) (2021-06-21)
 
 ### Chores
