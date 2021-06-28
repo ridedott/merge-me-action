@@ -1,3 +1,10 @@
+## [2.8.36](https://github.com/ridedott/merge-me-action/compare/v2.8.35...v2.8.36) (2021-06-28)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 15.12.4 to 15.12.5
+  ([bc5697f](https://github.com/ridedott/merge-me-action/commit/bc5697fde478ee56687e1970f410cbb77c85f539))
+
 ## [2.8.35](https://github.com/ridedott/merge-me-action/compare/v2.8.34...v2.8.35) (2021-06-22)
 
 ### Chores
