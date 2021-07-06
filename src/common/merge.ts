@@ -86,10 +86,10 @@ const merge = async (
 
   const { commitHeadline, pullRequestId, reviewEdge } = pullRequestDetails;
 
-  const shouldApprove = reviewEdge === undefined;
-  const mutation = shouldApprove
-    ? approveAndMergePullRequestMutation(mergeMethod)
-    : mergePullRequestMutation(mergeMethod);
+  const mutation =
+    reviewEdge === undefined
+      ? approveAndMergePullRequestMutation(mergeMethod)
+      : mergePullRequestMutation(mergeMethod);
 
   await octokit.graphql(mutation, { commitHeadline, pullRequestId });
 };
