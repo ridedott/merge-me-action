@@ -17,6 +17,27 @@ export interface PullRequestDetails {
   reviewEdge: { node: { state: string } } | undefined;
 }
 
+const approveAndMergePullRequestMutation = (
+  mergeMethod: AllowedMergeMethods,
+): string => `
+  mutation ($commitHeadline: String!, $pullRequestId: ID!) {
+    addPullRequestReview(input: {event: APPROVE, pullRequestId: $pullRequestId}) {
+      clientMutationId
+    }
+    mergePullRequest(input: {commitBody: " ", commitHeadline: $commitHeadline, mergeMethod: ${mergeMethod}, pullRequestId: $pullRequestId}) {
+      clientMutationId
+    }
+  }
+`;
+
+const mergePullRequestMutation = (mergeMethod: AllowedMergeMethods): string => `
+  mutation ($commitHeadline: String!, $pullRequestId: ID!) {
+    mergePullRequest(input: {commitBody: " ", commitHeadline: $commitHeadline, mergeMethod: ${mergeMethod}, pullRequestId: $pullRequestId}) {
+      clientMutationId
+    }
+  }
+`;
+
 const getIsModified = async (
   octokit: ReturnType<typeof getOctokit>,
   query: {
@@ -54,27 +75,6 @@ const getIsModified = async (
   return false;
 };
 
-const mutationQuery = (
-  mergeMethod: AllowedMergeMethods,
-  shouldApprove: boolean,
-): string =>
-  shouldApprove
-    ? `
-    mutation ($commitHeadline: String!, $pullRequestId: ID!) {
-      addPullRequestReview(input: {event: APPROVE, pullRequestId: $pullRequestId}) {
-        clientMutationId
-      }
-      mergePullRequest(input: {commitBody: " ", commitHeadline: $commitHeadline, mergeMethod: ${mergeMethod}, pullRequestId: $pullRequestId}) {
-        clientMutationId
-      }
-    }`
-    : `
-    mutation ($commitHeadline: String!, $pullRequestId: ID!) {
-      mergePullRequest(input: {commitBody: " ", commitHeadline: $commitHeadline, mergeMethod: ${mergeMethod}, pullRequestId: $pullRequestId}) {
-        clientMutationId
-      }
-    }`;
-
 /**
  * Approves and merges a given Pull Request.
  */
@@ -87,7 +87,9 @@ const merge = async (
   const { commitHeadline, pullRequestId, reviewEdge } = pullRequestDetails;
 
   const shouldApprove = reviewEdge === undefined;
-  const mutation = mutationQuery(mergeMethod, shouldApprove);
+  const mutation = shouldApprove
+    ? approveAndMergePullRequestMutation(mergeMethod)
+    : mergePullRequestMutation(mergeMethod);
 
   await octokit.graphql(mutation, { commitHeadline, pullRequestId });
 };
