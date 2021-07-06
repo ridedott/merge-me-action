@@ -1,13 +1,24 @@
 import { getOctokit } from '@actions/github';
 import type { GraphQlQueryResponseData } from '@octokit/graphql';
 
-import { findPullRequestInfoByNumber } from '../graphql/queries';
+import { pullRequestFields } from '../graphql/pullRequest';
 import {
   FindPullRequestInfoByNumberResponse,
   PullRequestInformation,
 } from '../types';
 
 const MERGEABLE_STATUS_UNKNOWN_ERROR = 'Mergeable state is not known yet.';
+
+const findPullRequestInfoByNumberQuery = `
+query FindPullRequestInfoByNumber(
+  $repositoryOwner: String!,
+  $repositoryName: String!,
+  $pullRequestNumber: Int!
+) {
+  repository(owner: $repositoryOwner, name: $repositoryName) {
+    pullRequest(number: $pullRequestNumber) ${pullRequestFields}
+  }
+}`;
 
 const getPullRequestInformationByPullRequestNumber = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -18,7 +29,7 @@ const getPullRequestInformationByPullRequestNumber = async (
   },
 ): Promise<PullRequestInformation | undefined> => {
   const response = await octokit.graphql<GraphQlQueryResponseData | null>(
-    findPullRequestInfoByNumber,
+    findPullRequestInfoByNumberQuery,
     query,
   );
 

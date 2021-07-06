@@ -7,8 +7,10 @@ import { context, getOctokit } from '@actions/github';
 import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
 
-import { useSetTimeoutImmediateInvocation } from '../../../test/utilities';
-import { approveAndMergePullRequestMutation } from '../../graphql/mutations';
+import {
+  approveAndMergePullRequestMutation,
+  useSetTimeoutImmediateInvocation,
+} from '../../../test/utilities';
 import {
   FindPullRequestCommitsResponse,
   FindPullRequestInfoByNumberResponse,
