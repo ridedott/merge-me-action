@@ -1,24 +1,42 @@
 import { getInput } from '@actions/core';
 import { getOctokit } from '@actions/github';
-import { GraphQlQueryResponseData } from '@octokit/graphql';
 
-import {
-  approveAndMergePullRequestMutation,
-  mergePullRequestMutation,
-} from '../graphql/mutations';
-import { findPullRequestCommits } from '../graphql/queries';
 import { PullRequestCommitNode, PullRequestInformation } from '../types';
-import { parseInputMergeMethod } from '../utilities/inputParsers';
+import {
+  AllowedMergeMethods,
+  parseInputMergeMethod,
+} from '../utilities/inputParsers';
 import { logDebug, logInfo, logWarning } from '../utilities/log';
 import { checkPullRequestTitleForMergePreset } from '../utilities/prTitleParsers';
 import { delay, EXPONENTIAL_BACKOFF, MINIMUM_WAIT_TIME } from './delay';
-import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';
+import { getPullRequestCommitsIterator } from './getPullRequestCommits';
 
 export interface PullRequestDetails {
   commitHeadline: string;
   pullRequestId: string;
   reviewEdge: { node: { state: string } } | undefined;
 }
+
+const approveAndMergePullRequestMutation = (
+  mergeMethod: AllowedMergeMethods,
+): string => `
+  mutation ($commitHeadline: String!, $pullRequestId: ID!) {
+    addPullRequestReview(input: {event: APPROVE, pullRequestId: $pullRequestId}) {
+      clientMutationId
+    }
+    mergePullRequest(input: {commitBody: " ", commitHeadline: $commitHeadline, mergeMethod: ${mergeMethod}, pullRequestId: $pullRequestId}) {
+      clientMutationId
+    }
+  }
+`;
+
+const mergePullRequestMutation = (mergeMethod: AllowedMergeMethods): string => `
+  mutation ($commitHeadline: String!, $pullRequestId: ID!) {
+    mergePullRequest(input: {commitBody: " ", commitHeadline: $commitHeadline, mergeMethod: ${mergeMethod}, pullRequestId: $pullRequestId}) {
+      clientMutationId
+    }
+  }
+`;
 
 const getIsModified = async (
   octokit: ReturnType<typeof getOctokit>,
@@ -28,14 +46,7 @@ const getIsModified = async (
     repositoryOwner: string;
   },
 ): Promise<boolean> => {
-  const iterator = makeGraphqlIterator<PullRequestCommitNode>(octokit, {
-    extractListFunction: (
-      response: GraphQlQueryResponseData,
-    ): IterableList<PullRequestCommitNode> =>
-      response.repository.pullRequest?.commits,
-    parameters: query,
-    query: findPullRequestCommits,
-  });
+  const iterator = getPullRequestCommitsIterator(octokit, query);
 
   const firstResult: IteratorResult<PullRequestCommitNode> = await iterator.next();
 
@@ -167,7 +178,7 @@ export const tryMerge = async (
     logInfo(`Pull request is already merged.`);
   } else if (
     /*
-     * TODO(@platform) [2021-07-01] Start pulling the value once it reaches
+     * TODO(@platform) [2021-08-01] Start pulling the value once it reaches
      * GA.
      */
     mergeStateStatus !== undefined &&
