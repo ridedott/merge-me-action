@@ -1,3 +1,10 @@
+## [2.8.43](https://github.com/ridedott/merge-me-action/compare/v2.8.42...v2.8.43) (2021-07-08)
+
+### Chores
+
+- **deps-dev:** bump @types/micromatch from 4.0.1 to 4.0.2
+  ([86e236a](https://github.com/ridedott/merge-me-action/commit/86e236aae56fc6790793998a00dd6699c5346f1f))
+
 ## [2.8.42](https://github.com/ridedott/merge-me-action/compare/v2.8.41...v2.8.42) (2021-07-08)
 
 ### Chores
