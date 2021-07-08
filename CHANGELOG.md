@@ -1,3 +1,10 @@
+## [2.8.40](https://github.com/ridedott/merge-me-action/compare/v2.8.39...v2.8.40) (2021-07-08)
+
+### Code Refactoring
+
+- graphql queries
+  ([673bf0f](https://github.com/ridedott/merge-me-action/commit/673bf0f38f63d6578d688e3b163383529cfdf724))
+
 ## [2.8.39](https://github.com/ridedott/merge-me-action/compare/v2.8.38...v2.8.39) (2021-07-01)
 
 ### Chores
