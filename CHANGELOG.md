@@ -1,3 +1,10 @@
+## [2.8.45](https://github.com/ridedott/merge-me-action/compare/v2.8.44...v2.8.45) (2021-07-13)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 11.0.0 to 11.0.1
+  ([0efba35](https://github.com/ridedott/merge-me-action/commit/0efba35b54cc8e0309022fe7cad32f44a730f567))
+
 ## [2.8.44](https://github.com/ridedott/merge-me-action/compare/v2.8.43...v2.8.44) (2021-07-12)
 
 ### Chores
