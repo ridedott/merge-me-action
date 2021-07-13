@@ -1,3 +1,12 @@
+## [2.8.46](https://github.com/ridedott/merge-me-action/compare/v2.8.45...v2.8.46) (2021-07-13)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.29.0 to 7.30.0
+  ([ca22d7b](https://github.com/ridedott/merge-me-action/commit/ca22d7bb30df0e460d676b01970318865078976e))
+- **deps-dev:** bump husky from 7.0.0 to 7.0.1
+  ([34433d3](https://github.com/ridedott/merge-me-action/commit/34433d3acb591326f0e107ff768399eb3a3a766c))
+
 ## [2.8.45](https://github.com/ridedott/merge-me-action/compare/v2.8.44...v2.8.45) (2021-07-13)
 
 ### Chores
