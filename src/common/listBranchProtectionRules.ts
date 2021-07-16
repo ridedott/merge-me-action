@@ -1,8 +1,22 @@
 import { getOctokit } from '@actions/github';
 import { GraphQlQueryResponseData } from '@octokit/graphql';
 
-import { listBranchProtectionRules as query } from '../graphql/queries';
 import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';
+
+const listBranchProtectionRulesQuery = `
+  query($endCursor: String, $pageSize: Int!, $repositoryName: String!, $repositoryOwner: String!) {
+    repository(name: $repositoryName, owner: $repositoryOwner) {
+      branchProtectionRules(first: $pageSize, after: $endCursor) {
+        edges {
+          node {
+            pattern
+            requiresStrictStatusChecks
+          }
+        }
+      }
+    }
+  }
+`;
 
 export interface BranchProtectionRule {
   pattern: string;
@@ -28,7 +42,7 @@ export const listBranchProtectionRules = async (
       repositoryName,
       repositoryOwner,
     },
-    query,
+    query: listBranchProtectionRulesQuery,
   });
 
   const branchProtectionRules: BranchProtectionRule[] = [];
