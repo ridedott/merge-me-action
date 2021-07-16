@@ -294,7 +294,7 @@ describe('merge', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, validCommitResponse)
       .post('/graphql')
-      .reply(StatusCodes.OK)
+      .reply(StatusCodes.OK);
 
     await tryMerge(
       octokit,
@@ -383,7 +383,7 @@ describe('merge', (): void => {
       .post('/graphql')
       .reply(StatusCodes.OK, validCommitResponse)
       .post('/graphql')
-      .reply(StatusCodes.OK)
+      .reply(StatusCodes.OK);
 
     await tryMerge(
       octokit,

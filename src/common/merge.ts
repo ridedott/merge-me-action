@@ -180,14 +180,20 @@ export const tryMerge = async (
     requiresStrictStatusChecks === true &&
     mergeStateStatus !== 'CLEAN'
   ) {
-    logInfo(`Pull request cannot be merged cleanly. Current state: ${mergeStateStatus as string}.`);
+    logInfo(
+      `Pull request cannot be merged cleanly. Current state: ${
+        mergeStateStatus as string
+      }.`,
+    );
   } else if (
     requiresStrictStatusChecks === false &&
     mergeStateStatus !== undefined &&
     mergeStateStatus !== 'CLEAN'
   ) {
     logInfo(
-      `Pull request cannot be merged cleanly. Current state: ${mergeStateStatus as string}.`,
+      `Pull request cannot be merged cleanly. Current state: ${
+        mergeStateStatus as string
+      }.`,
     );
   } else if (pullRequestState !== 'OPEN') {
     logInfo(`Pull request is not open: ${pullRequestState}.`);
