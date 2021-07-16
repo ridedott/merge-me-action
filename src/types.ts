@@ -4,12 +4,6 @@ export interface CommitMessageHeadlineGroup {
   };
 }
 
-export interface GroupName {
-  groups: {
-    name: string;
-  };
-}
-
 export type ReviewEdges = Array<
   | {
       node: {
@@ -83,14 +77,6 @@ export interface PullRequestCommitNode {
 export interface RepositoryBranchProtectionRule {
   pattern: string;
   requiresStrictStatusChecks: boolean;
-}
-
-export interface FindPullRequestsInfoByReferenceNameResponse {
-  repository: {
-    pullRequests: {
-      nodes: PullRequest[];
-    };
-  };
 }
 
 export interface FindPullRequestInfoByNumberResponse {

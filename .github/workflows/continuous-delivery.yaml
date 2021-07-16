@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Setup Node.js
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.2.0
         with:
           node-version: 15
       - name: Cache dependencies
@@ -39,14 +39,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         id: release
         name: Release
-        uses: ridedott/release-me-action@v3.5.32
+        uses: ridedott/release-me-action@v3.5.45
         with:
           commit-assets: |
             ./dist
           node-module: true
       - if: steps.release.outputs.released == 'true'
         name: Setup Node.js with GitHub Packages
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2.2.0
         with:
           registry-url: 'https://npm.pkg.github.com'
       - env:

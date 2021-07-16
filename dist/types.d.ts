@@ -3,11 +3,6 @@ export interface CommitMessageHeadlineGroup {
         commitHeadline: string;
     };
 }
-export interface GroupName {
-    groups: {
-        name: string;
-    };
-}
 export declare type ReviewEdges = Array<{
     node: {
         state: 'APPROVED' | 'CHANGES_REQUESTED' | 'COMMENTED' | 'DISMISSED' | 'PENDING';
@@ -63,13 +58,6 @@ export interface PullRequestCommitNode {
         signature: {
             isValid: boolean;
         } | null;
-    };
-}
-export interface FindPullRequestsInfoByReferenceNameResponse {
-    repository: {
-        pullRequests: {
-            nodes: PullRequest[];
-        };
     };
 }
 export interface FindPullRequestInfoByNumberResponse {

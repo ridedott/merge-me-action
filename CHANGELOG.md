@@ -1,3 +1,179 @@
+## [2.8.47](https://github.com/ridedott/merge-me-action/compare/v2.8.46...v2.8.47) (2021-07-13)
+
+### Chores
+
+- **deps-dev:** bump nock from 13.1.0 to 13.1.1
+  ([d29c935](https://github.com/ridedott/merge-me-action/commit/d29c935c5b920302f41eaac918543edfd027d9ee))
+
+## [2.8.46](https://github.com/ridedott/merge-me-action/compare/v2.8.45...v2.8.46) (2021-07-13)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.29.0 to 7.30.0
+  ([ca22d7b](https://github.com/ridedott/merge-me-action/commit/ca22d7bb30df0e460d676b01970318865078976e))
+- **deps-dev:** bump husky from 7.0.0 to 7.0.1
+  ([34433d3](https://github.com/ridedott/merge-me-action/commit/34433d3acb591326f0e107ff768399eb3a3a766c))
+
+## [2.8.45](https://github.com/ridedott/merge-me-action/compare/v2.8.44...v2.8.45) (2021-07-13)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 11.0.0 to 11.0.1
+  ([0efba35](https://github.com/ridedott/merge-me-action/commit/0efba35b54cc8e0309022fe7cad32f44a730f567))
+
+## [2.8.44](https://github.com/ridedott/merge-me-action/compare/v2.8.43...v2.8.44) (2021-07-12)
+
+### Chores
+
+- **deps-dev:** bump ts-node from 10.0.0 to 10.1.0
+  ([8231667](https://github.com/ridedott/merge-me-action/commit/823166790d047d2bd9c004464790c8a8af867b64))
+
+## [2.8.43](https://github.com/ridedott/merge-me-action/compare/v2.8.42...v2.8.43) (2021-07-08)
+
+### Chores
+
+- **deps-dev:** bump @types/micromatch from 4.0.1 to 4.0.2
+  ([86e236a](https://github.com/ridedott/merge-me-action/commit/86e236aae56fc6790793998a00dd6699c5346f1f))
+
+## [2.8.42](https://github.com/ridedott/merge-me-action/compare/v2.8.41...v2.8.42) (2021-07-08)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 26.0.23 to 26.0.24
+  ([05461fb](https://github.com/ridedott/merge-me-action/commit/05461fb456736c1b7cd9dbe093fb64bd4d8a0275))
+
+## [2.8.41](https://github.com/ridedott/merge-me-action/compare/v2.8.40...v2.8.41) (2021-07-08)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 15.12.5 to 16.0.1
+  ([766dc9f](https://github.com/ridedott/merge-me-action/commit/766dc9f4b72402b9b76c142d845b589d478d9b26))
+
+## [2.8.40](https://github.com/ridedott/merge-me-action/compare/v2.8.39...v2.8.40) (2021-07-08)
+
+### Code Refactoring
+
+- graphql queries
+  ([673bf0f](https://github.com/ridedott/merge-me-action/commit/673bf0f38f63d6578d688e3b163383529cfdf724))
+
+## [2.8.39](https://github.com/ridedott/merge-me-action/compare/v2.8.38...v2.8.39) (2021-07-01)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.5.43 to 3.5.45
+  ([d567f30](https://github.com/ridedott/merge-me-action/commit/d567f309dc5e47e5cac18023a39c0a95c5edfe88))
+
+## [2.8.38](https://github.com/ridedott/merge-me-action/compare/v2.8.37...v2.8.38) (2021-07-01)
+
+### Chores
+
+- **deps-dev:** bump husky from 6.0.0 to 7.0.0
+  ([b875c48](https://github.com/ridedott/merge-me-action/commit/b875c484c355ad6796e73d58608d8904bce64151))
+
+## [2.8.37](https://github.com/ridedott/merge-me-action/compare/v2.8.36...v2.8.37) (2021-06-30)
+
+### Chores
+
+- **deps:** bump actions/setup-node from 2.1.5 to 2.2.0
+  ([16d9b82](https://github.com/ridedott/merge-me-action/commit/16d9b8251a084ea4e1da82cc8ab0fef8df78fa5c))
+
+## [2.8.36](https://github.com/ridedott/merge-me-action/compare/v2.8.35...v2.8.36) (2021-06-28)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 15.12.4 to 15.12.5
+  ([bc5697f](https://github.com/ridedott/merge-me-action/commit/bc5697fde478ee56687e1970f410cbb77c85f539))
+
+## [2.8.35](https://github.com/ridedott/merge-me-action/compare/v2.8.34...v2.8.35) (2021-06-22)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.5.41 to 3.5.43
+  ([68a138c](https://github.com/ridedott/merge-me-action/commit/68a138c8530db0b27dec922e8ecf2a8fc9feb7fa))
+
+## [2.8.34](https://github.com/ridedott/merge-me-action/compare/v2.8.33...v2.8.34) (2021-06-21)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.28.0 to 7.29.0
+  ([6d913a4](https://github.com/ridedott/merge-me-action/commit/6d913a48ddc44be317fe3c15cdbed5b8ad7fa788))
+
+## [2.8.33](https://github.com/ridedott/merge-me-action/compare/v2.8.32...v2.8.33) (2021-06-21)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.5.39 to 3.5.41
+  ([f7bce32](https://github.com/ridedott/merge-me-action/commit/f7bce32a0cef4e4ad371fc25e2cdfcbf31826417))
+- **deps-dev:** bump @types/node from 15.12.3 to 15.12.4
+  ([78cff24](https://github.com/ridedott/merge-me-action/commit/78cff2498e05f325a923497422698ec6a0917a14))
+- **deps-dev:** bump cspell from 5.6.4 to 5.6.6
+  ([7af8768](https://github.com/ridedott/merge-me-action/commit/7af87686f343e47cb840814f93fe62bbd8f3eb89))
+
+## [2.8.32](https://github.com/ridedott/merge-me-action/compare/v2.8.31...v2.8.32) (2021-06-18)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 15.12.2 to 15.12.3
+  ([d5df90e](https://github.com/ridedott/merge-me-action/commit/d5df90e75219bfd624e68117a2580b1287c731f4))
+
+## [2.8.31](https://github.com/ridedott/merge-me-action/compare/v2.8.30...v2.8.31) (2021-06-17)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.5.38 to 3.5.39
+  ([18893b1](https://github.com/ridedott/merge-me-action/commit/18893b149b65b1995b5815b788d7ad4e08027c35))
+
+## [2.8.30](https://github.com/ridedott/merge-me-action/compare/v2.8.29...v2.8.30) (2021-06-16)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/release-notes-generator
+  ([b1ba638](https://github.com/ridedott/merge-me-action/commit/b1ba638e1a71b71281fa0cd2b924b565a9f239c4))
+
+## [2.8.29](https://github.com/ridedott/merge-me-action/compare/v2.8.28...v2.8.29) (2021-06-16)
+
+### Chores
+
+- **deps-dev:** bump @types/node from 15.6.1 to 15.12.2
+  ([87c243f](https://github.com/ridedott/merge-me-action/commit/87c243f9ba70ae7f664f792e2226ee82e2432b67))
+
+## [2.8.28](https://github.com/ridedott/merge-me-action/compare/v2.8.27...v2.8.28) (2021-06-16)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.27.0 to 7.28.0
+  ([9e886dc](https://github.com/ridedott/merge-me-action/commit/9e886dc09237077aa6692a22ee132df90a7880c3))
+
+## [2.8.27](https://github.com/ridedott/merge-me-action/compare/v2.8.26...v2.8.27) (2021-06-16)
+
+### Chores
+
+- **deps-dev:** bump cspell from 5.4.1 to 5.6.4
+  ([0d80882](https://github.com/ridedott/merge-me-action/commit/0d808828f48e004bb84e53a7604610e3ad4cc4b2))
+- **deps-dev:** bump semantic-release from 17.4.3 to 17.4.4
+  ([36f1c02](https://github.com/ridedott/merge-me-action/commit/36f1c02edc6355957b1778f99e1191fef09aff34))
+
+## [2.8.26](https://github.com/ridedott/merge-me-action/compare/v2.8.25...v2.8.26) (2021-06-14)
+
+### Chores
+
+- **deps:** bump @actions/core from 1.3.0 to 1.4.0
+  ([735e22e](https://github.com/ridedott/merge-me-action/commit/735e22e66adae2e919b237e125de54f16c14aefc))
+
+## [2.8.25](https://github.com/ridedott/merge-me-action/compare/v2.8.24...v2.8.25) (2021-06-14)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.5.32 to 3.5.38
+  ([b37d393](https://github.com/ridedott/merge-me-action/commit/b37d393b39044664626f0b5c30544dedbc16f5fe))
+
+## [2.8.24](https://github.com/ridedott/merge-me-action/compare/v2.8.23...v2.8.24) (2021-06-14)
+
+### Continuous Integration
+
+- update dependabot configuration
+  ([1f0fe9d](https://github.com/ridedott/merge-me-action/commit/1f0fe9de1e1353654fd8001b5ca52c79b4ffb761))
+
 ## [2.8.23](https://github.com/ridedott/merge-me-action/compare/v2.8.22...v2.8.23) (2021-06-01)
 
 ### Chores
