@@ -1,3 +1,5 @@
+/* cspell:ignore reqheaders */
+
 import { getOctokit } from '@actions/github';
 import { StatusCodes } from 'http-status-codes';
 import * as nock from 'nock';
