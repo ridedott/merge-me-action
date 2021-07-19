@@ -1,3 +1,4 @@
+import { getInput } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 import { isMatch } from 'micromatch';
 
@@ -12,6 +13,8 @@ export const pullRequestHandle = async (
   gitHubLogin: string,
   maximumRetries: number,
 ): Promise<void> => {
+  const mergeInfoPreviewEnabled =
+    getInput('ENABLE_MERGE_INFO_PREVIEW') === 'true';
   const { pull_request: pullRequest } = context.payload;
 
   if (pullRequest === undefined) {
@@ -26,11 +29,17 @@ export const pullRequestHandle = async (
       context.repo.owner,
       context.repo.repo,
     ),
-    getMergeablePullRequestInformationByPullRequestNumber(octokit, {
-      pullRequestNumber: pullRequest.number,
-      repositoryName: context.repo.repo,
-      repositoryOwner: context.repo.owner,
-    }),
+    getMergeablePullRequestInformationByPullRequestNumber(
+      octokit,
+      {
+        pullRequestNumber: pullRequest.number,
+        repositoryName: context.repo.repo,
+        repositoryOwner: context.repo.owner,
+      },
+      {
+        mergeInfoPreviewEnabled,
+      },
+    ),
   ]);
 
   const [

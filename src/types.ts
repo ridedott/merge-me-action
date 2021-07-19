@@ -74,11 +74,6 @@ export interface PullRequestCommitNode {
   };
 }
 
-export interface RepositoryBranchProtectionRule {
-  pattern: string;
-  requiresStrictStatusChecks: boolean;
-}
-
 export interface FindPullRequestInfoByNumberResponse {
   repository: {
     pullRequest: PullRequest;

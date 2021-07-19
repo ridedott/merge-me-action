@@ -187,20 +187,7 @@ export const tryMerge = async (
     mergeStateStatus === 'BEHIND'
   ) {
     logInfo(`Pull request branch is behind base branch.`);
-  } else if (
-    requiresStrictStatusChecks === true &&
-    mergeStateStatus !== 'CLEAN'
-  ) {
-    logInfo(
-      `Pull request cannot be merged cleanly. Current state: ${
-        mergeStateStatus as string
-      }.`,
-    );
-  } else if (
-    requiresStrictStatusChecks === false &&
-    mergeStateStatus !== undefined &&
-    mergeStateStatus !== 'CLEAN'
-  ) {
+  } else if (mergeStateStatus !== undefined && mergeStateStatus !== 'CLEAN') {
     logInfo(
       `Pull request cannot be merged cleanly. Current state: ${
         mergeStateStatus as string

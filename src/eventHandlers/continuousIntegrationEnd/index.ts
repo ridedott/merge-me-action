@@ -1,3 +1,4 @@
+import { getInput } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 import { isMatch } from 'micromatch';
 
@@ -25,6 +26,9 @@ const getMergeablePullRequestInformationWithRetry = async (
     maximum: number;
   },
 ): Promise<PullRequestInformation | undefined> => {
+  const mergeInfoPreviewEnabled =
+    getInput('ENABLE_MERGE_INFO_PREVIEW') === 'true';
+
   const retryCount = retries.count ?? 1;
 
   const nextRetryIn = retryCount ** EXPONENTIAL_BACKOFF * MINIMUM_WAIT_TIME;
@@ -33,6 +37,7 @@ const getMergeablePullRequestInformationWithRetry = async (
     return await getMergeablePullRequestInformationByPullRequestNumber(
       octokit,
       query,
+      { mergeInfoPreviewEnabled },
     );
   } catch (error: unknown) {
     logDebug(
@@ -107,7 +112,10 @@ export const continuousIntegrationEndHandle = async (
 
   const mergePromises: Array<Promise<void>> = [];
 
-  for (const pullRequestInformation of pullRequestsInformation) {
+  for (const [
+    index,
+    pullRequestInformation,
+  ] of pullRequestsInformation.entries()) {
     if (pullRequestInformation === undefined) {
       logWarning('Unable to fetch pull request information.');
     } else if (isMatch(pullRequestInformation.authorLogin, gitHubLogin)) {
@@ -122,10 +130,7 @@ export const continuousIntegrationEndHandle = async (
           octokit,
           {
             maximumRetries,
-            requiresStrictStatusChecks:
-              requiresStrictStatusChecksArray[
-                pullRequestsInformation.indexOf(pullRequestInformation)
-              ],
+            requiresStrictStatusChecks: requiresStrictStatusChecksArray[index],
           },
           pullRequestInformation,
         ),
