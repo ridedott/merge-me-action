@@ -155,7 +155,13 @@ describe('getPullRequestInformation', (): void => {
     async (_: string, mergeInfoPreviewEnabled: boolean): Promise<void> => {
       expect.assertions(1);
 
-      nock('https://api.github.com')
+      nock('https://api.github.com', {
+        reqheaders: {
+          accept: mergeInfoPreviewEnabled
+            ? 'application/vnd.github.merge-info-preview+json'
+            : 'application/vnd.github.v3+json',
+        },
+      })
         .post('/graphql', {
           query: findPullRequestInfoByNumberQuery(mergeInfoPreviewEnabled),
           variables: {

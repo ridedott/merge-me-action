@@ -76,7 +76,16 @@ const getPullRequestInformationByPullRequestNumber = async (
 ): Promise<PullRequestInformation | undefined> => {
   const response = await octokit.graphql<GraphQlQueryResponseData | null>(
     findPullRequestInfoByNumberQuery(options.mergeInfoPreviewEnabled),
-    query,
+    {
+      ...query,
+      ...(options.mergeInfoPreviewEnabled
+        ? {
+            mediaType: {
+              previews: ['merge-info'],
+            },
+          }
+        : {}),
+    },
   );
 
   if (response === null || response.repository.pullRequest === null) {
