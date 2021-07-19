@@ -209,9 +209,9 @@ jobs:
 
 ### Opting in for GitHub merge info preview API
 
-You may opt-in for using GitHub merge info preview API, which enables the action to respect branch
-protection rules configured for the repository such as `Require status checks to pass before merging`
-and `Require branches to be up to date before merging`.
+You may opt-in for using GitHub merge info preview API, which enables the action to respect strict branch
+protection rules configured for the repository (`Require status checks to pass before merging` and 
+`Require branches to be up to date before merging` options).
 
 ```yaml
 jobs:
