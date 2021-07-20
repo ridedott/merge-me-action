@@ -8,7 +8,7 @@ import {
 
 const MERGEABLE_STATUS_UNKNOWN_ERROR = 'Mergeable state is not known yet.';
 
-const pullRequestFields = (mergeInfoPreviewEnabled: boolean): string => {
+const pullRequestFields = (githubPreviewApiEnabled: boolean): string => {
   const fields = [
     `author {
        login
@@ -29,7 +29,7 @@ const pullRequestFields = (mergeInfoPreviewEnabled: boolean): string => {
     'id',
     'mergeable',
     'merged',
-    ...(mergeInfoPreviewEnabled ? ['mergeStateStatus'] : []),
+    ...(githubPreviewApiEnabled ? ['mergeStateStatus'] : []),
     'number',
     `reviews(last: 1, states: APPROVED) {
       edges {
@@ -48,7 +48,7 @@ const pullRequestFields = (mergeInfoPreviewEnabled: boolean): string => {
 };
 
 const findPullRequestInfoByNumberQuery = (
-  mergeInfoPreviewEnabled: boolean,
+  githubPreviewApiEnabled: boolean,
 ): string => `
   query FindPullRequestInfoByNumber(
     $repositoryOwner: String!,
@@ -57,7 +57,7 @@ const findPullRequestInfoByNumberQuery = (
   ) {
     repository(owner: $repositoryOwner, name: $repositoryName) {
       pullRequest(number: $pullRequestNumber) ${pullRequestFields(
-        mergeInfoPreviewEnabled,
+        githubPreviewApiEnabled,
       )}
     }
   }
@@ -71,14 +71,14 @@ const getPullRequestInformationByPullRequestNumber = async (
     repositoryOwner: string;
   },
   options: {
-    mergeInfoPreviewEnabled: boolean;
+    githubPreviewApiEnabled: boolean;
   },
 ): Promise<PullRequestInformation | undefined> => {
   const response = await octokit.graphql<GraphQlQueryResponseData | null>(
-    findPullRequestInfoByNumberQuery(options.mergeInfoPreviewEnabled),
+    findPullRequestInfoByNumberQuery(options.githubPreviewApiEnabled),
     {
       ...query,
-      ...(options.mergeInfoPreviewEnabled
+      ...(options.githubPreviewApiEnabled
         ? {
             mediaType: {
               previews: ['merge-info'],
@@ -145,7 +145,7 @@ export const getMergeablePullRequestInformationByPullRequestNumber = async (
     repositoryOwner: string;
   },
   options: {
-    mergeInfoPreviewEnabled: boolean;
+    githubPreviewApiEnabled: boolean;
   },
 ): Promise<PullRequestInformation | undefined> => {
   const pullRequestInformation = await getPullRequestInformationByPullRequestNumber(

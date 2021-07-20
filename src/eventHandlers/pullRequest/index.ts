@@ -13,8 +13,8 @@ export const pullRequestHandle = async (
   gitHubLogin: string,
   maximumRetries: number,
 ): Promise<void> => {
-  const mergeInfoPreviewEnabled =
-    getInput('ENABLE_MERGE_INFO_PREVIEW') === 'true';
+  const githubPreviewApiEnabled =
+    getInput('ENABLE_GITHUB_API_PREVIEW') === 'true';
   const { pull_request: pullRequest } = context.payload;
 
   if (pullRequest === undefined) {
@@ -37,7 +37,7 @@ export const pullRequestHandle = async (
         repositoryOwner: context.repo.owner,
       },
       {
-        mergeInfoPreviewEnabled,
+        githubPreviewApiEnabled,
       },
     ),
   ]);

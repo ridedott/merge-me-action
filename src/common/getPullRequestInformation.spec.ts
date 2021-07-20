@@ -20,7 +20,7 @@ const repositoryName = 'test-repository';
 const repositoryOwner = 'test-owner';
 const pullRequestNumber = 1;
 
-const pullRequestFields = (mergeInfoPreviewEnabled: boolean): string => {
+const pullRequestFields = (githubPreviewApiEnabled: boolean): string => {
   const fields = [
     `author {
        login
@@ -41,7 +41,7 @@ const pullRequestFields = (mergeInfoPreviewEnabled: boolean): string => {
     'id',
     'mergeable',
     'merged',
-    ...(mergeInfoPreviewEnabled ? ['mergeStateStatus'] : []),
+    ...(githubPreviewApiEnabled ? ['mergeStateStatus'] : []),
     'number',
     `reviews(last: 1, states: APPROVED) {
       edges {
@@ -60,7 +60,7 @@ const pullRequestFields = (mergeInfoPreviewEnabled: boolean): string => {
 };
 
 const findPullRequestInfoByNumberQuery = (
-  mergeInfoPreviewEnabled: boolean,
+  githubPreviewApiEnabled: boolean,
 ): string => `
   query FindPullRequestInfoByNumber(
     $repositoryOwner: String!,
@@ -69,7 +69,7 @@ const findPullRequestInfoByNumberQuery = (
   ) {
     repository(owner: $repositoryOwner, name: $repositoryName) {
       pullRequest(number: $pullRequestNumber) ${pullRequestFields(
-        mergeInfoPreviewEnabled,
+        githubPreviewApiEnabled,
       )}
     }
   }
@@ -154,18 +154,18 @@ describe('getPullRequestInformation', (): void => {
     ['with mergeStateStatus field', true],
   ])(
     'returns pull request information %s',
-    async (_: string, mergeInfoPreviewEnabled: boolean): Promise<void> => {
+    async (_: string, githubPreviewApiEnabled: boolean): Promise<void> => {
       expect.assertions(1);
 
       nock('https://api.github.com', {
         reqheaders: {
-          accept: mergeInfoPreviewEnabled
+          accept: githubPreviewApiEnabled
             ? 'application/vnd.github.merge-info-preview+json'
             : 'application/vnd.github.v3+json',
         },
       })
         .post('/graphql', {
-          query: findPullRequestInfoByNumberQuery(mergeInfoPreviewEnabled),
+          query: findPullRequestInfoByNumberQuery(githubPreviewApiEnabled),
           variables: {
             pullRequestNumber,
             repositoryName,
@@ -173,7 +173,7 @@ describe('getPullRequestInformation', (): void => {
           },
         })
         .reply(StatusCodes.OK, {
-          data: makeGraphQLResponse(mergeInfoPreviewEnabled),
+          data: makeGraphQLResponse(githubPreviewApiEnabled),
         });
 
       const result = await getMergeablePullRequestInformationByPullRequestNumber(
@@ -183,7 +183,7 @@ describe('getPullRequestInformation', (): void => {
           repositoryName,
           repositoryOwner,
         },
-        { mergeInfoPreviewEnabled },
+        { githubPreviewApiEnabled },
       );
 
       expect(result).toMatchSnapshot();

@@ -26,8 +26,8 @@ const getMergeablePullRequestInformationWithRetry = async (
     maximum: number;
   },
 ): Promise<PullRequestInformation | undefined> => {
-  const mergeInfoPreviewEnabled =
-    getInput('ENABLE_MERGE_INFO_PREVIEW') === 'true';
+  const githubPreviewApiEnabled =
+    getInput('ENABLE_GITHUB_API_PREVIEW') === 'true';
 
   const retryCount = retries.count ?? 1;
 
@@ -37,7 +37,7 @@ const getMergeablePullRequestInformationWithRetry = async (
     return await getMergeablePullRequestInformationByPullRequestNumber(
       octokit,
       query,
-      { mergeInfoPreviewEnabled },
+      { githubPreviewApiEnabled },
     );
   } catch (error: unknown) {
     logDebug(

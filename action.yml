@@ -13,10 +13,10 @@ inputs:
   GITHUB_TOKEN:
     description: 'A GitHub token.'
     required: true
-  ENABLE_MERGE_INFO_PREVIEW:
+  ENABLE_GITHUB_API_PREVIEW:
     default: 'false'
     description: >
-      Indicates if GitHub merge info preview API can be used to access pull
+      Indicates if GitHub preview APIs can be used to access pull
       request fields that provide more detailed information about the merge
       state.
     required: false
