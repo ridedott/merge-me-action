@@ -55,6 +55,22 @@ describe('computeRequiresStrictStatusChecksForRefs', (): void => {
     expect(result).toStrictEqual([false, false]);
   });
 
+  it('returns true for all refs when branch protection rule patterns match provided refs with wildcard', (): void => {
+    expect.assertions(1);
+
+    const result = computeRequiresStrictStatusChecksForReferences(
+      [
+        {
+          pattern: 'test*',
+          requiresStrictStatusChecks: true,
+        },
+      ],
+      ['test', 'testing', 'master'],
+    );
+
+    expect(result).toStrictEqual([true, true, false]);
+  });
+
   it('returns true for refs when matching branch protection rules require strict status checks', (): void => {
     expect.assertions(1);
 
