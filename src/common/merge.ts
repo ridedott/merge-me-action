@@ -141,7 +141,7 @@ const mergeWithRetry = async (
     }
 
     logInfo(
-      'An error ocurred while merging the Pull Request. This is usually ' +
+      'An error occurred while merging the Pull Request. This is usually ' +
         'caused by the base branch being out of sync with the target ' +
         'branch. In this case, the base branch must be rebased. Some ' +
         'tools, such as Dependabot, do that automatically.',
