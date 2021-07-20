@@ -239,7 +239,7 @@ describe('merge', (): void => {
     );
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request branch is behind base branch.',
+      'Pull request cannot be merged cleanly. Current state: BEHIND.',
     );
   });
 
@@ -301,6 +301,38 @@ describe('merge', (): void => {
     await tryMerge(
       octokit,
       { maximumRetries: 3, requiresStrictStatusChecks: true },
+      pullRequestInformation,
+    );
+  });
+
+  it('approves and merges pull requests for which status is not CLEAN when requiresStrictStatusChecks is set to false', async (): Promise<void> => {
+    expect.assertions(0);
+
+    const pullRequestInformation: PullRequestInformation = {
+      authorLogin: 'dependabot',
+      commitMessage: COMMIT_MESSAGE,
+      commitMessageHeadline: COMMIT_HEADLINE,
+      mergeStateStatus: 'BEHIND',
+      mergeableState: 'MERGEABLE',
+      merged: false,
+      pullRequestId: PULL_REQUEST_ID,
+      pullRequestNumber: PULL_REQUEST_NUMBER,
+      pullRequestState: 'OPEN',
+      pullRequestTitle: 'bump @types/jest from 26.0.12 to 26.1.0',
+      repositoryName: REPOSITORY_NAME,
+      repositoryOwner: REPOSITORY_OWNER,
+      reviewEdges: [{ node: { state: 'APPROVED' } }],
+    };
+
+    nock('https://api.github.com')
+      .post('/graphql')
+      .reply(StatusCodes.OK, validCommitResponse)
+      .post('/graphql')
+      .reply(StatusCodes.OK);
+
+    await tryMerge(
+      octokit,
+      { maximumRetries: 3, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
   });
