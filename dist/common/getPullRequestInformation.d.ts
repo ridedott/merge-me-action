@@ -4,5 +4,7 @@ export declare const getMergeablePullRequestInformationByPullRequestNumber: (oct
     pullRequestNumber: number;
     repositoryName: string;
     repositoryOwner: string;
+}, options: {
+    githubPreviewApiEnabled: boolean;
 }) => Promise<PullRequestInformation | undefined>;
 //# sourceMappingURL=getPullRequestInformation.d.ts.map

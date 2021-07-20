@@ -1,3 +1,15 @@
+# [2.9.0](https://github.com/ridedott/merge-me-action/compare/v2.8.47...v2.9.0) (2021-07-20)
+
+### Bug Fixes
+
+- fix typo ocurred => occurred
+  ([cff8b78](https://github.com/ridedott/merge-me-action/commit/cff8b789ad47e4484993cc821a670edeb4915674))
+
+### Features
+
+- merge in accordance with branch protection rules
+  ([172fa69](https://github.com/ridedott/merge-me-action/commit/172fa69938b047a51d518d2e7f38b8c1eb3ca583))
+
 ## [2.8.47](https://github.com/ridedott/merge-me-action/compare/v2.8.46...v2.8.47) (2021-07-13)
 
 ### Chores

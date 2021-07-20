@@ -23,9 +23,12 @@ export interface PullRequestInformation {
     repositoryOwner: string;
     reviewEdges: ReviewEdges;
 }
-interface PullRequest {
+export interface PullRequest {
     author: {
         login: string;
+    };
+    base: {
+        ref: string;
     };
     commits: {
         edges: Array<{
@@ -83,4 +86,3 @@ export interface FindPullRequestCommitsResponse {
 export declare type MergeableState = 'CONFLICTING' | 'MERGEABLE' | 'UNKNOWN';
 export declare type PullRequestState = 'CLOSED' | 'MERGED' | 'OPEN';
 export declare type MergeStateStatus = 'BEHIND' | 'BLOCKED' | 'CLEAN' | 'DIRTY' | 'DRAFT' | 'HAS_HOOKS' | 'UNKNOWN' | 'UNSTABLE';
-export {};

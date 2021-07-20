@@ -9,5 +9,8 @@ export interface PullRequestDetails {
         };
     } | undefined;
 }
-export declare const tryMerge: (octokit: ReturnType<typeof getOctokit>, maximumRetries: number, { commitMessageHeadline, mergeableState, mergeStateStatus, merged, pullRequestId, pullRequestNumber, pullRequestState, pullRequestTitle, reviewEdges, repositoryName, repositoryOwner, }: PullRequestInformation) => Promise<void>;
+export declare const tryMerge: (octokit: ReturnType<typeof getOctokit>, { maximumRetries, requiresStrictStatusChecks, }: {
+    maximumRetries: number;
+    requiresStrictStatusChecks: boolean;
+}, { commitMessageHeadline, mergeableState, mergeStateStatus, merged, pullRequestId, pullRequestNumber, pullRequestState, pullRequestTitle, reviewEdges, repositoryName, repositoryOwner, }: PullRequestInformation) => Promise<void>;
 //# sourceMappingURL=merge.d.ts.map
