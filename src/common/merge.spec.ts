@@ -770,7 +770,7 @@ describe('merge', (): void => {
     );
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
+      'An error occurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
     );
     expect(infoSpy).toHaveBeenCalledWith('Retrying in 1000...');
     expect(infoSpy).toHaveBeenCalledWith('Retrying in 4000...');
@@ -811,7 +811,7 @@ describe('merge', (): void => {
     );
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'An error ocurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
+      'An error occurred while merging the Pull Request. This is usually caused by the base branch being out of sync with the target branch. In this case, the base branch must be rebased. Some tools, such as Dependabot, do that automatically.',
     );
     expect(debugSpy).toHaveBeenCalledWith(
       'Original error: HttpError: ##[error]GraphqlError: This is a different error..',
