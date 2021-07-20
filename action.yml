@@ -16,9 +16,8 @@ inputs:
   ENABLE_GITHUB_API_PREVIEW:
     default: 'false'
     description: >
-      Indicates if GitHub preview APIs can be used to access pull
-      request fields that provide more detailed information about the merge
-      state.
+      Indicates if GitHub preview APIs can be used to access pull request fields
+      that provide more detailed information about the merge state.
     required: false
   MERGE_METHOD:
     default: SQUASH
