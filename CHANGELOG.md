@@ -1,3 +1,10 @@
+## [2.9.1](https://github.com/ridedott/merge-me-action/compare/v2.9.0...v2.9.1) (2021-07-21)
+
+### Bug Fixes
+
+- add pagination block to list branch protection rules query
+  ([e37f3bf](https://github.com/ridedott/merge-me-action/commit/e37f3bfce16c309802e638711638fac17b549308))
+
 # [2.9.0](https://github.com/ridedott/merge-me-action/compare/v2.8.47...v2.9.0) (2021-07-20)
 
 ### Bug Fixes
