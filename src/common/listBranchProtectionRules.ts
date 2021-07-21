@@ -13,6 +13,10 @@ const listBranchProtectionRulesQuery = `
             requiresStrictStatusChecks
           }
         }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
       }
     }
   }
