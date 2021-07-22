@@ -1,3 +1,10 @@
+## [2.9.2](https://github.com/ridedott/merge-me-action/compare/v2.9.1...v2.9.2) (2021-07-22)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 11.0.1 to 11.1.0
+  ([92d8ae1](https://github.com/ridedott/merge-me-action/commit/92d8ae109314481ad33d6f721cfa9551c3de9c35))
+
 ## [2.9.1](https://github.com/ridedott/merge-me-action/compare/v2.9.0...v2.9.1) (2021-07-21)
 
 ### Bug Fixes
