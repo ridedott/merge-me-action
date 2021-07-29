@@ -1,3 +1,10 @@
+## [2.9.6](https://github.com/ridedott/merge-me-action/compare/v2.9.5...v2.9.6) (2021-07-29)
+
+### Bug Fixes
+
+- support pull request title with directory path
+  ([bad5f63](https://github.com/ridedott/merge-me-action/commit/bad5f6300424f686548d59b984e823d28ea3f3bb))
+
 ## [2.9.5](https://github.com/ridedott/merge-me-action/compare/v2.9.4...v2.9.5) (2021-07-26)
 
 ### Chores
