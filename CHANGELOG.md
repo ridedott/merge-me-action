@@ -1,3 +1,38 @@
+## [2.9.5](https://github.com/ridedott/merge-me-action/compare/v2.9.4...v2.9.5) (2021-07-26)
+
+### Chores
+
+- **deps-dev:** bump @vercel/ncc from 0.28.6 to 0.29.0
+  ([56d59a5](https://github.com/ridedott/merge-me-action/commit/56d59a582cf47c7c3f6e3e2ef9709843a19e07f3))
+
+## [2.9.4](https://github.com/ridedott/merge-me-action/compare/v2.9.3...v2.9.4) (2021-07-26)
+
+### Chores
+
+- **deps-dev:** bump eslint from 7.30.0 to 7.31.0
+  ([33a2bdd](https://github.com/ridedott/merge-me-action/commit/33a2bdd5e48092936e046d10ddd0d8de0330ec83))
+
+## [2.9.3](https://github.com/ridedott/merge-me-action/compare/v2.9.2...v2.9.3) (2021-07-26)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional
+  ([e91cd94](https://github.com/ridedott/merge-me-action/commit/e91cd9441a4586d4b92495ad832e0fb72006056f))
+
+## [2.9.2](https://github.com/ridedott/merge-me-action/compare/v2.9.1...v2.9.2) (2021-07-22)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 11.0.1 to 11.1.0
+  ([92d8ae1](https://github.com/ridedott/merge-me-action/commit/92d8ae109314481ad33d6f721cfa9551c3de9c35))
+
+## [2.9.1](https://github.com/ridedott/merge-me-action/compare/v2.9.0...v2.9.1) (2021-07-21)
+
+### Bug Fixes
+
+- add pagination block to list branch protection rules query
+  ([e37f3bf](https://github.com/ridedott/merge-me-action/commit/e37f3bfce16c309802e638711638fac17b549308))
+
 # [2.9.0](https://github.com/ridedott/merge-me-action/compare/v2.8.47...v2.9.0) (2021-07-20)
 
 ### Bug Fixes
