@@ -11,11 +11,11 @@ const stringify = (value: unknown): string =>
     ? value.toString()
     : JSON.stringify(value);
 
-const log = (logger: (value: string) => void): ((message: unknown) => void) => (
-  message: unknown,
-): void => {
-  logger(stringify(message));
-};
+const log =
+  (logger: (value: string) => void): ((message: unknown) => void) =>
+  (message: unknown): void => {
+    logger(stringify(message));
+  };
 
 export const logDebug = log(debug);
 export const logError = log(error);

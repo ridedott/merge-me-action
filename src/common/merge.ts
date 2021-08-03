@@ -48,7 +48,8 @@ const getIsModified = async (
 ): Promise<boolean> => {
   const iterator = getPullRequestCommitsIterator(octokit, query);
 
-  const firstResult: IteratorResult<PullRequestCommitNode> = await iterator.next();
+  const firstResult: IteratorResult<PullRequestCommitNode> =
+    await iterator.next();
 
   if (firstResult.done === true) {
     logWarning('Could not find PR commits, aborting.');
