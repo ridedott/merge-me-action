@@ -10,14 +10,16 @@ export const checkPullRequestTitleForMergePreset = (title: string): boolean => {
     return true;
   }
 
-  const semanticVersionTitleRegExp = /bump .* from (?<from>\S+) to (?<to>\S+)/iu;
+  const semanticVersionTitleRegExp =
+    /bump .* from (?<from>\S+) to (?<to>\S+)/iu;
   const match = semanticVersionTitleRegExp.exec(title);
 
   if (match === null) {
     return true;
   }
 
-  const semVersionRegExp = /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)$/u;
+  const semVersionRegExp =
+    /^(?<major>0|[1-9]\d*)\.(?<minor>0|[1-9]\d*)\.(?<patch>0|[1-9]\d*)$/u;
 
   const matchGroups = match.groups;
   // Using non-null assertions per: https://github.com/microsoft/TypeScript/issues/32098

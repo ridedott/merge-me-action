@@ -72,9 +72,10 @@ export const continuousIntegrationEndHandle = async (
   gitHubLogin: string,
   maximumRetries: number,
 ): Promise<void> => {
-  const pullRequests = (context.eventName === 'workflow_run'
-    ? context.payload.workflow_run
-    : context.payload.check_suite
+  const pullRequests = (
+    context.eventName === 'workflow_run'
+      ? context.payload.workflow_run
+      : context.payload.check_suite
   ).pull_requests as PullRequest[];
 
   const branchProtectionRules = await listBranchProtectionRules(
@@ -83,10 +84,11 @@ export const continuousIntegrationEndHandle = async (
     context.repo.repo,
   );
 
-  const requiresStrictStatusChecksArray = computeRequiresStrictStatusChecksForReferences(
-    branchProtectionRules,
-    pullRequests.map(({ base }: PullRequest): string => base.ref),
-  );
+  const requiresStrictStatusChecksArray =
+    computeRequiresStrictStatusChecksForReferences(
+      branchProtectionRules,
+      pullRequests.map(({ base }: PullRequest): string => base.ref),
+    );
 
   const pullRequestsInformationPromises: Array<
     Promise<PullRequestInformation | undefined>

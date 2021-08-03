@@ -42,11 +42,10 @@ export const pullRequestHandle = async (
     ),
   ]);
 
-  const [
-    requiresStrictStatusChecks,
-  ] = computeRequiresStrictStatusChecksForReferences(branchProtectionRules, [
-    pullRequest.base.ref as string,
-  ]);
+  const [requiresStrictStatusChecks] =
+    computeRequiresStrictStatusChecksForReferences(branchProtectionRules, [
+      pullRequest.base.ref as string,
+    ]);
 
   if (pullRequestInformation === undefined) {
     logWarning('Unable to fetch pull request information.');

@@ -148,11 +148,8 @@ export const getMergeablePullRequestInformationByPullRequestNumber = async (
     githubPreviewApiEnabled: boolean;
   },
 ): Promise<PullRequestInformation | undefined> => {
-  const pullRequestInformation = await getPullRequestInformationByPullRequestNumber(
-    octokit,
-    query,
-    options,
-  );
+  const pullRequestInformation =
+    await getPullRequestInformationByPullRequestNumber(octokit, query, options);
 
   if (pullRequestInformation === undefined) {
     return undefined;

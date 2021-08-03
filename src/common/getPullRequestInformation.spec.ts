@@ -176,15 +176,16 @@ describe('getPullRequestInformation', (): void => {
           data: makeGraphQLResponse(githubPreviewApiEnabled),
         });
 
-      const result = await getMergeablePullRequestInformationByPullRequestNumber(
-        octokit,
-        {
-          pullRequestNumber,
-          repositoryName,
-          repositoryOwner,
-        },
-        { githubPreviewApiEnabled },
-      );
+      const result =
+        await getMergeablePullRequestInformationByPullRequestNumber(
+          octokit,
+          {
+            pullRequestNumber,
+            repositoryName,
+            repositoryOwner,
+          },
+          { githubPreviewApiEnabled },
+        );
 
       expect(result).toMatchSnapshot();
     },

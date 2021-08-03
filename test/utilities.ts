@@ -13,7 +13,7 @@ export const useSetTimeoutImmediateInvocation = (): jest.SpyInstance<
     .spyOn(global, 'setTimeout')
     .mockImplementation(
       (callback: () => void): NodeJS.Timeout =>
-        (callback() as unknown) as NodeJS.Timeout,
+        callback() as unknown as NodeJS.Timeout,
     );
 
 export const approveAndMergePullRequestMutation = (
