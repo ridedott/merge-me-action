@@ -10,7 +10,8 @@ export const checkPullRequestTitleForMergePreset = (title: string): boolean => {
     return true;
   }
 
-  const semanticVersionTitleRegExp = /bump .* from (?<from>\S+) to (?<to>\S+)/iu;
+  const semanticVersionTitleRegExp =
+    /bump .* from (?<from>\S+) to (?<to>\S+)/iu;
   const match = semanticVersionTitleRegExp.exec(title);
 
   if (match === null) {
