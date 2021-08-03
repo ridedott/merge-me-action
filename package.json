@@ -12,7 +12,7 @@
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/config-conventional": "^13.1.0",
     "@ridedott/eslint-config": "^2.13.22",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/exec": "^5.0.0",
@@ -22,10 +22,10 @@
     "@types/jest": "^26.0.24",
     "@types/micromatch": "^4.0.2",
     "@types/node": "^16.0.1",
-    "@vercel/ncc": "^0.28.6",
+    "@vercel/ncc": "^0.29.0",
     "commitizen": "^4.2.4",
     "cspell": "^5.6.6",
-    "eslint": "^7.30.0",
+    "eslint": "^7.31.0",
     "http-status-codes": "^2.1.4",
     "husky": "^7.0.1",
     "jest": "^26.6.3",
@@ -95,5 +95,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "2.9.1"
+  "version": "2.9.6"
 }
