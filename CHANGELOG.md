@@ -1,3 +1,14 @@
+## [2.9.14](https://github.com/ridedott/merge-me-action/compare/v2.9.13...v2.9.14) (2021-08-16)
+
+### Chores
+
+- **deps-dev:** bump @vercel/ncc from 0.29.0 to 0.29.1
+  ([19d75d1](https://github.com/ridedott/merge-me-action/commit/19d75d11afb82411fcf310a680e716d4447fb70c))
+- **deps-dev:** bump cspell from 5.6.6 to 5.7.2
+  ([42c1f6f](https://github.com/ridedott/merge-me-action/commit/42c1f6f87f9e66a76b65711b1dd84e9c06d3b3d2))
+- **deps-dev:** bump semantic-release from 17.4.4 to 17.4.5
+  ([f8bbfe5](https://github.com/ridedott/merge-me-action/commit/f8bbfe5cdf1f868e175b569bfbe2c5d2547bfb72))
+
 ## [2.9.13](https://github.com/ridedott/merge-me-action/compare/v2.9.12...v2.9.13) (2021-08-11)
 
 ### Chores
