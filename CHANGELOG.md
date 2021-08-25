@@ -1,3 +1,10 @@
+## [2.9.22](https://github.com/ridedott/merge-me-action/compare/v2.9.21...v2.9.22) (2021-08-25)
+
+### Chores
+
+- **deps-dev:** bump husky from 7.0.1 to 7.0.2
+  ([e6a3284](https://github.com/ridedott/merge-me-action/commit/e6a328412667b19c3f997d454527795cbad9e6d6))
+
 ## [2.9.21](https://github.com/ridedott/merge-me-action/compare/v2.9.20...v2.9.21) (2021-08-25)
 
 ### Chores
