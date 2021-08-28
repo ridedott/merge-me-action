@@ -71,7 +71,7 @@ jobs:
           #
           # This must be used as GitHub Actions token does not support pushing
           # to protected branches.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 ```
 
 Triggering on `check_suite` is similar:
@@ -92,7 +92,7 @@ jobs:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 ```
 
 ### Private repositories
@@ -142,7 +142,7 @@ jobs:
         # Depending on the setup, it might be required to use a personal access
         # token instead.
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         name: Install dependencies
         run: npm ci --ignore-scripts --no-audit --no-progress
       - name: Test
@@ -167,7 +167,7 @@ jobs:
           #
           # This must be used as GitHub Actions token does not support pushing
           # to protected branches.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     timeout-minutes: 5
 ```
 
@@ -188,7 +188,7 @@ jobs:
         uses: ridedott/merge-me-action@v2
         with:
           GITHUB_LOGIN: my-awesome-bot-r2d2
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 ```
 
 A common scenario is to use Dependabot Preview (consider updating instead):
@@ -201,7 +201,7 @@ jobs:
         uses: ridedott/merge-me-action@v2
         with:
           GITHUB_LOGIN: dependabot-preview
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 ```
 
 `GITHUB_LOGIN` option supports
@@ -221,7 +221,7 @@ jobs:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           ENABLE_GITHUB_API_PREVIEW: true
 ```
 
@@ -238,7 +238,7 @@ jobs:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           MERGE_METHOD: MERGE
 ```
 
@@ -263,7 +263,7 @@ jobs:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           PRESET: DEPENDABOT_PATCH
 ```
 
@@ -307,7 +307,7 @@ jobs:
       - name: Merge me!
         uses: ridedott/merge-me-action@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           ENABLED_FOR_MANUAL_CHANGES: 'true'
 ```
 
