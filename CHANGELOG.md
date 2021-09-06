@@ -1,3 +1,10 @@
+## [2.9.28](https://github.com/ridedott/merge-me-action/compare/v2.9.27...v2.9.28) (2021-09-06)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/git from 9.0.0 to 9.0.1
+  ([79dbcee](https://github.com/ridedott/merge-me-action/commit/79dbcee782f07858dd952028f4c1768701c7ac57))
+
 ## [2.9.27](https://github.com/ridedott/merge-me-action/compare/v2.9.26...v2.9.27) (2021-08-31)
 
 ### Chores
