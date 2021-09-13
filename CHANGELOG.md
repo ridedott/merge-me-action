@@ -1,3 +1,15 @@
+## [2.9.32](https://github.com/ridedott/merge-me-action/compare/v2.9.31...v2.9.32) (2021-09-13)
+
+### Chores
+
+- update package-lock.json
+  ([0786cfc](https://github.com/ridedott/merge-me-action/commit/0786cfc02eef77555869029a60f5c94d7258b550))
+
+### Reverts
+
+- "chore(deps-dev): bump @vercel/ncc from 0.30.0 to 0.31.0"
+  ([095f36e](https://github.com/ridedott/merge-me-action/commit/095f36e983a828715cf561ca3e9d2ccfcbfcb145))
+
 ## [2.9.31](https://github.com/ridedott/merge-me-action/compare/v2.9.30...v2.9.31) (2021-09-10)
 
 ### Chores
