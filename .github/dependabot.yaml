@@ -19,10 +19,6 @@ updates:
       include: scope
       prefix: chore
     directory: /
-    ignore:
-      # https://github.com/ridedott/merge-me-action/issues/1098
-      - dependency-name: '@vercel/ncc'
-        versions: ['^0.31.0']
     open-pull-requests-limit: 99
     package-ecosystem: npm
     reviewers:
