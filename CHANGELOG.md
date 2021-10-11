@@ -1,3 +1,14 @@
+## [2.9.48](https://github.com/ridedott/merge-me-action/compare/v2.9.47...v2.9.48) (2021-10-11)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 13.2.0 to 13.2.1
+  ([f582f22](https://github.com/ridedott/merge-me-action/commit/f582f22f0a9a0fa413450de4538ee30db7007449))
+- **deps-dev:** bump cspell from 5.12.2 to 5.12.3
+  ([c041e0e](https://github.com/ridedott/merge-me-action/commit/c041e0e25f4c6c6949ed4f22991d03f994efbffb))
+- **deps-dev:** bump lint-staged from 11.2.0 to 11.2.3
+  ([0c28bbb](https://github.com/ridedott/merge-me-action/commit/0c28bbbb023bb9f8aba5318966c3b0f3ae2298cd))
+
 ## [2.9.47](https://github.com/ridedott/merge-me-action/compare/v2.9.46...v2.9.47) (2021-10-07)
 
 ### Chores
