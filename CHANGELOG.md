@@ -1,3 +1,10 @@
+## [2.9.52](https://github.com/ridedott/merge-me-action/compare/v2.9.51...v2.9.52) (2021-10-18)
+
+### Chores
+
+- **deps:** bump actions/checkout from 2.3.4 to 2.3.5
+  ([cb39468](https://github.com/ridedott/merge-me-action/commit/cb394682ddb3d6558d0e8f4af0a4a3b47d84bf8a))
+
 ## [2.9.51](https://github.com/ridedott/merge-me-action/compare/v2.9.50...v2.9.51) (2021-10-18)
 
 ### Chores
