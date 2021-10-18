@@ -15,7 +15,14 @@ const errorWithStack = new Error('I am an error.');
 errorWithStack.stack = 'I am a stack.';
 
 describe.each<
-  [string, (value: unknown) => void, jest.SpyInstance<void, [Error | string]>]
+  [
+    string,
+    (value: unknown) => void,
+    jest.SpyInstance<
+      void,
+      [message: Error | string, properties?: core.AnnotationProperties]
+    >,
+  ]
 >([
   ['logError', logError, errorSpy],
   ['logWarning', logWarning, warningSpy],
@@ -24,7 +31,10 @@ describe.each<
   (
     _: string,
     logFunction: (value: unknown) => void,
-    coreFunction: jest.SpyInstance<void, [Error | string]>,
+    coreFunction: jest.SpyInstance<
+      void,
+      [message: Error | string, properties?: core.AnnotationProperties]
+    >,
   ): void => {
     it.each<[unknown, string]>([
       ['I am a string.', 'I am a string.'],
