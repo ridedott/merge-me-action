@@ -1,3 +1,10 @@
+## [2.9.65](https://github.com/ridedott/merge-me-action/compare/v2.9.64...v2.9.65) (2021-11-12)
+
+### Chores
+
+- **deps-dev:** bump nock from 13.2.0 to 13.2.1
+  ([c940191](https://github.com/ridedott/merge-me-action/commit/c9401917bf0af6a36af458b07766a55fb38c3e08))
+
 ## [2.9.64](https://github.com/ridedott/merge-me-action/compare/v2.9.63...v2.9.64) (2021-11-08)
 
 ### Chores
