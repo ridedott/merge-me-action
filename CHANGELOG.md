@@ -1,3 +1,14 @@
+## [2.9.66](https://github.com/ridedott/merge-me-action/compare/v2.9.65...v2.9.66) (2021-11-17)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional
+  ([4ef0824](https://github.com/ridedott/merge-me-action/commit/4ef08248dd850797863bbcfd1422184548a764ed))
+- **deps-dev:** bump @vercel/ncc from 0.31.1 to 0.32.0
+  ([c766e28](https://github.com/ridedott/merge-me-action/commit/c766e28d021864c307a58561ddcc51cf749bcb19))
+- **deps-dev:** bump cspell from 5.12.6 to 5.13.0
+  ([a46e824](https://github.com/ridedott/merge-me-action/commit/a46e8240e4def106c7c01a8c3448c300366bd290))
+
 ## [2.9.65](https://github.com/ridedott/merge-me-action/compare/v2.9.64...v2.9.65) (2021-11-12)
 
 ### Chores
