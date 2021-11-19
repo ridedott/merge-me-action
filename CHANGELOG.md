@@ -1,3 +1,10 @@
+## [2.9.69](https://github.com/ridedott/merge-me-action/compare/v2.9.68...v2.9.69) (2021-11-19)
+
+### Chores
+
+- **deps-dev:** bump @types/jest from 27.0.2 to 27.0.3
+  ([54f1308](https://github.com/ridedott/merge-me-action/commit/54f13085880f7f2e20f66931b071087938b86281))
+
 ## [2.9.68](https://github.com/ridedott/merge-me-action/compare/v2.9.67...v2.9.68) (2021-11-18)
 
 ### Chores
