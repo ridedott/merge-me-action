@@ -1,3 +1,10 @@
+## [2.9.70](https://github.com/ridedott/merge-me-action/compare/v2.9.69...v2.9.70) (2021-11-23)
+
+### Chores
+
+- **deps:** bump actions/cache from 2.1.6 to 2.1.7
+  ([2f42b84](https://github.com/ridedott/merge-me-action/commit/2f42b8498a486001cb3b5c0d842be43208f1ff60))
+
 ## [2.9.69](https://github.com/ridedott/merge-me-action/compare/v2.9.68...v2.9.69) (2021-11-19)
 
 ### Chores
