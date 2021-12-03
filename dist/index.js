@@ -1,4 +1,4 @@
-const { readFileSync, writeFileSync } = require('fs'), { Script } = require('vm'), { wrap } = require('module');
+require('./sourcemap-register.js');const { readFileSync, writeFileSync } = require('fs'), { Script } = require('vm'), { wrap } = require('module');
 const basename = __dirname + '/index.js';
 const source = readFileSync(basename + '.cache.js', 'utf-8');
 const cachedData = !process.pkg && require('process').platform !== 'win32' && readFileSync(basename + '.cache');
