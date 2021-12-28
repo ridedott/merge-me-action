@@ -1,3 +1,12 @@
+## [2.9.85](https://github.com/ridedott/merge-me-action/compare/v2.9.84...v2.9.85) (2021-12-28)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 15.0.0 to 16.0.1
+  ([164c308](https://github.com/ridedott/merge-me-action/commit/164c30833d68a3ab80a50ed9b5923c6f83d45612))
+- **deps:** bump actions/setup-node from 2.5.0 to 2.5.1
+  ([b31d9bf](https://github.com/ridedott/merge-me-action/commit/b31d9bfda8436af368613f0697261b3e3055a2ae))
+
 ## [2.9.84](https://github.com/ridedott/merge-me-action/compare/v2.9.83...v2.9.84) (2021-12-20)
 
 ### Chores
