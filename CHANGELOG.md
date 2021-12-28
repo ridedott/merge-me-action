@@ -1,3 +1,10 @@
+## [2.9.86](https://github.com/ridedott/merge-me-action/compare/v2.9.85...v2.9.86) (2021-12-28)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional
+  ([3a83f0e](https://github.com/ridedott/merge-me-action/commit/3a83f0e6b52dbd7a7fb38d28675b09ef3cdd9491))
+
 ## [2.9.85](https://github.com/ridedott/merge-me-action/compare/v2.9.84...v2.9.85) (2021-12-28)
 
 ### Chores
