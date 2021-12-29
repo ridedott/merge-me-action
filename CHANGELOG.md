@@ -1,3 +1,10 @@
+## [2.9.88](https://github.com/ridedott/merge-me-action/compare/v2.9.87...v2.9.88) (2021-12-29)
+
+### Chores
+
+- **deps-dev:** bump http-status-codes from 2.1.4 to 2.2.0
+  ([2133a74](https://github.com/ridedott/merge-me-action/commit/2133a747ed6437dcc0b010858dbd828a012c491d))
+
 ## [2.9.87](https://github.com/ridedott/merge-me-action/compare/v2.9.86...v2.9.87) (2021-12-29)
 
 ### Chores
