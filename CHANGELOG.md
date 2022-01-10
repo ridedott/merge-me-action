@@ -1,3 +1,10 @@
+## [2.9.92](https://github.com/ridedott/merge-me-action/compare/v2.9.91...v2.9.92) (2022-01-10)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 16.0.1 to 16.0.2
+  ([751b7bf](https://github.com/ridedott/merge-me-action/commit/751b7bf24c040aced81e4580714e125b5ff8c34a))
+
 ## [2.9.91](https://github.com/ridedott/merge-me-action/compare/v2.9.90...v2.9.91) (2022-01-10)
 
 ### Chores
