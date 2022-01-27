@@ -1,3 +1,10 @@
+## [2.9.101](https://github.com/ridedott/merge-me-action/compare/v2.9.100...v2.9.101) (2022-01-27)
+
+### Chores
+
+- **deps:** bump node-fetch from 2.6.1 to 2.6.7
+  ([81618b0](https://github.com/ridedott/merge-me-action/commit/81618b09b70fc95427fb22780e3369b47c233013))
+
 ## [2.9.100](https://github.com/ridedott/merge-me-action/compare/v2.9.99...v2.9.100) (2022-01-27)
 
 ### Chores
