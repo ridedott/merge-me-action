@@ -1,3 +1,12 @@
+## [2.9.108](https://github.com/ridedott/merge-me-action/compare/v2.9.107...v2.9.108) (2022-02-14)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional
+  ([1797074](https://github.com/ridedott/merge-me-action/commit/17970747443f5a9032c46c32a04bde3960fb7ae9))
+- **deps-dev:** bump @vercel/ncc from 0.33.1 to 0.33.3
+  ([5832cbc](https://github.com/ridedott/merge-me-action/commit/5832cbc3b27625aec62def5279192451fbfd87a3))
+
 ## [2.9.107](https://github.com/ridedott/merge-me-action/compare/v2.9.106...v2.9.107) (2022-02-08)
 
 ### Chores
