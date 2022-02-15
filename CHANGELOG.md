@@ -1,3 +1,10 @@
+## [2.9.110](https://github.com/ridedott/merge-me-action/compare/v2.9.109...v2.9.110) (2022-02-15)
+
+### Chores
+
+- **deps-dev:** bump cspell from 5.18.4 to 5.18.5
+  ([f223fad](https://github.com/ridedott/merge-me-action/commit/f223fad111ff50055ded05c8adbc96d6cbdb533c))
+
 ## [2.9.109](https://github.com/ridedott/merge-me-action/compare/v2.9.108...v2.9.109) (2022-02-14)
 
 ### Chores
