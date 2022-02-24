@@ -1,3 +1,10 @@
+## [2.9.112](https://github.com/ridedott/merge-me-action/compare/v2.9.111...v2.9.112) (2022-02-24)
+
+### Chores
+
+- **deps:** bump actions/setup-node from 2.5.1 to 3.0.0
+  ([68686a4](https://github.com/ridedott/merge-me-action/commit/68686a46dbdcd408ba2e100938d8811a82f79ded))
+
 ## [2.9.111](https://github.com/ridedott/merge-me-action/compare/v2.9.110...v2.9.111) (2022-02-23)
 
 ### Chores
