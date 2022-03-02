@@ -1,3 +1,10 @@
+## [2.9.116](https://github.com/ridedott/merge-me-action/compare/v2.9.115...v2.9.116) (2022-03-02)
+
+### Chores
+
+- **deps:** bump actions/checkout from 2.4.0 to 3
+  ([0aa1ac8](https://github.com/ridedott/merge-me-action/commit/0aa1ac82b69d3ebdec4293e42aa53cf19d89d2f0))
+
 ## [2.9.115](https://github.com/ridedott/merge-me-action/compare/v2.9.114...v2.9.115) (2022-03-02)
 
 ### Chores
