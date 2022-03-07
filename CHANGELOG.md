@@ -1,3 +1,10 @@
+## [2.9.117](https://github.com/ridedott/merge-me-action/compare/v2.9.116...v2.9.117) (2022-03-07)
+
+### Chores
+
+- **deps-dev:** bump ts-node from 10.6.0 to 10.7.0
+  ([513a01b](https://github.com/ridedott/merge-me-action/commit/513a01b0887720589d1dff2f27b52b0b369f8828))
+
 ## [2.9.116](https://github.com/ridedott/merge-me-action/compare/v2.9.115...v2.9.116) (2022-03-02)
 
 ### Chores
