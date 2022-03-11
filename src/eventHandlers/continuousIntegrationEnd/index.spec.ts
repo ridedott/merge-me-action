@@ -138,11 +138,11 @@ describe('continuous integration end event handler', (): void => {
 
     const { check_suite: checkSuite, eventName } = context.payload;
 
-    /* eslint-disable immutable/no-mutation */
+    /* eslint-disable functional/immutable-data */
     context.eventName = 'workflow_run';
     context.payload.workflow_run = checkSuite;
     delete context.payload.check_suite;
-    /* eslint-enable immutable/no-mutation */
+    /* eslint-enable functional/immutable-data */
 
     nock('https://api.github.com')
       .post('/graphql')
@@ -153,12 +153,12 @@ describe('continuous integration end event handler', (): void => {
     await continuousIntegrationEndHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 3);
 
     /* eslint-disable require-atomic-updates */
-    /* eslint-disable immutable/no-mutation */
+    /* eslint-disable functional/immutable-data */
     context.eventName = eventName;
     context.payload.check_suite = checkSuite;
     delete context.payload.workflow_run;
     /* eslint-enable require-atomic-updates */
-    /* eslint-enable immutable/no-mutation */
+    /* eslint-enable functional/immutable-data */
 
     expect(warningSpy).toHaveBeenCalledWith(
       'Unable to fetch pull request information.',

@@ -599,6 +599,7 @@ describe('merge', (): void => {
   it('does not log any warnings if last commit was not created by the selected GITHUB_LOGIN and ENABLED_FOR_MANUAL_CHANGES is set to "true"', async (): Promise<void> => {
     expect.assertions(1);
 
+    /* eslint-disable jest/no-conditional-in-test */
     getInputSpy.mockImplementation((name: string): string => {
       if (name === 'ENABLED_FOR_MANUAL_CHANGES') {
         return 'true';
@@ -618,6 +619,7 @@ describe('merge', (): void => {
 
       return '';
     });
+    /* eslint-enable jest/no-conditional-in-test */
 
     const pullRequestInformation: PullRequestInformation = {
       authorLogin: 'dependabot',

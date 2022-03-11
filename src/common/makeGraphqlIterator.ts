@@ -1,9 +1,8 @@
-/* eslint-disable immutable/no-let */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable prefer-destructuring */
 
 import { getOctokit } from '@actions/github';
-import { GraphQlQueryResponseData } from '@octokit/graphql';
+import type { GraphQlQueryResponseData } from '@octokit/graphql';
 
 const MAX_PAGE_SIZE = 100;
 

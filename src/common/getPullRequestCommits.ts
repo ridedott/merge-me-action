@@ -1,5 +1,5 @@
 import { getOctokit } from '@actions/github';
-import { GraphQlQueryResponseData } from '@octokit/graphql';
+import type { GraphQlQueryResponseData } from '@octokit/graphql';
 
 import { PullRequestCommitNode } from '../types';
 import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';

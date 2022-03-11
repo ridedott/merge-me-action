@@ -7,12 +7,13 @@ const errorSpy = jest.spyOn(core, 'error').mockImplementation();
 const infoSpy = jest.spyOn(core, 'info').mockImplementation();
 const warningSpy = jest.spyOn(core, 'warning').mockImplementation();
 
+/* eslint-disable functional/immutable-data */
 const errorWithoutStack = new Error('I am an error.');
 delete errorWithoutStack.stack;
 
 const errorWithStack = new Error('I am an error.');
-/* eslint-disable-next-line immutable/no-mutation */
 errorWithStack.stack = 'I am a stack.';
+/* eslint-enable functional/immutable-data */
 
 describe.each<
   [

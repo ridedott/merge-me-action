@@ -37,6 +37,7 @@ const main = async (): Promise<void> => {
   }
 };
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 main().catch((error: Error): void => {
   setFailed(
     `An unexpected error occurred: ${error.message}, ${

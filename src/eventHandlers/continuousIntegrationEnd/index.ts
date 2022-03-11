@@ -92,10 +92,10 @@ export const continuousIntegrationEndHandle = async (
 
   const pullRequestsInformationPromises: Array<
     Promise<PullRequestInformation | undefined>
-  > = [];
-
-  for (const pullRequest of pullRequests) {
-    pullRequestsInformationPromises.push(
+  > = pullRequests.map(
+    async (
+      pullRequest: PullRequest,
+    ): Promise<PullRequestInformation | undefined> =>
       getMergeablePullRequestInformationWithRetry(
         octokit,
         {
@@ -105,8 +105,7 @@ export const continuousIntegrationEndHandle = async (
         },
         { maximum: maximumRetries },
       ).catch((): undefined => undefined),
-    );
-  }
+  );
 
   const pullRequestsInformation = await Promise.all(
     pullRequestsInformationPromises,
@@ -127,6 +126,7 @@ export const continuousIntegrationEndHandle = async (
         )}.`,
       );
 
+      // eslint-disable-next-line functional/immutable-data
       mergePromises.push(
         tryMerge(
           octokit,
