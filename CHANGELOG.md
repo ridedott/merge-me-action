@@ -1,3 +1,10 @@
+## [2.9.120](https://github.com/ridedott/merge-me-action/compare/v2.9.119...v2.9.120) (2022-03-11)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 11.2.6 to 12.3.5
+  ([617c2b2](https://github.com/ridedott/merge-me-action/commit/617c2b22fc11ececeace0796e671f9ae19cab8a8))
+
 ## [2.9.119](https://github.com/ridedott/merge-me-action/compare/v2.9.118...v2.9.119) (2022-03-11)
 
 ### Chores
