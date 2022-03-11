@@ -1,3 +1,10 @@
+## [2.9.119](https://github.com/ridedott/merge-me-action/compare/v2.9.118...v2.9.119) (2022-03-11)
+
+### Chores
+
+- update node 15 to node 16
+  ([9c42a90](https://github.com/ridedott/merge-me-action/commit/9c42a904f33ecf2ff071e587164c74abe982e7ef))
+
 ## [2.9.118](https://github.com/ridedott/merge-me-action/compare/v2.9.117...v2.9.118) (2022-03-11)
 
 ### Chores
