@@ -6,7 +6,7 @@ export const useSetTimeoutImmediateInvocation = (): jest.SpyInstance<
   [
     callback: (...arguments_: unknown[]) => void,
     ms?: number | undefined,
-    ...arguments_: unknown[]
+    ...arguments_: unknown[],
   ]
 > =>
   jest
