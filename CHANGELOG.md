@@ -1,3 +1,19 @@
+## [2.9.122](https://github.com/ridedott/merge-me-action/compare/v2.9.121...v2.9.122) (2022-03-16)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 16.2.1 to 16.2.3
+  ([ddc52d2](https://github.com/ridedott/merge-me-action/commit/ddc52d2c2960e15089f9fc650364f4392c30a6b1))
+- **deps-dev:** bump lint-staged from 12.3.5 to 12.3.6
+  ([8024181](https://github.com/ridedott/merge-me-action/commit/802418159518260dd0ff352e12a9419a3e98f4dc))
+
+## [2.9.121](https://github.com/ridedott/merge-me-action/compare/v2.9.120...v2.9.121) (2022-03-14)
+
+### Chores
+
+- **deps-dev:** bump cspell from 5.18.5 to 5.19.2
+  ([3529389](https://github.com/ridedott/merge-me-action/commit/35293896603871b3fc857c211844ea8c0198cdce))
+
 ## [2.9.120](https://github.com/ridedott/merge-me-action/compare/v2.9.119...v2.9.120) (2022-03-11)
 
 ### Chores
