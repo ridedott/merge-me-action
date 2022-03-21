@@ -1,3 +1,24 @@
+## [2.9.125](https://github.com/ridedott/merge-me-action/compare/v2.9.124...v2.9.125) (2022-03-18)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.6.28 to 3.6.29
+  ([08d5716](https://github.com/ridedott/merge-me-action/commit/08d5716554515c328a5daad69bd2ecf94f10d426))
+
+## [2.9.124](https://github.com/ridedott/merge-me-action/compare/v2.9.123...v2.9.124) (2022-03-18)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 12.3.6 to 12.3.7
+  ([0092dee](https://github.com/ridedott/merge-me-action/commit/0092dee7e06da205b901a1ba038270af56398add))
+
+## [2.9.123](https://github.com/ridedott/merge-me-action/compare/v2.9.122...v2.9.123) (2022-03-18)
+
+### Chores
+
+- **deps-dev:** bump prettier from 2.5.1 to 2.6.0
+  ([814549b](https://github.com/ridedott/merge-me-action/commit/814549b4933aecac6033a4070a29181b3179588a))
+
 ## [2.9.122](https://github.com/ridedott/merge-me-action/compare/v2.9.121...v2.9.122) (2022-03-16)
 
 ### Chores
