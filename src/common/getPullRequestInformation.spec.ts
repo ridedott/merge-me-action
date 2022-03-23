@@ -159,6 +159,7 @@ describe('getPullRequestInformation', (): void => {
 
       nock('https://api.github.com', {
         reqheaders: {
+          // eslint-disable-next-line jest/no-conditional-in-test
           accept: githubPreviewApiEnabled
             ? 'application/vnd.github.merge-info-preview+json'
             : 'application/vnd.github.v3+json',

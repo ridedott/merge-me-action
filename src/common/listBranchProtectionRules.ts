@@ -1,5 +1,5 @@
 import { getOctokit } from '@actions/github';
-import { GraphQlQueryResponseData } from '@octokit/graphql';
+import type { GraphQlQueryResponseData } from '@octokit/graphql';
 
 import { IterableList, makeGraphqlIterator } from './makeGraphqlIterator';
 
@@ -52,6 +52,7 @@ export const listBranchProtectionRules = async (
   const branchProtectionRules: BranchProtectionRule[] = [];
 
   for await (const node of iterator) {
+    // eslint-disable-next-line functional/immutable-data
     branchProtectionRules.push(node);
   }
 

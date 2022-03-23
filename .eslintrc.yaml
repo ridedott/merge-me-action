@@ -10,7 +10,8 @@ overrides:
     rules:
       '@typescript-eslint/camelcase': 'off'
       '@typescript-eslint/no-magic-numbers': 'off'
-      'max-lines': 'off'
+      jest/require-hook: 'error'
+      max-lines: 'off'
       max-lines-per-function: 'off'
       no-magic-numbers: 'off'
       max-statements: 'off'
@@ -23,4 +24,5 @@ parserOptions:
   project: tsconfig.json
   sourceType: module
 rules:
+  jest/require-hook: 'off'
   no-negated-condition: 'off'

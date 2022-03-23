@@ -12,7 +12,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
 
     parseInputMergePresetSpy.mockReturnValueOnce(undefined);
 
-    expect(checkPullRequestTitleForMergePreset('')).toStrictEqual(true);
+    expect(checkPullRequestTitleForMergePreset('')).toBe(true);
   });
 
   describe('given containing major bump', (): void => {
@@ -25,7 +25,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
 
         parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(false);
+        expect(checkPullRequestTitleForMergePreset(title)).toBe(false);
       },
     );
   });
@@ -40,7 +40,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
 
         parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(false);
+        expect(checkPullRequestTitleForMergePreset(title)).toBe(false);
       },
     );
   });
@@ -55,7 +55,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
         inputParsers.AllowedMergePresets.DEPENDABOT_MINOR,
       );
 
-      expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
+      expect(checkPullRequestTitleForMergePreset(title)).toBe(true);
     });
 
     it('returns false for DEPENDABOT_PATCH', (): void => {
@@ -65,7 +65,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
         inputParsers.AllowedMergePresets.DEPENDABOT_PATCH,
       );
 
-      expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(false);
+      expect(checkPullRequestTitleForMergePreset(title)).toBe(false);
     });
   });
 
@@ -79,7 +79,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
         inputParsers.AllowedMergePresets.DEPENDABOT_MINOR,
       );
 
-      expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
+      expect(checkPullRequestTitleForMergePreset(title)).toBe(true);
     });
 
     it('returns false for DEPENDABOT_PATCH', (): void => {
@@ -89,7 +89,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
         inputParsers.AllowedMergePresets.DEPENDABOT_PATCH,
       );
 
-      expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(false);
+      expect(checkPullRequestTitleForMergePreset(title)).toBe(false);
     });
   });
 
@@ -103,7 +103,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
 
         parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
+        expect(checkPullRequestTitleForMergePreset(title)).toBe(true);
       },
     );
   });
@@ -118,7 +118,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
 
         parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
+        expect(checkPullRequestTitleForMergePreset(title)).toBe(true);
       },
     );
   });
@@ -133,7 +133,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
 
         parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
+        expect(checkPullRequestTitleForMergePreset(title)).toBe(true);
       },
     );
   });
@@ -148,7 +148,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
 
         parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(true);
+        expect(checkPullRequestTitleForMergePreset(title)).toBe(true);
       },
     );
   });
@@ -163,7 +163,7 @@ describe('checkPullRequestTitleForMergePreset', (): void => {
 
         parseInputMergePresetSpy.mockReturnValueOnce(mergeCategory);
 
-        expect(checkPullRequestTitleForMergePreset(title)).toStrictEqual(false);
+        expect(checkPullRequestTitleForMergePreset(title)).toBe(false);
       },
     );
   });

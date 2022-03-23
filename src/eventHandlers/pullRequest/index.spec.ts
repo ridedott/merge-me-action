@@ -106,15 +106,16 @@ describe('pull request event handler', (): void => {
     expect.assertions(0);
 
     const { pull_request: pullRequest } = context.payload;
+    // eslint-disable-next-line functional/immutable-data
     delete context.payload.pull_request;
 
     await pullRequestHandle(octokit, DEPENDABOT_GITHUB_LOGIN, 2);
 
     /* eslint-disable require-atomic-updates */
-    /* eslint-disable immutable/no-mutation */
+    /* eslint-disable functional/immutable-data */
     context.payload.pull_request = pullRequest;
     /* eslint-enable require-atomic-updates */
-    /* eslint-enable immutable/no-mutation */
+    /* eslint-enable functional/immutable-data */
   });
 
   it('logs a warning when it cannot find pull request ID by pull request number (null)', async (): Promise<void> => {

@@ -90,26 +90,21 @@ export const continuousIntegrationEndHandle = async (
       pullRequests.map(({ base }: PullRequest): string => base.ref),
     );
 
-  const pullRequestsInformationPromises: Array<
-    Promise<PullRequestInformation | undefined>
-  > = [];
-
-  for (const pullRequest of pullRequests) {
-    pullRequestsInformationPromises.push(
-      getMergeablePullRequestInformationWithRetry(
-        octokit,
-        {
-          pullRequestNumber: pullRequest.number,
-          repositoryName: context.repo.repo,
-          repositoryOwner: context.repo.owner,
-        },
-        { maximum: maximumRetries },
-      ).catch((): undefined => undefined),
-    );
-  }
-
   const pullRequestsInformation = await Promise.all(
-    pullRequestsInformationPromises,
+    pullRequests.map(
+      async (
+        pullRequest: PullRequest,
+      ): Promise<PullRequestInformation | undefined> =>
+        getMergeablePullRequestInformationWithRetry(
+          octokit,
+          {
+            pullRequestNumber: pullRequest.number,
+            repositoryName: context.repo.repo,
+            repositoryOwner: context.repo.owner,
+          },
+          { maximum: maximumRetries },
+        ).catch((): undefined => undefined),
+    ),
   );
 
   const mergePromises: Array<Promise<void>> = [];
@@ -127,6 +122,7 @@ export const continuousIntegrationEndHandle = async (
         )}.`,
       );
 
+      // eslint-disable-next-line functional/immutable-data
       mergePromises.push(
         tryMerge(
           octokit,

@@ -21,7 +21,7 @@ describe('parseInputMergeMethod', (): void => {
 
     getInputSpy.mockReturnValueOnce('OTHER');
 
-    expect<unknown>(parseInputMergeMethod()).toStrictEqual('SQUASH');
+    expect<unknown>(parseInputMergeMethod()).toBe('SQUASH');
   });
 
   it('returns undefined if merge method is not provided', (): void => {
@@ -29,7 +29,7 @@ describe('parseInputMergeMethod', (): void => {
 
     getInputSpy.mockReturnValueOnce('');
 
-    expect<unknown>(parseInputMergeMethod()).toStrictEqual('SQUASH');
+    expect<unknown>(parseInputMergeMethod()).toBe('SQUASH');
   });
 });
 
