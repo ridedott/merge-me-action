@@ -1,3 +1,10 @@
+## [2.9.135](https://github.com/ridedott/merge-me-action/compare/v2.9.134...v2.9.135) (2022-03-31)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.34 to 2.19.36
+  ([140a344](https://github.com/ridedott/merge-me-action/commit/140a3441edfcc940be651fbabd8111bd8a2a41a4))
+
 ## [2.9.134](https://github.com/ridedott/merge-me-action/compare/v2.9.133...v2.9.134) (2022-03-30)
 
 ### Chores
