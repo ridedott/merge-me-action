@@ -1,3 +1,10 @@
+## [2.9.138](https://github.com/ridedott/merge-me-action/compare/v2.9.137...v2.9.138) (2022-04-01)
+
+### Chores
+
+- **deps:** bump @actions/github from 5.0.0 to 5.0.1
+  ([2bf655e](https://github.com/ridedott/merge-me-action/commit/2bf655eab70b9980e0890a371519d2dceb1b8ec9))
+
 ## [2.9.137](https://github.com/ridedott/merge-me-action/compare/v2.9.136...v2.9.137) (2022-04-01)
 
 ### Chores
