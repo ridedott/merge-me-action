@@ -39,6 +39,10 @@ jobs:
           commit-assets: |
             ./dist
           node-module: true
+          release-rules-append: |
+            [
+              { "release": false, "scope": "deps-dev", "type": "chore" }
+            ]
       - if: steps.release.outputs.released == 'true'
         name: Setup Node.js with GitHub Packages
         uses: actions/setup-node@v3.1.1
