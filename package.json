@@ -13,7 +13,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    "@ridedott/eslint-config": "^2.19.42",
+    "@ridedott/eslint-config": "^2.19.43",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.1",
@@ -22,7 +22,7 @@
     "@types/jest": "^27.4.1",
     "@types/micromatch": "^4.0.2",
     "@types/node": "^16.0.1",
-    "@vercel/ncc": "^0.33.3",
+    "@vercel/ncc": "^0.33.4",
     "commitizen": "^4.2.4",
     "cspell": "^5.19.7",
     "eslint": "^7.32.0",
@@ -95,5 +95,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "2.9.146"
+  "version": "2.9.148"
 }
