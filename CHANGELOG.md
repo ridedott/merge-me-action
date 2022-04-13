@@ -1,3 +1,10 @@
+## [2.9.149](https://github.com/ridedott/merge-me-action/compare/v2.9.148...v2.9.149) (2022-04-13)
+
+### Continuous Integration
+
+- skip releases for dev dependency updates
+  ([46b1151](https://github.com/ridedott/merge-me-action/commit/46b1151ead1c6647a8a518a9f32b1e7392053411))
+
 ## [2.9.148](https://github.com/ridedott/merge-me-action/compare/v2.9.147...v2.9.148) (2022-04-12)
 
 ### Chores
