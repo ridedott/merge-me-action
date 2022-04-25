@@ -1,3 +1,18 @@
+## [2.9.150](https://github.com/ridedott/merge-me-action/compare/v2.9.149...v2.9.150) (2022-04-25)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.43 to 2.19.45
+  ([d42911f](https://github.com/ridedott/merge-me-action/commit/d42911f63b8fdcfaef5e7bdd7a3cfa31c452f732))
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.45 to 2.19.46
+  ([43b21bb](https://github.com/ridedott/merge-me-action/commit/43b21bbc633d3508639a6b3b89ec81ad40d52a95))
+- **deps-dev:** bump lint-staged from 12.3.7 to 12.3.8
+  ([249990f](https://github.com/ridedott/merge-me-action/commit/249990f9b4eddd202ed998b0bbf27bf404ffd1e7))
+- **deps-dev:** bump lint-staged from 12.3.8 to 12.4.0
+  ([9b2486b](https://github.com/ridedott/merge-me-action/commit/9b2486bfb1d1f6c28fb26b3ad50f61496dc6dc3b))
+- **deps:** bump @actions/core from 1.6.0 to 1.7.0
+  ([577aa8d](https://github.com/ridedott/merge-me-action/commit/577aa8ddd69662b1113c680d12a6b294e361476b))
+
 ## [2.9.149](https://github.com/ridedott/merge-me-action/compare/v2.9.148...v2.9.149) (2022-04-13)
 
 ### Continuous Integration
