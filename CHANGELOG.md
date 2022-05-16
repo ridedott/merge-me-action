@@ -1,3 +1,16 @@
+## [2.9.156](https://github.com/ridedott/merge-me-action/compare/v2.9.155...v2.9.156) (2022-05-16)
+
+### Chores
+
+- **deps:** bump @actions/core from 1.8.0 to 1.8.2
+  ([d4b370c](https://github.com/ridedott/merge-me-action/commit/d4b370ce87e49ae781bcdf59288fdf4972038c1d))
+- **deps:** bump @actions/github from 5.0.2 to 5.0.3
+  ([04037d6](https://github.com/ridedott/merge-me-action/commit/04037d68c9cab2559df4d2f7518d75946136cd40))
+- **deps:** bump actions/setup-node from 3.1.1 to 3.2.0
+  ([be0a092](https://github.com/ridedott/merge-me-action/commit/be0a0923de87c688d12e397badeb08e4de4172e6))
+- **deps:** bump ridedott/release-me-action from 3.6.37 to 3.6.38
+  ([9e0e9f8](https://github.com/ridedott/merge-me-action/commit/9e0e9f8f5cb5ab6d6fdbeca26172297705fefa6b))
+
 ## [2.9.155](https://github.com/ridedott/merge-me-action/compare/v2.9.154...v2.9.155) (2022-05-13)
 
 ### Chores
