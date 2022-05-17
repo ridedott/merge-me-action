@@ -27,7 +27,7 @@
     "cspell": "^5.21.0",
     "eslint": "^7.32.0",
     "http-status-codes": "^2.2.0",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "jest": "^26.6.3",
     "lint-staged": "^12.4.1",
     "nock": "^13.2.4",
