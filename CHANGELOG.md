@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/ridedott/merge-me-action/compare/v2.9.156...v2.10.0) (2022-05-17)
+
+### Features
+
+- drop node v12 support
+  ([b1289cc](https://github.com/ridedott/merge-me-action/commit/b1289ccfba8236454fd69e37b823e29fad5015c1))
+
 ## [2.9.156](https://github.com/ridedott/merge-me-action/compare/v2.9.155...v2.9.156) (2022-05-16)
 
 ### Chores
