@@ -323,7 +323,7 @@ consume this package in your project.
 
 Minimal requirements to set up the project:
 
-- [Node.js](https://nodejs.org/en) v12, installation instructions can be found
+- [Node.js](https://nodejs.org/en) v14, installation instructions can be found
   on the official website, a recommended installation option is to use
   [Node Version Manager](https://github.com/creationix/nvm#readme). It can be
   installed in a
