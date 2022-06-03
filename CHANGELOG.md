@@ -1,3 +1,30 @@
+## [2.10.3](https://github.com/ridedott/merge-me-action/compare/v2.10.2...v2.10.3) (2022-06-03)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 17.0.1 to 17.0.2
+  ([167e7b6](https://github.com/ridedott/merge-me-action/commit/167e7b69926e95b287557cd0576d5ee72a0aea8f))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([383f054](https://github.com/ridedott/merge-me-action/commit/383f054599ba34d2e68616877783acb97d564400))
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.60 to 2.19.61
+  ([553fd72](https://github.com/ridedott/merge-me-action/commit/553fd724aa17b028b825cd25616825702d3d5e96))
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.61 to 2.19.65
+  ([1ff67f2](https://github.com/ridedott/merge-me-action/commit/1ff67f24f144983f17e1ef7448b4f88841946481))
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.65 to 2.19.66
+  ([8cc1e50](https://github.com/ridedott/merge-me-action/commit/8cc1e50ecea42a042f2765bbecfb0191a8b69629))
+- **deps-dev:** bump @vercel/ncc from 0.33.4 to 0.34.0
+  ([eede0ad](https://github.com/ridedott/merge-me-action/commit/eede0adc70fbc216d62ea52413bcc3a622642ac0))
+- **deps-dev:** bump cspell from 6.0.0 to 6.1.0
+  ([c36b6b2](https://github.com/ridedott/merge-me-action/commit/c36b6b21885b7f2b69d03cc93c9f8c3ad276f384))
+- **deps-dev:** bump cspell from 6.1.0 to 6.1.1
+  ([3db5382](https://github.com/ridedott/merge-me-action/commit/3db53822419c2f74bb5c533617fbbb7fd783352e))
+- **deps-dev:** bump lint-staged from 12.4.2 to 12.4.3
+  ([a46fe85](https://github.com/ridedott/merge-me-action/commit/a46fe856290385e4ac7e03f7f4c86b3f270f98c1))
+- **deps-dev:** bump lint-staged from 12.4.3 to 13.0.0
+  ([a46b4bf](https://github.com/ridedott/merge-me-action/commit/a46b4bf68f150ea337e8bf101a363bb3ecee5c0f))
+- **deps:** bump semver-regex from 3.1.2 to 3.1.4
+  ([2e42918](https://github.com/ridedott/merge-me-action/commit/2e429185098eee6e2f980719bb877aefa5cf48df))
+
 ## [2.10.2](https://github.com/ridedott/merge-me-action/compare/v2.10.1...v2.10.2) (2022-05-25)
 
 ### Chores
