@@ -1,3 +1,16 @@
+## [2.10.4](https://github.com/ridedott/merge-me-action/compare/v2.10.3...v2.10.4) (2022-06-06)
+
+### Chores
+
+- **deps-dev:** bump nock from 13.2.4 to 13.2.6
+  ([bc9134c](https://github.com/ridedott/merge-me-action/commit/bc9134ccae89133660c0eda7913de8a5bc95c925))
+- **deps-dev:** bump ts-node from 10.8.0 to 10.8.1
+  ([0c2c421](https://github.com/ridedott/merge-me-action/commit/0c2c4216a29f6cae842b077b1dd93860c8d3c25e))
+- **deps:** bump actions/setup-node from 3.2.0 to 3.3.0
+  ([d2837d3](https://github.com/ridedott/merge-me-action/commit/d2837d3a2ee0dcf2683224b5613d79cdbb0ececb))
+- **deps:** bump ridedott/release-me-action from 3.6.40 to 3.6.42
+  ([14eba24](https://github.com/ridedott/merge-me-action/commit/14eba249ff4e076e50c3406af45fa3c32a684595))
+
 ## [2.10.3](https://github.com/ridedott/merge-me-action/compare/v2.10.2...v2.10.3) (2022-06-03)
 
 ### Chores
