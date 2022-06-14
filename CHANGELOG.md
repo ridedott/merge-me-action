@@ -1,3 +1,26 @@
+## [2.10.6](https://github.com/ridedott/merge-me-action/compare/v2.10.5...v2.10.6) (2022-06-14)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.68 to 2.19.70
+  ([588fdb4](https://github.com/ridedott/merge-me-action/commit/588fdb408530be3864a8cb64480df42070aff8a6))
+- **deps-dev:** bump cspell from 6.1.1 to 6.1.2
+  ([fe53b7c](https://github.com/ridedott/merge-me-action/commit/fe53b7c5402d25089659431c824a1d76969518d4))
+- **deps-dev:** bump lint-staged from 13.0.0 to 13.0.1
+  ([00aa51f](https://github.com/ridedott/merge-me-action/commit/00aa51ff16f97465d3980a2febc71e39770060c0))
+- **deps-dev:** bump semantic-release, @semantic-release/changelog, …
+  ([8cae51f](https://github.com/ridedott/merge-me-action/commit/8cae51fb4681950fb8328252c52e681089cfa416))
+- **deps:** bump ansi-regex from 3.0.0 to 3.0.1
+  ([d5a94a1](https://github.com/ridedott/merge-me-action/commit/d5a94a1434c3f1961ed2d0d151a1f769ad67902d))
+- **deps:** bump browserslist from 4.16.3 to 4.20.4
+  ([c079a74](https://github.com/ridedott/merge-me-action/commit/c079a74d73405fcdc8e709fe06d8f52e80957529))
+- **deps:** bump tmpl from 1.0.4 to 1.0.5
+  ([ff73eae](https://github.com/ridedott/merge-me-action/commit/ff73eae9b751ac05e6c245e7581f4ef3bb19e27b))
+- **deps:** bump trim-newlines from 3.0.0 to 3.0.1
+  ([882ccd6](https://github.com/ridedott/merge-me-action/commit/882ccd6077117aae118e55a64b9ae46753d6750c))
+- **deps:** bump ws from 7.4.4 to 7.5.8
+  ([ae352fe](https://github.com/ridedott/merge-me-action/commit/ae352fe3cd9c98b0f795dd24d5d3627ad92a9965))
+
 ## [2.10.5](https://github.com/ridedott/merge-me-action/compare/v2.10.4...v2.10.5) (2022-06-07)
 
 ### Chores
