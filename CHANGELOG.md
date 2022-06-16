@@ -1,3 +1,16 @@
+## [2.10.7](https://github.com/ridedott/merge-me-action/compare/v2.10.6...v2.10.7) (2022-06-16)
+
+### Chores
+
+- **deps-dev:** bump nock from 13.2.6 to 13.2.7
+  ([d0b4f84](https://github.com/ridedott/merge-me-action/commit/d0b4f8406d7fe8c8af5de10b960db3315a85628d))
+- **deps-dev:** bump prettier from 2.6.2 to 2.7.0
+  ([07dd3c3](https://github.com/ridedott/merge-me-action/commit/07dd3c32b0e5953a18d1468fc5e3d81ddecf31dd))
+- **deps-dev:** bump prettier from 2.7.0 to 2.7.1
+  ([3e99f55](https://github.com/ridedott/merge-me-action/commit/3e99f55b1d9eb1200d59767e03de8ab80cf79639))
+- **deps:** bump @actions/core from 1.8.2 to 1.9.0
+  ([2fc5cde](https://github.com/ridedott/merge-me-action/commit/2fc5cded0f7c56fc825ec050acc0afe9b5da831d))
+
 ## [2.10.6](https://github.com/ridedott/merge-me-action/compare/v2.10.5...v2.10.6) (2022-06-14)
 
 ### Chores
