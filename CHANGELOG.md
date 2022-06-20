@@ -1,3 +1,12 @@
+## [2.10.9](https://github.com/ridedott/merge-me-action/compare/v2.10.8...v2.10.9) (2022-06-20)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 13.0.1 to 13.0.2
+  ([50a6ef5](https://github.com/ridedott/merge-me-action/commit/50a6ef56c2c8bf39ed292e882b71082290dbf731))
+- **deps:** bump ridedott/release-me-action from 3.6.44 to 3.6.45
+  ([316aa43](https://github.com/ridedott/merge-me-action/commit/316aa436ec4089a1aa4c95976cbfc31308933e24))
+
 ## [2.10.8](https://github.com/ridedott/merge-me-action/compare/v2.10.7...v2.10.8) (2022-06-16)
 
 ### Chores
