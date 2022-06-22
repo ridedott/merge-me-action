@@ -1,3 +1,10 @@
+## [2.10.10](https://github.com/ridedott/merge-me-action/compare/v2.10.9...v2.10.10) (2022-06-22)
+
+### Chores
+
+- **deps:** bump shell-quote from 1.7.2 to 1.7.3
+  ([88177ae](https://github.com/ridedott/merge-me-action/commit/88177ae8f1f61b5d412434afae89ea60b4410d83))
+
 ## [2.10.9](https://github.com/ridedott/merge-me-action/compare/v2.10.8...v2.10.9) (2022-06-20)
 
 ### Chores
