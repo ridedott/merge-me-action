@@ -1,3 +1,24 @@
+## [2.10.12](https://github.com/ridedott/merge-me-action/compare/v2.10.11...v2.10.12) (2022-07-08)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 17.0.2 to 17.0.3
+  ([c6f26f4](https://github.com/ridedott/merge-me-action/commit/c6f26f4740384643f8510664dafb3aa2f129f648))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([0005933](https://github.com/ridedott/merge-me-action/commit/0005933336e5bd085e8d94db07504fb46491d21d))
+- **deps-dev:** bump cspell from 6.1.2 to 6.1.3
+  ([95105f1](https://github.com/ridedott/merge-me-action/commit/95105f16ee81b11c092a8b1d1a8edcd6ef92e8dc))
+- **deps-dev:** bump cspell from 6.1.3 to 6.2.2
+  ([41de79d](https://github.com/ridedott/merge-me-action/commit/41de79db183a72e16076d7f7c447b943447735ba))
+- **deps-dev:** bump cspell from 6.2.2 to 6.2.3
+  ([0d5e5c0](https://github.com/ridedott/merge-me-action/commit/0d5e5c0c8dd507af46126bab410ccaec7e32cba5))
+- **deps-dev:** bump lint-staged from 13.0.2 to 13.0.3
+  ([543e8fe](https://github.com/ridedott/merge-me-action/commit/543e8fec66f67970817f6092969d3955e3b249b7))
+- **deps-dev:** bump nock from 13.2.7 to 13.2.8
+  ([3c3acd7](https://github.com/ridedott/merge-me-action/commit/3c3acd7ef3342e8d07bb55ca9bfbfc1f54574bad))
+- **deps:** bump ridedott/release-me-action from 3.6.47 to 3.6.48
+  ([1b8de84](https://github.com/ridedott/merge-me-action/commit/1b8de84ef12e4cf873155c7741868c4bb28c80ae))
+
 ## [2.10.11](https://github.com/ridedott/merge-me-action/compare/v2.10.10...v2.10.11) (2022-06-23)
 
 ### Chores
