@@ -1,3 +1,34 @@
+## [2.10.16](https://github.com/ridedott/merge-me-action/compare/v2.10.15...v2.10.16) (2022-08-09)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.70 to 2.19.73
+  ([3a61f4b](https://github.com/ridedott/merge-me-action/commit/3a61f4bbf4a5d447f1560a5a63bdc3575c804013))
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.73 to 2.19.74
+  ([fd7ae98](https://github.com/ridedott/merge-me-action/commit/fd7ae98bb5eaf2905e6c9bff53b966a54937c5b1))
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.74 to 2.19.75
+  ([9f427ba](https://github.com/ridedott/merge-me-action/commit/9f427baf773ed29024bcd8df2934a717e2738eb2))
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.75 to 2.19.76
+  ([208b917](https://github.com/ridedott/merge-me-action/commit/208b917e3b771ba4378d7784cea4724b0b92abdb))
+- **deps-dev:** bump commitizen from 4.2.4 to 4.2.5
+  ([433cb09](https://github.com/ridedott/merge-me-action/commit/433cb09e2644e3d1cd814f705f36c27f82c36e46))
+- **deps-dev:** bump cspell from 6.2.3 to 6.3.0
+  ([25677d9](https://github.com/ridedott/merge-me-action/commit/25677d91ccfc0faa7afcdf0d951c5366e5c1f89c))
+- **deps-dev:** bump cspell from 6.3.0 to 6.4.0
+  ([950f264](https://github.com/ridedott/merge-me-action/commit/950f2644c4bbbaa00531b29f5bf6c624dcd9abd4))
+- **deps-dev:** bump cspell from 6.4.0 to 6.4.1
+  ([2a8e6ca](https://github.com/ridedott/merge-me-action/commit/2a8e6ca5566be84f1b1c7cac770a5b7bbc0a5177))
+- **deps-dev:** bump cspell from 6.4.1 to 6.4.2
+  ([9ae8b1b](https://github.com/ridedott/merge-me-action/commit/9ae8b1b58dd36919a11282dcf8bff513e75629a7))
+- **deps-dev:** bump cspell from 6.4.2 to 6.5.0
+  ([153752d](https://github.com/ridedott/merge-me-action/commit/153752d5092c3e292c0024f29012b2987bff0569))
+- **deps-dev:** bump cspell from 6.5.0 to 6.6.0
+  ([cefcf1a](https://github.com/ridedott/merge-me-action/commit/cefcf1a903039451ef1348fb8475093afb340a88))
+- **deps-dev:** bump nock from 13.2.8 to 13.2.9
+  ([51a95af](https://github.com/ridedott/merge-me-action/commit/51a95afd3c0a76c4cdbb2cc6d67f646687b2f354))
+- **deps:** bump @actions/core from 1.9.0 to 1.9.1
+  ([18e0065](https://github.com/ridedott/merge-me-action/commit/18e0065fb3de194c6a25f6d892f59edad7053425))
+
 ## [2.10.15](https://github.com/ridedott/merge-me-action/compare/v2.10.14...v2.10.15) (2022-07-15)
 
 ### Chores
