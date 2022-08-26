@@ -1,3 +1,34 @@
+## [2.10.18](https://github.com/ridedott/merge-me-action/compare/v2.10.17...v2.10.18) (2022-08-26)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.19.76 to 2.20.0
+  ([e8dc836](https://github.com/ridedott/merge-me-action/commit/e8dc836b9dd42cf35adcb5fac90bfec020f6c3ce))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.0 to 2.20.1
+  ([d139559](https://github.com/ridedott/merge-me-action/commit/d139559db02b46b610e163353e9b1d939dd7c134))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.1 to 2.20.3
+  ([e14ebfc](https://github.com/ridedott/merge-me-action/commit/e14ebfcc59904fe190020e211590a473b254a83c))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.3 to 2.20.5
+  ([af78edf](https://github.com/ridedott/merge-me-action/commit/af78edfb142cc3ac5178368b06a3faea1bbe01a2))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.5 to 2.20.8
+  ([d176e4d](https://github.com/ridedott/merge-me-action/commit/d176e4d93305babbba4c7a0385961eaaafd6a7a0))
+- **deps-dev:** bump cspell from 6.6.0 to 6.6.1
+  ([a7de133](https://github.com/ridedott/merge-me-action/commit/a7de133bdc32e41609d9dacca393b22dcf0779f1))
+- **deps-dev:** bump cspell from 6.6.1 to 6.7.0
+  ([270bdf9](https://github.com/ridedott/merge-me-action/commit/270bdf9a4bcfdadefa5a36d5b2cd24d82a8baf06))
+- **deps-dev:** bump cspell from 6.7.0 to 6.8.0
+  ([61fd04c](https://github.com/ridedott/merge-me-action/commit/61fd04cdddae35490d9c5ca4fcda2c52e4fa032e))
+- **deps-dev:** bump cspell from 6.8.0 to 6.8.1
+  ([a6093ff](https://github.com/ridedott/merge-me-action/commit/a6093ff62226e4cd9d77531fdbe0e5020a829f7e))
+- **deps-dev:** bump semantic-release from 19.0.3 to 19.0.4
+  ([5393cb3](https://github.com/ridedott/merge-me-action/commit/5393cb384accc6bcb6fd07db8a703f40a3959893))
+- **deps-dev:** bump semantic-release from 19.0.4 to 19.0.5
+  ([e77bd34](https://github.com/ridedott/merge-me-action/commit/e77bd34d85d3f623066597a453cee5cf672b90b5))
+- **deps-dev:** bump ts-node from 10.8.1 to 10.9.1
+  ([cda76c2](https://github.com/ridedott/merge-me-action/commit/cda76c2d944311182fa1d9952621edb50645210f))
+- **deps:** bump ridedott/release-me-action from 3.6.52 to 3.6.53
+  ([cbf4dbb](https://github.com/ridedott/merge-me-action/commit/cbf4dbb9ec40b255d24ebc4e8a1a6aab0368832b))
+
 ## [2.10.17](https://github.com/ridedott/merge-me-action/compare/v2.10.16...v2.10.17) (2022-08-09)
 
 ### Chores
