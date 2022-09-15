@@ -1,3 +1,14 @@
+## [2.10.22](https://github.com/ridedott/merge-me-action/compare/v2.10.21...v2.10.22) (2022-09-15)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.23 to 2.20.25
+  ([584935b](https://github.com/ridedott/merge-me-action/commit/584935b8c97a2253ed973e45e548836637fc78c9))
+- **deps-dev:** bump cspell from 6.8.2 to 6.9.0
+  ([6a66984](https://github.com/ridedott/merge-me-action/commit/6a66984e02bf4170078983eb827b9c099f14a2dc))
+- **deps:** bump json-schema from 0.2.3 to 0.4.0
+  ([2800d89](https://github.com/ridedott/merge-me-action/commit/2800d89b027e3736c2b01ab3e23badcef28bb52e))
+
 ## [2.10.21](https://github.com/ridedott/merge-me-action/compare/v2.10.20...v2.10.21) (2022-09-15)
 
 ### Chores
