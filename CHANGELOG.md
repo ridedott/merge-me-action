@@ -1,3 +1,40 @@
+## [2.10.32](https://github.com/ridedott/merge-me-action/compare/v2.10.31...v2.10.32) (2022-11-16)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 17.1.2 to 17.2.0
+  ([bb85bfa](https://github.com/ridedott/merge-me-action/commit/bb85bfa30cbb6d5e8c377bbe4b82548d403b4d4d))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([968ce11](https://github.com/ridedott/merge-me-action/commit/968ce11e4833993af393adf6c160ceae77562854))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.44 to 2.20.45
+  ([5ae8508](https://github.com/ridedott/merge-me-action/commit/5ae8508b5049887ac09141522ea2ce1a213776fd))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.45 to 2.20.47
+  ([9ca7f63](https://github.com/ridedott/merge-me-action/commit/9ca7f63975f63a656a8d7ace8905df73fc938f33))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.47 to 2.20.49
+  ([2185912](https://github.com/ridedott/merge-me-action/commit/21859127bb3d2d2b9ace361b41e5dac57f83f137))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.49 to 2.20.50
+  ([f618293](https://github.com/ridedott/merge-me-action/commit/f618293786411fa0af54a8ad659fc907d35bce93))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.50 to 2.20.51
+  ([464c3f5](https://github.com/ridedott/merge-me-action/commit/464c3f519ab29312faacc0043aee52b25b4ff7bb))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.51 to 2.20.52
+  ([8f971f5](https://github.com/ridedott/merge-me-action/commit/8f971f559e423e9bbb8dcec5397687b56f84651d))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.52 to 2.20.54
+  ([2b66c9f](https://github.com/ridedott/merge-me-action/commit/2b66c9f2bc8d6b14415ba4d09d7bbc6137646e4d))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.54 to 2.20.55
+  ([621ecb5](https://github.com/ridedott/merge-me-action/commit/621ecb505ca4b0e36cfd6f2b14cd8ad0b7fb43d0))
+- **deps-dev:** bump cspell from 6.12.0 to 6.13.1
+  ([0fd46d8](https://github.com/ridedott/merge-me-action/commit/0fd46d8b02e0919795ace1897a4046f857e7ada8))
+- **deps-dev:** bump cspell from 6.13.1 to 6.13.3
+  ([1c174f6](https://github.com/ridedott/merge-me-action/commit/1c174f6143e233006110ad5a66e96f9c4e6eddc8))
+- **deps-dev:** bump cspell from 6.13.3 to 6.14.1
+  ([8d04bc9](https://github.com/ridedott/merge-me-action/commit/8d04bc90979b687864acac643a4ffd36efd78d86))
+- **deps-dev:** bump cspell from 6.14.1 to 6.14.2
+  ([da65d03](https://github.com/ridedott/merge-me-action/commit/da65d03e52cb5ec547a73c536438d9917cd73cd1))
+- **deps-dev:** bump husky from 8.0.1 to 8.0.2
+  ([dce1c5a](https://github.com/ridedott/merge-me-action/commit/dce1c5afe67b9414bab20bb5d928aaf49907491f))
+- **deps:** bump ridedott/release-me-action from 3.6.61 to 3.6.63
+  ([ae7bd1a](https://github.com/ridedott/merge-me-action/commit/ae7bd1ae50f234353040eacebaf435b0a2dc27af))
+
 ## [2.10.31](https://github.com/ridedott/merge-me-action/compare/v2.10.30...v2.10.31) (2022-10-13)
 
 ### Chores
