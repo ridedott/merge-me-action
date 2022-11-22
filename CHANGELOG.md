@@ -1,3 +1,10 @@
+## [2.10.33](https://github.com/ridedott/merge-me-action/compare/v2.10.32...v2.10.33) (2022-11-22)
+
+### Bug Fixes
+
+- update action to use node16
+  ([ecb5d65](https://github.com/ridedott/merge-me-action/commit/ecb5d651be79c5f998886d1328d9dc2d93bf3e99))
+
 ## [2.10.32](https://github.com/ridedott/merge-me-action/compare/v2.10.31...v2.10.32) (2022-11-16)
 
 ### Chores
