@@ -147,7 +147,6 @@ const mergeWithRetry = async (
         'branch. In this case, the base branch must be rebased. Some ' +
         'tools, such as Dependabot, do that automatically.',
     );
-    /* eslint-disable-next-line @typescript-eslint/no-base-to-string */
     logDebug(`Original error: ${(error as Error).toString()}.`);
   }
 };

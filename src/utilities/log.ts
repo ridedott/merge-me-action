@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-base-to-string */
-
 import { debug, error, info, warning } from '@actions/core';
 
 const stringify = (value: unknown): string =>
