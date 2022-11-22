@@ -44,4 +44,4 @@ inputs:
 name: 'Merge me!'
 runs:
   main: dist/index.js
-  using: node12
+  using: node16
