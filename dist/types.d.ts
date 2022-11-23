@@ -3,7 +3,7 @@ export interface CommitMessageHeadlineGroup {
         commitHeadline: string;
     };
 }
-export declare type ReviewEdges = Array<{
+export type ReviewEdges = Array<{
     node: {
         state: 'APPROVED' | 'CHANGES_REQUESTED' | 'COMMENTED' | 'DISMISSED' | 'PENDING';
     };
@@ -83,6 +83,6 @@ export interface FindPullRequestCommitsResponse {
         };
     };
 }
-export declare type MergeableState = 'CONFLICTING' | 'MERGEABLE' | 'UNKNOWN';
-export declare type PullRequestState = 'CLOSED' | 'MERGED' | 'OPEN';
-export declare type MergeStateStatus = 'BEHIND' | 'BLOCKED' | 'CLEAN' | 'DIRTY' | 'DRAFT' | 'HAS_HOOKS' | 'UNKNOWN' | 'UNSTABLE';
+export type MergeableState = 'CONFLICTING' | 'MERGEABLE' | 'UNKNOWN';
+export type PullRequestState = 'CLOSED' | 'MERGED' | 'OPEN';
+export type MergeStateStatus = 'BEHIND' | 'BLOCKED' | 'CLEAN' | 'DIRTY' | 'DRAFT' | 'HAS_HOOKS' | 'UNKNOWN' | 'UNSTABLE';
