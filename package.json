@@ -11,7 +11,7 @@
   },
   "description": "Automatically merges Pull Requests.",
   "devDependencies": {
-    "@commitlint/cli": "^17.2.0",
+    "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@ridedott/eslint-config": "^2.20.63",
     "@semantic-release/changelog": "^6.0.1",
