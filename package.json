@@ -23,7 +23,7 @@
     "@types/micromatch": "^4.0.2",
     "@types/node": "^16.0.1",
     "@vercel/ncc": "^0.36.0",
-    "commitizen": "^4.2.5",
+    "commitizen": "^4.2.6",
     "cspell": "^6.17.0",
     "eslint": "^7.32.0",
     "http-status-codes": "^2.2.0",
