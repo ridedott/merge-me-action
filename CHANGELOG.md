@@ -1,3 +1,22 @@
+## [2.10.38](https://github.com/ridedott/merge-me-action/compare/v2.10.37...v2.10.38) (2022-12-07)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.64 to 2.20.65
+  ([e297118](https://github.com/ridedott/merge-me-action/commit/e2971188608941c15160fc3917a819945b7a0f4b))
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.65 to 2.20.66
+  ([726d536](https://github.com/ridedott/merge-me-action/commit/726d536281bc8ea3db66a53d1e1faadf0189a15f))
+- **deps-dev:** bump @vercel/ncc from 0.34.0 to 0.36.0
+  ([e96c96e](https://github.com/ridedott/merge-me-action/commit/e96c96ed884122d71d9603783ccc01f989fb3deb))
+- **deps-dev:** bump commitizen from 4.2.5 to 4.2.6
+  ([bf9cc5b](https://github.com/ridedott/merge-me-action/commit/bf9cc5bdcab27def772102fdfa6732d8afba86d3))
+- **deps-dev:** bump cspell from 6.16.0 to 6.17.0
+  ([1516a0b](https://github.com/ridedott/merge-me-action/commit/1516a0bd5b30d6e019ec4ed0b491ce4200b182db))
+- **deps-dev:** bump lint-staged from 13.0.4 to 13.1.0
+  ([31ba43f](https://github.com/ridedott/merge-me-action/commit/31ba43fd1e77faa12b14527e2d0e22dd02e576d0))
+- **deps:** bump qs from 6.5.2 to 6.5.3
+  ([53b9d55](https://github.com/ridedott/merge-me-action/commit/53b9d55f9dc96a3bb3c1b09ab52dbf9514c48928))
+
 ## [2.10.37](https://github.com/ridedott/merge-me-action/compare/v2.10.36...v2.10.37) (2022-12-05)
 
 ### Chores
