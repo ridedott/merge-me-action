@@ -1,3 +1,14 @@
+## [2.10.39](https://github.com/ridedott/merge-me-action/compare/v2.10.38...v2.10.39) (2022-12-08)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.20.66 to 2.21.0
+  ([ce0c7ba](https://github.com/ridedott/merge-me-action/commit/ce0c7bacad022aab3f3d7697878f662a20ba60b3))
+- **deps-dev:** bump prettier from 2.8.0 to 2.8.1
+  ([40c4a1a](https://github.com/ridedott/merge-me-action/commit/40c4a1ab1d2b1812ba5ccc298c01728c9d3e3b07))
+- **deps:** bump ridedott/release-me-action from 3.6.67 to 3.7.1
+  ([beebeae](https://github.com/ridedott/merge-me-action/commit/beebeae1ce19a98744f23f68826d287509f7d3e6))
+
 ## [2.10.38](https://github.com/ridedott/merge-me-action/compare/v2.10.37...v2.10.38) (2022-12-07)
 
 ### Chores
