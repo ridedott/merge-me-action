@@ -13,7 +13,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
-    "@ridedott/eslint-config": "^2.21.1",
+    "@ridedott/eslint-config": "^2.22.5",
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
@@ -25,7 +25,7 @@
     "@vercel/ncc": "^0.36.0",
     "commitizen": "^4.2.6",
     "cspell": "^6.17.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.29.0",
     "http-status-codes": "^2.2.0",
     "husky": "^8.0.2",
     "jest": "^26.6.3",
