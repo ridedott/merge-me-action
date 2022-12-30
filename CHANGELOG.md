@@ -1,3 +1,30 @@
+## [2.10.40](https://github.com/ridedott/merge-me-action/compare/v2.10.39...v2.10.40) (2022-12-30)
+
+### Chores
+
+- **deps-dev:** bump @ridedott/eslint-config from 2.21.0 to 2.21.1
+  ([42e3ee4](https://github.com/ridedott/merge-me-action/commit/42e3ee44e5f8faf4dea603342c05279c7a28f7d2))
+- **deps-dev:** bump @ridedott/eslint-config from 2.22.11 to 2.22.13
+  ([ce2a056](https://github.com/ridedott/merge-me-action/commit/ce2a056dfc9a10440dc375dedf46304e6ddb03df))
+- **deps-dev:** bump @ridedott/eslint-config from 2.22.5 to 2.22.6
+  ([8de39f2](https://github.com/ridedott/merge-me-action/commit/8de39f26f1849f1c8dc1fd96ecb66bca8e5aaf2d))
+- **deps-dev:** bump @ridedott/eslint-config from 2.22.6 to 2.22.8
+  ([9f07e77](https://github.com/ridedott/merge-me-action/commit/9f07e774566e2de211fdbb136888d42f32519edf))
+- **deps-dev:** bump @ridedott/eslint-config from 2.22.8 to 2.22.9
+  ([7e80e97](https://github.com/ridedott/merge-me-action/commit/7e80e977282e2839819afe17f5029c4f1851ff42))
+- **deps-dev:** bump @ridedott/eslint-config from 2.22.9 to 2.22.11
+  ([1b58c5f](https://github.com/ridedott/merge-me-action/commit/1b58c5fc92ae2770a65e099fe81ea3a8cb1f180a))
+- **deps-dev:** bump cspell from 6.17.0 to 6.18.0
+  ([5373b36](https://github.com/ridedott/merge-me-action/commit/5373b36f971f59b095dd51a1feec6de8eb3c6971))
+- **deps-dev:** bump cspell from 6.18.0 to 6.18.1
+  ([4b1c974](https://github.com/ridedott/merge-me-action/commit/4b1c97469d75aac9c1d2be4e98cc3eaf31567edd))
+- **deps-dev:** bump eslint and @ridedott/eslint-config
+  ([08545ea](https://github.com/ridedott/merge-me-action/commit/08545ea0f5537df9df63cf83a3e58805574f298f))
+- **deps-dev:** bump eslint from 8.29.0 to 8.30.0
+  ([6491b08](https://github.com/ridedott/merge-me-action/commit/6491b0845202ca5555c07f79f044d6f4388df96e))
+- **deps:** bump ridedott/release-me-action from 3.7.1 to 3.7.2
+  ([d2067ee](https://github.com/ridedott/merge-me-action/commit/d2067eef2bf2148f9f435ebbfa5d4bea83dcb81d))
+
 ## [2.10.39](https://github.com/ridedott/merge-me-action/compare/v2.10.38...v2.10.39) (2022-12-08)
 
 ### Chores
