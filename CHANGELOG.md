@@ -1,3 +1,22 @@
+## [2.10.41](https://github.com/ridedott/merge-me-action/compare/v2.10.40...v2.10.41) (2023-01-04)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 17.3.0 to 17.4.0
+  ([8cdc271](https://github.com/ridedott/merge-me-action/commit/8cdc2719d3f544213c20ba6a6d140a1d2cb78a99))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([fc1cb49](https://github.com/ridedott/merge-me-action/commit/fc1cb493fa84810514933dab95af764a46a9b044))
+- **deps-dev:** bump @ridedott/eslint-config from 2.22.13 to 2.22.14
+  ([d8ee7d6](https://github.com/ridedott/merge-me-action/commit/d8ee7d6145a8f3b89c1671eea387a0edd3d05175))
+- **deps-dev:** bump @ridedott/eslint-config from 2.22.14 to 2.22.15
+  ([269c1f8](https://github.com/ridedott/merge-me-action/commit/269c1f8a2fa6a7dfd6043eaf78538b47124160ed))
+- **deps-dev:** bump eslint from 8.30.0 to 8.31.0
+  ([f555381](https://github.com/ridedott/merge-me-action/commit/f555381eeb39d619d2ee251dce4b3b251cfd4a82))
+- **deps-dev:** bump husky from 8.0.2 to 8.0.3
+  ([a31b5cb](https://github.com/ridedott/merge-me-action/commit/a31b5cbcc29fa647d2c30c82452813ff2a45e4c6))
+- **deps:** bump json5 from 1.0.1 to 1.0.2
+  ([f4ccc7a](https://github.com/ridedott/merge-me-action/commit/f4ccc7ab1a1469827cf5c570cba360f5b4aaad51))
+
 ## [2.10.40](https://github.com/ridedott/merge-me-action/compare/v2.10.39...v2.10.40) (2022-12-30)
 
 ### Chores
