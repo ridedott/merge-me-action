@@ -1,3 +1,16 @@
+## [2.10.46](https://github.com/ridedott/merge-me-action/compare/v2.10.45...v2.10.46) (2023-05-26)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 17.6.1 to 17.6.3
+  ([4c054a1](https://github.com/ridedott/merge-me-action/commit/4c054a1575b8cfacc4b75172f0f8fc0c8c05ce5c))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([1941e55](https://github.com/ridedott/merge-me-action/commit/1941e55efdc022c4ac9e1a3bde040ac391c3a2e0))
+- **deps-dev:** bump nock from 13.3.0 to 13.3.1
+  ([8a2e868](https://github.com/ridedott/merge-me-action/commit/8a2e8689eb06eb1438e6fa2907d4289f6f504bd9))
+- **deps:** bump ridedott/release-me-action from 3.7.5 to 3.8.0
+  ([02d31cd](https://github.com/ridedott/merge-me-action/commit/02d31cd9ea35a2af5ffd4954d26a7cc25055dd21))
+
 ## [2.10.45](https://github.com/ridedott/merge-me-action/compare/v2.10.44...v2.10.45) (2023-04-26)
 
 ### Chores
