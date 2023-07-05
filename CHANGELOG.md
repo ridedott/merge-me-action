@@ -1,3 +1,22 @@
+## [2.10.48](https://github.com/ridedott/merge-me-action/compare/v2.10.47...v2.10.48) (2023-07-05)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 17.6.3 to 17.6.5
+  ([9657979](https://github.com/ridedott/merge-me-action/commit/96579799f7a13e9bd6e4749cd5cd5fa92117c057))
+- **deps-dev:** bump @commitlint/cli from 17.6.5 to 17.6.6
+  ([96991e5](https://github.com/ridedott/merge-me-action/commit/96991e543217f0276bcf183511343185a2da3728))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([877d09b](https://github.com/ridedott/merge-me-action/commit/877d09b298ef88750eb26d40ac90bb3185d0da5e))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([96d9168](https://github.com/ridedott/merge-me-action/commit/96d91686a318f4e9134c7187fa49cfc5973075b6))
+- **deps-dev:** bump lint-staged from 13.2.2 to 13.2.3
+  ([d2ca1fc](https://github.com/ridedott/merge-me-action/commit/d2ca1fc77cefdd5cc98bab3066031f159b72626e))
+- **deps-dev:** bump prettier from 2.8.8 to 3.0.0
+  ([da9af8f](https://github.com/ridedott/merge-me-action/commit/da9af8f6595bc61e8e9b8fc7d5526849dd8d19c9))
+- **deps:** bump actions/setup-node from 3.6.0 to 3.7.0
+  ([92ff68c](https://github.com/ridedott/merge-me-action/commit/92ff68c2ac027435bbd9a63cc94167540face9d8))
+
 ## [2.10.47](https://github.com/ridedott/merge-me-action/compare/v2.10.46...v2.10.47) (2023-05-29)
 
 ### Chores
