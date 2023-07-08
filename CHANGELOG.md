@@ -1,3 +1,10 @@
+## [2.10.49](https://github.com/ridedott/merge-me-action/compare/v2.10.48...v2.10.49) (2023-07-08)
+
+### Chores
+
+- **deps:** bump tough-cookie and jsdom
+  ([ff73272](https://github.com/ridedott/merge-me-action/commit/ff732728534005cc61863e44268df5532a1744cd))
+
 ## [2.10.48](https://github.com/ridedott/merge-me-action/compare/v2.10.47...v2.10.48) (2023-07-05)
 
 ### Chores
