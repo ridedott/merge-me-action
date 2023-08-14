@@ -1,3 +1,32 @@
+## [2.10.51](https://github.com/ridedott/merge-me-action/compare/v2.10.50...v2.10.51) (2023-08-14)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 17.6.6 to 17.6.7
+  ([d10e848](https://github.com/ridedott/merge-me-action/commit/d10e848013073e0e0e06164ed05861c37d17a7a8))
+- **deps-dev:** bump @commitlint/cli from 17.6.7 to 17.7.0
+  ([4ea9c9c](https://github.com/ridedott/merge-me-action/commit/4ea9c9cca2e21b032c36c8b6e73db941cdc509f4))
+- **deps-dev:** bump @commitlint/cli from 17.7.0 to 17.7.1
+  ([2fc8bfb](https://github.com/ridedott/merge-me-action/commit/2fc8bfb6e8dbadc66dbc6ed953dd6b00305a23c3))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([d00ce27](https://github.com/ridedott/merge-me-action/commit/d00ce27d7f6df24305d740f25bf43242fb01199b))
+- **deps-dev:** bump @commitlint/config-conventional
+  ([7c90161](https://github.com/ridedott/merge-me-action/commit/7c90161232c6e9db87e6d72f63215a0d7ca52e01))
+- **deps-dev:** bump cspell from 6.31.1 to 6.31.2
+  ([70fb477](https://github.com/ridedott/merge-me-action/commit/70fb47747324b4aded8a1173091e7bd9a3791cf7))
+- **deps-dev:** bump cspell from 6.31.2 to 6.31.3
+  ([2f4ccd4](https://github.com/ridedott/merge-me-action/commit/2f4ccd4c76928912019eb1cdf8321ee914d7be85))
+- **deps-dev:** bump cspell from 6.31.3 to 7.0.0
+  ([8548ee7](https://github.com/ridedott/merge-me-action/commit/8548ee75217e624e475637dcccc9a5285fcc43fd))
+- **deps-dev:** bump nock from 13.3.1 to 13.3.2
+  ([da15283](https://github.com/ridedott/merge-me-action/commit/da15283862f2778015ee342ebba4d89c710b370f))
+- **deps-dev:** bump prettier from 3.0.0 to 3.0.1
+  ([3134387](https://github.com/ridedott/merge-me-action/commit/3134387515f4503d83d42a7b176c845bf647dccf))
+- **deps-dev:** bump word-wrap from 1.2.3 to 1.2.4
+  ([6f13971](https://github.com/ridedott/merge-me-action/commit/6f1397193b1cb94f859ab27c2065c32f2ba4cd4b))
+- **deps:** bump actions/setup-node from 3.7.0 to 3.8.0
+  ([e410975](https://github.com/ridedott/merge-me-action/commit/e41097576bedd45653a4df719805fa0a951250c3))
+
 ## [2.10.50](https://github.com/ridedott/merge-me-action/compare/v2.10.49...v2.10.50) (2023-07-10)
 
 ### Chores
