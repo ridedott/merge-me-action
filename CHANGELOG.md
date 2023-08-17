@@ -1,3 +1,14 @@
+## [2.10.52](https://github.com/ridedott/merge-me-action/compare/v2.10.51...v2.10.52) (2023-08-17)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 13.2.3 to 14.0.0
+  ([965dd3a](https://github.com/ridedott/merge-me-action/commit/965dd3aa7af174442f23d98db26c7325a06cdee1))
+- **deps-dev:** bump prettier from 3.0.1 to 3.0.2
+  ([de32b98](https://github.com/ridedott/merge-me-action/commit/de32b9878260ce46e5f393e3c1dd6d07ec3ab7f2))
+- **deps:** bump actions/setup-node from 3.8.0 to 3.8.1
+  ([ee6749a](https://github.com/ridedott/merge-me-action/commit/ee6749ac2dbdb9ba44f669d75c0a7b4984b1c1fc))
+
 ## [2.10.51](https://github.com/ridedott/merge-me-action/compare/v2.10.50...v2.10.51) (2023-08-14)
 
 ### Chores
