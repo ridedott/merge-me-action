@@ -1,3 +1,20 @@
+## [2.10.53](https://github.com/ridedott/merge-me-action/compare/v2.10.52...v2.10.53) (2023-08-24)
+
+### Chores
+
+- **deps-dev:** bump cspell from 7.0.0 to 7.0.1
+  ([67501ff](https://github.com/ridedott/merge-me-action/commit/67501ff90cc2b3a43691342dc62cf51d91b1fab3))
+- **deps-dev:** bump lint-staged from 14.0.0 to 14.0.1
+  ([95c1099](https://github.com/ridedott/merge-me-action/commit/95c109951745105a9faa38fe7d9bc7e31692004d))
+- **deps-dev:** bump nock from 13.3.2 to 13.3.3
+  ([4ab2d61](https://github.com/ridedott/merge-me-action/commit/4ab2d61282e65092bd365d555dad838d46bb0dd1))
+
+### Code Refactoring
+
+- Github teams codeowners (#1775)
+  ([0cac945](https://github.com/ridedott/merge-me-action/commit/0cac945308c8428caf8a0242941f27e1787f4d88)),
+  closes [#1775](https://github.com/ridedott/merge-me-action/issues/1775)
+
 ## [2.10.52](https://github.com/ridedott/merge-me-action/compare/v2.10.51...v2.10.52) (2023-08-17)
 
 ### Chores
