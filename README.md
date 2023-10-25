@@ -136,7 +136,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 20
           registry-url: https://npm.pkg.github.com
       - # This allows private dependencies from GitHub Packages to be installed.
         # Depending on the setup, it might be required to use a personal access
