@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable max-statements */
 
-import {AllowedMergePresets, parseInputMergePreset} from './inputParsers';
+import { AllowedMergePresets, parseInputMergePreset } from './inputParsers';
 
 export const checkPullRequestTitleForMergePreset = (title: string): boolean => {
   const category = parseInputMergePreset();
