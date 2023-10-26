@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - master
-      - mrgolt/bump-node
 
 jobs:
   build:
