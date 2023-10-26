@@ -3,10 +3,7 @@ import { AllowedMergeMethods } from '../src/utilities/inputParsers';
 
 export const useSetTimeoutImmediateInvocation = (): jest.SpyInstance<
   NodeJS.Timeout,
-  [
-    callback: () => void,
-    ms?: number | undefined,
-  ]
+  [callback: () => void, ms?: number | undefined]
 > =>
   jest
     .spyOn(global, 'setTimeout')
