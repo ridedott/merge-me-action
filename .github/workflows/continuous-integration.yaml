@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - master
-  push:
-    branches:
-      - master
 
 jobs:
   build:
@@ -130,4 +127,20 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Types
         run: npm run types
+    timeout-minutes: 5
+  merge-me:
+    needs:
+      - build
+      - format
+      - lint
+      - spellcheck
+      - test
+      - types
+    name: Merge me!
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge me!
+        uses: ridedott/merge-me-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
     timeout-minutes: 5
