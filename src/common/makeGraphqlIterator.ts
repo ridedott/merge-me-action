@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop */
-/* eslint-disable prefer-destructuring */
+/* eslint-disable @typescript-eslint/prefer-destructuring */
 
 import { getOctokit } from '@actions/github';
 import type { GraphQlQueryResponseData } from '@octokit/graphql';

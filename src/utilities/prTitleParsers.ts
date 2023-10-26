@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable max-statements */
 
-import { parseInputMergePreset } from './inputParsers';
+import { AllowedMergePresets, parseInputMergePreset } from './inputParsers';
 
 export const checkPullRequestTitleForMergePreset = (title: string): boolean => {
   const category = parseInputMergePreset();
@@ -44,7 +44,7 @@ export const checkPullRequestTitleForMergePreset = (title: string): boolean => {
   const toMinor = toMatchGroups!.minor!;
 
   if (Number.parseInt(fromMinor, 10) !== Number.parseInt(toMinor, 10)) {
-    return category === 'DEPENDABOT_MINOR';
+    return category === AllowedMergePresets.DEPENDABOT_MINOR;
   }
 
   return true;
