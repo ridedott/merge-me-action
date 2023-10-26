@@ -1,3 +1,28 @@
+## [2.10.55](https://github.com/ridedott/merge-me-action/compare/v2.10.54...v2.10.55) (2023-10-26)
+
+### Chores
+
+- **deps-dev:** bump cspell from 7.0.1 to 7.2.0
+  ([a539f92](https://github.com/ridedott/merge-me-action/commit/a539f9262f98e57f19a29a827773fb619a2b24b3))
+- **deps-dev:** bump prettier from 3.0.2 to 3.0.3
+  ([23ac90a](https://github.com/ridedott/merge-me-action/commit/23ac90ac5e65c01021bfbf335a9abec5a4d864ff))
+- **deps:** bump actions/setup-node from 3.8.1 to 4.0.0
+  ([eb62255](https://github.com/ridedott/merge-me-action/commit/eb62255fbbce1ea574ae7ed39d65ac18bd0a0333))
+- **deps:** bump ridedott/release-me-action from 3.8.3 to 3.8.5
+  ([a262b8f](https://github.com/ridedott/merge-me-action/commit/a262b8f9432e07d31a45216469bca996a922af81))
+
+### Continuous Integration
+
+- avoid dependabot to merge if tests fails (#1826)
+  ([be671b1](https://github.com/ridedott/merge-me-action/commit/be671b17d3a4bf9d5d378abd680906b5d494fb42)),
+  closes [#1826](https://github.com/ridedott/merge-me-action/issues/1826)
+
+### Other
+
+- chore!: update node to v20 and npm to v9 or newer (#1819)
+  ([5f4dfba](https://github.com/ridedott/merge-me-action/commit/5f4dfba19c835f15d28125396a70865e45346af1)),
+  closes [#1819](https://github.com/ridedott/merge-me-action/issues/1819)
+
 ## [2.10.54](https://github.com/ridedott/merge-me-action/compare/v2.10.53...v2.10.54) (2023-08-24)
 
 ### Chores
