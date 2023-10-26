@@ -4,9 +4,8 @@ import { AllowedMergeMethods } from '../src/utilities/inputParsers';
 export const useSetTimeoutImmediateInvocation = (): jest.SpyInstance<
   NodeJS.Timeout,
   [
-    callback: (...arguments_: unknown[]) => void,
+    callback: () => void,
     ms?: number | undefined,
-    ...arguments_: unknown[],
   ]
 > =>
   jest
