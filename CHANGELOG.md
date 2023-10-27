@@ -1,3 +1,30 @@
+## [2.10.56](https://github.com/ridedott/merge-me-action/compare/v2.10.55...v2.10.56) (2023-10-27)
+
+### Chores
+
+- **deps-dev:** bump @babel/traverse from 7.13.15 to 7.23.2
+  ([be143c2](https://github.com/ridedott/merge-me-action/commit/be143c22f12b0c02bf5bb17e672cea72d76846ca))
+- **deps-dev:** bump @commitlint/cli from 17.7.1 to 18.2.0
+  ([428489e](https://github.com/ridedott/merge-me-action/commit/428489eb8a8d0937520fe9005d77d4d4fcf2e6a8))
+- **deps-dev:** bump @commitlint/config-conventional from 17.7.0 to 18.1.0
+  ([fdce995](https://github.com/ridedott/merge-me-action/commit/fdce9956b40398aefda637a12affa834ee8bc6df))
+- **deps-dev:** bump @ridedott/eslint-config from 2.27.6 to 2.27.7
+  ([af38d11](https://github.com/ridedott/merge-me-action/commit/af38d11baa4025978982a76d2cd77e58d32db3bd))
+- **deps-dev:** bump @types/micromatch from 4.0.2 to 4.0.4
+  ([f344824](https://github.com/ridedott/merge-me-action/commit/f344824d62c931429a3b9b01dc5e922f6733a2e4))
+- **deps-dev:** bump @vercel/ncc from 0.36.1 to 0.38.1
+  ([dd64968](https://github.com/ridedott/merge-me-action/commit/dd649684559fb5c2f8a70ad18ae69d0b8f44905c))
+- **deps-dev:** bump cspell from 7.2.0 to 7.3.8
+  ([6f34722](https://github.com/ridedott/merge-me-action/commit/6f34722cf3394fb327e0b1e66310cb2f94fe0e13))
+- **deps-dev:** bump lint-staged from 14.0.1 to 15.0.2
+  ([002091a](https://github.com/ridedott/merge-me-action/commit/002091a0d61f4f9f8062ca0a3cf634c1cf39127a))
+- **deps-dev:** bump nock from 13.3.3 to 13.3.6
+  ([5fc5283](https://github.com/ridedott/merge-me-action/commit/5fc5283b40d7afcdd1ac0a35c22746e77a3a4dbd))
+- **deps-dev:** bump tough-cookie from 4.0.0 to 4.1.3
+  ([4fb7294](https://github.com/ridedott/merge-me-action/commit/4fb729417e92eb402b426d82d7d655e6d6129e63))
+- **deps:** bump ridedott/release-me-action from 3.8.5 to 3.8.6
+  ([7fc9a09](https://github.com/ridedott/merge-me-action/commit/7fc9a0960e2e6d1ecc6b5f3b850976b599a2efa5))
+
 ## [2.10.55](https://github.com/ridedott/merge-me-action/compare/v2.10.54...v2.10.55) (2023-10-26)
 
 ### Chores
