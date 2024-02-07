@@ -1,3 +1,20 @@
+## [2.10.68](https://github.com/ridedott/merge-me-action/compare/v2.10.67...v2.10.68) (2024-02-07)
+
+### Chores
+
+- **deps-dev:** bump husky from 9.0.7 to 9.0.8
+  ([e71a579](https://github.com/ridedott/merge-me-action/commit/e71a5798c6ad88355761f9133ad096539ac10b9f))
+- **deps-dev:** bump husky from 9.0.8 to 9.0.10
+  ([ca7f55a](https://github.com/ridedott/merge-me-action/commit/ca7f55a5bb802c2995876694b40d2ebd068f0082))
+- **deps-dev:** bump lint-staged from 15.2.0 to 15.2.1
+  ([49e1d32](https://github.com/ridedott/merge-me-action/commit/49e1d32890c46572c0bce1710f84fddf8e577dba))
+- **deps-dev:** bump lint-staged from 15.2.1 to 15.2.2
+  ([30b982f](https://github.com/ridedott/merge-me-action/commit/30b982fcefc247749a16909d72843b2f40d7e59b))
+- **deps-dev:** bump semantic-release from 23.0.0 to 23.0.2
+  ([626faf0](https://github.com/ridedott/merge-me-action/commit/626faf0ef13d2807651cf1fe097937f6ea825d2f))
+- **deps:** bump actions/setup-node from 4.0.1 to 4.0.2
+  ([d486000](https://github.com/ridedott/merge-me-action/commit/d48600034a62110f005fc6b5d67bba979850d484))
+
 ## [2.10.67](https://github.com/ridedott/merge-me-action/compare/v2.10.66...v2.10.67) (2024-01-30)
 
 ### Chores
