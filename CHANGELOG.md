@@ -1,3 +1,10 @@
+## [2.10.82](https://github.com/ridedott/merge-me-action/compare/v2.10.81...v2.10.82) (2024-05-21)
+
+### Chores
+
+- **deps:** bump micromatch from 4.0.5 to 4.0.6
+  ([a5b0038](https://github.com/ridedott/merge-me-action/commit/a5b00381a12aa830bd19d2bcce6fcbf5d68890ee))
+
 ## [2.10.81](https://github.com/ridedott/merge-me-action/compare/v2.10.80...v2.10.81) (2024-05-16)
 
 ### Chores
