@@ -1,3 +1,10 @@
+## [2.10.91](https://github.com/ridedott/merge-me-action/compare/v2.10.90...v2.10.91) (2024-07-22)
+
+### Chores
+
+- **deps:** bump actions/setup-node from 4.0.2 to 4.0.3
+  ([e48d0da](https://github.com/ridedott/merge-me-action/commit/e48d0da7fa990b33b7ceebf8c79a3f322c78ff95))
+
 ## [2.10.90](https://github.com/ridedott/merge-me-action/compare/v2.10.89...v2.10.90) (2024-07-22)
 
 ### Chores
