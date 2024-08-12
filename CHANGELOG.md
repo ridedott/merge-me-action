@@ -1,3 +1,28 @@
+## [2.10.94](https://github.com/ridedott/merge-me-action/compare/v2.10.93...v2.10.94) (2024-08-12)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 19.3.0 to 19.4.0
+  ([aadf6ea](https://github.com/ridedott/merge-me-action/commit/aadf6eabddb9e5ed0c067ec2ef549aada8f98fd4))
+- **deps-dev:** bump cspell from 8.12.1 to 8.13.0
+  ([42823c4](https://github.com/ridedott/merge-me-action/commit/42823c4439259510c6baab490e8449acdc7e6028))
+- **deps-dev:** bump cspell from 8.13.0 to 8.13.1
+  ([e7aae67](https://github.com/ridedott/merge-me-action/commit/e7aae6732a08108352c154964036951677cd40dd))
+- **deps-dev:** bump cspell from 8.13.1 to 8.13.2
+  ([17bb7c7](https://github.com/ridedott/merge-me-action/commit/17bb7c7e0f0432d98d38c73e1becd8a07b182ade))
+- **deps-dev:** bump cspell from 8.13.2 to 8.13.3
+  ([9491edb](https://github.com/ridedott/merge-me-action/commit/9491edbbbaf11c74555d09d6ce28c4807d9f9d27))
+- **deps-dev:** bump husky from 9.1.1 to 9.1.2
+  ([66482e4](https://github.com/ridedott/merge-me-action/commit/66482e4f7b1807d81ede9e223f69be66d75488bd))
+- **deps-dev:** bump husky from 9.1.2 to 9.1.3
+  ([530739c](https://github.com/ridedott/merge-me-action/commit/530739ce9d2f01a5276751accfbbfb81b8e879da))
+- **deps-dev:** bump husky from 9.1.3 to 9.1.4
+  ([b65a63f](https://github.com/ridedott/merge-me-action/commit/b65a63f8af4c1d918b56c34fdac3478ebc7eb553))
+- **deps-dev:** bump lint-staged from 15.2.7 to 15.2.8
+  ([acd6fbb](https://github.com/ridedott/merge-me-action/commit/acd6fbb02a3de4787c6e1b1d6a443ec0ea543f51))
+- **deps:** bump ridedott/release-me-action from 3.10.38 to 3.10.39
+  ([5b83bbc](https://github.com/ridedott/merge-me-action/commit/5b83bbc858826a9a79de91cfdf9e0d4c81a6ecb2))
+
 ## [2.10.93](https://github.com/ridedott/merge-me-action/compare/v2.10.92...v2.10.93) (2024-07-26)
 
 ### Chores
