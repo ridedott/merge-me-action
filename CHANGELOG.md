@@ -1,3 +1,12 @@
+## [2.10.95](https://github.com/ridedott/merge-me-action/compare/v2.10.94...v2.10.95) (2024-08-15)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 15.2.8 to 15.2.9
+  ([bb1c93d](https://github.com/ridedott/merge-me-action/commit/bb1c93d9934ff934b4ddcbb7de56402dd05d7980))
+- **deps:** bump ridedott/release-me-action from 3.10.39 to 3.10.40
+  ([edf72ec](https://github.com/ridedott/merge-me-action/commit/edf72ec600492c97ca946654d765d13995f78a00))
+
 ## [2.10.94](https://github.com/ridedott/merge-me-action/compare/v2.10.93...v2.10.94) (2024-08-12)
 
 ### Chores
