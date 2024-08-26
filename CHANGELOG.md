@@ -1,3 +1,20 @@
+## [2.10.97](https://github.com/ridedott/merge-me-action/compare/v2.10.96...v2.10.97) (2024-08-26)
+
+### Chores
+
+- **deps-dev:** bump cspell from 8.13.3 to 8.14.1
+  ([84df911](https://github.com/ridedott/merge-me-action/commit/84df911f6883b925aaf9238adb5fce2dd57df3d0))
+- **deps-dev:** bump cspell from 8.14.1 to 8.14.2
+  ([2e8fce9](https://github.com/ridedott/merge-me-action/commit/2e8fce94e752777166c4794444047969f219576e))
+- **deps-dev:** bump husky from 9.1.4 to 9.1.5
+  ([0f0448d](https://github.com/ridedott/merge-me-action/commit/0f0448d20d3f30955accde5a7dca571596d79bc2))
+- **deps-dev:** bump nock from 13.5.4 to 13.5.5
+  ([5b72bb2](https://github.com/ridedott/merge-me-action/commit/5b72bb2c69a4e72a353886f698df0b57b7ad8042))
+- **deps-dev:** bump semantic-release from 24.0.0 to 24.1.0
+  ([1ed4aac](https://github.com/ridedott/merge-me-action/commit/1ed4aace8c152324b633c05a35cbf76b58cf9677))
+- **deps:** bump micromatch from 4.0.7 to 4.0.8
+  ([5aba4b5](https://github.com/ridedott/merge-me-action/commit/5aba4b5173eb984bb8eb500f014e0c4653f70566))
+
 ## [2.10.96](https://github.com/ridedott/merge-me-action/compare/v2.10.95...v2.10.96) (2024-08-16)
 
 ### Chores
