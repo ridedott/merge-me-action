@@ -1,3 +1,16 @@
+## [2.10.99](https://github.com/ridedott/merge-me-action/compare/v2.10.98...v2.10.99) (2024-09-03)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 19.4.0 to 19.4.1
+  ([567fed9](https://github.com/ridedott/merge-me-action/commit/567fed9524c110fa27eca56d39a79a1592e08cfc))
+- **deps-dev:** bump @commitlint/config-conventional from 19.2.2 to 19.4.1
+  ([2f37f07](https://github.com/ridedott/merge-me-action/commit/2f37f07c405406382b7aea8910b7a5f0546f05e6))
+- **deps-dev:** bump lint-staged from 15.2.9 to 15.2.10
+  ([a2e77a0](https://github.com/ridedott/merge-me-action/commit/a2e77a0c694da0914f6bb4a20484d8a39e2e8415))
+- **deps:** bump ridedott/release-me-action from 3.10.43 to 3.10.44
+  ([9c2a50b](https://github.com/ridedott/merge-me-action/commit/9c2a50bf52b9639cba065aec606bb28575607f42))
+
 ## [2.10.98](https://github.com/ridedott/merge-me-action/compare/v2.10.97...v2.10.98) (2024-08-26)
 
 ### Chores
