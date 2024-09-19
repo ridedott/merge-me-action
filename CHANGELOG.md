@@ -1,3 +1,18 @@
+## [2.10.104](https://github.com/ridedott/merge-me-action/compare/v2.10.103...v2.10.104) (2024-09-19)
+
+### Chores
+
+- **deps-dev:** bump cspell from 8.14.2 to 8.14.3
+  ([6529d71](https://github.com/ridedott/merge-me-action/commit/6529d71cf583456077d990e5ca219602bbf86d86))
+- **deps-dev:** bump cspell from 8.14.3 to 8.14.4
+  ([89ffa4e](https://github.com/ridedott/merge-me-action/commit/89ffa4e325ba6fc178e62d5a03a109a35e4c98f1))
+- **deps-dev:** bump eslint from 8.57.0 to 8.57.1
+  ([e131b10](https://github.com/ridedott/merge-me-action/commit/e131b103daa50def465d8fabd445166738a19e64))
+- **deps-dev:** bump husky from 9.1.5 to 9.1.6
+  ([3a0e157](https://github.com/ridedott/merge-me-action/commit/3a0e1575a19a8c128824fb45920069b1bd805b06))
+- **deps:** bump actions/setup-node from 4.0.3 to 4.0.4
+  ([60f83de](https://github.com/ridedott/merge-me-action/commit/60f83dedeb171815c21206981729801a08075efc))
+
 ## [2.10.103](https://github.com/ridedott/merge-me-action/compare/v2.10.102...v2.10.103) (2024-09-16)
 
 ### Chores
