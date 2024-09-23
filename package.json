@@ -22,7 +22,7 @@
     "@types/jest": "^27.5.0",
     "@types/micromatch": "^4.0.9",
     "@types/node": "^20.8.9",
-    "@vercel/ncc": "^0.38.1",
+    "@vercel/ncc": "^0.38.2",
     "commitizen": "^4.3.0",
     "cspell": "^8.14.4",
     "eslint": "^8.57.1",
