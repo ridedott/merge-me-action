@@ -1,3 +1,14 @@
+## [2.10.107](https://github.com/ridedott/merge-me-action/compare/v2.10.106...v2.10.107) (2024-10-03)
+
+### Chores
+
+- **deps-dev:** bump commitizen from 4.3.0 to 4.3.1
+  ([4fc9608](https://github.com/ridedott/merge-me-action/commit/4fc96082c49e8a72b68147da9362cd2bd1c12a98))
+- **deps-dev:** bump semantic-release from 24.1.1 to 24.1.2
+  ([7403b0f](https://github.com/ridedott/merge-me-action/commit/7403b0f1902222d169f82742a363dfe1279451b3))
+- **deps:** bump @actions/core from 1.10.1 to 1.11.0
+  ([5427e8e](https://github.com/ridedott/merge-me-action/commit/5427e8ec06048844e3a2fd7ab432b6c367295f42))
+
 ## [2.10.106](https://github.com/ridedott/merge-me-action/compare/v2.10.105...v2.10.106) (2024-09-24)
 
 ### Chores
