@@ -1,3 +1,10 @@
+## [2.10.108](https://github.com/ridedott/merge-me-action/compare/v2.10.107...v2.10.108) (2024-10-07)
+
+### Chores
+
+- **deps:** bump @actions/core from 1.11.0 to 1.11.1
+  ([0028453](https://github.com/ridedott/merge-me-action/commit/00284531a80b84a44858f10909102741cbef9fbd))
+
 ## [2.10.107](https://github.com/ridedott/merge-me-action/compare/v2.10.106...v2.10.107) (2024-10-03)
 
 ### Chores
