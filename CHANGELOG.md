@@ -1,3 +1,27 @@
+## [2.10.109](https://github.com/ridedott/merge-me-action/compare/v2.10.108...v2.10.109) (2024-11-12)
+
+### Chores
+
+- **deps-dev:** bump cspell from 8.14.4 to 8.15.0
+  ([eb2ba2d](https://github.com/ridedott/merge-me-action/commit/eb2ba2d2b7db13ccf65a2df965c0ccafcc4768d4))
+- **deps-dev:** bump cspell from 8.15.0 to 8.15.2
+  ([aa7b791](https://github.com/ridedott/merge-me-action/commit/aa7b791b2a721bad959517f1947f46c20397bb2f))
+- **deps-dev:** bump cspell from 8.15.2 to 8.15.3
+  ([07d2a8d](https://github.com/ridedott/merge-me-action/commit/07d2a8d143d4edb4fe2796c830298c8db751d5e1))
+- **deps-dev:** bump cspell from 8.15.3 to 8.15.4
+  ([dc197d5](https://github.com/ridedott/merge-me-action/commit/dc197d5a4227b2b94d3e9ac05ce1ee63f8b54193))
+- **deps-dev:** bump cspell from 8.15.4 to 8.15.7
+  ([febc4ec](https://github.com/ridedott/merge-me-action/commit/febc4ec9e5fad16b69a08d59473c8ce6b2e991be))
+- **deps-dev:** bump cspell from 8.15.7 to 8.16.0
+  ([681a8a8](https://github.com/ridedott/merge-me-action/commit/681a8a89151fc19a2c6affeb0b62757083b75c63))
+- **deps-dev:** bump semantic-release from 24.1.2 to 24.1.3
+  ([ef4e59f](https://github.com/ridedott/merge-me-action/commit/ef4e59fbec9ce37616f654e2a5e82f710cba8d11))
+- **deps-dev:** bump semantic-release from 24.1.3 to 24.2.0
+  ([10fbda7](https://github.com/ridedott/merge-me-action/commit/10fbda748d1c9af94d5dd6191456b97c5760ccd0))
+- Update team names to refect team structure (#2140)
+  ([7012ded](https://github.com/ridedott/merge-me-action/commit/7012ded742aa049d2d68441c5833539d05446493)),
+  closes [#2140](https://github.com/ridedott/merge-me-action/issues/2140)
+
 ## [2.10.108](https://github.com/ridedott/merge-me-action/compare/v2.10.107...v2.10.108) (2024-10-07)
 
 ### Chores
