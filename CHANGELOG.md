@@ -1,3 +1,26 @@
+## [2.10.123](https://github.com/ridedott/merge-me-action/compare/v2.10.122...v2.10.123) (2025-08-01)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 19.6.1 to 19.8.1
+  ([ebcc916](https://github.com/ridedott/merge-me-action/commit/ebcc9169ce23d6aaff33e97d5dd6280eef677c58))
+- **deps-dev:** bump @commitlint/config-conventional from 19.6.0 to 19.8.1
+  ([fbc6e96](https://github.com/ridedott/merge-me-action/commit/fbc6e967865025f442799c1120d400f0da853201))
+- **deps-dev:** bump @semantic-release/exec from 6.0.3 to 7.1.0
+  ([1204b2e](https://github.com/ridedott/merge-me-action/commit/1204b2ec003e0d0db9387620463a431697758313))
+- **deps-dev:** bump @semantic-release/npm from 12.0.1 to 12.0.2
+  ([921e49c](https://github.com/ridedott/merge-me-action/commit/921e49c5562dd404a5ec6eb2f60769b395573ccf))
+- **deps-dev:** bump cspell from 8.17.1 to 9.2.0
+  ([158c539](https://github.com/ridedott/merge-me-action/commit/158c539056ca7d9e711f51dd48151c86eaf4fef2))
+- **deps-dev:** bump form-data from 3.0.1 to 3.0.4
+  ([d46cbc9](https://github.com/ridedott/merge-me-action/commit/d46cbc9300079addfc2a7cec0d6829f8bfd7188d))
+- **deps-dev:** bump lint-staged from 15.3.0 to 16.1.2
+  ([2086c6a](https://github.com/ridedott/merge-me-action/commit/2086c6ae0ff1dedb5e6a8fb6a87f4c8bf6d88ffc))
+- **deps-dev:** bump semantic-release from 24.2.1 to 24.2.7
+  ([bd3784c](https://github.com/ridedott/merge-me-action/commit/bd3784c6ad0c31fd783c9e17cb27cc5f4b4750f1))
+- **deps:** bump ridedott/release-me-action from 3.10.65 to 3.10.67
+  ([8a24a13](https://github.com/ridedott/merge-me-action/commit/8a24a1307f9b2f30e494310c53987305968c213e))
+
 ## [2.10.122](https://github.com/ridedott/merge-me-action/compare/v2.10.121...v2.10.122) (2025-05-19)
 
 ### Chores
