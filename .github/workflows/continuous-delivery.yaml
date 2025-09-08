@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         id: release
         name: Release
-        uses: ridedott/release-me-action@v3.10.71
+        uses: ridedott/release-me-action@v3.10.72
         with:
           commit-assets: |
             ./dist
