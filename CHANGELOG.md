@@ -1,3 +1,12 @@
+## [2.10.130](https://github.com/ridedott/merge-me-action/compare/v2.10.129...v2.10.130) (2025-09-19)
+
+### Chores
+
+- **deps-dev:** bump semantic-release from 24.2.7 to 24.2.8
+  ([4510260](https://github.com/ridedott/merge-me-action/commit/4510260367337e2f537e3614901f6d3ea0b0c871))
+- **deps:** bump ridedott/release-me-action from 3.10.72 to 3.10.73
+  ([5991200](https://github.com/ridedott/merge-me-action/commit/59912001649a5e307c2f79f3293e05954ea41c0a))
+
 ## [2.10.129](https://github.com/ridedott/merge-me-action/compare/v2.10.128...v2.10.129) (2025-09-08)
 
 ### Chores
