@@ -1,3 +1,26 @@
+## [2.10.131](https://github.com/ridedott/merge-me-action/compare/v2.10.130...v2.10.131) (2025-10-01)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 19.8.1 to 20.0.0
+  ([16a20a0](https://github.com/ridedott/merge-me-action/commit/16a20a01aa98412275d2f54ef3805f599b98ab0b))
+- **deps-dev:** bump @commitlint/cli from 20.0.0 to 20.1.0
+  ([f3bc10a](https://github.com/ridedott/merge-me-action/commit/f3bc10af92fd1205fb7280c99ccc919628dbd3aa))
+- **deps-dev:** bump @commitlint/config-conventional from 19.8.1 to 20.0.0
+  ([99fbd65](https://github.com/ridedott/merge-me-action/commit/99fbd656c85feab21352e5c26e0f24c226e1d15b))
+- **deps-dev:** bump @vercel/ncc from 0.38.3 to 0.38.4
+  ([91dc276](https://github.com/ridedott/merge-me-action/commit/91dc276f552b2489dbdc27e2eadb5e6cc315f303))
+- **deps-dev:** bump lint-staged from 16.1.6 to 16.2.0
+  ([37a79c0](https://github.com/ridedott/merge-me-action/commit/37a79c0a798ec0103e29d91840e16339a0d6d554))
+- **deps-dev:** bump lint-staged from 16.2.0 to 16.2.1
+  ([a671106](https://github.com/ridedott/merge-me-action/commit/a6711062036e0711fb0dbc0ffad2409b5e44ea0c))
+- **deps-dev:** bump lint-staged from 16.2.1 to 16.2.3
+  ([e418c45](https://github.com/ridedott/merge-me-action/commit/e418c45925ed7ae1c47782fcfaa9bc5a20a63faa))
+- **deps-dev:** bump semantic-release from 24.2.8 to 24.2.9
+  ([17fd2a2](https://github.com/ridedott/merge-me-action/commit/17fd2a2b4621fde9e981253d7e3adb32af7eae8b))
+- **deps:** bump ridedott/release-me-action from 3.10.73 to 3.10.74
+  ([44bceb2](https://github.com/ridedott/merge-me-action/commit/44bceb285d7ba481c5151dcc131512eb5b05242d))
+
 ## [2.10.130](https://github.com/ridedott/merge-me-action/compare/v2.10.129...v2.10.130) (2025-09-19)
 
 ### Chores
