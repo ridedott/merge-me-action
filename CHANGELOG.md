@@ -1,3 +1,12 @@
+## [2.10.132](https://github.com/ridedott/merge-me-action/compare/v2.10.131...v2.10.132) (2025-10-14)
+
+### Chores
+
+- **deps-dev:** bump lint-staged from 16.2.3 to 16.2.4
+  ([cb8bef0](https://github.com/ridedott/merge-me-action/commit/cb8bef0dcff8832eb645c52e97694709cdf2e2b3))
+- **deps:** bump ridedott/release-me-action from 3.10.74 to 3.10.76
+  ([f39b3b4](https://github.com/ridedott/merge-me-action/commit/f39b3b4f31914d94375939a20e4e58e10b09a337))
+
 ## [2.10.131](https://github.com/ridedott/merge-me-action/compare/v2.10.130...v2.10.131) (2025-10-01)
 
 ### Chores
