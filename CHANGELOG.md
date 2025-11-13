@@ -1,3 +1,20 @@
+## [2.10.134](https://github.com/ridedott/merge-me-action/compare/v2.10.133...v2.10.134) (2025-11-13)
+
+### Chores
+
+- **deps-dev:** bump @types/micromatch from 4.0.9 to 4.0.10
+  ([9138ba6](https://github.com/ridedott/merge-me-action/commit/9138ba68a9cc4b63761adb07aa7d4fe86547d84e))
+- **deps-dev:** bump cspell from 9.2.1 to 9.2.2
+  ([330f3d6](https://github.com/ridedott/merge-me-action/commit/330f3d6ec0014a3fa15fe18eb1368fe160605f73))
+- **deps-dev:** bump cspell from 9.2.2 to 9.3.0
+  ([adf9a06](https://github.com/ridedott/merge-me-action/commit/adf9a0695aa020ba171473a24d89ca63df38e3bc))
+- **deps-dev:** bump lint-staged from 16.2.4 to 16.2.5
+  ([d7b0a72](https://github.com/ridedott/merge-me-action/commit/d7b0a7200dcd7d8f674b21905c93e32687451180))
+- **deps-dev:** bump lint-staged from 16.2.5 to 16.2.6
+  ([271bf27](https://github.com/ridedott/merge-me-action/commit/271bf27e6bceebc6dcc2daf6693758d0a56c9997))
+- **deps:** bump ridedott/release-me-action from 3.10.76 to 3.10.78
+  ([ca00618](https://github.com/ridedott/merge-me-action/commit/ca0061867d2c1547ea027ae81dc515328c97aa28))
+
 ## [2.10.133](https://github.com/ridedott/merge-me-action/compare/v2.10.132...v2.10.133) (2025-10-14)
 
 ### Chores
