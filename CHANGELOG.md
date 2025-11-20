@@ -1,3 +1,10 @@
+## [2.10.137](https://github.com/ridedott/merge-me-action/compare/v2.10.136...v2.10.137) (2025-11-20)
+
+### Chores
+
+- **deps:** bump js-yaml
+  ([27d45ed](https://github.com/ridedott/merge-me-action/commit/27d45edf70f530f825a2ef3f2fd76b676a612f06))
+
 ## [2.10.136](https://github.com/ridedott/merge-me-action/compare/v2.10.135...v2.10.136) (2025-11-20)
 
 ### Chores
