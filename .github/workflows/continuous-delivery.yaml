@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           # Fetch all history.
           fetch-depth: 0
@@ -55,7 +55,7 @@ jobs:
         run: npm publish
       - if: steps.release.outputs.released == 'true'
         name: Authenticate Git
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 1
           persist-credentials: true
