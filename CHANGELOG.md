@@ -1,3 +1,10 @@
+## [2.10.144](https://github.com/ridedott/merge-me-action/compare/v2.10.143...v2.10.144) (2026-01-21)
+
+### Chores
+
+- **deps:** bump actions/setup-node from 6.1.0 to 6.2.0
+  ([69f3dd0](https://github.com/ridedott/merge-me-action/commit/69f3dd08bbe8763c7da8d8a40e63e39e2a74b6bc))
+
 ## [2.10.143](https://github.com/ridedott/merge-me-action/compare/v2.10.142...v2.10.143) (2026-01-21)
 
 ### Chores
