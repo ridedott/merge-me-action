@@ -1,3 +1,20 @@
+## [2.10.143](https://github.com/ridedott/merge-me-action/compare/v2.10.142...v2.10.143) (2026-01-21)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 20.2.0 to 20.3.0
+  ([5fbc8fd](https://github.com/ridedott/merge-me-action/commit/5fbc8fd38107453b23eaeae3dcf58a19dfa18d73))
+- **deps-dev:** bump @commitlint/cli from 20.3.0 to 20.3.1
+  ([6a0ef98](https://github.com/ridedott/merge-me-action/commit/6a0ef98023d46d65e20ce5e56c1d42c6891f642c))
+- **deps-dev:** bump @commitlint/config-conventional from 20.2.0 to 20.3.0
+  ([4f42e3b](https://github.com/ridedott/merge-me-action/commit/4f42e3be5f73879931b65c21bfc3880e3287c59c))
+- **deps-dev:** bump @commitlint/config-conventional from 20.3.0 to 20.3.1
+  ([86fd00c](https://github.com/ridedott/merge-me-action/commit/86fd00cd4c2bdaa664ac67f2d54a6f54d81ea898))
+- **deps-dev:** bump cspell from 9.4.0 to 9.6.0
+  ([d7fc569](https://github.com/ridedott/merge-me-action/commit/d7fc569a705076b3ec82ceb5206f5e48c44006c7))
+- **deps:** bump ridedott/release-me-action from 3.10.85 to 3.10.88
+  ([063f73c](https://github.com/ridedott/merge-me-action/commit/063f73c7c91cd5cf9ab1edb744e233c7e3062d7b))
+
 ## [2.10.142](https://github.com/ridedott/merge-me-action/compare/v2.10.141...v2.10.142) (2025-12-12)
 
 ### Chores
