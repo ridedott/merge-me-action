@@ -1,3 +1,14 @@
+## [2.10.145](https://github.com/ridedott/merge-me-action/compare/v2.10.144...v2.10.145) (2026-01-26)
+
+### Chores
+
+- **deps-dev:** bump cspell from 9.6.0 to 9.6.2
+  ([c352f7e](https://github.com/ridedott/merge-me-action/commit/c352f7e5cc5685b508b008ddc3de8763d2146b71))
+- **deps-dev:** bump lodash-es from 4.17.21 to 4.17.23
+  ([fcc0367](https://github.com/ridedott/merge-me-action/commit/fcc0367e8ac38bbba05c56ffbb23be5930950ca0))
+- **deps:** bump ridedott/release-me-action from 3.10.88 to 3.10.89
+  ([2822dde](https://github.com/ridedott/merge-me-action/commit/2822ddeeb8ddd35d725120ea361a4cdbda126a15))
+
 ## [2.10.144](https://github.com/ridedott/merge-me-action/compare/v2.10.143...v2.10.144) (2026-01-21)
 
 ### Chores
