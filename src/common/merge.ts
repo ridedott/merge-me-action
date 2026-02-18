@@ -155,9 +155,11 @@ export const tryMerge = async (
   octokit: ReturnType<typeof getOctokit>,
   {
     maximumRetries,
+    requiresStatusChecks,
     requiresStrictStatusChecks,
   }: {
     maximumRetries: number;
+    requiresStatusChecks: boolean;
     requiresStrictStatusChecks: boolean;
   },
   {
@@ -188,7 +190,19 @@ export const tryMerge = async (
     mergeStateStatus !== 'CLEAN'
   ) {
     logInfo(
-      `Pull request cannot be merged cleanly. Current state: ${
+      `Pull request cannot be merged. Branch must be up to date. Current state: ${
+        mergeStateStatus as string
+      }.`,
+    );
+  } else if (
+    requiresStatusChecks === true &&
+    requiresStrictStatusChecks === false &&
+    mergeStateStatus !== undefined &&
+    mergeStateStatus !== 'CLEAN' &&
+    mergeStateStatus !== 'BEHIND'
+  ) {
+    logInfo(
+      `Pull request cannot be merged. Status checks must pass. Current state: ${
         mergeStateStatus as string
       }.`,
     );

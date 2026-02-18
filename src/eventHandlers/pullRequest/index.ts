@@ -2,7 +2,7 @@ import { getInput } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 import { isMatch } from 'micromatch';
 
-import { computeRequiresStrictStatusChecksForRefs as computeRequiresStrictStatusChecksForReferences } from '../../common/computeRequiresStrictStatusChecksForRefs';
+import { computeRequiresStatusChecksForReferences } from '../../common/computeRequiresStatusChecksForReferences';
 import { getMergeablePullRequestInformationByPullRequestNumber } from '../../common/getPullRequestInformation';
 import { listBranchProtectionRules } from '../../common/listBranchProtectionRules';
 import { tryMerge } from '../../common/merge';
@@ -42,10 +42,10 @@ export const pullRequestHandle = async (
     ),
   ]);
 
-  const [requiresStrictStatusChecks] =
-    computeRequiresStrictStatusChecksForReferences(branchProtectionRules, [
-      pullRequest.base.ref as string,
-    ]);
+  const [statusCheckRequirements] = computeRequiresStatusChecksForReferences(
+    branchProtectionRules,
+    [pullRequest.base.ref as string],
+  );
 
   if (pullRequestInformation === undefined) {
     logWarning('Unable to fetch pull request information.');
@@ -60,7 +60,9 @@ export const pullRequestHandle = async (
       octokit,
       {
         maximumRetries,
-        requiresStrictStatusChecks,
+        requiresStatusChecks: statusCheckRequirements.requiresStatusChecks,
+        requiresStrictStatusChecks:
+          statusCheckRequirements.requiresStrictStatusChecks,
       },
       {
         ...pullRequestInformation,

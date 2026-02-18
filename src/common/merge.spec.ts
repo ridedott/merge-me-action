@@ -113,7 +113,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -152,7 +152,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
   });
@@ -177,7 +177,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -206,7 +206,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -234,12 +234,12 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: true },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: true },
       pullRequestInformation,
     );
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request cannot be merged cleanly. Current state: BEHIND.',
+      'Pull request cannot be merged. Branch must be up to date. Current state: BEHIND.',
     );
   });
 
@@ -264,12 +264,12 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: true },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: true },
       pullRequestInformation,
     );
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request cannot be merged cleanly. Current state: DIRTY.',
+      'Pull request cannot be merged. Branch must be up to date. Current state: DIRTY.',
     );
   });
 
@@ -300,7 +300,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: true },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: true },
       pullRequestInformation,
     );
   });
@@ -332,7 +332,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
   });
@@ -358,12 +358,12 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: true },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: true },
       pullRequestInformation,
     );
 
     expect(infoSpy).toHaveBeenCalledWith(
-      'Pull request cannot be merged cleanly. Current state: UNKNOWN.',
+      'Pull request cannot be merged. Branch must be up to date. Current state: UNKNOWN.',
     );
   });
 
@@ -387,7 +387,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -421,7 +421,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
   });
@@ -509,7 +509,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -587,7 +587,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -687,7 +687,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -726,7 +726,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -767,7 +767,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 2, requiresStrictStatusChecks: false },
+      { maximumRetries: 2, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -808,7 +808,7 @@ describe('merge', (): void => {
 
     await tryMerge(
       octokit,
-      { maximumRetries: 3, requiresStrictStatusChecks: false },
+      { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: false },
       pullRequestInformation,
     );
 
@@ -841,7 +841,7 @@ describe('merge', (): void => {
 
       await tryMerge(
         octokit,
-        { maximumRetries: 3, requiresStrictStatusChecks: true },
+        { maximumRetries: 3, requiresStatusChecks: false, requiresStrictStatusChecks: true },
         pullRequestInformation,
       );
     });
