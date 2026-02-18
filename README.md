@@ -416,3 +416,15 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 ## Versioning
 
 This project adheres to [Semantic Versioning](http://semver.org) v2.
+
+### About the MIT License
+
+The **MIT License** is a simple and permissive open-source license.  
+It allows anyone to freely use, copy, modify, merge, publish, and distribute this project — even for commercial purposes — as long as the original license and copyright notice are included.
+
+**In short:**
+- ✅ You can use this project in any way, even commercially.
+- 🛠️ You can modify and share it freely.
+- ⚖️ You must include proper credit and the license text in copies or substantial portions of the code.
+
+This promotes openness, collaboration, and sharing within the developer community.
