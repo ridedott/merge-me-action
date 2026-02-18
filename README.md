@@ -416,3 +416,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md).
 ## Versioning
 
 This project adheres to [Semantic Versioning](http://semver.org) v2.
+- Improved documentation by viperrocks
