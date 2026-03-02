@@ -1,3 +1,26 @@
+## [2.10.148](https://github.com/ridedott/merge-me-action/compare/v2.10.147...v2.10.148) (2026-03-02)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 20.3.1 to 20.4.0
+  ([729aa22](https://github.com/ridedott/merge-me-action/commit/729aa22953a5965d90f7d9fe75a461c5fe243df3))
+- **deps-dev:** bump @commitlint/cli from 20.4.0 to 20.4.1
+  ([ab5aa14](https://github.com/ridedott/merge-me-action/commit/ab5aa14c8e753e093fbe36d85d6fb03b76f97486))
+- **deps-dev:** bump @commitlint/cli from 20.4.1 to 20.4.2
+  ([2bc4340](https://github.com/ridedott/merge-me-action/commit/2bc4340d927fd22fa7c005a1dbacfe5aa332a6a8))
+- **deps-dev:** bump @commitlint/config-conventional from 20.3.1 to 20.4.0
+  ([41d5270](https://github.com/ridedott/merge-me-action/commit/41d5270db6ae522b3a06eccc34caef855a47f110))
+- **deps-dev:** bump @commitlint/config-conventional from 20.4.0 to 20.4.1
+  ([ecb90ad](https://github.com/ridedott/merge-me-action/commit/ecb90ad18aad3a7863e2159533e5a39585fc585e))
+- **deps-dev:** bump @commitlint/config-conventional from 20.4.1 to 20.4.2
+  ([a02f210](https://github.com/ridedott/merge-me-action/commit/a02f210f11ab08cfa578a79023d2fbacd893642b))
+- **deps-dev:** bump cspell from 9.6.2 to 9.6.3
+  ([0ec1560](https://github.com/ridedott/merge-me-action/commit/0ec1560e7bb4fc40f884c2bd365b71a03ca46519))
+- **deps-dev:** bump cspell from 9.6.3 to 9.6.4
+  ([6c5e2d2](https://github.com/ridedott/merge-me-action/commit/6c5e2d2e264d96a1697b953e81a4192b9d4b7adf))
+- **deps:** bump ridedott/release-me-action from 3.10.92 to 3.10.94
+  ([1ce2eda](https://github.com/ridedott/merge-me-action/commit/1ce2eda7a3cbbdc22c79116fa7ea3f479b14a7d4))
+
 ## [2.10.147](https://github.com/ridedott/merge-me-action/compare/v2.10.146...v2.10.147) (2026-01-29)
 
 ### Chores
