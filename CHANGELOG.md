@@ -1,3 +1,16 @@
+## [2.10.149](https://github.com/ridedott/merge-me-action/compare/v2.10.148...v2.10.149) (2026-03-04)
+
+### Chores
+
+- **deps-dev:** bump cspell from 9.6.4 to 9.7.0
+  ([25356e9](https://github.com/ridedott/merge-me-action/commit/25356e91821add854b8ce9bad3c168193f46c7ed))
+- **deps-dev:** bump lint-staged from 16.2.7 to 16.3.1
+  ([fc84a0a](https://github.com/ridedott/merge-me-action/commit/fc84a0a4d70b26afcfd6efa5efdc0e4710a2f865))
+- **deps-dev:** bump minimatch from 3.1.2 to 3.1.5
+  ([b146640](https://github.com/ridedott/merge-me-action/commit/b1466405b1b1e24712713bd9ce79d47daef2ae8a))
+- **deps:** bump actions/setup-node from 6.2.0 to 6.3.0
+  ([b5cfc18](https://github.com/ridedott/merge-me-action/commit/b5cfc188f7164ce91f271e68eee86db98d849903))
+
 ## [2.10.148](https://github.com/ridedott/merge-me-action/compare/v2.10.147...v2.10.148) (2026-03-02)
 
 ### Chores
