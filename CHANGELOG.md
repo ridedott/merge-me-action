@@ -1,3 +1,14 @@
+## [2.10.151](https://github.com/ridedott/merge-me-action/compare/v2.10.150...v2.10.151) (2026-03-12)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 20.4.3 to 20.4.4
+  ([f92c5fb](https://github.com/ridedott/merge-me-action/commit/f92c5fb0005bf7a46595a62f6cd73e5f5fb084fc))
+- **deps-dev:** bump @commitlint/config-conventional from 20.4.3 to 20.4.4
+  ([d60740e](https://github.com/ridedott/merge-me-action/commit/d60740e36ad1e2549f63bb1f1827346273862388))
+- **deps:** bump tar and npm
+  ([60ef01d](https://github.com/ridedott/merge-me-action/commit/60ef01dd09fe173a3a12fcac8d4316c6bcc625a6))
+
 ## [2.10.150](https://github.com/ridedott/merge-me-action/compare/v2.10.149...v2.10.150) (2026-03-12)
 
 ### Chores
