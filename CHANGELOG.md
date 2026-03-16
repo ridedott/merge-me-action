@@ -1,3 +1,12 @@
+## [2.10.152](https://github.com/ridedott/merge-me-action/compare/v2.10.151...v2.10.152) (2026-03-16)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/cli from 20.4.4 to 20.5.0
+  ([7738125](https://github.com/ridedott/merge-me-action/commit/7738125df316ce389ded8ebdb4f973851ed19953))
+- **deps:** bump ridedott/release-me-action from 3.10.95 to 3.10.96
+  ([2b6d8a2](https://github.com/ridedott/merge-me-action/commit/2b6d8a21504de0d88c5afac4526a501b9f4cf4ff))
+
 ## [2.10.151](https://github.com/ridedott/merge-me-action/compare/v2.10.150...v2.10.151) (2026-03-12)
 
 ### Chores
