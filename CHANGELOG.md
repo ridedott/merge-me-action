@@ -1,3 +1,16 @@
+## [2.10.153](https://github.com/ridedott/merge-me-action/compare/v2.10.152...v2.10.153) (2026-03-24)
+
+### Chores
+
+- **deps-dev:** bump @commitlint/config-conventional from 20.4.4 to 20.5.0
+  ([f695368](https://github.com/ridedott/merge-me-action/commit/f695368568ec3d3e66f32b6e276274792916d12d))
+- **deps-dev:** bump flatted from 3.3.3 to 3.4.2
+  ([f557673](https://github.com/ridedott/merge-me-action/commit/f55767359f0bb9c0bd629c8915a4bb40d8b7ccab))
+- **deps-dev:** bump lint-staged from 16.3.3 to 16.4.0
+  ([14e0ebd](https://github.com/ridedott/merge-me-action/commit/14e0ebd1a41f8c7ad189f480e73dd8d3f017752a))
+- **deps:** bump ridedott/release-me-action from 3.10.96 to 3.10.97
+  ([44c6abe](https://github.com/ridedott/merge-me-action/commit/44c6abee51d03f0af2f58d4463b02aedd4f710b4))
+
 ## [2.10.152](https://github.com/ridedott/merge-me-action/compare/v2.10.151...v2.10.152) (2026-03-16)
 
 ### Chores
