@@ -1,3 +1,10 @@
+## [2.10.154](https://github.com/ridedott/merge-me-action/compare/v2.10.153...v2.10.154) (2026-03-25)
+
+### Chores
+
+- **deps:** bump picomatch from 2.3.1 to 2.3.2
+  ([6f9c6f5](https://github.com/ridedott/merge-me-action/commit/6f9c6f597b6779a4c01f094bc35a0b16f4735f0a))
+
 ## [2.10.153](https://github.com/ridedott/merge-me-action/compare/v2.10.152...v2.10.153) (2026-03-24)
 
 ### Chores
