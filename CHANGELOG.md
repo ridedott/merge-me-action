@@ -1,3 +1,12 @@
+## [2.10.157](https://github.com/ridedott/merge-me-action/compare/v2.10.156...v2.10.157) (2026-03-30)
+
+### Chores
+
+- **deps-dev:** bump handlebars from 4.7.8 to 4.7.9
+  ([35a8fea](https://github.com/ridedott/merge-me-action/commit/35a8fea8b29a2ed6f095f2f7d56136f54a7daf77))
+- **deps:** bump ridedott/release-me-action from 3.10.99 to 3.10.100
+  ([d6325f1](https://github.com/ridedott/merge-me-action/commit/d6325f17fb7e2d3728f83f6872ef7858dddd0dc1))
+
 ## [2.10.156](https://github.com/ridedott/merge-me-action/compare/v2.10.155...v2.10.156) (2026-03-27)
 
 ### Chores
