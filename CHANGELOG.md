@@ -1,3 +1,14 @@
+## [2.10.159](https://github.com/ridedott/merge-me-action/compare/v2.10.158...v2.10.159) (2026-04-17)
+
+### Chores
+
+- **deps-dev:** bump http-status-codes from 2.2.0 to 2.3.0
+  ([fbbc313](https://github.com/ridedott/merge-me-action/commit/fbbc313136733fc5033b479dae8b5f7610cc10ef))
+- **deps-dev:** bump lodash-es from 4.17.23 to 4.18.1
+  ([2aff794](https://github.com/ridedott/merge-me-action/commit/2aff7945b51a5755b63e8dc2461bd184ca708a26))
+- **deps:** bump ridedott/release-me-action from 3.10.103 to 3.10.104
+  ([fe9323b](https://github.com/ridedott/merge-me-action/commit/fe9323b13d6d3fe40135c3dc26a1b29c491e5e05))
+
 ## [2.10.158](https://github.com/ridedott/merge-me-action/compare/v2.10.157...v2.10.158) (2026-04-02)
 
 ### Chores

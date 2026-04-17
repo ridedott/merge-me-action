@@ -95,5 +95,5 @@
     "test:watch": "jest --watch --verbose false",
     "types": "tsc --noEmit"
   },
-  "version": "2.10.158"
+  "version": "2.10.159"
 }
