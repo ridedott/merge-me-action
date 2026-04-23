@@ -10,6 +10,7 @@ const listBranchProtectionRulesQuery = `
         edges {
           node {
             pattern
+            requiresStatusChecks
             requiresStrictStatusChecks
           }
         }
@@ -24,6 +25,7 @@ const listBranchProtectionRulesQuery = `
 
 export interface BranchProtectionRule {
   pattern: string;
+  requiresStatusChecks: boolean;
   requiresStrictStatusChecks: boolean;
 }
 
