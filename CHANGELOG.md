@@ -1,3 +1,10 @@
+## [2.10.163](https://github.com/ridedott/merge-me-action/compare/v2.10.162...v2.10.163) (2026-05-11)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.10.106 to 3.10.107
+  ([2568f177](https://github.com/ridedott/merge-me-action/commit/2568f177a681785a874d6e7af950eb1a0dd31123))
+
 ## [2.10.162](https://github.com/ridedott/merge-me-action/compare/v2.10.161...v2.10.162) (2026-05-05)
 
 ### Chores
