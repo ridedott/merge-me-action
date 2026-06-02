@@ -1,3 +1,15 @@
+## [2.10.164](https://github.com/ridedott/merge-me-action/compare/v2.10.163...v2.10.164) (2026-06-02)
+
+### Chores
+
+- **deps-dev:** bump @semantic-release/release-notes-generator from 14.1.0 to
+  14.1.1
+  ([f15da7cd](https://github.com/ridedott/merge-me-action/commit/f15da7cdd15a9ceac9ed3af731dd0e23ff8adf47))
+- **deps-dev:** bump fast-uri from 3.1.0 to 3.1.2
+  ([13658bbb](https://github.com/ridedott/merge-me-action/commit/13658bbbf17a2a34b19b4c608eeb3a63d3a72137))
+- **deps:** bump ridedott/release-me-action from 3.10.107 to 3.10.108
+  ([958c8d18](https://github.com/ridedott/merge-me-action/commit/958c8d18eb9e3e99491f610831128a209be33ac5))
+
 ## [2.10.163](https://github.com/ridedott/merge-me-action/compare/v2.10.162...v2.10.163) (2026-05-11)
 
 ### Chores
