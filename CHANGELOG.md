@@ -1,3 +1,12 @@
+## [2.10.165](https://github.com/ridedott/merge-me-action/compare/v2.10.164...v2.10.165) (2026-06-10)
+
+### Chores
+
+- **deps-dev:** bump shell-quote from 1.7.3 to 1.8.4
+  ([3816023d](https://github.com/ridedott/merge-me-action/commit/3816023dcdca29489a07ab555b94fc1e78adeab4))
+- **deps:** bump ridedott/release-me-action from 3.10.108 to 3.10.109
+  ([e45e8ab1](https://github.com/ridedott/merge-me-action/commit/e45e8ab1dd3d3dc1d27b8c0a3f465e40e8c9fb8e))
+
 ## [2.10.164](https://github.com/ridedott/merge-me-action/compare/v2.10.163...v2.10.164) (2026-06-02)
 
 ### Chores
