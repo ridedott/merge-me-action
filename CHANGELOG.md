@@ -1,3 +1,10 @@
+## [2.10.167](https://github.com/ridedott/merge-me-action/compare/v2.10.166...v2.10.167) (2026-06-19)
+
+### Chores
+
+- **deps:** bump actions/checkout from 6 to 7
+  ([ea701579](https://github.com/ridedott/merge-me-action/commit/ea701579a8004f680ccbfc3217df806e04727943))
+
 ## [2.10.166](https://github.com/ridedott/merge-me-action/compare/v2.10.165...v2.10.166) (2026-06-19)
 
 ### Chores
