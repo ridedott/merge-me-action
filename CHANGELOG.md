@@ -1,3 +1,14 @@
+## [2.10.166](https://github.com/ridedott/merge-me-action/compare/v2.10.165...v2.10.166) (2026-06-19)
+
+### Chores
+
+- **deps-dev:** bump @vercel/ncc from 0.38.4 to 0.44.0
+  ([e00dacbd](https://github.com/ridedott/merge-me-action/commit/e00dacbd8ebe385acaaa0082bd1fea1746aff46e))
+- **deps-dev:** bump commitizen from 4.3.1 to 4.3.2
+  ([138c0450](https://github.com/ridedott/merge-me-action/commit/138c0450f286c35bc00c6f759c63dec24ef6bd81))
+- **deps:** bump ridedott/release-me-action from 3.10.109 to 3.10.111
+  ([6ccf3e85](https://github.com/ridedott/merge-me-action/commit/6ccf3e858dc6ce241afcb9504bbea60d98b23992))
+
 ## [2.10.165](https://github.com/ridedott/merge-me-action/compare/v2.10.164...v2.10.165) (2026-06-10)
 
 ### Chores
