@@ -1,3 +1,12 @@
+## [2.10.168](https://github.com/ridedott/merge-me-action/compare/v2.10.167...v2.10.168) (2026-06-22)
+
+### Chores
+
+- **deps-dev:** bump form-data from 3.0.4 to 3.0.5
+  ([bb09d7d3](https://github.com/ridedott/merge-me-action/commit/bb09d7d3c3504d3837816cc4eb821e663dc7ffde))
+- **deps:** bump ridedott/release-me-action from 3.10.111 to 3.10.112
+  ([44b73300](https://github.com/ridedott/merge-me-action/commit/44b7330019df12a947cf67a7d3dea6c37e1db09e))
+
 ## [2.10.167](https://github.com/ridedott/merge-me-action/compare/v2.10.166...v2.10.167) (2026-06-19)
 
 ### Chores
