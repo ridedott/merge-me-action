@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -30,7 +30,7 @@ jobs:
     timeout-minutes: 5
   format:
     name: Format
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-2vcpu-ubuntu-2404
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -49,7 +49,7 @@ jobs:
     timeout-minutes: 5
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -68,7 +68,7 @@ jobs:
     timeout-minutes: 5
   spellcheck:
     name: Spellcheck
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-2vcpu-ubuntu-2404
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -87,7 +87,7 @@ jobs:
     timeout-minutes: 5
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -111,7 +111,7 @@ jobs:
     timeout-minutes: 5
   types:
     name: Types
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -137,7 +137,7 @@ jobs:
       - test
       - types
     name: Merge me!
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-2vcpu-ubuntu-2404
     steps:
       - name: Merge me!
         uses: ridedott/merge-me-action@master

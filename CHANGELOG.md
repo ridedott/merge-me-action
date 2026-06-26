@@ -1,3 +1,11 @@
+## [2.10.170](https://github.com/ridedott/merge-me-action/compare/v2.10.169...v2.10.170) (2026-06-26)
+
+### Continuous Integration
+
+- migrate to Blacksmith runners (#2439)
+  ([b75c789d](https://github.com/ridedott/merge-me-action/commit/b75c789d74b57b7b828796a86f38a5aa9bb6532f)),
+  closes [#2439](https://github.com/ridedott/merge-me-action/issues/2439)
+
 ## [2.10.169](https://github.com/ridedott/merge-me-action/compare/v2.10.168...v2.10.169) (2026-06-25)
 
 ### Chores
