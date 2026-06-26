@@ -12,7 +12,7 @@ jobs:
     runs-on: blacksmith-4vcpu-ubuntu-2404
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           # Fetch all history.
           fetch-depth: 0
@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         id: release
         name: Release
-        uses: ridedott/release-me-action@v3.10.109
+        uses: ridedott/release-me-action@v3.10.113
         with:
           commit-assets: |
             ./dist
@@ -55,7 +55,7 @@ jobs:
         run: npm publish
       - if: steps.release.outputs.released == 'true'
         name: Authenticate Git
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1
           persist-credentials: true

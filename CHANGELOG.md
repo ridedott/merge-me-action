@@ -1,3 +1,37 @@
+## [2.10.169](https://github.com/ridedott/merge-me-action/compare/v2.10.168...v2.10.169) (2026-06-25)
+
+### Chores
+
+- **deps:** bump ridedott/release-me-action from 3.10.112 to 3.10.113
+  ([b7a33975](https://github.com/ridedott/merge-me-action/commit/b7a33975c10561b98aa5a4937333fe5d96a75b64))
+
+## [2.10.168](https://github.com/ridedott/merge-me-action/compare/v2.10.167...v2.10.168) (2026-06-22)
+
+### Chores
+
+- **deps-dev:** bump form-data from 3.0.4 to 3.0.5
+  ([bb09d7d3](https://github.com/ridedott/merge-me-action/commit/bb09d7d3c3504d3837816cc4eb821e663dc7ffde))
+- **deps:** bump ridedott/release-me-action from 3.10.111 to 3.10.112
+  ([44b73300](https://github.com/ridedott/merge-me-action/commit/44b7330019df12a947cf67a7d3dea6c37e1db09e))
+
+## [2.10.167](https://github.com/ridedott/merge-me-action/compare/v2.10.166...v2.10.167) (2026-06-19)
+
+### Chores
+
+- **deps:** bump actions/checkout from 6 to 7
+  ([ea701579](https://github.com/ridedott/merge-me-action/commit/ea701579a8004f680ccbfc3217df806e04727943))
+
+## [2.10.166](https://github.com/ridedott/merge-me-action/compare/v2.10.165...v2.10.166) (2026-06-19)
+
+### Chores
+
+- **deps-dev:** bump @vercel/ncc from 0.38.4 to 0.44.0
+  ([e00dacbd](https://github.com/ridedott/merge-me-action/commit/e00dacbd8ebe385acaaa0082bd1fea1746aff46e))
+- **deps-dev:** bump commitizen from 4.3.1 to 4.3.2
+  ([138c0450](https://github.com/ridedott/merge-me-action/commit/138c0450f286c35bc00c6f759c63dec24ef6bd81))
+- **deps:** bump ridedott/release-me-action from 3.10.109 to 3.10.111
+  ([6ccf3e85](https://github.com/ridedott/merge-me-action/commit/6ccf3e858dc6ce241afcb9504bbea60d98b23992))
+
 ## [2.10.165](https://github.com/ridedott/merge-me-action/compare/v2.10.164...v2.10.165) (2026-06-10)
 
 ### Chores
