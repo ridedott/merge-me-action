@@ -1,3 +1,11 @@
+## [2.10.171](https://github.com/ridedott/merge-me-action/compare/v2.10.170...v2.10.171) (2026-06-26)
+
+### Chores
+
+- bump node to 24 (#2451)
+  ([9e30087b](https://github.com/ridedott/merge-me-action/commit/9e30087b1a8080189cc1eac47f52034ce1200e2f)),
+  closes [#2451](https://github.com/ridedott/merge-me-action/issues/2451)
+
 ## [2.10.170](https://github.com/ridedott/merge-me-action/compare/v2.10.169...v2.10.170) (2026-06-26)
 
 ### Continuous Integration
