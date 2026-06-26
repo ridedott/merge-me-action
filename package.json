@@ -38,7 +38,7 @@
     "ts-node": "^10.9.2"
   },
   "engines": {
-    "node": "20",
+    "node": "24",
     "npm": ">=9"
   },
   "files": [
