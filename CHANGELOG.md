@@ -1,3 +1,10 @@
+## [2.10.174](https://github.com/ridedott/merge-me-action/compare/v2.10.173...v2.10.174) (2026-06-29)
+
+### Chores
+
+- **deps:** bump @sigstore/core, semantic-release and @semantic-release/npm
+  ([543b8795](https://github.com/ridedott/merge-me-action/commit/543b87952b49a435339b9bcc65ac6145ac6d584e))
+
 ## [2.10.173](https://github.com/ridedott/merge-me-action/compare/v2.10.172...v2.10.173) (2026-06-29)
 
 ### Chores
