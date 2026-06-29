@@ -24,6 +24,8 @@ jobs:
           node-version: 24
           registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Build
         run: |
