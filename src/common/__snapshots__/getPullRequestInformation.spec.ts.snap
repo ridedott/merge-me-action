@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`getPullRequestInformation returns pull request information with mergeStateStatus field 1`] = `
-Object {
+{
   "authorLogin": "test-author",
   "commitMessage": "test message",
   "commitMessageHeadline": "test message headline",
@@ -14,12 +14,12 @@ Object {
   "pullRequestTitle": "test",
   "repositoryName": "test-repository",
   "repositoryOwner": "test-owner",
-  "reviewEdges": Array [],
+  "reviewEdges": [],
 }
 `;
 
 exports[`getPullRequestInformation returns pull request information without mergeStateStatus field 1`] = `
-Object {
+{
   "authorLogin": "test-author",
   "commitMessage": "test message",
   "commitMessageHeadline": "test message headline",
@@ -31,6 +31,6 @@ Object {
   "pullRequestTitle": "test",
   "repositoryName": "test-repository",
   "repositoryOwner": "test-owner",
-  "reviewEdges": Array [],
+  "reviewEdges": [],
 }
 `;

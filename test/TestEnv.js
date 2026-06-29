@@ -1,5 +1,5 @@
 const { env } = require('process');
-const NodeEnvironment = require('jest-environment-node');
+const { TestEnvironment: NodeEnvironment } = require('jest-environment-node');
 
 class CustomEnvironment extends NodeEnvironment {
   constructor(config, context) {
