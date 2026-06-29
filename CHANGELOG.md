@@ -1,3 +1,11 @@
+## [2.10.173](https://github.com/ridedott/merge-me-action/compare/v2.10.172...v2.10.173) (2026-06-29)
+
+### Chores
+
+- update more node deps to 24 (#2456)
+  ([75c7e571](https://github.com/ridedott/merge-me-action/commit/75c7e57170584c39657aa5a3afd76bf0cdd57d57)),
+  closes [#2456](https://github.com/ridedott/merge-me-action/issues/2456)
+
 ## [2.10.172](https://github.com/ridedott/merge-me-action/compare/v2.10.171...v2.10.172) (2026-06-26)
 
 ### Chores

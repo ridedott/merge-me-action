@@ -13,5 +13,5 @@ export declare const makeGraphqlIterator: <IterableData>(octokit: ReturnType<typ
     extractListFunction: (response: GraphQlQueryResponseData) => IterableList<IterableData> | undefined;
     parameters: object;
     query: string;
-}) => AsyncGenerator<IterableData, any, unknown>;
+}) => AsyncGenerator<IterableData>;
 //# sourceMappingURL=makeGraphqlIterator.d.ts.map
