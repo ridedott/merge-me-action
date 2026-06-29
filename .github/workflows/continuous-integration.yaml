@@ -18,9 +18,11 @@ jobs:
         uses: actions/setup-node@v6.4.0
         with:
           cache: 'npm'
-          node-version: 20
+          node-version: 24
           registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Build
         run: |
@@ -40,9 +42,11 @@ jobs:
         uses: actions/setup-node@v6.4.0
         with:
           cache: 'npm'
-          node-version: 20
+          node-version: 24
           registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Format
         run: npm run format
@@ -59,9 +63,11 @@ jobs:
         uses: actions/setup-node@v6.4.0
         with:
           cache: 'npm'
-          node-version: 20
+          node-version: 24
           registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Lint
         run: npm run lint
@@ -78,9 +84,11 @@ jobs:
         uses: actions/setup-node@v6.4.0
         with:
           cache: 'npm'
-          node-version: 20
+          node-version: 24
           registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Spellcheck
         run: npm run spellcheck
@@ -97,10 +105,13 @@ jobs:
         uses: actions/setup-node@v6.4.0
         with:
           cache: 'npm'
-          node-version: 20
+          node-version: 24
+          registry-url: 'https://npm.pkg.github.com'
       - name: Install latest npm
         run: npm install --global npm@latest
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Test
         run: npm run test:ci
@@ -121,9 +132,11 @@ jobs:
         uses: actions/setup-node@v6.4.0
         with:
           cache: 'npm'
-          node-version: 20
+          node-version: 24
           registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Types
         run: npm run types

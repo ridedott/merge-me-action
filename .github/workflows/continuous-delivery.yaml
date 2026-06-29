@@ -21,9 +21,11 @@ jobs:
         uses: actions/setup-node@v6.4.0
         with:
           cache: 'npm'
-          node-version: 20
+          node-version: 24
           registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DOTTBOTT_TOKEN }}
         run: npm ci --ignore-scripts --no-audit --no-progress --prefer-offline
       - name: Build
         run: |

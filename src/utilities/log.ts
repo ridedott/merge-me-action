@@ -4,10 +4,10 @@ const stringify = (value: unknown): string =>
   typeof value === 'string'
     ? value
     : value instanceof Error
-    ? value.stack ?? value.toString()
-    : typeof value === 'number'
-    ? value.toString()
-    : JSON.stringify(value);
+      ? (value.stack ?? value.toString())
+      : typeof value === 'number'
+        ? value.toString()
+        : JSON.stringify(value);
 
 const log =
   (logger: (value: string) => void): ((message: unknown) => void) =>
