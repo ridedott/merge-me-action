@@ -2,7 +2,7 @@ import { getInput } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 import { isMatch } from 'micromatch';
 
-import { computeRequiresStrictStatusChecksForRefs as computeRequiresStrictStatusChecksForReferences } from '../../common/computeRequiresStrictStatusChecksForRefs';
+import { computeRequiresStatusChecksForReferences } from '../../common/computeRequiresStatusChecksForReferences';
 import {
   delay,
   EXPONENTIAL_BACKOFF,
@@ -84,11 +84,10 @@ export const continuousIntegrationEndHandle = async (
     context.repo.repo,
   );
 
-  const requiresStrictStatusChecksArray =
-    computeRequiresStrictStatusChecksForReferences(
-      branchProtectionRules,
-      pullRequests.map(({ base }: PullRequest): string => base.ref),
-    );
+  const statusCheckRequirementsArray = computeRequiresStatusChecksForReferences(
+    branchProtectionRules,
+    pullRequests.map(({ base }: PullRequest): string => base.ref),
+  );
 
   const pullRequestsInformation = await Promise.all(
     pullRequests.map(
@@ -122,13 +121,18 @@ export const continuousIntegrationEndHandle = async (
         )}.`,
       );
 
+      const statusCheckRequirements = statusCheckRequirementsArray[index];
+
       // eslint-disable-next-line functional/immutable-data
       mergePromises.push(
         tryMerge(
           octokit,
           {
             maximumRetries,
-            requiresStrictStatusChecks: requiresStrictStatusChecksArray[index],
+            requiresStatusChecks:
+              statusCheckRequirements.requiresStatusChecks,
+            requiresStrictStatusChecks:
+              statusCheckRequirements.requiresStrictStatusChecks,
           },
           pullRequestInformation,
         ),
