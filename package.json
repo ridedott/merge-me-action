@@ -25,7 +25,7 @@
     "@vercel/ncc": "^0.44.1",
     "commitizen": "^4.3.2",
     "cspell": "^10.0.1",
-    "eslint": "^10.3.0",
+    "eslint": "^10.8.1",
     "http-status-codes": "^2.3.0",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
